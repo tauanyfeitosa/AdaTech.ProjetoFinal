@@ -10,7 +10,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
     {
         /// <summary>
         /// The main entry point for the application.
-        /// </summary>
+        /// </summary> teste git
         [STAThread]
         static void Main()
         {
