@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Business\Livro.cs" />
+    <Compile Include="Models\Business\LivroData.cs" />
+    <Compile Include="Models\Business\TipoAcervoLivro.cs" />
     <Compile Include="Models\Usuarios\Funcionarios\CargosFuncionarios\Atendente.cs" />
     <Compile Include="Models\Usuarios\Funcionarios\CargosFuncionarios\Bibliotecario.cs" />
     <Compile Include="Models\Usuarios\UsuariosComunidadeAcademica\ComunidadeAcademica.cs" />
