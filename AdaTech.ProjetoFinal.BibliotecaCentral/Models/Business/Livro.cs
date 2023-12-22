@@ -103,10 +103,10 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             get
             {
                 return _exemplaresDisponiveis;
-            }; private set
+            } private set
             {
                 _exemplaresDisponiveis = value;
-            };
+            }
         }
         internal int LivrosBomEstado
         {
@@ -117,7 +117,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             private set
             {
                 _livrosBomEstado = value;
-            };
+            }
         }
         internal int LivrosEstadoMediano
         {
