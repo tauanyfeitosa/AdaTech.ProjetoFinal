@@ -153,7 +153,21 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
                 _tipoAcervoLivro = value;
             }
         }
-    }
 
-}
+        internal Livro(string titulo, string autor, string isbn, int anoPublicacao, int edicao, string editora, int exemplares, TipoAcervoLivro tipoAcervoLivro)
+        {
+            Titulo = titulo;
+            Autor = autor;
+            Isbn = isbn;
+            AnoPublicacao = anoPublicacao;
+            Edicao = edicao;
+            Editora = editora;
+            Exemplares = exemplares;
+            ExemplaresDisponiveis = exemplares - 1;
+            LivrosBomEstado = exemplares;
+            LivrosEstadoMediano = 0;
+            LivrosMauEstado = 0;
+            this.tipoAcervoLivro = tipoAcervoLivro;
+        }
+    }
 }
