@@ -46,14 +46,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Models\Business\Livro.cs" />
+    <Compile Include="Models\Business\LivroData.cs" />
+    <Compile Include="Models\Business\TipoAcervoLivro.cs" />
+    <Compile Include="Models\Usuarios\Funcionarios\CargosFuncionarios\Atendente.cs" />
+    <Compile Include="Models\Usuarios\Funcionarios\CargosFuncionarios\Bibliotecario.cs" />
+    <Compile Include="Models\Usuarios\UsuariosComunidadeAcademica\ComunidadeAcademica.cs" />
+    <Compile Include="Models\Usuarios\Funcionarios\CargosFuncionarios\Diretor.cs" />
+    <Compile Include="Views\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="Views\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="Models\Usuarios\Funcionarios\Funcionario.cs" />
+    <Compile Include="Controllers\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Models\Usuarios\UsuariosComunidadeAcademica\TipoUsuarioComunidade.cs" />
+    <Compile Include="Models\Usuarios\Usuarios.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -76,5 +86,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
