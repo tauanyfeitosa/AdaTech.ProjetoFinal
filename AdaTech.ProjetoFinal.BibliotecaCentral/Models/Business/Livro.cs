@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral
 {
+    [Serializable]
     internal class Livro
     {
         private string _titulo;
@@ -103,10 +104,11 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             get
             {
                 return _exemplaresDisponiveis;
-            }; private set
+            }
+            private set
             {
                 _exemplaresDisponiveis = value;
-            };
+            }
         }
         internal int LivrosBomEstado
         {
@@ -117,7 +119,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             private set
             {
                 _livrosBomEstado = value;
-            };
+            }
         }
         internal int LivrosEstadoMediano
         {
@@ -152,6 +154,12 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             {
                 _tipoAcervoLivro = value;
             }
+        }
+
+        // CONSTRUTOR APENAS PARA TESTE
+        internal Livro(string titulo)
+        {
+            Titulo = titulo;
         }
 
         internal Livro(string titulo, string autor, string isbn, int anoPublicacao, 
