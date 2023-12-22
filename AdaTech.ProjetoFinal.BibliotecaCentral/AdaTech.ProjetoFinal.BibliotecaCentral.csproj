@@ -46,6 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\TelaInicialController.cs" />
+    <Compile Include="Models\Business\ISolicitacao.cs" />
+    <Compile Include="Models\Business\SolicitacaoMudarAcervoLivro.cs" />
+    <Compile Include="Models\Business\SolicitacaoRequisicaoLivros.cs" />
     <Compile Include="Models\Business\Livro.cs" />
     <Compile Include="Models\Business\LivroData.cs" />
     <Compile Include="Models\Business\TipoAcervoLivro.cs" />
@@ -53,18 +57,17 @@
     <Compile Include="Models\Usuarios\Funcionarios\CargosFuncionarios\Bibliotecario.cs" />
     <Compile Include="Models\Usuarios\UsuariosComunidadeAcademica\ComunidadeAcademica.cs" />
     <Compile Include="Models\Usuarios\Funcionarios\CargosFuncionarios\Diretor.cs" />
-    <Compile Include="Models\Business\Data.cs" />
-    <Compile Include="Views\Form1.cs">
+    <Compile Include="Models\Usuarios\UsuariosComunidadeAcademica\Sessao.cs" />
+    <Compile Include="Views\TelaLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Views\TelaLogin.Designer.cs">
+      <DependentUpon>TelaLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Usuarios\Funcionarios\Funcionario.cs" />
-    <Compile Include="Controllers\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Usuarios\UsuariosComunidadeAcademica\TipoUsuarioComunidade.cs" />
-    <Compile Include="Models\Usuarios\Usuarios.cs" />
+    <Compile Include="Models\Usuarios\Usuario.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -74,7 +77,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="Models\Business\LivroData.bin" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

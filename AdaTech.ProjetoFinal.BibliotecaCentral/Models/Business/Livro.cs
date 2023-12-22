@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral
 {
-    [Serializable]
     internal class Livro
     {
         private string _titulo;
@@ -104,7 +103,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             get
             {
                 return _exemplaresDisponiveis;
-            }
+            } 
             private set
             {
                 _exemplaresDisponiveis = value;
@@ -156,12 +155,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             }
         }
 
-        // CONSTRUTOR APENAS PARA TESTE
-        internal Livro(string titulo)
-        {
-            Titulo = titulo;
-        }
-
         internal Livro(string titulo, string autor, string isbn, int anoPublicacao, 
             int edicao, string editora, int exemplares, TipoAcervoLivro tipoAcervoLivro)
         {
@@ -172,7 +165,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             Edicao = edicao;
             Editora = editora;
             Exemplares = exemplares;
-            ExemplaresDisponiveis = exemplares - 1;
+            ExemplaresDisponiveis = exemplares;
             LivrosBomEstado = exemplares;
             LivrosEstadoMediano = 0;
             LivrosMauEstado = 0;

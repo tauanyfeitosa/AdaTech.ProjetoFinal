@@ -1,6 +1,6 @@
 ﻿namespace AdaTech.ProjetoFinal.BibliotecaCentral
 {
-    partial class Form1
+    partial class TelaLogin
     {
         /// <summary>
         /// Required designer variable.
