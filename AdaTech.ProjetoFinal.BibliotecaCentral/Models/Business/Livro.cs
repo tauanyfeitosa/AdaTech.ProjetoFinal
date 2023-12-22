@@ -103,7 +103,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             get
             {
                 return _exemplaresDisponiveis;
-            } private set
+            } 
+            private set
             {
                 _exemplaresDisponiveis = value;
             }
