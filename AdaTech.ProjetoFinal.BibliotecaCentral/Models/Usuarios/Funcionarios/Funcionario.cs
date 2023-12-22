@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral
 {
-    internal abstract class Funcionario: Usuarios
+    internal abstract class Funcionario: Usuario
     {
         protected bool ativo;
         internal bool Ativo
