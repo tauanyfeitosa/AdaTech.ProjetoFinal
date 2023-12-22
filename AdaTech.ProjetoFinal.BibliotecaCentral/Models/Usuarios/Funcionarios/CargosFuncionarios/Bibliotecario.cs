@@ -9,10 +9,11 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
 
         }
 
-        //private Livro CadastrarLivro(string titulo, string autor, string isbn, int anoPublicacao, int edicao, string editora, int exemplares)
-        //{
+        private void CadastrarLivro(string titulo, string autor, string isbn, int anoPublicacao, int edicao, string editora, int exemplares)
+        {
+            LivroData.IncluirLivros(titulo, autor, isbn, anoPublicacao, edicao, editora, exemplares); 
+        }
 
-        //}
         //private Livro CadastraLivro()
         //{
 

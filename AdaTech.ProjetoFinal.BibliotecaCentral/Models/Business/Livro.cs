@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -103,10 +103,11 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             get
             {
                 return _exemplaresDisponiveis;
-            }; private set
+            } 
+            private set
             {
                 _exemplaresDisponiveis = value;
-            };
+            }
         }
         internal int LivrosBomEstado
         {
@@ -117,7 +118,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             private set
             {
                 _livrosBomEstado = value;
-            };
+            }
         }
         internal int LivrosEstadoMediano
         {
@@ -164,7 +165,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             Edicao = edicao;
             Editora = editora;
             Exemplares = exemplares;
-            ExemplaresDisponiveis = exemplares - 1;
+            ExemplaresDisponiveis = exemplares;
             LivrosBomEstado = exemplares;
             LivrosEstadoMediano = 0;
             LivrosMauEstado = 0;

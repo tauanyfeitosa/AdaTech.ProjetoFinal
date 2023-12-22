@@ -1,7 +1,7 @@
 ﻿
 namespace AdaTech.ProjetoFinal.BibliotecaCentral
 {
-    internal class ComunidadeAcademica : Usuarios
+    internal class ComunidadeAcademica : Usuario
     {
         private string _matricula, _curso;
         private TipoUsuarioComunidade _tipoUsuario;
