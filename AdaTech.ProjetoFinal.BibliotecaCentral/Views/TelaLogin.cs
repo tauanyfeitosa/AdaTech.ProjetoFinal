@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Linq;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Controllers;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral
 {
@@ -11,6 +11,13 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
         private TextBox txtUsuario;
         private TextBox txtSenha;
         private Button btnEntrar;
+        private TelaInicialController controller;
+
+        internal Panel PainelLogin { get => painelLogin; private set => painelLogin = value; }
+        internal TextBox TxtUsuario { get => txtUsuario; private set => txtUsuario = value; }
+        internal TextBox TxtSenha { get => txtSenha; private set => txtSenha = value; }
+        internal Button BtnEntrar { get => btnEntrar; private set => btnEntrar = value; }
+
 
         public static void Main(string[] args)
         {
@@ -20,6 +27,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
         public TelaLogin()
         {
             Load += OnLoad;
+            this.controller = new TelaInicialController(this);
         }
 
         private void OnLoad(object sender, EventArgs e)
@@ -52,6 +60,14 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             txtSenha.Location = new Point(painelLogin.Width / 4, painelLogin.Height / 2);
             txtSenha.Anchor = AnchorStyles.None;
             txtSenha.Text = "Senha";
+            txtSenha.PasswordChar = '*';
+            txtSenha.KeyDown += (s, e) =>
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnEntrar.PerformClick();
+                }
+            };
 
             btnEntrar = new Button();
             btnEntrar.Size = new Size(painelLogin.Width / 2, painelLogin.Height / 10);
@@ -69,15 +85,10 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
 
         private void OnClickEntrar(object sender, EventArgs e)
         {
-            if (txtUsuario.Text == "admin" && txtSenha.Text == "admin")
-            {
-                MessageBox.Show("Login efetuado com sucesso!");
-                this.Hide();
-            }
-            else
-            {
-                MessageBox.Show("Usuário ou senha incorretos!");
-            }
+            string usuarioDigitado = txtUsuario.Text;
+            string senhaDigitada = txtSenha.Text;
+
+            controller.RealizarLogin();
         }
 
 
