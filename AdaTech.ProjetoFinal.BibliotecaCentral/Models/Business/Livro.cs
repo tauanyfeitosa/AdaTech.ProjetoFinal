@@ -164,7 +164,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             Edicao = edicao;
             Editora = editora;
             Exemplares = exemplares;
-            ExemplaresDisponiveis = exemplares - 1;
+            ExemplaresDisponiveis = exemplares;
             LivrosBomEstado = exemplares;
             LivrosEstadoMediano = 0;
             LivrosMauEstado = 0;
