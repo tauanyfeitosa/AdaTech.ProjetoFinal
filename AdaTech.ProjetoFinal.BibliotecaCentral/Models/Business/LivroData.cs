@@ -21,7 +21,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
 
         internal static List<Livro> ListarLivros(TipoAcervoLivro? tipoAcervoLivro)
         {
-            return new List<Livro>();
+            List<Livro> livrosAcervo = acervoLivros.Where(l => l.tipoAcervoLivro == tipoAcervoLivro).ToList();
+            return livrosAcervo;
         }
 
         internal static void ExcluirLivros(string[] isbnLivros)
