@@ -8,7 +8,18 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
 {
     internal static class LivroData
     {
-        private static List<Livro> acervoLivros;
+        private static List<Livro> _acervoLivros = new List<Livro>();
+
+        internal static void IncluirLivros(List<Livro> livros)
+        {
+            _acervoLivros.AddRange(livros);
+        }
+
+        internal static void IncluirLivros(string titulo, string autor, string isbn, int anoPublicacao, int edicao, string editora, 
+            int exemplares, TipoAcervoLivro tipoAcervoLivro)
+        {
+            _acervoLivros.Add(new Livro(titulo, autor, isbn, anoPublicacao, edicao, editora, exemplares, tipoAcervoLivro));
+        }
 
         internal static void LerBinLivros()
         {
@@ -21,7 +32,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
 
         internal static List<Livro> ListarLivros(TipoAcervoLivro? tipoAcervoLivro)
         {
-            return new List<Livro>();
+            List<Livro> livrosAcervo = _acervoLivros.Where(l => l.tipoAcervoLivro == tipoAcervoLivro).ToList();
+            return livrosAcervo;
         }
 
         internal static void ExcluirLivros(string[] isbnLivros)
@@ -31,7 +43,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
 
         internal static Livro SelecionarLivro(string isbn)
         {
-            return new Livro();
+            return _acervoLivros.Where(l => l.Isbn == isbn).FirstOrDefault();
         }
     }
 }
