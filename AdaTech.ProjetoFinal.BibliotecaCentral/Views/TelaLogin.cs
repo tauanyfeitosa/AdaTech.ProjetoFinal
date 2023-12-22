@@ -18,6 +18,11 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
         internal TextBox TxtSenha { get => txtSenha; private set => txtSenha = value; }
         internal Button BtnEntrar { get => btnEntrar; private set => btnEntrar = value; }
 
+        public static void Main(string[] args)
+        {
+            Application.Run(new TelaLogin());
+        }
+
         public TelaLogin()
         {
             Load += OnLoad;

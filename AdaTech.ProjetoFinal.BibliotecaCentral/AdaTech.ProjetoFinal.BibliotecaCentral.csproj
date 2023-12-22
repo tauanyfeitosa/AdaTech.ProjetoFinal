@@ -46,7 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\Program.cs" />
     <Compile Include="Controllers\TelaInicialController.cs" />
     <Compile Include="Models\Business\ISolicitacao.cs" />
     <Compile Include="Models\Business\SolicitacaoMudarAcervoLivro.cs" />
