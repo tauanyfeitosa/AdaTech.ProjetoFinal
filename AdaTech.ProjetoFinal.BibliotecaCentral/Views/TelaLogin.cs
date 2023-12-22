@@ -18,12 +18,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
         internal TextBox TxtSenha { get => txtSenha; private set => txtSenha = value; }
         internal Button BtnEntrar { get => btnEntrar; private set => btnEntrar = value; }
 
-
-        public static void Main(string[] args)
-        {
-            Application.Run(new TelaLogin());
-        }
-
         public TelaLogin()
         {
             Load += OnLoad;
@@ -80,7 +74,25 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             painelLogin.Controls.Add(txtSenha);
             painelLogin.Controls.Add(btnEntrar);
 
-            Controls.Add(painelLogin);
+            // Segundo painel para informações do atendente
+            Panel painelAtendente = new Panel();
+            painelAtendente.Size = new Size(largura / 3, altura / 3);
+            painelAtendente.Location = new Point(largura / 3, altura / 3); ;
+            painelAtendente.BackColor = Color.LightGray;
+            painelAtendente.BorderStyle = BorderStyle.FixedSingle;
+            painelAtendente.Anchor = AnchorStyles.None;
+
+            // Exemplo de informações do atendente
+            Atendente atendente = new Atendente("admin", "senha", "Amanda bastos", "00000000000", "amandinha@linda.com", true);
+            Label lblAtendenteInfo = new Label();
+            lblAtendenteInfo.Text = atendente.Cpf;
+            lblAtendenteInfo.AutoSize = true;
+            lblAtendenteInfo.Location = new Point(20, 20);
+
+            painelAtendente.Controls.Add(lblAtendenteInfo);
+
+            ///Controls.Add(painelLogin);
+            Controls.Add(painelAtendente);
         }
 
         private void OnClickEntrar(object sender, EventArgs e)
