@@ -10,6 +10,17 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
     {
         private static List<Livro> _acervoLivros = new List<Livro>();
 
+        internal static void IncluirLivros(List<Livro> livros)
+        {
+            _acervoLivros.AddRange(livros);
+        }
+
+        internal static void IncluirLivros(string titulo, string autor, string isbn, int anoPublicacao, int edicao, string editora, 
+            int exemplares, TipoAcervoLivro tipoAcervoLivro)
+        {
+            _acervoLivros.Add(new Livro(titulo, autor, isbn, anoPublicacao, edicao, editora, exemplares, tipoAcervoLivro));
+        }
+
         internal static void LerBinLivros()
         {
         }

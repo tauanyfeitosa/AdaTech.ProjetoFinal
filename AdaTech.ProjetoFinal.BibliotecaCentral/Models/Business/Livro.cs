@@ -154,7 +154,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             }
         }
 
-        internal Livro(string titulo, string autor, string isbn, int anoPublicacao, int edicao, string editora, int exemplares, TipoAcervoLivro tipoAcervoLivro)
+        internal Livro(string titulo, string autor, string isbn, int anoPublicacao, 
+            int edicao, string editora, int exemplares, TipoAcervoLivro tipoAcervoLivro)
         {
             Titulo = titulo;
             Autor = autor;
