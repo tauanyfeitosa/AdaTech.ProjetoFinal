@@ -8,7 +8,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
 {
     internal static class ReservaLivroData
     {
-        private static Tuple<List<ReservaLivro>, List<ReservaLivro>> _reservaLivros;
+        private static Tuple<List<ReservaLivro>, List<ReservaLivro>> _reservasLivros;
 
         //internal static void AtualizarJsonResrvas()
         //{
