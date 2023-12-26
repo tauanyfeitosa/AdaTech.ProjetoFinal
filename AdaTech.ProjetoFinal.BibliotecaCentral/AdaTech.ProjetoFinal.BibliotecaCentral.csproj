@@ -50,6 +50,9 @@
     <Compile Include="Models\Business\Emprestimo.cs" />
     <Compile Include="Models\Business\EmprestimoData.cs" />
     <Compile Include="Models\Business\ISolicitacao.cs" />
+    <Compile Include="Models\Business\Reserva\ReservaLivro.cs" />
+    <Compile Include="Models\Business\Reserva\ReservaLivroData.cs" />
+    <Compile Include="Models\Business\Reserva\StatusReserva.cs" />
     <Compile Include="Models\Business\Multa.cs" />
     <Compile Include="Models\Business\SolicitacaoMudarAcervoLivro.cs" />
     <Compile Include="Models\Business\SolicitacaoRequisicaoLivros.cs" />
