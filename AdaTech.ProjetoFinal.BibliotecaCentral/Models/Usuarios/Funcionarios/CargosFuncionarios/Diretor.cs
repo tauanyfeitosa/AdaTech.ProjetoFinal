@@ -1,4 +1,7 @@
-﻿
+﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Solicitacoes;
+using System;
+
+
 namespace AdaTech.ProjetoFinal.BibliotecaCentral
 {
     internal class Diretor: Funcionario
@@ -9,14 +12,27 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             this.EhAdmin = true;
         }
 
-        //private void AprovarSolicitacaoAcervo(SolicitacaoMudarAcervoLivros solicitacao)
-        //{
+        internal void AprovarSolicitacao(ISolicitacao solicitacao)
+        {
+            if (solicitacao == null)
+                throw new ArgumentNullException(nameof(solicitacao));
+            solicitacao.AprovarSolicitacao(this);
+        }
 
-        //}
-        //private void AprovarSolicitacaoRequisicaoLivro(SolicitacaoRequisicaoLivros requisicao)
-        //{
+        internal void CancelarSolicitacao(ISolicitacao solicitacao)
+        {
+            if (solicitacao == null)
+                throw new ArgumentNullException(nameof(solicitacao));
+            solicitacao.CancelarSolicitacao(this);
+        }
 
-        //}
+        internal void ReprovarSolicitacao(ISolicitacao solicitacao)
+        {
+            if (solicitacao == null)
+                throw new ArgumentNullException(nameof(solicitacao));
+            solicitacao.ReprovarSolicitacao(this);
+        }
+
         //private Funcionario CadastrarFuncionario(string nomeCompleto, string cpf, string email, string tipoFuncionario)
         //{
             

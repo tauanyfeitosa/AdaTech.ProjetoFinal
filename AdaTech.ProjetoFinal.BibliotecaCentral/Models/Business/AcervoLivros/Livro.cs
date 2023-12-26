@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AdaTech.ProjetoFinal.BibliotecaCentral
+namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
 {
     internal class Livro
     {
@@ -143,13 +143,13 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             }
         }
 
-        internal TipoAcervoLivro tipoAcervoLivro
+        internal TipoAcervoLivro TipoAcervoLivro
         {
             get
             {
                 return _tipoAcervoLivro;
             }
-            private set
+            set
             {
                 _tipoAcervoLivro = value;
             }

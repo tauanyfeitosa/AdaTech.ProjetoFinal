@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AdaTech.ProjetoFinal.BibliotecaCentral
+namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
 {
     internal static class LivroData
     {

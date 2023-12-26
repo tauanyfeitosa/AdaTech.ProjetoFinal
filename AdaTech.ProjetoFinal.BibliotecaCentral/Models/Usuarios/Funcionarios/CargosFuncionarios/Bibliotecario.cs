@@ -1,4 +1,5 @@
-﻿
+﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Solicitacoes;
+
 namespace AdaTech.ProjetoFinal.BibliotecaCentral
 {
     internal class Bibliotecario: Funcionario
@@ -22,13 +23,9 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
         //{
 
         //}
-        //private SolicitacaoMudarAcervoLivros MudarAcervo(Livro livro, TipoAcervo tipoAcervo, string descricao)
-        //{
-
-        //}
-        //private SolicitacaoRequisicaoLivros SolicitarLivrosNovos(File csv)
-        //{
-
-        //}
+        internal void CriarSolicitacao(TipoSolicitacao tipoSolicitacao, Livro livro, TipoAcervoLivro tipoAcervo, string descricao)
+        {
+              SolicitacoesData.CriarSolicitacao(tipoSolicitacao, livro, tipoAcervo, descricao, this);
+        }
     }
 }

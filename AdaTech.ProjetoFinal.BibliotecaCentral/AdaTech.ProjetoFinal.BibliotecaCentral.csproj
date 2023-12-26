@@ -59,6 +59,8 @@
     <Compile Include="Models\Business\AcervoLivros\Livro.cs" />
     <Compile Include="Models\Business\AcervoLivros\LivroData.cs" />
     <Compile Include="Models\Business\AcervoLivros\TipoAcervoLivro.cs" />
+    <Compile Include="Models\Business\Solicitacoes\SolicitacoesData.cs" />
+    <Compile Include="Models\Business\Solicitacoes\TipoSolicitacao.cs" />
     <Compile Include="Models\Usuarios\Funcionarios\CargosFuncionarios\Atendente.cs" />
     <Compile Include="Models\Usuarios\Funcionarios\CargosFuncionarios\Bibliotecario.cs" />
     <Compile Include="Models\Usuarios\UsuariosComunidadeAcademica\ComunidadeAcademica.cs" />
