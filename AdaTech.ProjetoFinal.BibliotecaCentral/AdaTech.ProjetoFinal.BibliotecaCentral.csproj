@@ -47,18 +47,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\TelaInicialController.cs" />
-    <Compile Include="Models\Business\Emprestimo.cs" />
-    <Compile Include="Models\Business\EmprestimoData.cs" />
-    <Compile Include="Models\Business\ISolicitacao.cs" />
+    <Compile Include="Models\Business\Emprestimos\Emprestimo.cs" />
+    <Compile Include="Models\Business\Emprestimos\EmprestimoData.cs" />
+    <Compile Include="Models\Business\Solicitacoes\ISolicitacao.cs" />
     <Compile Include="Models\Business\Reserva\ReservaLivro.cs" />
     <Compile Include="Models\Business\Reserva\ReservaLivroData.cs" />
     <Compile Include="Models\Business\Reserva\StatusReserva.cs" />
-    <Compile Include="Models\Business\Multa.cs" />
-    <Compile Include="Models\Business\SolicitacaoMudarAcervoLivro.cs" />
-    <Compile Include="Models\Business\SolicitacaoRequisicaoLivros.cs" />
-    <Compile Include="Models\Business\Livro.cs" />
-    <Compile Include="Models\Business\LivroData.cs" />
-    <Compile Include="Models\Business\TipoAcervoLivro.cs" />
+    <Compile Include="Models\Business\Emprestimos\Multa.cs" />
+    <Compile Include="Models\Business\Solicitacoes\SolicitacaoMudarAcervoLivro.cs" />
+    <Compile Include="Models\Business\Solicitacoes\SolicitacaoRequisicaoLivros.cs" />
+    <Compile Include="Models\Business\AcervoLivros\Livro.cs" />
+    <Compile Include="Models\Business\AcervoLivros\LivroData.cs" />
+    <Compile Include="Models\Business\AcervoLivros\TipoAcervoLivro.cs" />
+    <Compile Include="Models\Business\Solicitacoes\SolicitacoesData.cs" />
+    <Compile Include="Models\Business\Solicitacoes\TipoSolicitacao.cs" />
     <Compile Include="Models\Usuarios\Funcionarios\CargosFuncionarios\Atendente.cs" />
     <Compile Include="Models\Usuarios\Funcionarios\CargosFuncionarios\Bibliotecario.cs" />
     <Compile Include="Models\Usuarios\UsuariosComunidadeAcademica\ComunidadeAcademica.cs" />
