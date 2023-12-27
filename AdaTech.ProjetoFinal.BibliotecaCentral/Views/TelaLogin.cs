@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Controllers;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Views;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral
 {
@@ -11,6 +12,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
         private TextBox txtUsuario;
         private TextBox txtSenha;
         private Button btnEntrar;
+        private ComboBox cmbUsuario;
         private TelaInicialController controller;
 
         internal Panel PainelLogin { get => painelLogin; private set => painelLogin = value; }
@@ -48,6 +50,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             painelLogin.Anchor = AnchorStyles.None;
             painelLogin.AutoScroll = true;
 
+            cmbUsuario = new ComboBox();
+
             txtUsuario = new TextBox();
             txtUsuario.Size = new Size(painelLogin.Width / 2, painelLogin.Height / 10);
             txtUsuario.Location = new Point(painelLogin.Width / 4, painelLogin.Height / 4);
@@ -79,22 +83,22 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             painelLogin.Controls.Add(txtSenha);
             painelLogin.Controls.Add(btnEntrar);
 
-            // Segundo painel para informações do atendente
-            Panel painelAtendente = new Panel();
-            painelAtendente.Size = new Size(largura / 3, altura / 3);
-            painelAtendente.Location = new Point(largura / 3, altura / 3); ;
-            painelAtendente.BackColor = Color.LightGray;
-            painelAtendente.BorderStyle = BorderStyle.FixedSingle;
-            painelAtendente.Anchor = AnchorStyles.None;
+            //// Segundo painel para informações do atendente
+            //Panel painelAtendente = new Panel();
+            //painelAtendente.Size = new Size(largura / 3, altura / 3);
+            //painelAtendente.Location = new Point(largura / 3, altura / 3); ;
+            //painelAtendente.BackColor = Color.LightGray;
+            //painelAtendente.BorderStyle = BorderStyle.FixedSingle;
+            //painelAtendente.Anchor = AnchorStyles.None;
 
-            // Exemplo de informações do atendente
-            Atendente atendente = new Atendente("senha", "Amanda bastos", "00000000000", "amandinha@linda.com", true);
-            Label lblAtendenteInfo = new Label();
-            lblAtendenteInfo.Text = atendente.Cpf;
-            lblAtendenteInfo.AutoSize = true;
-            lblAtendenteInfo.Location = new Point(20, 20);
+            //// Exemplo de informações do atendente
+            //Atendente atendente = new Atendente("senha", "Amanda bastos", "00000000000", "amandinha@linda.com", true);
+            //Label lblAtendenteInfo = new Label();
+            //lblAtendenteInfo.Text = atendente.Cpf;
+            //lblAtendenteInfo.AutoSize = true;
+            //lblAtendenteInfo.Location = new Point(20, 20);
 
-            painelAtendente.Controls.Add(lblAtendenteInfo);
+            //painelAtendente.Controls.Add(lblAtendenteInfo);
 
             Controls.Add(painelLogin);
             //Controls.Add(painelAtendente);
@@ -105,7 +109,12 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             string usuarioDigitado = txtUsuario.Text;
             string senhaDigitada = txtSenha.Text;
 
-            controller.RealizarLogin();
+            if (controller.RealizarLogin())
+            {
+                this.Hide();
+                var telaPrincipal = new TelaPrincipal();
+                telaPrincipal.Show();
+            }
         }
 
 
