@@ -1,10 +1,10 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
+namespace teste
 {
     internal class Livro
     {
@@ -103,7 +103,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
             get
             {
                 return _exemplaresDisponiveis;
-            } 
+            }
             private set
             {
                 _exemplaresDisponiveis = value;
@@ -155,7 +155,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
             }
         }
 
-        internal Livro(string titulo, string autor, string isbn, int anoPublicacao, 
+        internal Livro(string titulo, string autor, string isbn, int anoPublicacao,
             int edicao, string editora, int exemplares, TipoAcervoLivro tipoAcervoLivro)
         {
             Titulo = titulo;

@@ -67,6 +67,7 @@
     <Compile Include="Models\Usuarios\Funcionarios\CargosFuncionarios\Diretor.cs" />
     <Compile Include="Models\Usuarios\UsuariosComunidadeAcademica\Sessao.cs" />
     <Compile Include="Models\Usuarios\UsuariosData\UsuarioData.cs" />
+    <Compile Include="Models\Utilities\Conversores.cs" />
     <Compile Include="Views\TelaLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +100,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Data\Livros.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

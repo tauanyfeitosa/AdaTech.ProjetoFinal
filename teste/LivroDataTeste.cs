@@ -1,27 +1,32 @@
-﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Utilities;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
+namespace teste
 {
-    internal static class LivroData
+    internal class LivroDataTeste
     {
         private static List<Livro> _acervoLivros = new List<Livro>();
-        private static readonly string FILE_PATH = "../../../Data/Livros.txt";
 
-        static LivroData()
+        static LivroDataTeste()
         {
-            _acervoLivros = LerLivrosTxt();
+            _acervoLivros = LerLivrosTxt("../../../livro.txt");
+        }
+
+       public static void imprimirLivros()
+        {
+            foreach(var livro in _acervoLivros)
+            {
+                Console.WriteLine(livro.Titulo);
+            }
         }
 
         internal static void IncluirLivros(List<Livro> livros)
         {
             _acervoLivros.AddRange(livros);
-            SalvarLivrosTxt(_acervoLivros);
+  
         }
 
         internal static void IncluirLivros(string titulo, string autor, string isbn, int anoPublicacao, int edicao, string editora,
@@ -29,12 +34,13 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
         {
             _acervoLivros.Add(new Livro(titulo, autor, isbn, anoPublicacao, edicao, editora, exemplares - 1, TipoAcervoLivro.AcervoPublico));
             _acervoLivros.Add(new Livro(titulo, autor, isbn + 'b', anoPublicacao, edicao, editora, 1, TipoAcervoLivro.AcervoParticular));
-            SalvarLivrosTxt(_acervoLivros);
+
         }
 
-        internal static void AtualizarLivros(List<Livro> livros)
+        internal static void AddLivro(Livro livro)
         {
-            SalvarLivrosTxt(livros);
+            _acervoLivros.Add(livro);
+            SalvarLivrosTxt("../../../livro.txt", _acervoLivros);
         }
 
         internal static List<Livro> ListarLivros(TipoAcervoLivro? tipoAcervoLivro)
@@ -49,7 +55,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
             {
                 Livro livro = _acervoLivros.Where(l => l.Isbn == isbn).FirstOrDefault();
                 _acervoLivros.Remove(livro);
-                SalvarLivrosTxt(_acervoLivros);
             }
         }
 
@@ -58,13 +63,13 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
             return _acervoLivros.Where(l => l.Isbn == isbn).FirstOrDefault();
         }
 
-        internal static List<Livro> LerLivrosTxt()
+        internal static List<Livro> LerLivrosTxt(string caminhoArquivo)
         {
             List<Livro> livros = new List<Livro>();
 
             try
             {
-                using (StreamReader sr = new StreamReader(FILE_PATH))
+                using (StreamReader sr = new StreamReader(caminhoArquivo))
                 {
                     while (!sr.EndOfStream)
                     {
@@ -101,11 +106,11 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
             return new Livro(titulo, autor, isbn, anoPublicacao, edicao, editora, exemplares, exemplaresDisponiveis, livrosBomEstado, livrosEstadoMediano, livrosMauEstado, tipoAcervoLivro);
         }
 
-        internal static void SalvarLivrosTxt(List<Livro> livros)
+        internal static void SalvarLivrosTxt(string caminhoArquivo, List<Livro> livros)
         {
             try
             {
-                using (StreamWriter sw = new StreamWriter(FILE_PATH))
+                using (StreamWriter sw = new StreamWriter(caminhoArquivo))
                 {
                     foreach (Livro livro in livros)
                     {
