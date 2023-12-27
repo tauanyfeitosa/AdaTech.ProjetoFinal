@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Controllers;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Views;
+using System.Collections.Generic;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral
 {
@@ -51,11 +52,18 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             painelLogin.Anchor = AnchorStyles.None;
             painelLogin.AutoScroll = true;
 
+            
             cmbUsuario = new ComboBox();
+            cmbUsuario.Location = new Point(painelLogin.Width / 4, painelLogin.Height / 8);
+            cmbUsuario.Width = painelLogin.Width / 2;
+            cmbUsuario.Height = painelLogin.Height / 10;
+            cmbUsuario.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbUsuario.DataSource = new List<string> {"Comunidade Acadêmica", "Funcionário"};
+             
 
             txtUsuario = new TextBox();
             txtUsuario.Size = new Size(painelLogin.Width / 2, painelLogin.Height / 10);
-            txtUsuario.Location = new Point(painelLogin.Width / 4, painelLogin.Height / 4);
+            txtUsuario.Location = new Point(painelLogin.Width / 4, painelLogin.Height / 3);
             txtUsuario.Anchor = AnchorStyles.None;
             txtUsuario.Text = "Usuário";
 
@@ -83,6 +91,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             painelLogin.Controls.Add(txtUsuario);
             painelLogin.Controls.Add(txtSenha);
             painelLogin.Controls.Add(btnEntrar);
+            painelLogin.Controls.Add(cmbUsuario);
 
             //// Segundo painel para informações do atendente
             //Panel painelAtendente = new Panel();
