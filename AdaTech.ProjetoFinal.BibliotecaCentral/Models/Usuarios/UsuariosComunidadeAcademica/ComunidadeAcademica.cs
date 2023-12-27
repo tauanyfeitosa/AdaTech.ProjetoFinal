@@ -14,10 +14,11 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             set { _tipoUsuario = value;}
         }
 
-        protected ComunidadeAcademica(string login, string senha, string nomeCompleto,
+        protected ComunidadeAcademica(string senha, string nomeCompleto,
             string cpf, string email, string matricula, string curso, TipoUsuarioComunidade tipoUsuario)
-            : base(login, senha, nomeCompleto, cpf, email)
+            : base(senha, nomeCompleto, cpf, email)
         {
+            this.Login = matricula;
             this._curso = curso;
             this._matricula = matricula;
             this._tipoUsuario = tipoUsuario;

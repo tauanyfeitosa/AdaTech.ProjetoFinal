@@ -11,7 +11,11 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
         protected string login, senhaCripto, nomeCompleto, cpf, email;
         private bool _ehAdmin;
 
-        internal string Login { get { return login; } }
+        internal string Login
+        { 
+            get { return login; }
+            set { login = value; }
+        }
         internal string SenhaCripto { get { return senhaCripto; } }
         internal string NomeCompleto { get { return nomeCompleto; } }
         internal string Cpf { get { return cpf; } }
@@ -22,9 +26,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             set{ if(VerificaEhAdmin()) _ehAdmin = value; }
         }
 
-        protected Usuario(string login, string senha, string nomeCompleto, string cpf, string email)
+        protected Usuario(string senha, string nomeCompleto, string cpf, string email)
         {
-            this.login = login;
             this.senhaCripto = CriptografarSenha(senha);
             this.nomeCompleto = nomeCompleto;
             this.cpf = cpf;
@@ -32,7 +35,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             this.EhAdmin = false;
         }
 
-        protected bool FazerLogin(string login, string senha)
+        internal bool FazerLogin(string login, string senha)
         {
             return Login == login && VerificarSenha(senha);
         }

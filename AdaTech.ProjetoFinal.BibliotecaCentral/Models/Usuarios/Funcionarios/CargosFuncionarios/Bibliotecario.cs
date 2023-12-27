@@ -1,10 +1,14 @@
-﻿
+﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Solicitacoes;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
+using System;
+using System.Collections.Generic;
+
 namespace AdaTech.ProjetoFinal.BibliotecaCentral
 {
     internal class Bibliotecario: Funcionario
     {
-        internal Bibliotecario (string login, string senha, string nomeCompleto, string cpf, string email, bool ativo)
-                       : base(login, senha, nomeCompleto, cpf, email, ativo)
+        internal Bibliotecario (string senha, string nomeCompleto, string cpf, string email, bool ativo = true)
+                       : base(senha, nomeCompleto, cpf, email, ativo)
         {
 
         }
@@ -22,13 +26,16 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
         //{
 
         //}
-        //private SolicitacaoMudarAcervoLivros MudarAcervo(Livro livro, TipoAcervo tipoAcervo, string descricao)
-        //{
+        internal void CriarSolicitacao(TipoSolicitacao tipoSolicitacao, Livro livro, TipoAcervoLivro tipoAcervo, string descricao)
+        {
+              SolicitacoesData.CriarSolicitacao(tipoSolicitacao, livro, tipoAcervo, descricao, this);
+        }
 
-        //}
-        //private SolicitacaoRequisicaoLivros SolicitarLivrosNovos(File csv)
-        //{
-
-        //}
+        internal void AlterarSolicitacao(ISolicitacao solicitacao, Livro livro = null, TipoAcervoLivro tipoAcervo = TipoAcervoLivro.Inativo, string descricao = "")
+        {
+            if (solicitacao == null)
+                throw new ArgumentNullException(nameof(solicitacao));
+            solicitacao.AlterarSolicitacao(this, livro, tipoAcervo, descricao);
+        }
     }
 }

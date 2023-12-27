@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AdaTech.ProjetoFinal.BibliotecaCentral
+namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
 {
     internal static class LivroData
     {
@@ -34,13 +34,17 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
 
         internal static List<Livro> ListarLivros(TipoAcervoLivro? tipoAcervoLivro)
         {
-            List<Livro> livrosAcervo = _acervoLivros.Where(l => l.tipoAcervoLivro == tipoAcervoLivro).ToList();
+            List<Livro> livrosAcervo = _acervoLivros.Where(l => l.TipoAcervoLivro == tipoAcervoLivro).ToList();
             return livrosAcervo;
         }
 
         internal static void ExcluirLivros(string[] isbnLivros)
         {
-
+            foreach (string isbn in isbnLivros)
+            {
+                Livro livro = _acervoLivros.Where(l => l.Isbn == isbn).FirstOrDefault();
+                _acervoLivros.Remove(livro);
+            }
         }
 
         internal static Livro SelecionarLivro(string isbn)

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
 
-namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business
+namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Solicitacoes
 {
-    internal class SolicitacaoRequisicaoLivros
+    internal class SolicitacaoRequisicaoLivros: ISolicitacao
     {
         private Bibliotecario _bibliotecario;
         private Livro _livro;
@@ -20,19 +21,41 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business
 
         internal bool Aprovada { get => _aprovada; set => _aprovada = value; }
 
+        internal SolicitacaoRequisicaoLivros(Bibliotecario bibliotecario, Livro livro, TipoAcervoLivro tipoAcervo, string descricao)
+        {
+            if (bibliotecario == null)
+                throw new ArgumentNullException(nameof(bibliotecario));
+            if (livro == null)
+                throw new ArgumentNullException(nameof(livro));
+            if (tipoAcervo == TipoAcervoLivro.Inativo)
+                throw new ArgumentNullException(nameof(tipoAcervo));
+            if (string.IsNullOrEmpty(descricao))
+                throw new ArgumentNullException(nameof(descricao));
+            this._bibliotecario = bibliotecario;
+            this._livro = livro;
+            this._tipoAcervo = tipoAcervo;
+            this._descricao = descricao;
+        }
+
         public void AprovarSolicitacao(Diretor diretor)
         {
             if (diretor == null)
                 throw new ArgumentNullException(nameof(diretor));
             this.Aprovada = true;
+            this.Livro.TipoAcervoLivro = this._tipoAcervo;
+            var listaLivros = new List<Livro>()
+            {
+                this.Livro
+            };
+            LivroData.IncluirLivros(listaLivros);
         }
 
-        public void AlterarSolicitacao(Bibliotecario bibliotecario = null, List<Livro> livro = null, TipoAcervoLivro tipoAcervo = TipoAcervoLivro.Inativo, string descricao = "")
+        public void AlterarSolicitacao(Bibliotecario bibliotecario = null, Livro livro = null, TipoAcervoLivro tipoAcervo = TipoAcervoLivro.Inativo, string descricao = "")
         {
             try
             {
                 if (livro != null)
-                    this._livro = livro.First();
+                    this._livro = livro;
                 if (bibliotecario != null)
                     this._bibliotecario = bibliotecario;
                 if (tipoAcervo != TipoAcervoLivro.Inativo)
