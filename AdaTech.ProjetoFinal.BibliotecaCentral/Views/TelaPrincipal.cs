@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Controllers;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -13,6 +14,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
         internal TelaPrincipal(Usuario usuario)
         {
             Load += OnLoad;
+            this._usuarioLogado = usuario;
+            this._telaPrincipalController = new TelaPrincipalController(usuario);
         }
 
         private void OnLoad(object sender, EventArgs e)
@@ -35,10 +38,15 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
             painelLogin.AutoScroll = true;
 
             _lblBemVindo = new Label();
-            _lblBemVindo.Text = $"Bem-vindo, {_usuarioLogado.NomeCompleto}\nCargo: ";
-
+            _lblBemVindo.Text = $"Bem-vindo, {_usuarioLogado.NomeCompleto}\nCargo:{_telaPrincipalController.FiltrarLogin()} " ;
+            _lblBemVindo.BackColor = Color.Transparent;
+            _lblBemVindo.ForeColor = Color.Black;
+            _lblBemVindo.AutoSize = true;
+            _lblBemVindo.Font = new Font("Arial", 30, FontStyle.Bold);
+            _lblBemVindo.Location = new System.Drawing.Point((largura / 2), 20);
+            
+            Controls.Add(_lblBemVindo);
             Controls.Add(painelLogin);
-
-        }
+        }       
     }
 }

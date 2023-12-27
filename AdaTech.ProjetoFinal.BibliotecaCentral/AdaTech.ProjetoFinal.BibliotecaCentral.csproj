@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\TelaInicialController.cs" />
+    <Compile Include="Controllers\TelaPrincipalController.cs" />
     <Compile Include="Models\Business\Emprestimos\Emprestimo.cs" />
     <Compile Include="Models\Business\Emprestimos\EmprestimoData.cs" />
     <Compile Include="Models\Business\Solicitacoes\ISolicitacao.cs" />
