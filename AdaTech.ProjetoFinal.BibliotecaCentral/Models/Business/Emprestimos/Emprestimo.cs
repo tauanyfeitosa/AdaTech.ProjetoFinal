@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
 {
