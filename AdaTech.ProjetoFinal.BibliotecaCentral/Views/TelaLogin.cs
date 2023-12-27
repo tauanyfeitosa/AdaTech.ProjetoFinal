@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Controllers;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Views;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral
@@ -112,7 +113,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             if (controller.RealizarLogin())
             {
                 this.Hide();
-                var telaPrincipal = new TelaPrincipal();
+                var telaPrincipal = new TelaPrincipal(UsuarioData.SelecionarUsuario(usuarioDigitado));
                 telaPrincipal.Show();
             }
         }
