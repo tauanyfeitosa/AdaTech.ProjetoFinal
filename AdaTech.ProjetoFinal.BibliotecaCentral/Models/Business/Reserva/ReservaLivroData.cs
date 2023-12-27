@@ -21,7 +21,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
         //}
         //internal static void SelecionarReserva(ReservaLivro numeroReserva)
         //{
-
         //}
         //internal static void ExcluirReservas(ReservaLivro numeroReserva)
         //{

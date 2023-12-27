@@ -171,5 +171,13 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
             LivrosMauEstado = 0;
             this.TipoAcervoLivro = tipoAcervoLivro;
         }
+        internal void DiminuirExemplarDisponivel()  //Realizou um emprestimo
+        {
+            _exemplaresDisponiveis--;
+        }
+        internal void AumentarExemplarDisponivel()  //Devolução do empréstimo
+        {
+            _exemplaresDisponiveis++;
+        }
     }
 }

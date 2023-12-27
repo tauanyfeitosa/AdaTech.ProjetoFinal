@@ -12,6 +12,10 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
         private decimal _multaDiaria;
         private decimal _multaMauEstado;
         private bool _pagamentoMulta;
+        internal Multa()
+        {
+            this._pagamentoMulta = true;
+        }
         internal decimal Multas
         {
             get
