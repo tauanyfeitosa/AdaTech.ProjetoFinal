@@ -13,11 +13,11 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             set { ativo = value; }
         }
 
-        protected Funcionario(string senha, string nomeCompleto, string cpf, string email, bool ativo)
+        protected Funcionario(string senha, string nomeCompleto, string cpf, string email, bool ativo = true)
             : base(senha, nomeCompleto, cpf, email)
         {
             this.Login = cpf;
-            this.ativo = ativo;
+            this.Ativo = ativo;
         }
 
         protected List<string> ConsultarAcervo(TipoAcervoLivro acervoLivro)

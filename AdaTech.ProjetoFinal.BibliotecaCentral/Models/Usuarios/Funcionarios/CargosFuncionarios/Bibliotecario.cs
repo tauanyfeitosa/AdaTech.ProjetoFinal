@@ -7,7 +7,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
 {
     internal class Bibliotecario: Funcionario
     {
-        internal Bibliotecario (string senha, string nomeCompleto, string cpf, string email, bool ativo)
+        internal Bibliotecario (string senha, string nomeCompleto, string cpf, string email, bool ativo = true)
                        : base(senha, nomeCompleto, cpf, email, ativo)
         {
 
