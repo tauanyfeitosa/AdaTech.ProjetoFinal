@@ -88,7 +88,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             painelAtendente.Anchor = AnchorStyles.None;
 
             // Exemplo de informações do atendente
-            Atendente atendente = new Atendente("admin", "senha", "Amanda bastos", "00000000000", "amandinha@linda.com", true);
+            Atendente atendente = new Atendente("senha", "Amanda bastos", "00000000000", "amandinha@linda.com", true);
             Label lblAtendenteInfo = new Label();
             lblAtendenteInfo.Text = atendente.Cpf;
             lblAtendenteInfo.AutoSize = true;
@@ -96,8 +96,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
 
             painelAtendente.Controls.Add(lblAtendenteInfo);
 
-            ///Controls.Add(painelLogin);
-            Controls.Add(painelAtendente);
+            Controls.Add(painelLogin);
+            //Controls.Add(painelAtendente);
         }
 
         private void OnClickEntrar(object sender, EventArgs e)

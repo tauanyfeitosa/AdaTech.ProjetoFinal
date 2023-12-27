@@ -66,6 +66,7 @@
     <Compile Include="Models\Usuarios\UsuariosComunidadeAcademica\ComunidadeAcademica.cs" />
     <Compile Include="Models\Usuarios\Funcionarios\CargosFuncionarios\Diretor.cs" />
     <Compile Include="Models\Usuarios\UsuariosComunidadeAcademica\Sessao.cs" />
+    <Compile Include="Models\Usuarios\UsuariosData\UsuarioData.cs" />
     <Compile Include="Views\TelaLogin.cs">
       <SubType>Form</SubType>
     </Compile>

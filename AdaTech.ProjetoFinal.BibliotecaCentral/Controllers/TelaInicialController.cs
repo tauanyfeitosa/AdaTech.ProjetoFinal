@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,14 +19,25 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers
 
         internal void RealizarLogin()
         {
-            if (_telaLogin.TxtUsuario.Text == "admin" && _telaLogin.TxtSenha.Text == "senha")
+            try
             {
-                MessageBox.Show("Login efetuado com sucesso!");
-                _telaLogin.Hide();
-            }
-            else
+                if (_telaLogin.TxtUsuario.Text != null && _telaLogin.TxtUsuario.Text == UsuarioData.SelecionarUsuario(_telaLogin.TxtUsuario.Text).Login)
+                {
+                    if (UsuarioData.SelecionarUsuario(_telaLogin.TxtUsuario.Text).FazerLogin(_telaLogin.TxtUsuario.Text, _telaLogin.TxtSenha.Text))
+                    {
+                        MessageBox.Show("Login realizado com sucesso!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Senha incorreta!");
+                    }
+                } else
+                {
+                    throw new Exception();
+                }
+            } catch (Exception e)
             {
-                MessageBox.Show("Usuário ou senha incorretos!");
+                MessageBox.Show("Usuário não encontrado!");
             }
         }
     }
