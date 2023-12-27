@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\CpfValidation.cs" />
     <Compile Include="Controllers\TelaInicialController.cs" />
     <Compile Include="Models\Business\Emprestimos\Emprestimo.cs" />
     <Compile Include="Models\Business\Emprestimos\EmprestimoData.cs" />

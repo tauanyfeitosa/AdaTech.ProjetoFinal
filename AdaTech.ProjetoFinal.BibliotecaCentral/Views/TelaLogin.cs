@@ -105,9 +105,15 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             string usuarioDigitado = txtUsuario.Text;
             string senhaDigitada = txtSenha.Text;
 
-            controller.RealizarLogin();
+            if (!CpfValidation.IsValidCPF(usuarioDigitado))
+            {
+                MessageBox.Show("CPF inválido. Por favor, insira um CPF válido.");
+            }
+            else 
+            {
+                controller.RealizarLogin();
+            }
+
         }
-
-
     }
 }
