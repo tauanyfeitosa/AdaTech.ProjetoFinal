@@ -1,4 +1,5 @@
 ﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
         private DateTime _dataReserva;
         private StatusReserva _statusReserva;
 
-        internal int NumeroReserva { get { return _numeroReserva; } }
+        internal int NumeroReserva { get { return _numeroReserva; }}
         internal Livro Livro { get { return _livro; } }
         internal ComunidadeAcademica UsuarioComunidadeAcademica { get { return _usuarioComunidadeAcademica; } }
         internal DateTime DataRetirarLivro { get { return _dataRetirarLivro; } }
@@ -39,25 +40,38 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
             this._statusReserva = statusReserva;
         }
 
-        //internal void AtualizarDataRetirada()
-        //{
+                
+        internal void AprovarReserva()
+        {
+            //if (aluno não tiver nenhuma reserva? Quem aprova uma reserva,o atendente?)
+            //if(atendente == null)
+            //    throw new ArgumentNullException(nameof(atendente));
 
-        //}
+            this._statusReserva = StatusReserva.Aprovada;
+            ReservaLivroData.AdicionarReserva(this);
+        }
+        internal void CancelarReserva()
+        {
+            //(Quem cancela uma reserva?)
+            this._statusReserva = StatusReserva.Cancelada;            
+        }
+        internal void AtualizarDataRetirada(Emprestimo emprestimo)
+        {
+            this._dataRetirarLivro = emprestimo.DataDevolucaoPrevista;
+            //this._dataRetirarLivro = emprestimo.DataDevolucaoPrevista[0];
+            //não deveria ter uma lista de datas de retirada e sempre pegar a primeira?
+        }
 
-        //internal void AprovarReserva()
-        //{
+        internal void CancelarReservaUsuario()
+        {
+            //qual a diferença entre cancelar reserva e cancelar reserva do usuário?
+            this._statusReserva = StatusReserva.Cancelada;
+        }
 
-        //}
 
-        //internal void CancelarReserva()
-        //{
 
-        //}
 
-        //internal void CancelarReservaUsuario()
-        //{
 
-        //}
     }
 }
 

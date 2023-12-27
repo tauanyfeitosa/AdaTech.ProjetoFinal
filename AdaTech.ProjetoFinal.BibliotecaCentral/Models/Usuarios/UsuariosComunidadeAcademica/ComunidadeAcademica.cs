@@ -1,6 +1,12 @@
 ﻿
 namespace AdaTech.ProjetoFinal.BibliotecaCentral
 {
+    using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva;
+    using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos;
+    using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;   
+    using System.Windows.Forms;
+    using System;
+
     internal class ComunidadeAcademica : Usuario
     {
         private string _matricula, _curso;
@@ -23,13 +29,32 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             this._tipoUsuario = tipoUsuario;
         }
 
-        //private ReservaLivro SolicitarReserva(Livros livro)
+        internal ReservaLivro SolicitarReserva(Livro livro, Emprestimo emprestimo)
+        {           
+            if (livro.ExemplaresDisponiveis == 0)
+            {  
+                int numeroReserva = 0;//isso ta certo? Um contador de Nreservas?
+                ReservaLivro reserva = new ReservaLivro(
+             numeroReserva++,
+             livro,
+             this,
+             emprestimo.DataDevolucaoPrevista,//novamente DataDevolucaoPrevista[0]
+             DateTime.Now,
+             StatusReserva.EmAnalise
+         );
+                return reserva;
+            }
+            else
+            {
+                throw new InvalidOperationException("Não foi possível fazer reserva.");
+            }
+        }
+        //private Emprestimo SolicitarEmprestimo(Livro livro)
         //{
 
         //}
-        //private Emprestimos SolicitarEmprestimo(Livros livro)
-        //{
 
-        //}
+
+
     }
 }
