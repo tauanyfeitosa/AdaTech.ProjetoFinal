@@ -7,8 +7,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
 {
     internal class Diretor: Funcionario
     {
-        internal Diretor(string login, string senha, string nomeCompleto, string cpf, string email, bool ativo)
-            : base(login, senha, nomeCompleto, cpf, email, ativo)
+        internal Diretor(string senha, string nomeCompleto, string cpf, string email, bool ativo)
+            : base(senha, nomeCompleto, cpf, email, ativo)
         {
             this.EhAdmin = true;
         }
