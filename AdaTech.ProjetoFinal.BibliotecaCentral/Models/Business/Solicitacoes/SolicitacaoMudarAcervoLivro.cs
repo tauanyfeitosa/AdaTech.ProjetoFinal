@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
 
-namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business
+namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Solicitacoes
 {
     internal class SolicitacaoMudarAcervoLivro: ISolicitacao
     {
@@ -39,16 +40,15 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business
             if (diretor == null)
                 throw new ArgumentNullException(nameof(diretor));
             this.Aprovada = true;
+            this._livro.TipoAcervoLivro = this._tipoAcervoNovo;
         }
 
-        public void AlterarSolicitacao(Bibliotecario bibliotecario = null, List<Livro> livro = null, TipoAcervoLivro tipoAcervo = TipoAcervoLivro.Inativo, string descricao = "")
+        public void AlterarSolicitacao(Bibliotecario bibliotecario = null, Livro livro = null, TipoAcervoLivro tipoAcervo = TipoAcervoLivro.Inativo, string descricao = "")
         {
             try
                 {
-                if (livro.Count > 1)
-                    throw new Exception("Não é possível alterar mais de um livro por solicitação");
                 if (livro != null)
-                    this._livro = livro.First();
+                    this._livro = livro;
                 if (bibliotecario != null)
                     this._bibliotecario = bibliotecario;
                 if (tipoAcervo != TipoAcervoLivro.Inativo)

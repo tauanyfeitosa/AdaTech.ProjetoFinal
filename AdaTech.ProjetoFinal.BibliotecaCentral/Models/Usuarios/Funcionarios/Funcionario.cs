@@ -1,5 +1,6 @@
 ﻿
 using System.Collections.Generic;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral
 {
@@ -31,7 +32,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
                     $"- Livros em Bom Estado: {item.LivrosBomEstado} livros, " +
                     $"- Livros em Estado Mediano : {item.LivrosEstadoMediano} livros," +
                     $" - Livros em Mau Estado: {item.LivrosMauEstado} livros," +
-                    $" - Tipo de Acervo do Livro: {item.tipoAcervoLivro} livros");
+                    $" - Tipo de Acervo do Livro: {item.TipoAcervoLivro}  livros");
             }
             return livrosAcervoExibicao;
         }
