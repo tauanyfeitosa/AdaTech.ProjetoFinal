@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using AdaTech.ProjetoFinal.BibliotecaCentral.Models.AcervoLivros;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Solicitacoes
 {

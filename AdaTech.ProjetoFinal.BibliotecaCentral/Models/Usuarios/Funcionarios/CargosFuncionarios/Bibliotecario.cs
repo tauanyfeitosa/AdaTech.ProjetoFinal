@@ -1,4 +1,7 @@
 ﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Solicitacoes;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
+using System;
+using System.Collections.Generic;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral
 {
@@ -26,6 +29,13 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
         internal void CriarSolicitacao(TipoSolicitacao tipoSolicitacao, Livro livro, TipoAcervoLivro tipoAcervo, string descricao)
         {
               SolicitacoesData.CriarSolicitacao(tipoSolicitacao, livro, tipoAcervo, descricao, this);
+        }
+
+        internal void AlterarSolicitacao(ISolicitacao solicitacao, Livro livro = null, TipoAcervoLivro tipoAcervo = TipoAcervoLivro.Inativo, string descricao = "")
+        {
+            if (solicitacao == null)
+                throw new ArgumentNullException(nameof(solicitacao));
+            solicitacao.AlterarSolicitacao(this, livro, tipoAcervo, descricao);
         }
     }
 }

@@ -169,7 +169,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
             LivrosBomEstado = exemplares;
             LivrosEstadoMediano = 0;
             LivrosMauEstado = 0;
-            this.tipoAcervoLivro = tipoAcervoLivro;
+            this.TipoAcervoLivro = tipoAcervoLivro;
         }
     }
 }
