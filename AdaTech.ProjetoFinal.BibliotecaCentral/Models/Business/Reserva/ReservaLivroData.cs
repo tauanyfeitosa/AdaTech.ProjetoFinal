@@ -164,7 +164,9 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
             DateTime dataReserva = Conversores.StringParaDateTime(partes[17]);
             StatusReserva statusReserva = Conversores.StringParaStatusReserva(partes[18]);
 
-            return new ReservaLivro(numeroReserva, livro, usuarioComunidadeAcademica, dataRetirada, dataReserva, statusReserva);
+            // PRECISA COLOCAR STATUS RESERVA
+
+            return new ReservaLivro(numeroReserva, livro, usuarioComunidadeAcademica, dataRetirada, dataReserva);
          }
 
         internal static void SalvarReservaLivrosTxt(List<ReservaLivro> reservaLivros)

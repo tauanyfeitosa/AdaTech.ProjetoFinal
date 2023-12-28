@@ -42,6 +42,16 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             }
         }
 
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            ComunidadeAcademica other = (ComunidadeAcademica)obj;
+            return _matricula == other._matricula;
+
         //private Emprestimo SolicitarEmprestimo(Livro livro)
         //{
 

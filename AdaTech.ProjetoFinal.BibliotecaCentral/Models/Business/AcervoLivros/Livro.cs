@@ -200,5 +200,21 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
             _tipoAcervoLivro = tipoAcervoLivro;
         }
 
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            Livro other = (Livro)obj;
+            return string.Equals(_isbn, other._isbn);
+        }
+
+        public override int GetHashCode()
+        {
+            return _isbn?.GetHashCode() ?? 0;
+        }
+
     }
 }

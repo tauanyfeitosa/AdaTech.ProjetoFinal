@@ -89,16 +89,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Utilities
 
         internal static TipoUsuarioComunidade StringParaTipoUsuarioComunidade(string valor)
         {
-            if (int.TryParse(valor, out int resultado) && Enum.IsDefined(typeof(TipoUsuarioComunidade), resultado))
-            {
-                return (TipoUsuarioComunidade)resultado;
-            }
-
-            throw new ArgumentException("Valor inválido para TipoUsuarioComunidade");
-        }
-
-        internal static TipoUsuarioComunidade StringParaTipoUsuarioComunidade(string valor)
-        {
             try
             {
                 TipoUsuarioComunidade TipoUsuarioComunidade = (TipoUsuarioComunidade)Enum.Parse(typeof(TipoUsuarioComunidade), valor);
