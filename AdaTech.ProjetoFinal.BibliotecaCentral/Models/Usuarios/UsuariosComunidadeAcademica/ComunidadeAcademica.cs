@@ -30,32 +30,21 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             this._tipoUsuario = tipoUsuario;
         }
 
-        internal ReservaLivro SolicitarReserva(Livro livro, Emprestimo emprestimo)
-        {           
+        internal void SolicitarReserva(Livro livro, Emprestimo emprestimo)
+        {
             if (livro.ExemplaresDisponiveis == 0)
-            {  
-                int numeroReserva = 0;//isso ta certo? Um contador de Nreservas?
-                ReservaLivro reserva = new ReservaLivro(
-             numeroReserva++,
-             livro,
-             this,
-             emprestimo.DataDevolucaoPrevista,//novamente DataDevolucaoPrevista[0]
-             DateTime.Now,
-             StatusReserva.EmAnalise
-         );
-                return reserva;
+            {              
+                ReservaLivroData.AdicionarReserva (livro, this, emprestimo.DataDevolucaoPrevista, DateTime.Now);//arrumar data retirada livro
             }
             else
             {
-                throw new InvalidOperationException("Não foi possível fazer reserva.");
+                throw new InvalidOperationException("Não foi possível realizar a reserva.");
             }
         }
+
         //private Emprestimo SolicitarEmprestimo(Livro livro)
         //{
 
         //}
-
-
-
     }
 }
