@@ -96,5 +96,19 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Utilities
 
             throw new ArgumentException("Valor inválido para TipoUsuarioComunidade");
         }
+
+        internal static TipoUsuarioComunidade StringParaTipoUsuarioComunidade(string valor)
+        {
+            try
+            {
+                TipoUsuarioComunidade TipoUsuarioComunidade = (TipoUsuarioComunidade)Enum.Parse(typeof(TipoUsuarioComunidade), valor);
+                return TipoUsuarioComunidade;
+            }
+            catch (ArgumentException)
+            {
+                Console.WriteLine($"A string '{valor}' não corresponde a nenhum valor do enum TipoAcervoLivro.");
+                throw new ArgumentException();
+            }
+        }
     }
 }
