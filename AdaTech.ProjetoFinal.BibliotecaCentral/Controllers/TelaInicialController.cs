@@ -42,5 +42,29 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers
             return verificador;
 
         }
+
+        internal bool ValidaLogin()
+        {
+            if(_telaLogin.CmbUsuario.Text == "Funcionário")
+            {
+                return ValidaCpf.IsValid(_telaLogin.TxtUsuario.Text);
+            }
+            
+            if(_telaLogin.CmbUsuario.Text == "Aluno") 
+            {
+                return ValidaMatricula.IsValidAluno(_telaLogin.TxtUsuario.Text);
+            }
+
+            if (_telaLogin.CmbUsuario.Text == "Professor")
+            {
+                return ValidaMatricula.IsValidProfessor(_telaLogin.TxtUsuario.Text);
+            }
+            return false;
+        }
+
+        internal bool ValidaPassword()
+        {
+            return ValidaSenha.IsValid(_telaLogin.TxtSenha.Text);
+        }
     }
 }
