@@ -12,6 +12,15 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
         private decimal _multaDiaria;
         private decimal _multaMauEstado;
         private bool _pagamentoMulta;
+
+        internal Multa(decimal multas, decimal multaDiaria, decimal multaMauEstado, bool pagamentoMulta)
+        {
+            _multas = multas;
+            _multaDiaria = multaDiaria;
+            _multaMauEstado = multaMauEstado;
+            _pagamentoMulta = pagamentoMulta;
+        }
+
         internal decimal Multas
         {
             get

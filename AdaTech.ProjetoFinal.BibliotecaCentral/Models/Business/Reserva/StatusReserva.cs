@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
 {
-    internal enum StatusReserva
+    public enum StatusReserva
     {
         EmAnalise = 1,
         Aprovada = 2,
         Reprovada = 3,
+        Cancelada = 4,
     }
 }

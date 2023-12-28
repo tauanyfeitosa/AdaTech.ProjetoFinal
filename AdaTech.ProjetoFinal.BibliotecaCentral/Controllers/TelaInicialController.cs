@@ -17,8 +17,9 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers
             _telaLogin = telaLogin;
         }
 
-        internal void RealizarLogin()
+        internal bool RealizarLogin()
         {
+            bool verificador = false;
             try
             {
                 if (_telaLogin.TxtUsuario.Text != null && _telaLogin.TxtUsuario.Text == UsuarioData.SelecionarUsuario(_telaLogin.TxtUsuario.Text).Login)
@@ -26,19 +27,20 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers
                     if (UsuarioData.SelecionarUsuario(_telaLogin.TxtUsuario.Text).FazerLogin(_telaLogin.TxtUsuario.Text, _telaLogin.TxtSenha.Text))
                     {
                         MessageBox.Show("Login realizado com sucesso!");
+                        return true;
                     }
                     else
                     {
                         MessageBox.Show("Senha incorreta!");
+                        return verificador;
                     }
-                } else
-                {
-                    throw new Exception();
                 }
-            } catch (Exception e)
+            } catch 
             {
                 MessageBox.Show("Usuário não encontrado!");
             }
+            return verificador;
+
         }
     }
 }

@@ -16,6 +16,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Solicitacoes
         private bool _aprovada;
 
         internal Bibliotecario Bibliotecario { get => _bibliotecario;}
+        internal TipoAcervoLivro TipoAcervo { get => _tipoAcervoNovo;}
+        internal Livro LivroS { get => _livro;}
         internal string Descricao { get => _descricao; set => _descricao = value; }
         internal bool Aprovada { get => _aprovada; set => _aprovada = value; }
 
