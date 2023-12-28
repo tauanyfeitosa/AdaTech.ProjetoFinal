@@ -11,7 +11,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
     {
         private static List<Atendente> _atendente = new List<Atendente>()
         {
-            new Atendente("123", "Atendente 1", "12345678910", "atendente@gmail.com", true)
+            new Atendente("123", "Atendente 1", "07723268513", "atendente@gmail.com", true)
         };
         private static List<Bibliotecario> _bibliotecario = new List<Bibliotecario>();
         private static List<Diretor> _diretor = new List<Diretor>();
