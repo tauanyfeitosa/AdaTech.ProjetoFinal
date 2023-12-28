@@ -11,5 +11,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
         EmAnalise = 1,
         Aprovada = 2,
         Reprovada = 3,
+        Cancelada = 4,
     }
 }

@@ -1,6 +1,12 @@
 ﻿
 namespace AdaTech.ProjetoFinal.BibliotecaCentral
 {
+    using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva;
+    using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos;
+    using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;   
+    using System.Windows.Forms;
+    using System;
+
     internal class ComunidadeAcademica : Usuario
     {
         private string _matricula, _curso;
@@ -24,11 +30,19 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             this._tipoUsuario = tipoUsuario;
         }
 
-        //private ReservaLivro SolicitarReserva(Livros livro)
-        //{
+        internal void SolicitarReserva(Livro livro, Emprestimo emprestimo)
+        {
+            if (livro.ExemplaresDisponiveis == 0)
+            {              
+                ReservaLivroData.AdicionarReserva (livro, this, emprestimo.DataDevolucaoPrevista, DateTime.Now);//arrumar data retirada livro
+            }
+            else
+            {
+                throw new InvalidOperationException("Não foi possível realizar a reserva.");
+            }
+        }
 
-        //}
-        //private Emprestimos SolicitarEmprestimo(Livros livro)
+        //private Emprestimo SolicitarEmprestimo(Livro livro)
         //{
 
         //}
