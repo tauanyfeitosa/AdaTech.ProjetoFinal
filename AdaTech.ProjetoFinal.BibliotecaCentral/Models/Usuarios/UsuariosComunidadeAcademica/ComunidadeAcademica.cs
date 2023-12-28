@@ -51,6 +51,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
 
             ComunidadeAcademica other = (ComunidadeAcademica)obj;
             return _matricula == other._matricula;
+        }
 
         //private Emprestimo SolicitarEmprestimo(Livro livro)
         //{
