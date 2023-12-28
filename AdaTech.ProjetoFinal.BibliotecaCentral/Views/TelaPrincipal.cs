@@ -42,8 +42,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
             _lblBemVindo.BackColor = Color.Transparent;
             _lblBemVindo.ForeColor = Color.Black;
             _lblBemVindo.AutoSize = true;
-            _lblBemVindo.Font = new Font("Arial", 30, FontStyle.Bold);
-            _lblBemVindo.Location = new System.Drawing.Point((largura / 2), 20);
+            _lblBemVindo.Font = new Font("Arial", 20, FontStyle.Bold);
+            _lblBemVindo.Location = new System.Drawing.Point((largura - painelLogin.Width)/2, 20);
             
             Controls.Add(_lblBemVindo);
             Controls.Add(painelLogin);

@@ -14,7 +14,9 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
 {
     internal static class UsuarioData
     {
-        private static List<Atendente> _atendentes;
+        private static List<Atendente> _atendentes = new List<Atendente> { 
+            new Atendente("12345678", "Amandinha Linda", "07723268513", "amandinha@linda.com.br") };
+
         private static List<Bibliotecario> _bibliotecarios;
         private static List<Diretor> _diretores;
         private static List<ComunidadeAcademica> _comunidadeAcademica;
@@ -29,7 +31,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
         {
             _diretores = LerDiretoresTxt();
             _bibliotecarios = LerBibliotecariosTxt();
-            _atendentes = LerAtendentesTxt();
+            //_atendentes = LerAtendentesTxt();
             _comunidadeAcademica = LerComunidadeAcademicaTxt();
         }
 
