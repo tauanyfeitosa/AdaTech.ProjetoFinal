@@ -6,6 +6,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
     using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;   
     using System.Windows.Forms;
     using System;
+    using System.Linq;
 
     internal class ComunidadeAcademica : Usuario
     {
@@ -57,5 +58,53 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
         //{
 
         //}
+
+        internal void AtribuirNovaSenha (DateTime data)
+        {
+            if (this.TipoUsuario == TipoUsuarioComunidade.Professor)
+            {
+                string senhaNova = this.GerarNovaSenha();
+                if (data.Day == 25)
+                {
+                    this.SenhaCripto = CriptografarSenha(senhaNova);
+                }
+                else if (data.Day - DateTime.Now.Day == 10)
+                {
+                    MessageBox.Show($"A nova senha de entrada será: {senhaNova}");
+                }
+            } else
+            {
+                throw new Exception("A senha do aluno deve ser mudada pelo mesmo!");
+            }
+        }
+
+        private string GerarNovaSenha ()
+        {
+            string uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            string lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
+            string digitChars = "0123456789";
+            string symbolChars = "!@#$%^&*";
+
+            Random random = new Random();
+
+            string caracteresCompletos = uppercaseChars + lowercaseChars + digitChars + symbolChars;
+
+            int tamanhoSenha = random.Next(8, 17);
+
+            string senha = string.Concat(SelecionarChar(uppercaseChars), 
+                SelecionarChar(lowercaseChars), SelecionarChar(digitChars), SelecionarChar(symbolChars),
+                new string (Enumerable.Repeat(caracteresCompletos, tamanhoSenha - 4).
+                Select (s => s[random.Next(symbolChars.Length)]).ToArray()));
+
+            string senhaNova = this.CriptografarSenha(senha);
+
+            return senhaNova;
+        }
+
+        private static char SelecionarChar(string s)
+        {
+            Random random = new Random();
+            return s[random.Next(s.Length)];
+        }
     }
 }
