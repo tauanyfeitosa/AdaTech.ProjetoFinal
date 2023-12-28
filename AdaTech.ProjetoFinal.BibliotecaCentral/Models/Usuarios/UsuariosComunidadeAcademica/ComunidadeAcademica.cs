@@ -12,6 +12,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
     {
         private string _matricula, _curso;
         private TipoUsuarioComunidade _tipoUsuario;
+        private string _senhaNova;
 
         internal string Matricula { get { return _matricula; } }
         internal string Curso { get { return _curso; } }
@@ -19,6 +20,12 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
         { 
             get { return _tipoUsuario; }
             set { _tipoUsuario = value;}
+        }
+
+        internal string SenhaNova 
+        { 
+            get { return _senhaNova; }
+            set { _senhaNova = value;}
         }
 
         internal ComunidadeAcademica(string senha, string nomeCompleto,
@@ -63,14 +70,13 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
         {
             if (this.TipoUsuario == TipoUsuarioComunidade.Professor)
             {
-                string senhaNova = this.GerarNovaSenha();
                 if (data.Day == 25)
                 {
-                    this.SenhaCripto = CriptografarSenha(senhaNova);
+                    this.SenhaCripto = CriptografarSenha(_senhaNova);
                 }
                 else if (data.Day - DateTime.Now.Day == 10)
                 {
-                    MessageBox.Show($"A nova senha de entrada será: {senhaNova}");
+                    MessageBox.Show($"A nova senha de entrada será: {_senhaNova}");
                 }
             } else
             {
@@ -78,27 +84,30 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             }
         }
 
-        private string GerarNovaSenha ()
+        private void GerarNovaSenha (DateTime data)
         {
-            string uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            string lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
-            string digitChars = "0123456789";
-            string symbolChars = "!@#$%^&*";
+            if (data.Day - 25 == 11)
+            {
+                string uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                string lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
+                string digitChars = "0123456789";
+                string symbolChars = "!@#$%^&*";
 
-            Random random = new Random();
+                Random random = new Random();
 
-            string caracteresCompletos = uppercaseChars + lowercaseChars + digitChars + symbolChars;
+                string caracteresCompletos = uppercaseChars + lowercaseChars + digitChars + symbolChars;
 
-            int tamanhoSenha = random.Next(8, 17);
+                int tamanhoSenha = random.Next(8, 17);
 
-            string senha = string.Concat(SelecionarChar(uppercaseChars), 
-                SelecionarChar(lowercaseChars), SelecionarChar(digitChars), SelecionarChar(symbolChars),
-                new string (Enumerable.Repeat(caracteresCompletos, tamanhoSenha - 4).
-                Select (s => s[random.Next(symbolChars.Length)]).ToArray()));
+                string senha = string.Concat(SelecionarChar(uppercaseChars),
+                    SelecionarChar(lowercaseChars), SelecionarChar(digitChars), SelecionarChar(symbolChars),
+                    new string(Enumerable.Repeat(caracteresCompletos, tamanhoSenha - 4).
+                    Select(s => s[random.Next(symbolChars.Length)]).ToArray()));
 
-            string senhaNova = this.CriptografarSenha(senha);
+                string senhaNova = this.CriptografarSenha(senha);
 
-            return senhaNova;
+                this.SenhaNova = senhaNova;
+            }
         }
 
         private static char SelecionarChar(string s)
