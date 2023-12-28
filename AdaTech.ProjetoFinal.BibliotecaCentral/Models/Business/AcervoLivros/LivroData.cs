@@ -18,6 +18,11 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
             _acervoLivros = LerLivrosTxt();
         }
 
+        public static List<Livro> AcervoLivros
+        {
+            get { return _acervoLivros; }
+        }
+
         internal static void IncluirLivros(List<Livro> livros)
         {
             _acervoLivros.AddRange(livros);

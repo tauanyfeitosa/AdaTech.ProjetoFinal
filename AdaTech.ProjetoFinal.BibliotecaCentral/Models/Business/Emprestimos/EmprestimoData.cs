@@ -55,7 +55,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
             return emprestimos;
         }
 
-        private static Emprestimo ConverterLinhaParaEmprestimo(string linha)
+        internal static Emprestimo ConverterLinhaParaEmprestimo(string linha)
         {
             string[] partes = linha.Split(',');
             string partesReserva = string.Join(",", partes.Skip(0).Take(18));

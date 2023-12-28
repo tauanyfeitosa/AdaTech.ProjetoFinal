@@ -19,6 +19,12 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Solicitacoes
         private static List<SolicitacaoMudarAcervoLivro> solicitacoesMudarAcervo = new List<SolicitacaoMudarAcervoLivro>();
         private static List<SolicitacaoRequisicaoLivros> solicitacaoRequisicaoLivros = new List<SolicitacaoRequisicaoLivros>();
 
+        static SolicitacoesData()
+        {
+            solicitacaoRequisicaoLivros = LerSolicitacoesRequisicaoTxt();
+            solicitacoesMudarAcervo = LerSolicitacoesMudarAcervoTxt();
+        }
+
         internal static void CriarSolicitacao(TipoSolicitacao solicitacao, Livro livro, TipoAcervoLivro tipoAcervo, string descricao, Bibliotecario bibliotecario)
         {
             if (solicitacao == TipoSolicitacao.MudarAcervoLivro)
@@ -118,7 +124,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Solicitacoes
                 Console.WriteLine($"Erro ao ler o arquivo: {ex.Message}");
             }
 
-            return solicitacoesMudarAcervo;
+            return solicitacoesAcervo;
     }
 
         internal static List<SolicitacaoRequisicaoLivros> LerSolicitacoesRequisicaoTxt()
@@ -172,10 +178,12 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Solicitacoes
             string descricao = partes[18];
             bool aprovada = Conversores.StringParaBool(partes[19]);
 
+            // PRECISAMOS VER COMO COLOCAR APROVADA OU NAO
+
             return new SolicitacaoRequisicaoLivros(bibliotecario, livro, tipoAcervoLivro, descricao);
         }
 
-        internal static void SalvarSolicitacoesTxt(List<SolicitacaoMudarAcervoLivro> solicitacoes)
+        internal static void SalvarSolicitacoesAcervoTxt(List<SolicitacaoMudarAcervoLivro> solicitacoes)
         {
             try
             {
@@ -183,7 +191,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Solicitacoes
                 {
                     foreach (SolicitacaoMudarAcervoLivro solicitacao in solicitacoes)
                     {
-                        string linha = ConverterParaLinha(solicitacoes);
+                        string linha = ConverterSolicitacaoAcervoParaLinha(solicitacao);
                         sw.WriteLine(linha);
                     }
                 }
@@ -195,16 +203,16 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Solicitacoes
                 Console.WriteLine($"Erro ao salvar as alterações no arquivo: {ex.Message}");
             }
         }
-
+        
         internal static void SalvarSolicitacoesTxt(List<SolicitacaoRequisicaoLivros> solicitacoes)
         {
             try
             {
-                using (StreamWriter sw = new StreamWriter(PATH_ACERVO))
+                using (StreamWriter sw = new StreamWriter(PATH_REQUISICAO))
                 {
                     foreach (SolicitacaoRequisicaoLivros solicitacao in solicitacoes)
                     {
-                        string linha = ConverterParaLinha(solicitacoes);
+                        string linha = ConverterSolicitacaoRequisicaoParaLinha(solicitacao);
                         sw.WriteLine(linha);
                     }
                 }

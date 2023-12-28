@@ -86,5 +86,15 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Utilities
                 throw new ArgumentException("Valor de string não é válido para decimal");
             }
         }
+
+        internal static TipoUsuarioComunidade StringParaTipoUsuarioComunidade(string valor)
+        {
+            if (int.TryParse(valor, out int resultado) && Enum.IsDefined(typeof(TipoUsuarioComunidade), resultado))
+            {
+                return (TipoUsuarioComunidade)resultado;
+            }
+
+            throw new ArgumentException("Valor inválido para TipoUsuarioComunidade");
+        }
     }
 }

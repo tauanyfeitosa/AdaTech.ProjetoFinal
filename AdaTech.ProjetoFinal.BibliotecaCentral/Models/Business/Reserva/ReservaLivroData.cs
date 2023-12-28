@@ -83,7 +83,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
             StatusReserva statusReserva = Conversores.StringParaStatusReserva(partes[18]);
 
             return new ReservaLivro(numeroReserva, livro, usuarioComunidadeAcademica, dataRetirada, dataReserva, statusReserva);
-    }
+         }
 
         internal static void SalvarReservaLivrosTxt(List<ReservaLivro> reservaLivros)
         {
