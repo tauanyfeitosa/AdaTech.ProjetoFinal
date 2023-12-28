@@ -14,7 +14,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             set { _tipoUsuario = value;}
         }
 
-        protected ComunidadeAcademica(string senha, string nomeCompleto,
+        internal ComunidadeAcademica(string senha, string nomeCompleto,
             string cpf, string email, string matricula, string curso, TipoUsuarioComunidade tipoUsuario)
             : base(senha, nomeCompleto, cpf, email)
         {

@@ -1,4 +1,5 @@
 ﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Utilities;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
@@ -339,7 +340,57 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
         }
 
 
+        internal static List<ComunidadeAcademica> LoadDataCsvComunidadeAcademica(string FILE_PATH)
+        {
+            List<ComunidadeAcademica> listaComunidadeAcademica = new List<ComunidadeAcademica>();
 
+            try
+            {
+                if (File.Exists(FILE_PATH))
+                {
+
+                    using (StreamReader sr = new StreamReader(FILE_PATH))
+                    {
+                        while ((!sr.EndOfStream) != null)
+                        {
+                            string linha = sr.ReadLine();
+                            ComunidadeAcademica comunidadeAcademica = ConverterLinhaParaComunidadeAcademica(linha);
+                            listaComunidadeAcademica.Add(comunidadeAcademica);
+                        }
+                    }
+                    Console.WriteLine("Dados carregados do arquivo json.");
+                }
+                else
+                {
+                    Console.WriteLine("O arquivo json não existe.");
+                }
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("O arquivo não pôde ser aberto: " + e.Message);
+            }
+            catch (SerializationException e)
+            {
+                Console.WriteLine("Erro ao desserializar os dados: " + e.Message);
+            }
+            return listaBibliotecario;
+        }
+
+        private static ComunidadeAcademica ConverterLinhaParaComunidadeAcademica(string linha)
+        {
+            string[] objetoString = linha.Split(',');
+
+            string senha = objetoString[0];
+            string nomeCompleto = objetoString[1];
+            string cpf = objetoString[2];
+            string email = objetoString[3];
+            string matricula = objetoString[4];
+            string curso = objetoString[5];
+            TipoUsuarioComunidade tipoUsuario = Conversores.StringParaTipoUsuarioComunidade(objetoString[6]);
+            bool ativo = bool.Parse(objetoString[6]);
+
+            return new ComunidadeAcademica(senha, nomeCompleto, cpf, email, matricula, curso, tipoUsuario);
+        }
 
     }
 }
