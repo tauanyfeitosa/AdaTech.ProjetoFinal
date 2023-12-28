@@ -2,6 +2,7 @@
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
 using System;
 using System.Collections.Generic;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral
 {
@@ -18,14 +19,46 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             LivroData.IncluirLivros(titulo, autor, isbn, anoPublicacao, edicao, editora, exemplares); 
         }
 
-        //private Livro CadastraLivro()
-        //{
+        private void CadastrarLivros(List<Livro> novosLivros)
+        {
 
-        //}
-        //private void AtualizarLivro(Livro livro)
-        //{
+            HashSet<Livro> setLivros = new HashSet<Livro>();
 
-        //}
+            foreach (var item in LivroData.AcervoLivros)
+            {
+                setLivros.Add(item);
+            }
+
+            foreach (var item in novosLivros)
+            {
+                setLivros.Add(item);
+            }
+
+            List<Livro> novaListaLivros = new List<Livro>(setLivros);
+
+            LivroData.SalvarLivrosTxt(novaListaLivros);
+
+        }
+
+        private void CadastrarLivro(Livro novoLivro)
+        {
+            HashSet<Livro> setLivros = new HashSet<Livro>();
+
+            foreach (var item in LivroData.AcervoLivros)
+            {
+                setLivros.Add(item);
+            }
+
+            setLivros.Add(novoLivro);
+
+            List<Livro> novaListaLivros = new List<Livro>(setLivros);
+
+            LivroData.SalvarLivrosTxt(novaListaLivros);
+        }
+
+        // private void AtualizarLivro(Livro livro)
+
+
         internal void CriarSolicitacao(TipoSolicitacao tipoSolicitacao, Livro livro, TipoAcervoLivro tipoAcervo, string descricao)
         {
               SolicitacoesData.CriarSolicitacao(tipoSolicitacao, livro, tipoAcervo, descricao, this);

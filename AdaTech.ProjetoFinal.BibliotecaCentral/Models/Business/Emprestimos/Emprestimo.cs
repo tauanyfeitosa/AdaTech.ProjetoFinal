@@ -19,6 +19,19 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
         private bool _devolucao;
         private Multa _multaAtraso;
 
+        internal Emprestimo(ReservaLivro reservaLivro, Livro livro, ComunidadeAcademica usuarioComunidadeAcademica,
+       DateTime dataEmprestimo, DateTime dataDevolucaoPrevista, DateTime dataDevolucaoUsuario, bool devolucao, Multa multaAtraso)
+        {
+            _reservaLivro = reservaLivro;
+            _livro = livro;
+            _usuarioComunidadeAcademica = usuarioComunidadeAcademica;
+            _dataEmprestimo = dataEmprestimo;
+            _dataDevolucaoPrevista = dataDevolucaoPrevista;
+            _dataDevolucaoUsuario = dataDevolucaoUsuario;
+            _devolucao = devolucao;
+            _multaAtraso = multaAtraso;
+        }
+
         internal ReservaLivro ReservaLivro { get { return _reservaLivro; } }
         internal Livro Livro { get { return _livro; } }
         internal ComunidadeAcademica ComunidadeAcademica { get { return _usuarioComunidadeAcademica; } }

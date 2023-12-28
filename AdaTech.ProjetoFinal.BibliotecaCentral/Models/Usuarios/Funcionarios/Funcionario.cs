@@ -37,6 +37,22 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             }
             return livrosAcervoExibicao;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            Funcionario other = (Funcionario)obj;
+            return string.Equals(Login, other.Login);
+        }
+
+        public override int GetHashCode()
+        {
+            return Login.GetHashCode();
+        }
         //protected List<SolicitacaoRequisicaoLivros> ConsultarRequisicaoLotes()
         //{
 

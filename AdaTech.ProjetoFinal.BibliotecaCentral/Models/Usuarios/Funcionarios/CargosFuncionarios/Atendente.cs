@@ -1,4 +1,8 @@
 ﻿
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace AdaTech.ProjetoFinal.BibliotecaCentral
 {
     internal class Atendente: Funcionario
@@ -25,13 +29,26 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
         //{
 
         //}
-        //private void AtualizarComunidadeAcademica()
-        //{
+        private void CadastrarComunidadeAcademica(List<ComunidadeAcademica> novaListaCA)
+        {
 
-        //}
-        //private void CadastrarComunidadeAcademica()
-        //{
+            HashSet<ComunidadeAcademica> conjuntoUnico = new HashSet<ComunidadeAcademica>();
 
-        //}
+            foreach (var item in UsuarioData.ComunidadeAcademica)
+            {
+                conjuntoUnico.Add(item);
+            }
+
+            foreach (var item in novaListaCA)
+            {
+                conjuntoUnico.Add(item);
+            }
+
+            List<ComunidadeAcademica> listaTotalCA = new List<ComunidadeAcademica>(conjuntoUnico);
+
+            UsuarioData.SalvarComunidadeAcademicaTxt(listaTotalCA);
+
+        }
+
     }
 }
