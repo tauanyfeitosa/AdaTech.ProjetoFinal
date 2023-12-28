@@ -1,4 +1,5 @@
 ﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,54 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Utilities
             {
                 Console.WriteLine($"A string '{valor}' não corresponde a nenhum valor do enum TipoAcervoLivro.");
                 throw new ArgumentException();
+            }
+        }
+
+        public static DateTime StringParaDateTime(string dataString)
+        {
+            if (DateTime.TryParse(dataString, out DateTime data))
+            {
+                return data;
+            }
+            else
+            {
+                throw new ArgumentException("Formato de data inválido");
+            }
+        }
+
+        public static StatusReserva StringParaStatusReserva(string statusString)
+        {
+            if (Enum.TryParse<StatusReserva>(statusString, out StatusReserva statusReserva))
+            {
+                return statusReserva;
+            }
+            else
+            {
+                throw new ArgumentException("Valor de status inválido");
+            }
+        }
+
+        public static bool StringParaBool(string valor)
+        {
+            if (bool.TryParse(valor, out bool resultado))
+            {
+                return resultado;
+            }
+            else
+            {
+                throw new ArgumentException("Valor de string não é válido para booleano");
+            }
+        }
+
+        public static decimal StringParaDecimal(string valorString)
+        {
+            if (decimal.TryParse(valorString, out decimal resultado))
+            {
+                return resultado;
+            }
+            else
+            {
+                throw new ArgumentException("Valor de string não é válido para decimal");
             }
         }
     }

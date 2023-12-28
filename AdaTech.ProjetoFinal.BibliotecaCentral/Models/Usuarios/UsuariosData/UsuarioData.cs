@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Utilities;
+using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
@@ -171,6 +173,29 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
             if (usuario != null) return usuario;
 
             throw new InvalidOperationException("Usuário não encontrado.");
+        }
+
+        internal static string ConverterComunidadeAcademicaParaLinha(ComunidadeAcademica usuario)
+        {
+            return $"{usuario.Matricula},{usuario.Curso},{usuario.TipoUsuario}";
+        }
+
+        internal static Bibliotecario ConverterLinhaParaBibliotecario(string linha)
+        {
+            string[] partes = linha.Split(',');
+
+            string senha = partes[0];
+            string nomeCompleto = partes[1];
+            string cpf = partes[2];
+            string email = partes[3];
+            bool ativo = Conversores.StringParaBool(partes[4]); 
+
+            return new Bibliotecario(senha, nomeCompleto, cpf, email, ativo);
+        }
+
+        internal static string ConverterBibliotecarioParaLinha(Bibliotecario bibliotecario)
+        {
+            return $"{bibliotecario.SenhaCripto},{bibliotecario.NomeCompleto},{bibliotecario.Cpf},{bibliotecario.Email},{bibliotecario.Ativo}";
         }
     }
 }

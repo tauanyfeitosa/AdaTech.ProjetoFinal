@@ -101,7 +101,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Data\Emprestimo.txt" />
     <Content Include="Data\Livros.txt" />
+    <Content Include="Data\Reservas.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

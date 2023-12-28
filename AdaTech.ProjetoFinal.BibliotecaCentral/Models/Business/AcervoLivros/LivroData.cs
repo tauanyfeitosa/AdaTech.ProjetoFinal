@@ -82,7 +82,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
             return livros;
         }
 
-        private static Livro ConverterLinhaParaLivro(string linha)
+        internal static Livro ConverterLinhaParaLivro(string linha)
         {
             string[] partes = linha.Split(',');
             string titulo = partes[0];
@@ -122,7 +122,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
             }
         }
 
-        private static string ConverterLivroParaLinha(Livro livro)
+        internal static string ConverterLivroParaLinha(Livro livro)
         {
             return $"{livro.Titulo},{livro.Autor},{livro.Isbn},{livro.AnoPublicacao},{livro.Edicao},{livro.Editora},{livro.Exemplares},{livro.ExemplaresDisponiveis},{livro.LivrosBomEstado},{livro.LivrosEstadoMediano},{livro.LivrosMauEstado},{livro.TipoAcervoLivro}";
         }
