@@ -20,7 +20,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             set { _tipoUsuario = value;}
         }
 
-        protected ComunidadeAcademica(string senha, string nomeCompleto,
+        internal ComunidadeAcademica(string senha, string nomeCompleto,
             string cpf, string email, string matricula, string curso, TipoUsuarioComunidade tipoUsuario)
             : base(senha, nomeCompleto, cpf, email)
         {
@@ -40,6 +40,17 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             {
                 throw new InvalidOperationException("Não foi possível realizar a reserva.");
             }
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            ComunidadeAcademica other = (ComunidadeAcademica)obj;
+            return _matricula == other._matricula;
         }
 
         //private Emprestimo SolicitarEmprestimo(Livro livro)

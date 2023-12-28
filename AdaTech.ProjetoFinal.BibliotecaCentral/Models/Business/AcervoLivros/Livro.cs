@@ -171,5 +171,50 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
             LivrosMauEstado = 0;
             this.TipoAcervoLivro = tipoAcervoLivro;
         }
+
+        public Livro(
+           string titulo,
+           string autor,
+           string isbn,
+           int anoPublicacao,
+           int edicao,
+           string editora,
+           int exemplares,
+           int exemplaresDisponiveis,
+           int livrosBomEstado,
+           int livrosEstadoMediano,
+           int livrosMauEstado,
+           TipoAcervoLivro tipoAcervoLivro)
+        {
+            _titulo = titulo;
+            _autor = autor;
+            _isbn = isbn;
+            _anoPublicacao = anoPublicacao;
+            _edicao = edicao;
+            _editora = editora;
+            _exemplares = exemplares;
+            _exemplaresDisponiveis = exemplaresDisponiveis;
+            _livrosBomEstado = livrosBomEstado;
+            _livrosEstadoMediano = livrosEstadoMediano;
+            _livrosMauEstado = livrosMauEstado;
+            _tipoAcervoLivro = tipoAcervoLivro;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            Livro other = (Livro)obj;
+            return string.Equals(_isbn, other._isbn);
+        }
+
+        public override int GetHashCode()
+        {
+            return _isbn?.GetHashCode() ?? 0;
+        }
+
     }
 }

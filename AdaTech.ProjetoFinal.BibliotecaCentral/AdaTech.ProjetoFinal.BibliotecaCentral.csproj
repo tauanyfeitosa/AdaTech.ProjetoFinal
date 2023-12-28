@@ -77,6 +77,7 @@
     <Compile Include="Views\TelaPrincipal.Designer.cs">
       <DependentUpon>TelaPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Utilities\Conversores.cs" />
     <Compile Include="Views\TelaLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +110,14 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Data\Atendentes.txt" />
+    <Content Include="Data\Bibliotecarios.txt" />
+    <Content Include="Data\ComunidadeAcademica.txt" />
+    <Content Include="Data\Diretores.txt" />
+    <Content Include="Data\Emprestimo.txt" />
+    <Content Include="Data\Livros.txt" />
+    <Content Include="Data\Reservas.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
