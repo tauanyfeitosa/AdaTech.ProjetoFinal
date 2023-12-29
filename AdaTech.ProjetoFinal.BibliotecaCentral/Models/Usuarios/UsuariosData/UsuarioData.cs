@@ -104,6 +104,11 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
             return _comunidadeAcademica.Where(u => u.TipoUsuario == TipoUsuarioComunidade.Aluno).ToList();
         }
 
+        internal static List<ComunidadeAcademica> ObterProfessores()
+        {
+            return _comunidadeAcademica.Where(u => u.TipoUsuario == TipoUsuarioComunidade.Professor).ToList();
+        }
+
         internal static void RemoverUsuario (Usuario usuario)
         {
             if (usuario is Atendente)

@@ -120,7 +120,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
 
         private void OnClickVisualizarProfessores(object sender, EventArgs e)
         {
-
+            JanelaVisualizarProfessores visualizarProfessores = new JanelaVisualizarProfessores();
+            visualizarProfessores.ShowDialog();
         }
 
         #endregion
