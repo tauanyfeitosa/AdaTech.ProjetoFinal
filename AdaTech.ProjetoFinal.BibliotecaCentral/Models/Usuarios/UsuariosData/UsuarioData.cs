@@ -9,33 +9,30 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
 {
     internal static class UsuarioData
     {
-        private static List<Atendente> _atendentes = new List<Atendente> { 
-            new Atendente("12345678", "Amandinha Linda", "07723268513", "amandinha@linda.com.br") };
+        private static List<Atendente> _atendentes = new List<Atendente>();
+        private static List<Bibliotecario> _bibliotecarios = new List<Bibliotecario>();
+        private static List<Diretor> _diretores = new List<Diretor>();
+        private static List<ComunidadeAcademica> _comunidadeAcademica = new List<ComunidadeAcademica>();
 
-        private static List<Bibliotecario> _bibliotecarios;
-        private static List<Diretor> _diretores;
-        private static List<ComunidadeAcademica> _comunidadeAcademica = new List<ComunidadeAcademica>() 
-        {
-            new ComunidadeAcademica("12345678", "Amanda", "07723268513", "amandalinda@gmail.com", "123456", "ADS", TipoUsuarioComunidade.Aluno),
-        };
-
-        private static readonly string _FILE_PATH_DIRETOR = "../../../Data/Diretores.txt";
-        private static readonly string _FILE_PATH_BIBLIOTECARIO = "../../../Data/Bibliotecarios.txt";
-        private static readonly string _FILE_PATH_ATENDENTE = "../../../Data/Atendentes.txt";
-        private static readonly string _FILE_PATH_CA = "../../../Data/ComunidadeAcademica.txt";
+        private static readonly string _DIRECTORY_PATH = "Data";
+        private static readonly string _FILE_PATH_DIRETOR = Path.Combine(_DIRECTORY_PATH, "Diretores.txt");
+        private static readonly string _FILE_PATH_BIBLIOTECARIO = Path.Combine(_DIRECTORY_PATH, "Bibliotecarios.txt");
+        private static readonly string _FILE_PATH_ATENDENTE = Path.Combine(_DIRECTORY_PATH, "Atendentes.txt");
+        private static readonly string _FILE_PATH_CA = Path.Combine(_DIRECTORY_PATH, "ComunidadeAcademica.txt");
 
 
         static UsuarioData()
         {
             _diretores = LerDiretoresTxt();
             _bibliotecarios = LerBibliotecariosTxt();
-            //_atendentes = LerAtendentesTxt();
-            _comunidadeAcademica.AddRange(LerComunidadeAcademicaTxt());
+            _atendentes = LerAtendentesTxt();
+            _comunidadeAcademica = LerComunidadeAcademicaTxt();
         }
 
         public static List<Atendente> Atendentes
@@ -231,23 +228,22 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
 
                     using (StreamReader sr = new StreamReader(_FILE_PATH_DIRETOR))
                     {
-                        while ((!sr.EndOfStream) != null)
+                        while (!sr.EndOfStream)
                         {
                             string linha = sr.ReadLine();
                             Diretor diretor = ConverterLinhaParaDiretor(linha);
                             listaDiretor.Add(diretor);
                         }
                     }
-                    Console.WriteLine("Dados carregados do arquivo txt.");
                 }
                 else
                 {
-                    Console.WriteLine("O arquivo txt não existe.");
+                    MessageBox.Show("O arquivo txt de diretor não existe.");
                 }
             }
             catch (IOException e)
             {
-                Console.WriteLine("O arquivo não pôde ser aberto: " + e.Message);
+                MessageBox.Show("O arquivo não pôde ser aberto: " + e.Message);
             }
             return listaDiretor;
         }
@@ -274,28 +270,24 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
             {
                 if (File.Exists(_FILE_PATH_ATENDENTE))
                 {
-
                     using (StreamReader sr = new StreamReader(_FILE_PATH_ATENDENTE))
                     {
-                        
-
-                        while ((!sr.EndOfStream) != null)
+                        while (!sr.EndOfStream)
                         {
                             string linha = sr.ReadLine();
                             Atendente atendente = ConverterLinhaParaAtendente(linha);
                             listaAtendente.Add(atendente);
                         }
                     }
-                    Console.WriteLine("Dados carregados do arquivo txt.");
                 }
                 else
                 {
-                    Console.WriteLine("O arquivo txt não existe.");
+                    MessageBox.Show("O arquivo txt de atendente não existe.");
                 }
             }
             catch (IOException e)
             {
-                Console.WriteLine("O arquivo não pôde ser aberto: " + e.Message);
+                MessageBox.Show("O arquivo não pôde ser aberto: " + e.Message);
             }
             return listaAtendente;
         }
@@ -324,23 +316,22 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
 
                     using (StreamReader sr = new StreamReader(_FILE_PATH_BIBLIOTECARIO))
                     {
-                        while ((!sr.EndOfStream) != null)
+                        while (!sr.EndOfStream)
                         {
                             string linha = sr.ReadLine();
                             Bibliotecario bibliotecario = ConverterLinhaParaBibliotecario(linha);
                             listaBibliotecario.Add(bibliotecario);
                         }
                     }
-                    Console.WriteLine("Dados carregados do arquivo txt.");
                 }
                 else
                 {
-                    Console.WriteLine("O arquivo txt não existe.");
+                    MessageBox.Show("O arquivo txt de bibliotecario não existe.");
                 }
             }
             catch (IOException e)
             {
-                Console.WriteLine("O arquivo não pôde ser aberto: " + e.Message);
+                MessageBox.Show("O arquivo não pôde ser aberto: " + e.Message);
             }
             return listaBibliotecario;
             }
@@ -356,26 +347,24 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
             {
                 if (File.Exists(_FILE_PATH_CA))
                 {
-
                     using (StreamReader sr = new StreamReader(_FILE_PATH_CA))
                     {
-                        while ((!sr.EndOfStream) != null)
+                        while (!sr.EndOfStream)
                         {
                             string linha = sr.ReadLine();
                             ComunidadeAcademica comunidadeAcademica = ConverterLinhaParaComunidadeAcademica(linha);
                             listaComunidadeAcademica.Add(comunidadeAcademica);
                         }
                     }
-                    Console.WriteLine("Dados carregados do arquivo txt.");
                 }
                 else
                 {
-                    Console.WriteLine("O arquivo txt não existe.");
+                    MessageBox.Show("O arquivo txt não existe.");
                 }
             }
             catch (IOException e)
             {
-                Console.WriteLine("O arquivo não pôde ser aberto: " + e.Message);
+                MessageBox.Show("O arquivo não pôde ser aberto: " + e.Message);
             }
  
             return listaComunidadeAcademica;
