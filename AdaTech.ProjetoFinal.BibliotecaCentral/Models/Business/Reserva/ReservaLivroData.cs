@@ -175,7 +175,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
 
             // PRECISA COLOCAR STATUS RESERVA
 
-            return new ReservaLivro(numeroReserva, livro, usuarioComunidadeAcademica, dataRetirada, dataReserva);
+            return new ReservaLivro(numeroReserva, livro, usuarioComunidadeAcademica, dataReserva);
          }
 
         internal static void SalvarReservaLivrosTxt(List<ReservaLivro> reservaLivros)
