@@ -16,7 +16,10 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             get { return login; }
             set { login = value; }
         }
-        internal string SenhaCripto { get { return senhaCripto; } }
+        internal string SenhaCripto { 
+            get { return senhaCripto; } 
+            set {  senhaCripto = value; }
+        }
         internal string NomeCompleto { get { return nomeCompleto; } }
         internal string Cpf { get { return cpf; } }
         internal string Email { get { return email; } }
@@ -40,7 +43,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             return Login == login && VerificarSenha(senha);
         }
 
-        private string CriptografarSenha(string senha)
+        protected string CriptografarSenha(string senha)
         {
             using (SHA256 sha256Hash = SHA256.Create())
             {
