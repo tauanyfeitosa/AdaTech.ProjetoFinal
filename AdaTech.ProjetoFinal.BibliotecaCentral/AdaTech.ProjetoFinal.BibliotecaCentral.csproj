@@ -119,7 +119,9 @@
   <ItemGroup>
     <Content Include="Data\Atendentes.txt" />
     <Content Include="Data\Bibliotecarios.txt" />
-    <Content Include="Data\ComunidadeAcademica.txt" />
+    <Content Include="Data\ComunidadeAcademica.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Data\Diretores.txt" />
     <Content Include="Data\Emprestimo.txt" />
     <Content Include="Data\Livros.txt" />
