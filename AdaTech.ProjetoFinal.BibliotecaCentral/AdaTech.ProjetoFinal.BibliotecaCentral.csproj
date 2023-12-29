@@ -71,6 +71,12 @@
     <Compile Include="Models\Usuarios\Funcionarios\CargosFuncionarios\Diretor.cs" />
     <Compile Include="Models\Usuarios\UsuariosComunidadeAcademica\Sessao.cs" />
     <Compile Include="Models\Usuarios\UsuariosData\UsuarioData.cs" />
+    <Compile Include="Views\Janelas\JanelasAtendente\JanelaVisualizarAlunos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Janelas\JanelasAtendente\JanelaVisualizarAlunos.Designer.cs">
+      <DependentUpon>JanelaVisualizarAlunos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\TelaPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,13 +117,27 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\Atendentes.txt" />
-    <Content Include="Data\Bibliotecarios.txt" />
-    <Content Include="Data\ComunidadeAcademica.txt" />
-    <Content Include="Data\Diretores.txt" />
-    <Content Include="Data\Emprestimo.txt" />
-    <Content Include="Data\Livros.txt" />
-    <Content Include="Data\Reservas.txt" />
+    <Content Include="Data\Atendentes.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Bibliotecarios.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\ComunidadeAcademica.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Diretores.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Emprestimo.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Livros.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Reservas.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
