@@ -20,6 +20,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
         internal Panel PainelLogin { get => painelLogin; private set => painelLogin = value; }
         internal TextBox TxtUsuario { get => txtUsuario; private set => txtUsuario = value; }
         internal TextBox TxtSenha { get => txtSenha; private set => txtSenha = value; }
+        internal ComboBox CmbUsuario { get => cmbUsuario; private set => cmbUsuario = value; }  
         internal Button BtnEntrar { get => btnEntrar; private set => btnEntrar = value; }
 
         public static void Main(string[] args)
@@ -58,7 +59,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             cmbUsuario.Width = painelLogin.Width / 2;
             cmbUsuario.Height = painelLogin.Height / 10;
             cmbUsuario.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbUsuario.DataSource = new List<string> {"Comunidade Acadêmica", "Funcionário"};
+            cmbUsuario.DataSource = new List<string> {"Aluno", "Funcionário", "Professor"};
              
 
             txtUsuario = new TextBox();
@@ -119,11 +120,14 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             string usuarioDigitado = txtUsuario.Text;
             string senhaDigitada = txtSenha.Text;
 
-            if (controller.RealizarLogin())
+            if (controller.ValidaLogin())
             {
-                this.Hide();
-                var telaPrincipal = new TelaPrincipal(UsuarioData.SelecionarUsuario(usuarioDigitado));
-                telaPrincipal.Show();
+                if (controller.RealizarLogin())
+                {
+                    this.Hide();
+                    var telaPrincipal = new TelaPrincipal(UsuarioData.SelecionarUsuario(usuarioDigitado));
+                    telaPrincipal.Show();
+                }
             }
         }
     }
