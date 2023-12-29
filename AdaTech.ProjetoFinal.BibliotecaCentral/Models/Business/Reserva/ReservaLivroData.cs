@@ -66,6 +66,15 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
                 throw new InvalidOperationException("Não foi possível encontrar a reserva.");
             }
         }
+        internal static (List<ReservaLivro> professor, List<ReservaLivro> aluno) ListarReservasPorLivro(Livro livro)
+        {
+            List<ReservaLivro> reservasAluno = _reservasLivros.Item1.Where
+                (r => r.Livro == livro).ToList();
+            List<ReservaLivro> reservasProfessor = _reservasLivros.Item2.Where
+                (r => r.Livro == livro).ToList();
+            return (reservasAluno, reservasProfessor);
+        }
+
         internal static void ExcluirReservas(ReservaLivro numeroReserva, ComunidadeAcademica usuario)
         {
             if (usuario.TipoUsuario == TipoUsuarioComunidade.Professor)
@@ -90,17 +99,17 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
             }   
         }
         internal static void AdicionarReserva(Livro livro, ComunidadeAcademica usuarioComunidadeAcademica,
-            DateTime dataRetirarLivro, DateTime dataReserva)
+            DateTime dataReserva)
         {
             if (usuarioComunidadeAcademica.TipoUsuario == TipoUsuarioComunidade.Professor)
             {
                 var numeroReserva = _reservasLivros.Item1.Count;
-                _reservasLivros.Item1.Add(new ReservaLivro(numeroReserva, livro, usuarioComunidadeAcademica, dataRetirarLivro, dataReserva));
+                _reservasLivros.Item1.Add(new ReservaLivro(numeroReserva, livro, usuarioComunidadeAcademica, dataReserva));
             }
             else if (usuarioComunidadeAcademica.TipoUsuario == TipoUsuarioComunidade.Aluno)
             {
                 var numeroReserva = _reservasLivros.Item2.Count;
-                _reservasLivros.Item1.Add(new ReservaLivro(numeroReserva, livro, usuarioComunidadeAcademica, dataRetirarLivro, dataReserva));
+                _reservasLivros.Item1.Add(new ReservaLivro(numeroReserva, livro, usuarioComunidadeAcademica, dataReserva));
             }
             else
             {
@@ -166,7 +175,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
 
             // PRECISA COLOCAR STATUS RESERVA
 
-            return new ReservaLivro(numeroReserva, livro, usuarioComunidadeAcademica, dataRetirada, dataReserva);
+            return new ReservaLivro(numeroReserva, livro, usuarioComunidadeAcademica, dataReserva);
          }
 
         internal static void SalvarReservaLivrosTxt(List<ReservaLivro> reservaLivros)

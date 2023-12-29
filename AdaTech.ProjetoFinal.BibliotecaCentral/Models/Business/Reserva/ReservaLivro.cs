@@ -19,7 +19,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
         private DateTime _dataReserva;
         private StatusReserva _statusReserva;
 
-        internal int NumeroReserva { get { return _numeroReserva; }}
+        internal int NumeroReserva { get { return _numeroReserva; } }
         internal Livro Livro { get { return _livro; } }
         internal ComunidadeAcademica UsuarioComunidadeAcademica { get { return _usuarioComunidadeAcademica; } }
         internal DateTime DataRetirarLivro { get { return _dataRetirarLivro; } }
@@ -31,13 +31,13 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
         }
 
         internal ReservaLivro(int numeroReserva, Livro livro, ComunidadeAcademica usuarioComunidadeAcademica,
-            DateTime dataRetirarLivro, DateTime dataReserva)
+            DateTime dataReserva)
         {
             this._numeroReserva = numeroReserva;
             this._livro = livro;
             this._usuarioComunidadeAcademica = usuarioComunidadeAcademica;
             this._dataReserva = dataReserva;
-            this._dataRetirarLivro = dataRetirarLivro; //arrumar data retirada livro
+            this._dataRetirarLivro = CalcularDataRetiradaLivro(livro);
             this._statusReserva = StatusReserva.EmAnalise;
         }
 
@@ -50,13 +50,13 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
             {
                 this._statusReserva = StatusReserva.Aprovada;
             }
-        }    
+        }
         internal void CancelarReserva()
         {
-          if(this._statusReserva == StatusReserva.EmAnalise && DateTime.Now > _dataRetirarLivro)
+            if (this._statusReserva == StatusReserva.EmAnalise && DateTime.Now > _dataRetirarLivro)
             {
                 this._statusReserva = StatusReserva.Cancelada;
-            }         
+            }
         }
         //internal void AtualizarDataRetirada(Emprestimo emprestimo)
         //{
@@ -65,20 +65,38 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
 
         internal void CancelarReservaUsuario(Atendente atendente)
         {
-            if(atendente != null || _usuarioComunidadeAcademica != null)
+            if (atendente != null || _usuarioComunidadeAcademica != null)
             {
                 this._statusReserva = StatusReserva.Cancelada;
             }
             else
             {
                 throw new InvalidOperationException("Você não tem permissão para cancelar a reserva.");
-            }          
+            }
         }
 
-
-
-
-
+        static DateTime CalcularDataRetiradaLivro(Livro livro)
+        {
+            if (EmprestimoData.SelecionarEmprestimo(livro) != null)
+            {
+                if (ReservaLivroData.ListarReservasPorLivro(livro) == (null, null))
+                {
+                    List<Emprestimo> emprestimosLivro = EmprestimoData.SelecionarEmprestimo(livro);
+                    DateTime dataRetiradaLivro = emprestimosLivro.Min(e => e.DataDevolucaoPrevista);
+                    return dataRetiradaLivro;
+                }
+                else
+                {
+                    List<Emprestimo> emprestimosLivro = EmprestimoData.SelecionarEmprestimo(livro);
+                    DateTime dataRetiradaLivro = emprestimosLivro.Min(e => e.DataDevolucaoPrevista);
+                    return dataRetiradaLivro.AddDays(7);
+                }
+            }
+            else
+            {
+                throw new InvalidOperationException("O livro ainda tem exemplares disponíveis.");
+            }
+        }
     }
 }
 
