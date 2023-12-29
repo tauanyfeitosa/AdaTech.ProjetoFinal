@@ -126,7 +126,5 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
                 telaPrincipal.Show();
             }
         }
-
-
     }
 }
