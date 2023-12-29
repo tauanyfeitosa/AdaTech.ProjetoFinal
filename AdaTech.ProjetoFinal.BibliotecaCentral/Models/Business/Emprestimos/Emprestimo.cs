@@ -18,16 +18,16 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
         private DateTime _dataDevolucaoUsuario;
         private bool _devolucao;
         private Multa _multaAtraso;
+        private decimal _valor;
         internal Emprestimo(ComunidadeAcademica comunidadeAcademica, Livro livro, ReservaLivro reserva = null)
         {
             this._livro = livro;
             this._dataEmprestimo = DateTime.Now;
             this._dataDevolucaoPrevista = _dataEmprestimo.AddDays(7);
             this._usuarioComunidadeAcademica = comunidadeAcademica;
+            this._devolucao = false;
             this._reservaLivro = reserva;
-            Multa _multa = new Multa();
-            livro.DiminuirExemplarDisponivel();
-
+            livro.AlterarExemplarDisponivel('d');
         }
 
         internal ReservaLivro ReservaLivro { get => _reservaLivro; } 
@@ -80,9 +80,23 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
             }
         }
 
-        internal void DevolverLivro(string isbn)
+        internal void VerificarMulta()
         {
+            if((_dataDevolucaoPrevista - _dataDevolucaoUsuario).Days < 0)
+            {
+               this._valor += _multaAtraso.CalcularMulta(Math.Abs((_dataDevolucaoPrevista - _dataDevolucaoUsuario).Days));
+            }
+        }
 
+        internal void DevolverLivro(string estadoLivro)
+        {
+            if(estadoLivro == "ruim")
+            {
+                _valor += _multaAtraso.MultaMauEstado;
+            }
+            this._dataDevolucaoUsuario = DateTime.Now;
+            this._devolucao = true;
+            VerificarMulta();
         }
         internal void RenovarLivro()
         {

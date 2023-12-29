@@ -1,4 +1,6 @@
 ﻿
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos;
+
 namespace AdaTech.ProjetoFinal.BibliotecaCentral
 {
     internal class ComunidadeAcademica : Usuario
@@ -28,9 +30,9 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
         //{
 
         //}
-        //private Emprestimos SolicitarEmprestimo(Livros livro)
-        //{
-
-        //}
+        private void PagamentoMultaAtraso(Emprestimo emprestimoLivro)
+        {
+            emprestimoLivro.Multa.PagarMulta();
+        }
     }
 }
