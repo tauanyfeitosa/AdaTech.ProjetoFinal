@@ -1,1 +1,3 @@
-﻿
+﻿senha_aluno1,João Silva,12345678909,joao.silva@email.com,2021001,Sistemas de Informação,Aluno
+senha_aluno2,Maria Oliveira,98765432100,maria.oliveira@email.com,2021002,Engenharia Elétrica,Aluno
+senha_aluno3,Carlos Souza,45678901298,carlos.souza@email.com,2021003,Administração,Aluno

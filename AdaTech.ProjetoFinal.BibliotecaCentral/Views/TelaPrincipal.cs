@@ -1,4 +1,5 @@
 ﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Controllers;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -112,6 +113,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
         #region OnClick de Atendente
         private void OnClickVisualizarAlunos(object sender, EventArgs e)
         {
+            JanelaVisualizarAlunos visualizarAlunos = new JanelaVisualizarAlunos();
+            visualizarAlunos.ShowDialog();
 
         }
 

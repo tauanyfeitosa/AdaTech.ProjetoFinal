@@ -19,7 +19,10 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
 
         private static List<Bibliotecario> _bibliotecarios;
         private static List<Diretor> _diretores;
-        private static List<ComunidadeAcademica> _comunidadeAcademica;
+        private static List<ComunidadeAcademica> _comunidadeAcademica = new List<ComunidadeAcademica>() 
+        {
+            new ComunidadeAcademica("12345678", "Amanda", "07723268513", "amandalinda@gmail.com", "123456", "ADS", TipoUsuarioComunidade.Aluno),
+        };
 
         private static readonly string _FILE_PATH_DIRETOR = "../../../Data/Diretores.txt";
         private static readonly string _FILE_PATH_BIBLIOTECARIO = "../../../Data/Bibliotecarios.txt";
@@ -32,7 +35,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
             _diretores = LerDiretoresTxt();
             _bibliotecarios = LerBibliotecariosTxt();
             //_atendentes = LerAtendentesTxt();
-            _comunidadeAcademica = LerComunidadeAcademicaTxt();
+            _comunidadeAcademica.AddRange(LerComunidadeAcademicaTxt());
         }
 
         public static List<Atendente> Atendentes
@@ -97,7 +100,12 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
                     _comunidadeAcademica.Add((ComunidadeAcademica)usuario);
                 }
             }
-        }   
+        }
+
+        internal static List<ComunidadeAcademica> ObterAlunos ()
+        {
+            return _comunidadeAcademica.Where(u => u.TipoUsuario == TipoUsuarioComunidade.Aluno).ToList();
+        }
 
         internal static void RemoverUsuario (Usuario usuario)
         {
@@ -384,7 +392,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
             string matricula = objetoString[4];
             string curso = objetoString[5];
             TipoUsuarioComunidade tipoUsuario = Conversores.StringParaTipoUsuarioComunidade(objetoString[6]);
-            bool ativo = bool.Parse(objetoString[6]);
+            //bool ativo = bool.Parse(objetoString[6]);
 
             return new ComunidadeAcademica(senha, nomeCompleto, cpf, email, matricula, curso, tipoUsuario);
         }
