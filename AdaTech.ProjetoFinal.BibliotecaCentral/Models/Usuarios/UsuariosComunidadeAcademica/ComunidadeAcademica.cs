@@ -42,7 +42,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
         {
             if (livro.ExemplaresDisponiveis == 0)
             {              
-                ReservaLivroData.AdicionarReserva (livro, this, emprestimo.DataDevolucaoPrevista, DateTime.Now);//arrumar data retirada livro
+                ReservaLivroData.AdicionarReserva (livro, this, DateTime.Now);
             }
             else
             {

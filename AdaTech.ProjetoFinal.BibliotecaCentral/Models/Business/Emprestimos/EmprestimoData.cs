@@ -30,6 +30,10 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
         //{
 
         //}
+        internal static List<Emprestimo> SelecionarEmprestimo(Livro livro)
+        {
+            return _emprestimoLivros.Where(e => e.Livro == livro).ToList();
+        }
 
         internal static List<Emprestimo> LerEmprestimosTxt()
         {
