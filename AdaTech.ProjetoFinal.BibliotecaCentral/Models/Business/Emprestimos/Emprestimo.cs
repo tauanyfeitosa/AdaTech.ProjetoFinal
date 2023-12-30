@@ -100,7 +100,10 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
         }
         internal void RenovarLivro()
         {
-
+            if (_devolucao == false)
+            {
+                this._dataDevolucaoPrevista = _dataDevolucaoPrevista.AddDays(7);
+            }
         }
     }
 }
