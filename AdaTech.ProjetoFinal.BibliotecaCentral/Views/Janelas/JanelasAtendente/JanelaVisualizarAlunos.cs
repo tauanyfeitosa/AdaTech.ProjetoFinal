@@ -38,7 +38,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
 
             foreach (ComunidadeAcademica aluno in alunos)
             {
-                listBoxAlunos.Items.Add($"{aluno.NomeCompleto} - {aluno.Matricula}");
+                listBoxAlunos.Items.Add($"{aluno.NomeCompleto} - {aluno.Matricula} - {aluno.Curso}");
             }
         }
 
