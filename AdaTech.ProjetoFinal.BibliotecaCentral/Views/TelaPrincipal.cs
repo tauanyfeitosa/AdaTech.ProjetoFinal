@@ -157,7 +157,11 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
                         List<ComunidadeAcademica> comunidadesAcademicas = new List<ComunidadeAcademica>();
                         List<string> usuariosFaltantes = new List<string>();
 
-                        string caminhoArquivoTxt = UsuarioData.FilePathCA;
+                        string diretorioDoAplicativo = AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug", "");
+
+                        // Cria o caminho relativo à pasta Data no diretório do aplicativo
+                        string caminhoArquivoTxt = Path.Combine(diretorioDoAplicativo, "Data", "ComunidadeAcademica.txt");
+
                         string[] linhasTxt = File.Exists(caminhoArquivoTxt) ? File.ReadAllLines(caminhoArquivoTxt) : new string[0];
 
                         foreach (string linhaCSV in linhasCSV)
@@ -185,15 +189,12 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
                                 continue;
                             }
 
-                            MessageBox.Show($"O usuário {nomeCompleto} já existe no sistema ou está com informações incorretas.\n\n" +
-                                $"Verifique se o CPF, email e/ou matrícula estão corretas e envie o arquivo com os usuários faltantes.");
-                        
                             usuariosFaltantes.Add(nomeCompleto);
                         }
 
                         if (usuariosFaltantes != null && usuariosFaltantes.Count > 0) 
                         { 
-                            MessageBox.Show($"Usuários não carregados: {string.Join(",", usuariosFaltantes)}");
+                            MessageBox.Show($"Usuários não carregados pois já existem no sistema: {string.Join(",", usuariosFaltantes)}");
                         }
 
                         UsuarioData.SalvarComunidadeAcademicaTxt(comunidadesAcademicas);
