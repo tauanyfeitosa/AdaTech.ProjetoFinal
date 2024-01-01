@@ -26,13 +26,14 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
         private static readonly string _FILE_PATH_ATENDENTE = Path.Combine(_DIRECTORY_PATH, "Atendentes.txt");
         private static readonly string _FILE_PATH_CA = Path.Combine(_DIRECTORY_PATH, "ComunidadeAcademica.txt");
 
+        internal  static string FilePathCA { get => _FILE_PATH_CA; }
 
         static UsuarioData()
         {
             _diretores = LerDiretoresTxt();
             _bibliotecarios = LerBibliotecariosTxt();
             _atendentes = LerAtendentesTxt();
-            _comunidadeAcademica = LerComunidadeAcademicaTxt();
+            //_comunidadeAcademica = LerComunidadeAcademicaTxt();
         }
 
         public static List<Atendente> Atendentes
@@ -151,7 +152,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
                 }
             }
         }
-
 
         internal static void AtualizarUsuario (Usuario usuario)
         {
@@ -366,14 +366,18 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
                 {
                     MessageBox.Show("O arquivo txt não existe.");
                 }
+
+                // Atualize a lista interna com os dados lidos do arquivo.
+                _comunidadeAcademica = listaComunidadeAcademica;
             }
             catch (IOException e)
             {
                 MessageBox.Show("O arquivo não pôde ser aberto: " + e.Message);
             }
- 
+
             return listaComunidadeAcademica;
         }
+
 
         internal static ComunidadeAcademica ConverterLinhaParaComunidadeAcademica(string linha)
         {
@@ -450,22 +454,30 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
         {
             try
             {
-                using (StreamWriter sw = new StreamWriter(_FILE_PATH_CA))
+                List<string> linhas = new List<string>();
+
+                foreach (ComunidadeAcademica CA in comunidadeAcademica)
                 {
-                    foreach (ComunidadeAcademica CA in comunidadeAcademica)
-                    {
-                        string linha = ConverterComunidadeAcademicaParaLinha(CA);
-                        sw.WriteLine(linha);
-                    }
+                    string linha = ConverterComunidadeAcademicaParaLinha(CA);
+                    linhas.Add(linha);
                 }
 
-                Console.WriteLine("Alterações salvas com sucesso no arquivo.");
+                File.WriteAllLines(_FILE_PATH_CA, linhas);
+
+                string conteudoAtual = File.ReadAllText(_FILE_PATH_CA);
+
+                _comunidadeAcademica = LerComunidadeAcademicaTxt();
+
+                MessageBox.Show($"Conteúdo Atual do Arquivo:\n{conteudoAtual}\n\nAlterações adicionadas com sucesso no arquivo.");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao salvar as alterações no arquivo: {ex.Message}");
+                MessageBox.Show($"Erro ao adicionar as alterações no arquivo: {ex.Message}");
             }
         }
+
+
+
 
         internal static void SalvarBibliotecariosTxt(List<Bibliotecario> bibliotecarios)
         {
@@ -500,7 +512,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
 
         internal static string ConverterComunidadeAcademicaParaLinha(ComunidadeAcademica usuario)
         {
-            return $"{usuario.Matricula},{usuario.Curso},{usuario.TipoUsuario}";
+            return $"{usuario.SenhaCripto},{usuario.NomeCompleto},{usuario.Cpf},{usuario.Email},{usuario.Matricula},{usuario.Curso},{usuario.TipoUsuario}";
         }
 
         internal static string ConverterBibliotecarioParaLinha(Bibliotecario bibliotecario)

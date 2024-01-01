@@ -23,16 +23,23 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
         internal ComboBox CmbUsuario { get => cmbUsuario; private set => cmbUsuario = value; }  
         internal Button BtnEntrar { get => btnEntrar; private set => btnEntrar = value; }
 
+        [STAThread]
         public static void Main(string[] args)
         {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new TelaLogin());
+
+
         }
 
         public TelaLogin()
         {
             Load += OnLoad;
             this.controller = new TelaInicialController(this);
+
         }
+
 
         private void OnLoad(object sender, EventArgs e)
         {
@@ -61,18 +68,37 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             cmbUsuario.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbUsuario.DataSource = new List<string> {"Aluno", "Funcionário", "Professor"};
              
+            Label lblUsuarioDica = new Label();
+            lblUsuarioDica.Text = "Usuário";
+            lblUsuarioDica.AutoSize = true;
+            lblUsuarioDica.Location = new Point(painelLogin.Width / 4, painelLogin.Height / 4);
+            lblUsuarioDica.Anchor = AnchorStyles.None;
+            lblUsuarioDica.ForeColor = Color.Black;
+
 
             txtUsuario = new TextBox();
             txtUsuario.Size = new Size(painelLogin.Width / 2, painelLogin.Height / 10);
             txtUsuario.Location = new Point(painelLogin.Width / 4, painelLogin.Height / 3);
             txtUsuario.Anchor = AnchorStyles.None;
-            txtUsuario.Text = "Usuário";
+            txtUsuario.KeyDown += (s, e) =>
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnEntrar.PerformClick();
+                }
+            };
+
+            Label lblSenha = new Label();
+            lblSenha.Text = "Senha";
+            lblSenha.AutoSize = true;
+            lblSenha.Location = new Point(painelLogin.Width / 4, (painelLogin.Height / 2) - 20);
+            lblSenha.Anchor = AnchorStyles.None;
+            lblSenha.ForeColor = Color.Black;
 
             txtSenha = new TextBox();
-            txtSenha.Size = new Size(painelLogin.Width / 2, painelLogin.Height / 10);
+            txtSenha.Size = new Size(painelLogin.Width / 2, painelLogin.Height / 10 + 30);
             txtSenha.Location = new Point(painelLogin.Width / 4, painelLogin.Height / 2);
             txtSenha.Anchor = AnchorStyles.None;
-            txtSenha.Text = "Senha";
             txtSenha.PasswordChar = '*';
             txtSenha.KeyDown += (s, e) =>
             {
@@ -93,26 +119,10 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             painelLogin.Controls.Add(txtSenha);
             painelLogin.Controls.Add(btnEntrar);
             painelLogin.Controls.Add(cmbUsuario);
-
-            //// Segundo painel para informações do atendente
-            //Panel painelAtendente = new Panel();
-            //painelAtendente.Size = new Size(largura / 3, altura / 3);
-            //painelAtendente.Location = new Point(largura / 3, altura / 3); ;
-            //painelAtendente.BackColor = Color.LightGray;
-            //painelAtendente.BorderStyle = BorderStyle.FixedSingle;
-            //painelAtendente.Anchor = AnchorStyles.None;
-
-            //// Exemplo de informações do atendente
-            //Atendente atendente = new Atendente("senha", "Amanda bastos", "00000000000", "amandinha@linda.com", true);
-            //Label lblAtendenteInfo = new Label();
-            //lblAtendenteInfo.Text = atendente.Cpf;
-            //lblAtendenteInfo.AutoSize = true;
-            //lblAtendenteInfo.Location = new Point(20, 20);
-
-            //painelAtendente.Controls.Add(lblAtendenteInfo);
+            painelLogin.Controls.Add(lblUsuarioDica);
+            painelLogin.Controls.Add(lblSenha);
 
             Controls.Add(painelLogin);
-            //Controls.Add(painelAtendente);
         }
 
         private void OnClickEntrar(object sender, EventArgs e)

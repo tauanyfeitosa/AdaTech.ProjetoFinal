@@ -14,7 +14,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
         {
             InitializeComponent();
             ConfigurarListBox();
-            ExibirAlunos();
+            ExibirProfessores();
 
             this.Text = "Visualizar Professores";
         }
@@ -32,7 +32,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
             listBoxProfessores.DrawItem += ListBoxProfessores_DrawItem;
         }
 
-        private void ExibirAlunos()
+        private void ExibirProfessores()
         {
             List<ComunidadeAcademica> professores = UsuarioData.ObterProfessores();
 

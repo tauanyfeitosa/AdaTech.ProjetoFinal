@@ -1,8 +1,13 @@
 ﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Controllers;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente;
 using System;
 using System.Drawing;
+using System.IO;
+using System.Linq;
 using System.Windows.Forms;
+using System.Collections.Generic;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Utilities;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
 {
@@ -103,8 +108,20 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
 
             #endregion
 
+            #region Botão Carregar CSV
+
+            Button btnCarregarCSV = new Button();
+            btnCarregarCSV.Size = new Size(150, 20);
+            btnCarregarCSV.Location = new Point(20, 80);
+            btnCarregarCSV.Anchor = AnchorStyles.Right;
+            btnCarregarCSV.Text = "Carregar CSV";
+            btnCarregarCSV.Click += OnClickCarregarCSV;
+
+            #endregion
+
             painelAtendente.Controls.Add(bntVisualizarAlunos);
             painelAtendente.Controls.Add(bntVisualizarProfessores);
+            painelAtendente.Controls.Add(btnCarregarCSV);
 
             return painelAtendente;
         }
@@ -124,6 +141,69 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
             visualizarProfessores.ShowDialog();
         }
 
+        private void OnClickCarregarCSV(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Arquivos CSV|*.csv|Todos os Arquivos|*.*";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string caminhoArquivoCSV = openFileDialog.FileName;
+
+                string[] linhasCSV = File.ReadAllLines(caminhoArquivoCSV);
+                    
+                    try
+                    {
+                        List<ComunidadeAcademica> comunidadesAcademicas = new List<ComunidadeAcademica>();
+                        List<string> usuariosFaltantes = new List<string>();
+
+                        string caminhoArquivoTxt = UsuarioData.FilePathCA;
+                        string[] linhasTxt = File.Exists(caminhoArquivoTxt) ? File.ReadAllLines(caminhoArquivoTxt) : new string[0];
+
+                        foreach (string linhaCSV in linhasCSV)
+                        {
+                            string[] valoresCSV = linhaCSV.Split(',');
+
+                            var senha = valoresCSV[0];
+                            var nomeCompleto = valoresCSV[1];
+                            var cpf = valoresCSV[2];
+                            var email = valoresCSV[3];
+                            var matricula = valoresCSV[4];
+                            var curso = valoresCSV[5];
+                            var tipoUsuario = Conversores.StringParaTipoUsuarioComunidade(valoresCSV[6]);
+
+                            bool linhaExistente = linhasTxt.Any(l => l.Split(',')[2] == valoresCSV[2] || // CPF
+                                                            l.Split(',')[3] == valoresCSV[3] || // E-mail
+                                                            l.Split(',')[4] == valoresCSV[4]);  // Matrícula
+
+                            if (!linhaExistente)
+                            {
+                                var comunidadeAcademica = new ComunidadeAcademica(senha, nomeCompleto, cpf, email, matricula, curso, tipoUsuario);
+
+                                comunidadesAcademicas.Add(comunidadeAcademica);
+
+                                continue;
+                            }
+
+                            MessageBox.Show($"O usuário {nomeCompleto} já existe no sistema ou está com informações incorretas.\n\n" +
+                                $"Verifique se o CPF, email e/ou matrícula estão corretas e envie o arquivo com os usuários faltantes.");
+                        
+                            usuariosFaltantes.Add(nomeCompleto);
+                        }
+
+                        if (usuariosFaltantes != null && usuariosFaltantes.Count > 0) 
+                        { 
+                            MessageBox.Show($"Usuários não carregados: {string.Join(",", usuariosFaltantes)}");
+                        }
+
+                        UsuarioData.SalvarComunidadeAcademicaTxt(comunidadesAcademicas);
+                           
+                    } catch
+                    {
+                        MessageBox.Show("Erro ao carregar arquivo CSV. Verifique se está no formato correto: senha, nomeCompleto, cpf, email, matricula, curso, tipoUsuario");
+                    }
+                }
+            }
         #endregion
 
         #endregion
