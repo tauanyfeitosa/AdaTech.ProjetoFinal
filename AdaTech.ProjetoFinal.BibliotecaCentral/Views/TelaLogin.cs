@@ -36,6 +36,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
         public TelaLogin()
         {
             Load += OnLoad;
+            FormClosing += OnFormClosing;
             this.controller = new TelaInicialController(this);
 
         }
@@ -49,6 +50,13 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
 
             InitializeLoginForm(larguraTela, alturaTela);
         }
+
+
+        private void OnFormClosing(object sender, FormClosingEventArgs e)
+        {
+           Application.Exit();
+        }
+
 
         private void InitializeLoginForm (int largura, int altura)
         {

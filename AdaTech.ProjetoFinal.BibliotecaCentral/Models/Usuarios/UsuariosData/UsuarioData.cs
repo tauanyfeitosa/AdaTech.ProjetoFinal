@@ -221,6 +221,51 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
             throw new InvalidOperationException("Usuário não encontrado.");
         }
 
+        internal static List<Usuario> LerUsuariosTxt(string _FILE_PATH, int tipoUsuario)
+        {
+            List<Usuario> listaUsuarios = new List<Usuario>();
+
+            try
+            {
+                if (File.Exists(_FILE_PATH))
+                {
+
+                    using (StreamReader sr = new StreamReader(_FILE_PATH))
+                    {
+                        while (!sr.EndOfStream)
+                        {
+                            string linha = sr.ReadLine();
+                            if (tipoUsuario == 0)
+                            {
+                                Diretor diretor = ConverterLinhaParaDiretor(linha);
+                                listaUsuarios.Add(diretor);
+                            } else if (tipoUsuario == 1)
+                            {
+                                Bibliotecario bibliotecario = ConverterLinhaParaBibliotecario(linha);
+                                listaUsuarios.Add(bibliotecario);
+                            } else if (tipoUsuario == 2)
+                            {
+                                Atendente atendente = ConverterLinhaParaAtendente(linha);
+                                listaUsuarios.Add(atendente);
+                            } else if (tipoUsuario == 3)
+                            {
+                                ComunidadeAcademica comunidadeAcademica = ConverterLinhaParaComunidadeAcademica(linha);
+                                listaUsuarios.Add(comunidadeAcademica);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("O arquivo txt de diretor não existe.");
+                }
+            }
+            catch (IOException e)
+            {
+                MessageBox.Show("O arquivo não pôde ser aberto: " + e.Message);
+            }
+            return listaUsuarios;
+        }
 
         internal static List<Diretor> LerDiretoresTxt()
         {
@@ -230,15 +275,10 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
             {
                 if (File.Exists(_FILE_PATH_DIRETOR))
                 {
-
-                    using (StreamReader sr = new StreamReader(_FILE_PATH_DIRETOR))
+                    List<Usuario> lista = LerUsuariosTxt(_FILE_PATH_DIRETOR, 0);
+                    if (lista.OfType<Diretor>().ToList().Count > 0)
                     {
-                        while (!sr.EndOfStream)
-                        {
-                            string linha = sr.ReadLine();
-                            Diretor diretor = ConverterLinhaParaDiretor(linha);
-                            listaDiretor.Add(diretor);
-                        }
+                        listaDiretor = lista.OfType<Diretor>().ToList();
                     }
                 }
                 else
@@ -253,23 +293,31 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
             return listaDiretor;
         }
 
-        private static Diretor ConverterLinhaParaDiretor(string linha)
+        internal static List<Bibliotecario> LerBibliotecariosTxt()
         {
-            string[] objetoString = linha.Split(',');
+            List<Bibliotecario> listaBibliotecario = new List<Bibliotecario>();
 
-            string senha = objetoString[0];
-            string nomeCompleto = objetoString[1];
-            string cpf = objetoString[2];
-            string email = objetoString[3];
-            if (objetoString.Length > 4)
+            try
             {
-                bool ativo = bool.Parse(objetoString[4]);
-                return new Diretor(senha, nomeCompleto, cpf, email, ativo);
+                if (File.Exists(_FILE_PATH_BIBLIOTECARIO))
+                {
+                    List<Usuario> lista = LerUsuariosTxt(_FILE_PATH_BIBLIOTECARIO, 1);
+                    if (lista.OfType<Bibliotecario>().ToList().Count > 0)
+                    {
+                        listaBibliotecario = lista.OfType<Bibliotecario>().ToList();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("O arquivo txt de bibliotecário não existe.");
+                }
             }
-
-            return new Diretor(senha, nomeCompleto, cpf, email);
+            catch (IOException e)
+            {
+                MessageBox.Show("O arquivo não pôde ser aberto: " + e.Message);
+            }
+            return listaBibliotecario;
         }
-
 
         internal static List<Atendente> LerAtendentesTxt()
         {
@@ -279,14 +327,10 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
             {
                 if (File.Exists(_FILE_PATH_ATENDENTE))
                 {
-                    using (StreamReader sr = new StreamReader(_FILE_PATH_ATENDENTE))
+                    List<Usuario> lista = LerUsuariosTxt(_FILE_PATH_ATENDENTE, 2);
+                    if (lista.OfType<Atendente>().ToList().Count > 0)
                     {
-                        while (!sr.EndOfStream)
-                        {
-                            string linha = sr.ReadLine();
-                            Atendente atendente = ConverterLinhaParaAtendente(linha);
-                            listaAtendente.Add(atendente);
-                        }
+                        listaAtendente = lista.OfType<Atendente>().ToList();
                     }
                 }
                 else
@@ -301,72 +345,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
             return listaAtendente;
         }
 
-        private static Atendente ConverterLinhaParaAtendente(string linha)
-        {
-            string[] objetoString = linha.Split(',');
-
-            string senha = objetoString[0];
-            string nomeCompleto = objetoString[1];
-            string cpf = objetoString[2];
-            string email = objetoString[3];
-            if (objetoString.Length > 4)
-            {
-                bool ativo = bool.Parse(objetoString[4]);
-                return new Atendente(senha, nomeCompleto, cpf, email, ativo);
-            }
-
-            return new Atendente(senha, nomeCompleto, cpf, email);
-        }
-
-        internal static List<Bibliotecario> LerBibliotecariosTxt()
-        {
-            List<Bibliotecario> listaBibliotecario = new List<Bibliotecario>();
-
-            try
-            {
-                if (File.Exists(_FILE_PATH_BIBLIOTECARIO))
-                {
-
-                    using (StreamReader sr = new StreamReader(_FILE_PATH_BIBLIOTECARIO))
-                    {
-                        while (!sr.EndOfStream)
-                        {
-                            string linha = sr.ReadLine();
-                            Bibliotecario bibliotecario = ConverterLinhaParaBibliotecario(linha);
-                            listaBibliotecario.Add(bibliotecario);
-                        }
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("O arquivo txt de bibliotecario não existe.");
-                }
-            }
-            catch (IOException e)
-            {
-                MessageBox.Show("O arquivo não pôde ser aberto: " + e.Message);
-            }
-            return listaBibliotecario;
-        }
-
-        internal static Bibliotecario ConverterLinhaParaBibliotecario(string linha)
-        {
-            string[] objetoString = linha.Split(',');
-
-            string senha = objetoString[0];
-            string nomeCompleto = objetoString[1];
-            string cpf = objetoString[2];
-            string email = objetoString[3];
-            if (objetoString.Length > 4)
-            {
-                bool ativo = bool.Parse(objetoString[4]);
-                return new Bibliotecario(senha, nomeCompleto, cpf, email, ativo);
-            }
-
-            return new Bibliotecario(senha, nomeCompleto, cpf, email);
-        }
-
-
         internal static List<ComunidadeAcademica> LerComunidadeAcademicaTxt()
         {
             List<ComunidadeAcademica> listaComunidadeAcademica = new List<ComunidadeAcademica>();
@@ -375,29 +353,67 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
             {
                 if (File.Exists(_FILE_PATH_CA))
                 {
-                    using (StreamReader sr = new StreamReader(_FILE_PATH_CA))
+                    List<Usuario> lista = LerUsuariosTxt(_FILE_PATH_CA, 3);
+                    if (lista.OfType<ComunidadeAcademica>().ToList().Count > 0)
                     {
-                        while (!sr.EndOfStream)
-                        {
-                            string linha = sr.ReadLine();
-                            ComunidadeAcademica comunidadeAcademica = ConverterLinhaParaComunidadeAcademica(linha);
-                            listaComunidadeAcademica.Add(comunidadeAcademica);
-                        }
+                        listaComunidadeAcademica = lista.OfType<ComunidadeAcademica>().ToList();
                     }
                 }
                 else
                 {
-                    MessageBox.Show("O arquivo txt não existe.");
+                    MessageBox.Show("O arquivo txt de comunidade acadêmica não existe.");
                 }
             }
             catch (IOException e)
             {
                 MessageBox.Show("O arquivo não pôde ser aberto: " + e.Message);
             }
-
             return listaComunidadeAcademica;
         }
 
+        private static Tuple<List<string>, bool> ConverterLinhaParaFuncionario(string linha)
+        {
+            string[] objetoString = linha.Split(',');
+
+            string senha = objetoString[0];
+            string nomeCompleto = objetoString[1];
+            string cpf = objetoString[2];
+            string email = objetoString[3];
+            if (objetoString.Length > 4)
+            {
+                bool ativo = bool.Parse(objetoString[4]);
+                return new Tuple<List<string>, bool>(new List<string> { senha, nomeCompleto, cpf, email }, ativo);
+            }
+
+            return new Tuple<List<string>, bool>(new List<string> { senha, nomeCompleto, cpf, email }, true);
+        }
+
+        private static Diretor ConverterLinhaParaDiretor(string linha)
+        {
+            return new Diretor(ConverterLinhaParaFuncionario(linha).Item1[0],
+                                    ConverterLinhaParaFuncionario(linha).Item1[1],
+                                        ConverterLinhaParaFuncionario(linha).Item1[2],
+                                            ConverterLinhaParaFuncionario(linha).Item1[3],
+                                                ConverterLinhaParaFuncionario(linha).Item2);
+        }
+
+        private static Atendente ConverterLinhaParaAtendente(string linha)
+        {
+            return new Atendente(ConverterLinhaParaFuncionario(linha).Item1[0],
+                                        ConverterLinhaParaFuncionario(linha).Item1[1],
+                                            ConverterLinhaParaFuncionario(linha).Item1[2],
+                                                ConverterLinhaParaFuncionario(linha).Item1[3],
+                                                    ConverterLinhaParaFuncionario(linha).Item2);
+        }
+
+        internal static Bibliotecario ConverterLinhaParaBibliotecario(string linha)
+        {
+            return new Bibliotecario(ConverterLinhaParaFuncionario(linha).Item1[0],
+                                            ConverterLinhaParaFuncionario(linha).Item1[1],
+                                                ConverterLinhaParaFuncionario(linha).Item1[2],
+                                                    ConverterLinhaParaFuncionario(linha).Item1[3],
+                                                        ConverterLinhaParaFuncionario(linha).Item2);
+        }
 
         internal static ComunidadeAcademica ConverterLinhaParaComunidadeAcademica(string linha)
         {
@@ -415,25 +431,61 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
         }
 
 
-        internal static void SalvarAtendentesTxt(List<Atendente> atendentes)
+        internal static void SalvarUsuariosTxt<T>(List<T> usuarios, string _FILE_PATH)
         {
             try
             {
                 List<string> linhas = new List<string>();
 
-                foreach (Atendente AT in atendentes)
+                if (typeof(T) == typeof(Funcionario))
                 {
-                    string linha = ConverterAtendenteParaLinha(AT);
-                    linhas.Add(linha);
+                    foreach (Funcionario FUNC in usuarios.OfType<Funcionario>())
+                    {
+                        string linha = ConverterFuncionarioParaLinha(FUNC);
+                        linhas.Add(linha);
+                    }
+                } else if (typeof(T) == typeof(ComunidadeAcademica))
+                {
+                    foreach (ComunidadeAcademica CA in usuarios.OfType<ComunidadeAcademica>())
+                    {
+                        string linha = ConverterComunidadeAcademicaParaLinha(CA);
+                        linhas.Add(linha);
+                    }
                 }
 
-                File.AppendAllLines(_FILE_PATH_CA, linhas);
+                File.AppendAllLines(_FILE_PATH, linhas);
 
-                string conteudoAtual = File.ReadAllText(_FILE_PATH_CA);
+                MessageBox.Show($"Alterações adicionadas com sucesso no arquivo.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao adicionar as alterações no arquivo: {ex.Message}");
+            }
+        }
+
+        internal static void SalvarBibliotecariosTxt(List<Bibliotecario> bibliotecarios)
+        {
+            try
+            {
+                SalvarUsuariosTxt<Bibliotecario>(bibliotecarios, _FILE_PATH_BIBLIOTECARIO);
+
+                _bibliotecarios = LerBibliotecariosTxt();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao adicionar as alterações no arquivo: {ex.Message}");
+            }
+        }
+
+        internal static void SalvarAtendentesTxt(List<Atendente> atendentes)
+        {
+            try
+            {
+                SalvarUsuariosTxt<Atendente>(atendentes, _FILE_PATH_ATENDENTE);
 
                 _atendentes = LerAtendentesTxt();
 
-                MessageBox.Show($"Conteudo Atual do Arquivo:\n{conteudoAtual}\n\nAlterações adicionadas com sucesso no arquivo.");
             }
             catch (Exception ex)
             {
@@ -445,21 +497,10 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
         {
             try
             {
-                List<string> linhas = new List<string>();
-
-                foreach (Diretor DI in diretores)
-                {
-                    string linha = ConverterDiretorParaLinha(DI);
-                    linhas.Add(linha);
-                }
-
-                File.AppendAllLines(_FILE_PATH_CA, linhas);
-
-                string conteudoAtual = File.ReadAllText(_FILE_PATH_CA);
+                SalvarUsuariosTxt<Diretor>(diretores, _FILE_PATH_DIRETOR);
 
                 _diretores = LerDiretoresTxt();
 
-                MessageBox.Show($"Conteudo Atual do Arquivo:\n{conteudoAtual}\n\nAlterações adicionadas com sucesso no arquivo.");
             }
             catch (Exception ex)
             {
@@ -471,21 +512,10 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
         {
             try
             {
-                List<string> linhas = new List<string>();
-
-                foreach (ComunidadeAcademica CA in comunidadeAcademica)
-                {
-                    string linha = ConverterComunidadeAcademicaParaLinha(CA);
-                    linhas.Add(linha);
-                }
-
-                File.AppendAllLines(_FILE_PATH_CA, linhas);
-
-                string conteudoAtual = File.ReadAllText(_FILE_PATH_CA);
+                SalvarUsuariosTxt<ComunidadeAcademica>(comunidadeAcademica, _FILE_PATH_CA);
 
                 _comunidadeAcademica = LerComunidadeAcademicaTxt();
 
-                MessageBox.Show($"Conteudo Atual do Arquivo:\n{conteudoAtual}\n\nAlterações adicionadas com sucesso no arquivo.");
             }
             catch (Exception ex)
             {
@@ -493,51 +523,14 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
             }
         }
 
-
-        internal static void SalvarBibliotecariosTxt(List<Bibliotecario> bibliotecarios)
+        internal static string ConverterFuncionarioParaLinha(Funcionario funcionario)
         {
-            try
-            {
-                List<string> linhas = new List<string>();
-
-                foreach (Bibliotecario BI in bibliotecarios)
-                {
-                    string linha = ConverterBibliotecarioParaLinha(BI);
-                    linhas.Add(linha);
-                }
-
-                File.AppendAllLines(_FILE_PATH_CA, linhas);
-
-                string conteudoAtual = File.ReadAllText(_FILE_PATH_CA);
-
-                _bibliotecarios = LerBibliotecariosTxt();
-
-                MessageBox.Show($"Conteudo Atual do Arquivo:\n{conteudoAtual}\n\nAlterações adicionadas com sucesso no arquivo.");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao adicionar as alterações no arquivo: {ex.Message}");
-            }
-        }
-
-        internal static string ConverterDiretorParaLinha(Diretor diretor)
-        {
-            return $"{diretor.SenhaCripto},{diretor.NomeCompleto},{diretor.Cpf},{diretor.Email}";
-        }
-
-        internal static string ConverterAtendenteParaLinha(Atendente atendente)
-        {
-            return $"{atendente.SenhaCripto},{atendente.NomeCompleto},{atendente.Cpf},{atendente.Email}";
+            return $"{funcionario.SenhaCripto},{funcionario.NomeCompleto},{funcionario.Cpf},{funcionario.Email}";
         }
 
         internal static string ConverterComunidadeAcademicaParaLinha(ComunidadeAcademica usuario)
         {
             return $"{usuario.SenhaCripto},{usuario.NomeCompleto},{usuario.Cpf},{usuario.Email},{usuario.Matricula},{usuario.Curso},{usuario.TipoUsuario}";
-        }
-
-        internal static string ConverterBibliotecarioParaLinha(Bibliotecario bibliotecario)
-        {
-            return $"{bibliotecario.SenhaCripto},{bibliotecario.NomeCompleto},{bibliotecario.Cpf},{bibliotecario.Email}";
         }
 
     }

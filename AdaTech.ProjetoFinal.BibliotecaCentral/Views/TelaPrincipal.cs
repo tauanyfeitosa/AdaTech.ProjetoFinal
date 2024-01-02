@@ -13,6 +13,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
 {
     internal partial class TelaPrincipal : Form
     {
+        private bool _confirmacaoSaidaExibida = false;
         private Label _lblBemVindo;
         private Usuario _usuarioLogado;
         private TelaPrincipalController _telaPrincipalController;
@@ -20,6 +21,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
         internal TelaPrincipal(Usuario usuario)
         {
             Load += OnLoad;
+            FormClosing += OnFormClosing;
             this._usuarioLogado = usuario;
             this._telaPrincipalController = new TelaPrincipalController(usuario);
         }
@@ -31,6 +33,24 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
             int alturaTela = this.ClientSize.Height;
 
             SelecionarInterface(_telaPrincipalController.FiltrarLogin(), InitializeTela(larguraTela, alturaTela));
+        }
+
+        private void OnFormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing && !_confirmacaoSaidaExibida)
+            {
+                DialogResult resultado = MessageBox.Show("Tem certeza que deseja sair?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (resultado == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+                else
+                {
+                    _confirmacaoSaidaExibida = true;
+                    Application.Exit();
+                }
+            }
         }
 
         private Panel InitializeTela(int largura, int altura)
@@ -51,7 +71,14 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
             _lblBemVindo.Font = new Font("Arial", 20, FontStyle.Bold);
             _lblBemVindo.Location = new System.Drawing.Point((largura - painelLogin.Width)/2, 20);
 
+            Button btnLogout = new Button();
+            btnLogout.Size = new Size(100, 30);
+            btnLogout.Location = new Point(painelLogin.Width + 100, painelLogin.Height + 100);
+            btnLogout.Text = "Logout";
+            btnLogout.Click += OnClickLogout;
+
             Controls.Add(_lblBemVindo);
+            Controls.Add(btnLogout);
 
             return painelLogin;
         }
@@ -111,10 +138,10 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
             #region Botão Carregar CSV
 
             Button btnCarregarCSV = new Button();
-            btnCarregarCSV.Size = new Size(150, 20);
+            btnCarregarCSV.Size = new Size(300, 50);
             btnCarregarCSV.Location = new Point(20, 80);
             btnCarregarCSV.Anchor = AnchorStyles.Right;
-            btnCarregarCSV.Text = "Carregar CSV";
+            btnCarregarCSV.Text = "Carregar CSV - Usuários Comunidade Acadêmica";
             btnCarregarCSV.Click += OnClickCarregarCSV;
 
             #endregion
@@ -150,61 +177,14 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
             {
                 string caminhoArquivoCSV = openFileDialog.FileName;
 
-                string[] linhasCSV = File.ReadAllLines(caminhoArquivoCSV);
-                    
-                    try
-                    {
-                        List<ComunidadeAcademica> comunidadesAcademicas = new List<ComunidadeAcademica>();
-                        List<string> usuariosFaltantes = new List<string>();
+                string diretorioDoAplicativo = AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug", "\\Data");
 
-                        string diretorioDoAplicativo = AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug", "");
+                string caminhoArquivoTxt = Path.Combine(diretorioDoAplicativo, "ComunidadeAcademica.txt");
 
-                        // Cria o caminho relativo à pasta Data no diretório do aplicativo
-                        string caminhoArquivoTxt = Path.Combine(diretorioDoAplicativo, "Data", "ComunidadeAcademica.txt");
+                _telaPrincipalController.CarregarCSV(caminhoArquivoCSV, caminhoArquivoTxt);
 
-                        string[] linhasTxt = File.Exists(caminhoArquivoTxt) ? File.ReadAllLines(caminhoArquivoTxt) : new string[0];
-
-                        foreach (string linhaCSV in linhasCSV)
-                        {
-                            string[] valoresCSV = linhaCSV.Split(',');
-
-                            var senha = valoresCSV[0];
-                            var nomeCompleto = valoresCSV[1];
-                            var cpf = valoresCSV[2];
-                            var email = valoresCSV[3];
-                            var matricula = valoresCSV[4];
-                            var curso = valoresCSV[5];
-                            var tipoUsuario = Conversores.StringParaTipoUsuarioComunidade(valoresCSV[6]);
-
-                            bool linhaExistente = linhasTxt.Any(l => l.Split(',')[2] == valoresCSV[2] || // CPF
-                                                            l.Split(',')[3] == valoresCSV[3] || // E-mail
-                                                            l.Split(',')[4] == valoresCSV[4]);  // Matrícula
-
-                            if (!linhaExistente)
-                            {
-                                var comunidadeAcademica = new ComunidadeAcademica(senha, nomeCompleto, cpf, email, matricula, curso, tipoUsuario);
-
-                                comunidadesAcademicas.Add(comunidadeAcademica);
-
-                                continue;
-                            }
-
-                            usuariosFaltantes.Add(nomeCompleto);
-                        }
-
-                        if (usuariosFaltantes != null && usuariosFaltantes.Count > 0) 
-                        { 
-                            MessageBox.Show($"Usuários não carregados pois já existem no sistema: {string.Join(",", usuariosFaltantes)}");
-                        }
-
-                        UsuarioData.SalvarComunidadeAcademicaTxt(comunidadesAcademicas);
-                           
-                    } catch
-                    {
-                        MessageBox.Show("Erro ao carregar arquivo CSV. Verifique se está no formato correto: senha, nomeCompleto, cpf, email, matricula, curso, tipoUsuario");
-                    }
-                }
             }
+        }
         #endregion
 
         #endregion
@@ -236,7 +216,16 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
             painelComunidadeAcademica.Controls.Clear();
 
             return painelComunidadeAcademica;
-        } 
+        }
         #endregion
+
+        private void OnClickLogout(object sender, EventArgs e)
+        {
+            _confirmacaoSaidaExibida = true;
+            TelaLogin telaLogin = new TelaLogin();
+            telaLogin.Show();
+
+            this.Close();
+        }
     }
 }

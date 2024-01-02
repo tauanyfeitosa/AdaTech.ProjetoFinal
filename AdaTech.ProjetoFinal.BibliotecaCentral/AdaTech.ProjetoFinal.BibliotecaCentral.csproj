@@ -49,6 +49,7 @@
     <Compile Include="Controllers\LoginControllers\ValidaCpf.cs" />
     <Compile Include="Controllers\LoginControllers\ValidaMatricula.cs" />
     <Compile Include="Controllers\LoginControllers\ValidaSenha.cs" />
+    <Compile Include="Controllers\PrincipalControllers\CarregarCSVController.cs" />
     <Compile Include="Controllers\TelaInicialController.cs" />
     <Compile Include="Controllers\TelaPrincipalController.cs" />
     <Compile Include="Models\Business\Emprestimos\Emprestimo.cs" />

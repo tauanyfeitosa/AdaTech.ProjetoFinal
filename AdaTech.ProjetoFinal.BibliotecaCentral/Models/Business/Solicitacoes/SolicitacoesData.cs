@@ -227,7 +227,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Solicitacoes
 
         internal static string ConverterSolicitacaoRequisicaoParaLinha(SolicitacaoRequisicaoLivros solicitacao)
         {
-            string bibliotecarioLinha = UsuarioData.ConverterBibliotecarioParaLinha(solicitacao.Bibliotecario);
+            string bibliotecarioLinha = UsuarioData.ConverterFuncionarioParaLinha(solicitacao.Bibliotecario);
             string livroLinha = LivroData.ConverterLivroParaLinha(solicitacao.Livro);
 
             return $"{bibliotecarioLinha},{livroLinha},{solicitacao.Descricao},{solicitacao.TipoAcervo},{solicitacao.Aprovada}";
@@ -235,7 +235,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Solicitacoes
 
         internal static string ConverterSolicitacaoAcervoParaLinha(SolicitacaoMudarAcervoLivro solicitacao)
         {
-            string bibliotecarioLinha = UsuarioData.ConverterBibliotecarioParaLinha(solicitacao.Bibliotecario);
+            string bibliotecarioLinha = UsuarioData.ConverterFuncionarioParaLinha(solicitacao.Bibliotecario);
             string livroLinha = LivroData.ConverterLivroParaLinha(solicitacao.LivroS);
 
             return $"{bibliotecarioLinha},{livroLinha},{solicitacao.Descricao},{solicitacao.TipoAcervo},{solicitacao.Aprovada}";

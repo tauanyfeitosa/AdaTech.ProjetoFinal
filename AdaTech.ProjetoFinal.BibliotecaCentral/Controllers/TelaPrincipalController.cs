@@ -1,4 +1,5 @@
-﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData;
+﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalControllers;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,11 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers
             {
                 return "Diretor";
             }
+        }
+
+        internal void CarregarCSV (string caminhoArquivoCSV, string caminhoArquivoTxt)
+        {
+            CarregarCSVController.CarregarCSV(caminhoArquivoCSV, caminhoArquivoTxt);
         }
     }
 }
