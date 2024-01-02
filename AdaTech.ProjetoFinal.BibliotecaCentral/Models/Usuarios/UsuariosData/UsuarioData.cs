@@ -20,7 +20,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
         private static List<Diretor> _diretores = new List<Diretor>();
         private static List<ComunidadeAcademica> _comunidadeAcademica = new List<ComunidadeAcademica>();
 
-        private static readonly string _DIRECTORY_PATH = AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug", "") + "\\Data";
+        private static readonly string _DIRECTORY_PATH = AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug", "\\Data");
         private static readonly string _FILE_PATH_DIRETOR = Path.Combine(_DIRECTORY_PATH, "Diretores.txt");
         private static readonly string _FILE_PATH_BIBLIOTECARIO = Path.Combine(_DIRECTORY_PATH, "Bibliotecarios.txt");
         private static readonly string _FILE_PATH_ATENDENTE = Path.Combine(_DIRECTORY_PATH, "Atendentes.txt");

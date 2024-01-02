@@ -13,10 +13,11 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
     internal class ReservaLivro
     {
         private int _numeroReserva;
-        private Livro _livro;
-        private ComunidadeAcademica _usuarioComunidadeAcademica;
+        private readonly Livro _livro;
+        private readonly ComunidadeAcademica _usuarioComunidadeAcademica;
         private DateTime _dataRetirarLivro;
-        private DateTime _dataReserva;
+        private readonly DateTime _dataReserva;
+        private readonly Emprestimo _emprestimo;
         private StatusReserva _statusReserva;
 
         internal int NumeroReserva { get { return _numeroReserva; } }
@@ -24,77 +25,31 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
         internal ComunidadeAcademica UsuarioComunidadeAcademica { get { return _usuarioComunidadeAcademica; } }
         internal DateTime DataRetirarLivro { get { return _dataRetirarLivro; } }
         internal DateTime DataReserva { get { return _dataReserva; } }
-        internal StatusReserva StatusReserva
+
+        internal Emprestimo Emprestimo { get { return _emprestimo; } }
+
+        internal StatusReserva StatusReserva { get { return _statusReserva; } }
+
+        internal ReservaLivro(Emprestimo emprestimo, int numero)
         {
-            get { return _statusReserva; }
-            set { _statusReserva = value; }
+            this._livro = emprestimo.Livro;
+            this._usuarioComunidadeAcademica = emprestimo.ComunidadeAcademica;
+            this._dataReserva = DateTime.Now;
+            this._dataRetirarLivro = emprestimo.DataDevolucaoPrevista.AddDays(1);
+            this._emprestimo = emprestimo;
+            this._statusReserva = StatusReserva.Aprovada;
+            this._numeroReserva = numero;
         }
 
-        internal ReservaLivro(int numeroReserva, Livro livro, ComunidadeAcademica usuarioComunidadeAcademica,
-            DateTime dataReserva)
-        {
-            this._numeroReserva = numeroReserva;
-            this._livro = livro;
-            this._usuarioComunidadeAcademica = usuarioComunidadeAcademica;
-            this._dataReserva = dataReserva;
-            this._dataRetirarLivro = CalcularDataRetiradaLivro(livro);
-            this._statusReserva = StatusReserva.EmAnalise;
-        }
-
-
-        internal void AprovarReserva(Atendente atendente)
-        {
-            if (atendente == null)
-                throw new ArgumentNullException(nameof(atendente));
-            else
-            {
-                this._statusReserva = StatusReserva.Aprovada;
-            }
-        }
         internal void CancelarReserva()
         {
-            if (this._statusReserva == StatusReserva.EmAnalise && DateTime.Now > _dataRetirarLivro)
+            if (this.Emprestimo.Devolucao == false && this.Emprestimo.DataDevolucaoPrevista < DateTime.Now)
             {
                 this._statusReserva = StatusReserva.Cancelada;
             }
-        }
-        //internal void AtualizarDataRetirada(Emprestimo emprestimo)
-        //{
-        //    //this._dataRetirarLivro = emprestimo.DataDevolucaoPrevista;           
-        //}
-
-        internal void CancelarReservaUsuario(Atendente atendente)
-        {
-            if (atendente != null || _usuarioComunidadeAcademica != null)
+            else if (this.Emprestimo.Devolucao == true && this.DataRetirarLivro == DateTime.Now)
             {
-                this._statusReserva = StatusReserva.Cancelada;
-            }
-            else
-            {
-                throw new InvalidOperationException("Você não tem permissão para cancelar a reserva.");
-            }
-        }
-
-        static DateTime CalcularDataRetiradaLivro(Livro livro)
-        {
-            if (EmprestimoData.SelecionarEmprestimo(livro) != null)
-            {
-                if (ReservaLivroData.ListarReservasPorLivro(livro) == (null, null))
-                {
-                    List<Emprestimo> emprestimosLivro = EmprestimoData.SelecionarEmprestimo(livro);
-                    DateTime dataRetiradaLivro = emprestimosLivro.Min(e => e.DataDevolucaoPrevista);
-                    return dataRetiradaLivro;
-                }
-                else
-                {
-                    List<Emprestimo> emprestimosLivro = EmprestimoData.SelecionarEmprestimo(livro);
-                    DateTime dataRetiradaLivro = emprestimosLivro.Min(e => e.DataDevolucaoPrevista);
-                    return dataRetiradaLivro.AddDays(7);
-                }
-            }
-            else
-            {
-                throw new InvalidOperationException("O livro ainda tem exemplares disponíveis.");
+                this._statusReserva = StatusReserva.LivroRetirado;
             }
         }
     }

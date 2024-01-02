@@ -8,30 +8,23 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
 {
     internal class Multa
     {
-        private decimal _multas;
+        private decimal _multaTotal;
         private decimal _multaDiaria;
         private decimal _multaMauEstado;
         private bool _pagamentoMulta;
 
-        internal Multa(decimal multas, decimal multaDiaria, decimal multaMauEstado, bool pagamentoMulta)
-        {
-            _multas = multas;
-            _multaDiaria = multaDiaria;
-            _multaMauEstado = multaMauEstado;
-            _pagamentoMulta = pagamentoMulta;
-        }
-
-        internal decimal Multas
+        internal decimal MultaTotal
         {
             get
             {
-                return _multas;
+                return _multaTotal;
             }
             private set
             {
-                _multas = value;
+                _multaTotal = value;
             }
         }
+
         internal decimal MultaDiaria
         {
             get
@@ -65,13 +58,26 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
                 _pagamentoMulta = value;
             }
         }
-        internal void CalcularMulta()
-        {
 
+        internal Multa(DateTime dataPrevista, DateTime dataDevolucao = default(DateTime), bool mauEstado = false)
+        {
+            int diasAtraso = (int)(dataDevolucao - dataPrevista).TotalDays;
+            _multaTotal = CalcularMulta(diasAtraso, mauEstado);
+            _multaDiaria = 1;
+            _multaMauEstado = 10;
+            _pagamentoMulta = false;
+        }
+        private decimal CalcularMulta(int dias, bool mauEstado)
+        {
+            if (mauEstado)
+            {
+                return (dias*MultaDiaria)+MultaMauEstado;
+            }
+            return dias * _multaDiaria;
         }
         internal void PagarMulta()
         {
-
+            PagamentoMulta = true;
         }
     }
 }
