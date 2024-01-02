@@ -5,13 +5,16 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
 {
     internal static class LivroData
     {
         private static List<Livro> _acervoLivros = new List<Livro>();
-        private static readonly string FILE_PATH = "../../../Data/Livros.txt";
+
+        private static readonly string _DIRECTORY_PATH = AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug", "\\Data");
+        private static readonly string _FILE_PATH = Path.Combine(_DIRECTORY_PATH, "Livros.txt");
 
         static LivroData()
         {
@@ -63,13 +66,23 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
             return _acervoLivros.Where(l => l.Isbn == isbn).FirstOrDefault();
         }
 
+        internal static List<Livro> SelecionarLivro()
+        {
+            return _acervoLivros.Where(l => l.ExemplaresDisponiveis > 0).ToList();
+        }
+
+        internal static List<Livro> SelecionarLivrosIndisponiveis ()
+        {
+            return _acervoLivros.Where(l => l.ExemplaresDisponiveis == 0).ToList();
+        }
+
         internal static List<Livro> LerLivrosTxt()
         {
             List<Livro> livros = new List<Livro>();
 
             try
             {
-                using (StreamReader sr = new StreamReader(FILE_PATH))
+                using (StreamReader sr = new StreamReader(_FILE_PATH))
                 {
                     while (!sr.EndOfStream)
                     {
@@ -110,14 +123,17 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
         {
             try
             {
-                using (StreamWriter sw = new StreamWriter(FILE_PATH))
+                List<string> linhas = new List<string>();
+
+                foreach (Livro livro in livros)
                 {
-                    foreach (Livro livro in livros)
-                    {
-                        string linha = ConverterLivroParaLinha(livro);
-                        sw.WriteLine(linha);
-                    }
+                    string linha = ConverterLivroParaLinha(livro);
+                    linhas.Add(linha);
                 }
+
+                File.AppendAllLines(_FILE_PATH, linhas);
+
+                _acervoLivros = LerLivrosTxt();
 
                 Console.WriteLine("Alterações salvas com sucesso no arquivo.");
             }

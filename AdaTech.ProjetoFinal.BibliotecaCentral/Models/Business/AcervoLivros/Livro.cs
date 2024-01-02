@@ -104,7 +104,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
             {
                 return _exemplaresDisponiveis;
             } 
-            private set
+            set
             {
                 _exemplaresDisponiveis = value;
             }

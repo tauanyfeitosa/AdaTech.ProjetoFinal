@@ -8,9 +8,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
 {
     public enum StatusReserva
     {
-        EmAnalise = 1,
-        Aprovada = 2,
-        Reprovada = 3,
-        Cancelada = 4,
+        Aprovada = 1,
+        Cancelada = 2,
+        LivroRetirado = 3
     }
 }

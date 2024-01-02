@@ -38,17 +38,17 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             this._tipoUsuario = tipoUsuario;
         }
 
-        internal void SolicitarReserva(Livro livro, Emprestimo emprestimo)
-        {
-            if (livro.ExemplaresDisponiveis == 0)
-            {              
-                ReservaLivroData.AdicionarReserva (livro, this, DateTime.Now);
-            }
-            else
-            {
-                throw new InvalidOperationException("Não foi possível realizar a reserva.");
-            }
-        }
+        //internal void SolicitarReserva(Livro livro, Emprestimo emprestimo)
+        //{
+        //    if (livro.ExemplaresDisponiveis == 0)
+        //    {              
+        //        ReservaLivroData.AdicionarReserva (livro, this, DateTime.Now);
+        //    }
+        //    else
+        //    {
+        //        throw new InvalidOperationException("Não foi possível realizar a reserva.");
+        //    }
+        //}
 
         public override bool Equals(object obj)
         {
