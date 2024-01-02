@@ -30,10 +30,10 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
 
         internal StatusReserva StatusReserva { get { return _statusReserva; } }
 
-        internal ReservaLivro(Emprestimo emprestimo, int numero)
+        internal ReservaLivro(Emprestimo emprestimo, int numero, ComunidadeAcademica usuario)
         {
             this._livro = emprestimo.Livro;
-            this._usuarioComunidadeAcademica = emprestimo.ComunidadeAcademica;
+            this._usuarioComunidadeAcademica = usuario;
             this._dataReserva = DateTime.Now;
             this._dataRetirarLivro = emprestimo.DataDevolucaoPrevista.AddDays(1);
             this._emprestimo = emprestimo;

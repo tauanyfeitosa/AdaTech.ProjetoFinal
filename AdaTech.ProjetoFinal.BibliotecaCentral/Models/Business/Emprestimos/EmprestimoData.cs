@@ -19,6 +19,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
         private static readonly string _DIRECTORY_PATH = AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug", "\\Data");
         private static readonly string _FILE_PATH = Path.Combine(_DIRECTORY_PATH, "Emprestimo.txt");
 
+        internal static List<Emprestimo> EmprestimoLivros { get => _emprestimoLivros;}
+
         static EmprestimoData()
         {
             //_emprestimoLivros = LerEmprestimosTxt();

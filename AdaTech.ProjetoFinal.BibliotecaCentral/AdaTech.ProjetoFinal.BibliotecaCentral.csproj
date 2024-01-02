@@ -72,6 +72,12 @@
     <Compile Include="Models\Usuarios\Funcionarios\CargosFuncionarios\Diretor.cs" />
     <Compile Include="Models\Usuarios\UsuariosComunidadeAcademica\Sessao.cs" />
     <Compile Include="Models\Usuarios\UsuariosData\UsuarioData.cs" />
+    <Compile Include="Views\Janelas\JanelasAtendente\JanelaVisualizarEmprestimos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Janelas\JanelasAtendente\JanelaVisualizarEmprestimos.Designer.cs">
+      <DependentUpon>JanelaVisualizarEmprestimos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Janelas\JanelasAtendente\JanelaVisualizarProfessores.cs">
       <SubType>Form</SubType>
     </Compile>
