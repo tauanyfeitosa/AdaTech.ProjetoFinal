@@ -146,9 +146,21 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
 
             #endregion
 
+            #region Botão Visualizar Emprestimos
+
+            Button btnVisualizarEmprestimos = new Button();
+            btnVisualizarEmprestimos.Size = new Size(150, 20);
+            btnVisualizarEmprestimos.Location = new Point(20, 150);
+            btnVisualizarEmprestimos.Anchor = AnchorStyles.Right;
+            btnVisualizarEmprestimos.Text = "Visualizar Empréstimos";
+            btnVisualizarEmprestimos.Click += OnClickVisualizarEmprestimos;
+
+            #endregion
+
             painelAtendente.Controls.Add(bntVisualizarAlunos);
             painelAtendente.Controls.Add(bntVisualizarProfessores);
             painelAtendente.Controls.Add(btnCarregarCSV);
+            painelAtendente.Controls.Add(btnVisualizarEmprestimos);
 
             return painelAtendente;
         }
@@ -166,6 +178,12 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
         {
             JanelaVisualizarProfessores visualizarProfessores = new JanelaVisualizarProfessores();
             visualizarProfessores.ShowDialog();
+        }
+
+        private void OnClickVisualizarEmprestimos(object sender, EventArgs e)
+        {
+            JanelaVisualizarEmprestimos visualizarEmprestimos = new JanelaVisualizarEmprestimos();
+            visualizarEmprestimos.ShowDialog();
         }
 
         private void OnClickCarregarCSV(object sender, EventArgs e)
