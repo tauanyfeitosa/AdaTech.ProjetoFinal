@@ -39,9 +39,16 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers
             }
         }
 
-        internal void CarregarCSV (string caminhoArquivoCSV, string caminhoArquivoTxt)
+        internal void CarregarCSV(string caminhoArquivoCSV, string caminhoArquivoTxt, Usuario usuario)
         {
-            CarregarCSVController.CarregarCSV(caminhoArquivoCSV, caminhoArquivoTxt);
+            if (usuario is Diretor)
+            {
+                CarregarCSVController.CarregarCSVFuncionario(caminhoArquivoCSV);
+;
+            }else if (usuario is Atendente)
+            {
+                CarregarCSVController.CarregarCSVComunidadeAcademica(caminhoArquivoCSV, caminhoArquivoTxt);
+            }
         }
     }
 }
