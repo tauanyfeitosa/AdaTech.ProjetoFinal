@@ -125,17 +125,17 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
                 throw new InvalidOperationException("Não foi possível excluir a reserva.");
             }   
         }
-        internal static void AdicionarReserva(Emprestimo emprestimo)
+        internal static void AdicionarReserva(Emprestimo emprestimo, ComunidadeAcademica usuario)
         {
             if (emprestimo.ComunidadeAcademica.TipoUsuario == TipoUsuarioComunidade.Professor)
             {
                 var numeroReserva = _reservasLivros.Item1.Count;
-                _reservasLivros.Item1.Add(new ReservaLivro(emprestimo, numeroReserva));
+                _reservasLivros.Item1.Add(new ReservaLivro(emprestimo, numeroReserva, usuario));
             }
             else if (emprestimo.ComunidadeAcademica.TipoUsuario == TipoUsuarioComunidade.Aluno)
             {
                 var numeroReserva = _reservasLivros.Item2.Count;
-                _reservasLivros.Item2.Add(new ReservaLivro(emprestimo, numeroReserva));
+                _reservasLivros.Item2.Add(new ReservaLivro(emprestimo, numeroReserva, usuario));
             }
             else
             {
