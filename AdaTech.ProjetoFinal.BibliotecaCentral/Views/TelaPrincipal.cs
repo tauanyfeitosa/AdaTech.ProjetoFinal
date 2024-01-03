@@ -213,8 +213,43 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
         {
             painelBibliotecario.Controls.Clear();
 
+            #region Botão Adicionar Livro
+            Button btnAdicionarLivro = new Button();    
+
+            Button btnCarregarCSV = new Button();
+            btnCarregarCSV.Size = new Size(300, 50);
+            btnCarregarCSV.Location = new Point(20, 80);
+            btnCarregarCSV.Anchor = AnchorStyles.Right;
+            btnCarregarCSV.Text = "Carregar CSV - Adicionar Livro";
+            btnCarregarCSV.Click += OnClickCarregarCSVLivro;
+            #endregion
+
+            painelBibliotecario.Controls.Add(btnCarregarCSV);
+
+
             return painelBibliotecario;
         }
+        #region On Click de Bibliotecario
+
+        private void OnClickCarregarCSVLivro(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Arquivos TXT|*.txt|Todos os Arquivos|*.*";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string caminhoArquivoCSV = openFileDialog.FileName;
+
+                string diretorioDoAplicativo = AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug", "\\Data");
+
+                string caminhoArquivoTxt = Path.Combine(diretorioDoAplicativo, "Livros.txt");
+
+                _telaPrincipalController.CarregarCSV(caminhoArquivoCSV, caminhoArquivoTxt, _usuarioLogado);
+
+            }
+        }
+
+        #endregion
         #endregion
 
 

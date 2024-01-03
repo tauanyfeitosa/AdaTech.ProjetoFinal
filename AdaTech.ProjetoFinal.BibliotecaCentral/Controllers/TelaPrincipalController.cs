@@ -49,6 +49,10 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers
             {
                 CarregarCSVController.CarregarCSVComunidadeAcademica(caminhoArquivoCSV, caminhoArquivoTxt);
             }
+            else if(usuario is Bibliotecario)
+            {
+                CarregarCSVController.CarregarCSVLivro(caminhoArquivoCSV);
+            }
         }
     }
 }
