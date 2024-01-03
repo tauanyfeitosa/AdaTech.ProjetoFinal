@@ -82,6 +82,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
             if (!_comunidadeAcademica.Contains(CA))
             {
                 _comunidadeAcademica.Add(CA);
+                SalvarComunidadeAcademicaTxt(_comunidadeAcademica);
             }
             else
             {

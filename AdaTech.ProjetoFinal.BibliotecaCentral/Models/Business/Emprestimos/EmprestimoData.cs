@@ -16,7 +16,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
     using Usuarios.UsuariosComunidadeAcademica;
     internal class EmprestimoData
     {
-        private static List<Emprestimo> _emprestimoLivros = new List<Emprestimo>();
+        private static List<Emprestimo> _emprestimoLivros;
 
         private static readonly string _DIRECTORY_PATH = AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug", "\\Data");
         private static readonly string _FILE_PATH = Path.Combine(_DIRECTORY_PATH, "Emprestimo.txt");
@@ -25,7 +25,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
 
         static EmprestimoData()
         {
-            //_emprestimoLivros = LerEmprestimosTxt();
+            _emprestimoLivros = new List<Emprestimo>();
+            LerEmprestimosTxt();
         }
 
         //internal List<Emprestimo> SelecionarEmprestimo(ComunidadeAcademica usuario)
@@ -37,12 +38,12 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
 
         //}
 
-        internal static Emprestimo AdicionarEmprestimo(Livro livro, ComunidadeAcademica usuarioComunidadeAcademica)
+        internal static Emprestimo AdicionarEmprestimo(Emprestimo emprestimo)
         {       
-            var emprestimo = new Emprestimo(null, livro, usuarioComunidadeAcademica);
-            if (_emprestimoLivros.Contains(emprestimo))
+            if (!_emprestimoLivros.Contains(emprestimo))
             {
                 _emprestimoLivros.Add(emprestimo);
+                SalvarEmprestimosTxt(_emprestimoLivros);
             }
             else
             {
@@ -50,6 +51,12 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
             }
 
             return emprestimo;
+        }
+
+        internal static void IncluirEmprestimos(List<Emprestimo> emprestimosParaAdd)
+        {
+            _emprestimoLivros.AddRange(emprestimosParaAdd);
+            SalvarEmprestimosTxt(_emprestimoLivros);
         }
 
 
@@ -68,9 +75,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
             return _emprestimoLivros.Where(e => e.ReservaLivro == reserva).ToList();
         }
 
-        internal static List<Emprestimo> LerEmprestimosTxt()
+        internal static void LerEmprestimosTxt()
         {
-            List<Emprestimo> emprestimos = new List<Emprestimo>();
 
             try
             {
@@ -81,29 +87,45 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
                         string linha = sr.ReadLine();
                         Emprestimo emprestimo = ConverterLinhaParaEmprestimo(linha);
                         _emprestimoLivros.Add(emprestimo);
+                        _emprestimoLivros.Count();
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao ler o arquivo: {ex.Message}");
+                MessageBox.Show($"Erro ao ler o arquivo: {ex.Message}");
             }
 
-            return emprestimos;
         }
 
         internal static Emprestimo ConverterLinhaParaEmprestimo(string linha)
         {
             string[] partes = linha.Split(',');
 
-            //LIVRO
-            string partesLivro = string.Join(",", partes.Take(11));
-            Livro livro = LivroData.AdicionarLivro(LivroData.ConverterLinhaParaLivro(partesLivro));
+            string titulo = partes[0];
+            string autor = partes[1];
+            string isbn = partes[2];
+            int anoPublicacao = Conversores.StringParaInt(partes[3]);
+            int edicao = Conversores.StringParaInt(partes[4]);
+            string editora = partes[5];
+            int exemplares = Conversores.StringParaInt(partes[6]);
+            int exemplaresDisponiveis = Conversores.StringParaInt(partes[7]);
+            int livrosBomEstado = Conversores.StringParaInt(partes[8]);
+            int livrosEstadoMediano = Conversores.StringParaInt(partes[9]);
+            int livrosMauEstado = Conversores.StringParaInt(partes[10]);
+            TipoAcervoLivro tipoAcervoLivro = Conversores.StringParaTipoAcervoLivro(partes[11]);
 
+            var livro = new Livro(titulo, autor, isbn, anoPublicacao, edicao, editora, exemplares, exemplaresDisponiveis, livrosBomEstado, livrosEstadoMediano, livrosMauEstado, tipoAcervoLivro);
 
-            // USER CA
-            string partesCA = string.Join(",", partes.Skip(12).Take(14));
-            ComunidadeAcademica usuarioCA = UsuarioData.AdicionarCA(UsuarioData.ConverterLinhaParaComunidadeAcademica(partesCA));
+            string senha = partes[12];
+            string nomeCompleto = partes[13];
+            string cpf = partes[14];
+            string email = partes[15];
+            string matricula = partes[16];
+            string curso = partes[17];
+            TipoUsuarioComunidade tipoUsuario = Conversores.StringParaTipoUsuarioComunidade(partes[18]);
+
+            var usuarioCA = new ComunidadeAcademica(senha, nomeCompleto, cpf, email, matricula, curso, tipoUsuario);
 
             return new Emprestimo(null, livro, usuarioCA);         
         }
@@ -122,11 +144,11 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
                     }
                 }
 
-                Console.WriteLine("Alterações salvas com sucesso no arquivo.");
+                MessageBox.Show("Alterações salvas com sucesso no arquivo.");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao salvar as alterações no arquivo: {ex.Message}");
+                MessageBox.Show$"Erro ao salvar as alterações no arquivo: {ex.Message}");
             }
         }
 

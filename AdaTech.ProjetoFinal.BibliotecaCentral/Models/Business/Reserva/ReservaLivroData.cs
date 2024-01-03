@@ -1,4 +1,4 @@
-﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
+﻿ using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Utilities;
@@ -24,7 +24,13 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
 
         static ReservaLivroData()
         {
-            //_reservasLivros = LerReservasTxt();
+            _reservasLivros = new Tuple<List<ReservaLivro>, List<ReservaLivro>>(new List<ReservaLivro>(), new List<ReservaLivro>());
+            LerReservasTxt();
+        }
+
+        internal static Tuple<List<ReservaLivro>, List<ReservaLivro>> GetReservaLivros()
+        {
+            return _reservasLivros;
         }
 
         internal static List<ReservaLivro> ListarReservasUsuario(ComunidadeAcademica usuario)
@@ -161,11 +167,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
 
         } */
 
-        internal static Tuple<List<ReservaLivro>, List<ReservaLivro>> LerReservasTxt()
+        internal static void LerReservasTxt()
         {
-            List<ReservaLivro> reservasAluno = new List<ReservaLivro>();
-            List<ReservaLivro> reservasProfessor = new List<ReservaLivro>();
-
             try
             {
                 using (StreamReader sr = new StreamReader(_FILE_PATH))
@@ -179,10 +182,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao ler o arquivo: {ex.Message}");
+                MessageBox.Show($"Erro ao ler o arquivo: {ex.Message}");
             }
-
-            return new Tuple<List<ReservaLivro>, List<ReservaLivro>>(reservasProfessor, reservasAluno);
         }
 
         internal static void ConverterLinhaParaReservaLivro(string linha)
@@ -190,39 +191,61 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
 
             string[] partes = linha.Split(',');
 
-            // LIVRO
-            string partesLivro = string.Join(",", partes.Take(11));
-            Livro livro = LivroData.AdicionarLivro(LivroData.ConverterLinhaParaLivro(partesLivro));
+            string titulo = partes[0];
+            string autor = partes[1];
+            string isbn = partes[2];
+            int anoPublicacao = Conversores.StringParaInt(partes[3]);
+            int edicao = Conversores.StringParaInt(partes[4]);
+            string editora = partes[5];
+            int exemplares = Conversores.StringParaInt(partes[6]);
+            int exemplaresDisponiveis = Conversores.StringParaInt(partes[7]);
+            int livrosBomEstado = Conversores.StringParaInt(partes[8]);
+            int livrosEstadoMediano = Conversores.StringParaInt(partes[9]);
+            int livrosMauEstado = Conversores.StringParaInt(partes[10]);
+            TipoAcervoLivro tipoAcervoLivro = Conversores.StringParaTipoAcervoLivro(partes[11]);
 
-            // USER CA
-            string partesCA = string.Join(",", partes.Skip(12).Take(14));
-            ComunidadeAcademica usuarioCA = UsuarioData.AdicionarCA(UsuarioData.ConverterLinhaParaComunidadeAcademica(partesCA));
+            var livro = new Livro(titulo, autor, isbn, anoPublicacao, edicao, editora, exemplares, exemplaresDisponiveis, livrosBomEstado, livrosEstadoMediano, livrosMauEstado, tipoAcervoLivro);
 
-            Emprestimo emprestimo = EmprestimoData.AdicionarEmprestimo(livro, usuarioCA);
+            string senha = partes[12];
+            string nomeCompleto = partes[13];
+            string cpf = partes[14];
+            string email = partes[15];
+            string matricula = partes[16];
+            string curso = partes[17];
+            TipoUsuarioComunidade tipoUsuario = Conversores.StringParaTipoUsuarioComunidade(partes[18]);
 
+            var usuarioCA = new ComunidadeAcademica(senha, nomeCompleto, cpf, email, matricula, curso, tipoUsuario);
 
-            AdicionarReserva(emprestimo, emprestimo.ComunidadeAcademica);
-
+            var emprestimo = new Emprestimo(null, livro, usuarioCA);
+            EmprestimoData.AdicionarEmprestimo(emprestimo);
+            
+            AdicionarReserva(emprestimo, usuarioCA); 
         }
 
-        internal static void SalvarReservaLivrosTxt(List<ReservaLivro> reservaLivros)
+        internal static void SalvarReservaLivrosTxt()
         {
             try
             {
                 using (StreamWriter sw = new StreamWriter(_FILE_PATH))
                 {
-                    foreach (ReservaLivro reserva in reservaLivros)
+                    foreach (ReservaLivro reserva in _reservasLivros.Item1)
+                    {
+                        string linha = ConverterReservaLivroParaLinha(reserva);
+                        sw.WriteLine(linha);
+                    }
+
+                    foreach (ReservaLivro reserva in _reservasLivros.Item2)
                     {
                         string linha = ConverterReservaLivroParaLinha(reserva);
                         sw.WriteLine(linha);
                     }
                 }
 
-                Console.WriteLine("Alterações salvas com sucesso no arquivo.");
+                MessageBox.Show("Alterações salvas com sucesso no arquivo.");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao salvar as alterações no arquivo: {ex.Message}");
+                MessageBox.Show($"Erro ao salvar as alterações no arquivo: {ex.Message}");
             }
         }
 

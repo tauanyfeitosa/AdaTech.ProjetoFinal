@@ -28,7 +28,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
 
         internal static void IncluirLivros(List<Livro> livros)
         {
-            _acervoLivros.AddRange(livros);
+            AcervoLivros.AddRange(livros);
             SalvarLivrosTxt(_acervoLivros);
         }
 
@@ -81,6 +81,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
             if (!_acervoLivros.Contains(livro))
             {
                 _acervoLivros.Add(livro);
+                SalvarLivrosTxt(_acervoLivros);
             }
             else
             {
@@ -109,7 +110,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao ler o arquivo: {ex.Message}");
+                MessageBox.Show($"Erro ao ler o arquivo: {ex.Message}");
             }
 
             return livros;
@@ -146,15 +147,15 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
                     linhas.Add(linha);
                 }
 
-                File.AppendAllLines(_FILE_PATH, linhas);
+                File.WriteAllLines(_FILE_PATH, linhas);
 
                 _acervoLivros = LerLivrosTxt();
 
-                Console.WriteLine("Alterações salvas com sucesso no arquivo.");
+                MessageBox.Show("Alterações salvas com sucesso no arquivo.");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao salvar as alterações no arquivo: {ex.Message}");
+                MessageBox.Show($"Erro ao salvar as alterações no arquivo: {ex.Message}");
             }
         }
 
