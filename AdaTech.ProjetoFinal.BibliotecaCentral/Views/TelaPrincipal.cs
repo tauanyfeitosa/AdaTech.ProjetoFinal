@@ -224,9 +224,23 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
         private Panel CriarPainelDiretor(Panel painelDiretor)
         {
             painelDiretor.Controls.Clear();
+            Button bntVisualizarReservas = new Button();
+
+            bntVisualizarReservas.Size = new Size(150, 20);
+            bntVisualizarReservas.Location = new Point(20, 50);
+            bntVisualizarReservas.Anchor = AnchorStyles.Right;
+            bntVisualizarReservas.Text = "Visualizar Reservas";
+            bntVisualizarReservas.Click += OnClickVisualizarReservas;
+
+            painelDiretor.Controls.Add(bntVisualizarReservas);
+
             return painelDiretor;
         }
-
+        private void OnClickVisualizarReservas(object sender, EventArgs e)
+        {
+            JanelaVisualizaReserva janelaVisualizaReserva = new JanelaVisualizaReserva();
+            janelaVisualizaReserva.ShowDialog();
+        }
 
         #endregion
 
