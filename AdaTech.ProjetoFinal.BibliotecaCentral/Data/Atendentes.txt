@@ -1,1 +1,7 @@
-﻿12345678,Amandinha Linda,07723268513,amandinha@linda.com.br,true
+﻿12345678,Amandinha Linda,07723268513,amandinha@linda.com.br,True
+8e22b82996013b05125ec86dbc1e234c27084ad1688a755f283ba3d61299b868,Atendente C,456.789.012-34,atendenteC@email.com,True
+5ab897f39320af2e46ee91ff2e1c3f599557fafa959768d11bec624623709d01,Atendente F,678.901.234-56,atendenteF@email.com,False
+91432c9e3d974951dc2eb82649f9664f8b792cb1a23641b6f5483361dce762c3,Atendente I,345.678.901-23,atendenteI@email.com,True
+9ccd468af6e6e45ffb0e47e41b540166bf691e30e55bb2767c4216cb5b3aef43,Atendente L,678.901.234-56,atendenteL@email.com,False
+e2c5f24eae7d62ec962ceb8421875d5be7f8f3250bf5340ad5ad233a2b821433,Atendente O,901.234.567-89,atendenteO@email.com,True
+4546c83e32a18d1959a523c0d99fd8de5163f94dff604030f9593de0efa04243,Atendente R,456.789.012-34,atendenteR@email.com,False

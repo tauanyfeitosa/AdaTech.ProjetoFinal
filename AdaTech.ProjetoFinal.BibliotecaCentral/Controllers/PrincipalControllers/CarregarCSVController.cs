@@ -6,12 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalControllers
 {
     internal class CarregarCSVController
     {
-        internal static void CarregarCSV(string caminhoArquivoCSV, string caminhoArquivoTxt)
+        internal static void CarregarCSVComunidadeAcademica(string caminhoArquivoCSV, string caminhoArquivoTxt)
         {
             try
             {
@@ -51,6 +52,81 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalController
             catch
             {
                 MessageBox.Show("Erro ao carregar arquivo CSV. Verifique se está no formato correto: senha, nomeCompleto, cpf, email, matricula, curso, tipoUsuario");
+            }
+        }
+
+        internal static void CarregarCSVFuncionario (string caminhoArquivoCSV)
+        {
+            try
+            {
+                List<Diretor> diretores = new List<Diretor>();
+                List<Bibliotecario> bibliotecarios = new List<Bibliotecario>();
+                List<Atendente> atendentes = new List<Atendente>();
+
+                string[] linhasCSV = File.ReadAllLines(caminhoArquivoCSV);
+
+                foreach (string linhaCSV in linhasCSV)
+                {
+                    string[] valoresCSV = linhaCSV.Split(',');
+                    var linhaString = string.Join(",", valoresCSV.Skip(1));
+
+                    if (string.Compare(valoresCSV[0], "DIRETOR", StringComparison.OrdinalIgnoreCase) == 0)
+                    {
+                        var diretor = UsuarioData.ConverterLinhaParaDiretor(linhaString);
+                        diretores.Add(diretor);
+                    }
+                    else if (string.Compare(valoresCSV[0], "BIBLIOTECARIO", StringComparison.OrdinalIgnoreCase) == 0)
+                    {
+                        var bibliotecario = UsuarioData.ConverterLinhaParaBibliotecario(linhaString);
+                        bibliotecarios.Add(bibliotecario);
+                    }
+                    else if (string.Compare(valoresCSV[0], "ATENDENTE", StringComparison.OrdinalIgnoreCase) == 0)
+                    {
+                        var atendente = UsuarioData.ConverterLinhaParaAtendente(linhaString);
+                        atendentes.Add(atendente);
+                    }
+                }
+
+                MessageBox.Show($"Diretores: {diretores.Count} \nBibliotecários: {bibliotecarios.Count} \nAtendentes: {atendentes.Count}");
+
+                UsuarioData.SalvarDiretoresTxt(diretores);
+                UsuarioData.SalvarBibliotecariosTxt(bibliotecarios);
+                UsuarioData.SalvarAtendentesTxt(atendentes);
+
+            } catch
+            {
+                MessageBox.Show("Erro ao carregar arquivo CSV. Verifique se está no formato correto: senha, nomeCompleto, cpf, email, matricula, cargo");
+            }
+        }
+
+        internal static void CarregarCSVLivro(string caminhoDoArquivoCSV)
+        {
+            try
+            {
+                List<Livro> livrosParaAdd = new List<Livro>();
+
+                string[] linhasCSV = File.ReadAllLines(caminhoDoArquivoCSV);
+
+                foreach (string linhaCSV in linhasCSV)
+                {
+                    string[] valoresCSV = linhaCSV.Split(',');
+
+                    var linhaString = string.Join(",", valoresCSV);
+
+                    var Livro = LivroData.ConverterLinhaParaLivro(linhaString);
+
+                    livrosParaAdd.Add(Livro);
+
+                }
+
+                MessageBox.Show($"Num livros: {livrosParaAdd.Count} \n");
+                
+                LivroData.IncluirLivros(livrosParaAdd);
+
+            }
+            catch
+            {
+                MessageBox.Show("Erro ao carregar arquivo CSV. Verifique se está no formato correto: titulo, autor, isbn, anoPublicacao, edicao, editora, exemplares, exemplaresDisponiveis, livrosBomEstado, livrosEstadoMediano, livrosMauEstado, tipoAcervoLivro");
             }
         }
     }
