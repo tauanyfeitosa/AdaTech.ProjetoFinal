@@ -48,23 +48,17 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
 
         internal static List<ReservaLivro> ListarTodasReservas()
         {
+            List<ReservaLivro> reservasUsuarios = new List<ReservaLivro>();
 
-            List <ReservaLivro> reservasUsuarios= new List<ReservaLivro>();
-            List<ReservaLivro> reservasUsuarioProfessores = _reservasLivros.Item1.ToList();
-            List<ReservaLivro> reservasUsuarioAlunos = _reservasLivros.Item2.ToList();
-
-            foreach (var item in reservasUsuarioProfessores)
+            if (_reservasLivros != null && _reservasLivros.Item1 != null && _reservasLivros.Item2 != null)
             {
-                reservasUsuarios.Add(item);
-            }
-            foreach (var item in reservasUsuarioAlunos)
-            {
-                reservasUsuarios.Add(item);
+                reservasUsuarios.AddRange(_reservasLivros.Item1);
+                reservasUsuarios.AddRange(_reservasLivros.Item2);
             }
 
             return reservasUsuarios;
-
         }
+
         internal static ReservaLivro SelecionarReserva(ReservaLivro reserva, ComunidadeAcademica usuario)
         {
             if (usuario.TipoUsuario == TipoUsuarioComunidade.Professor)
