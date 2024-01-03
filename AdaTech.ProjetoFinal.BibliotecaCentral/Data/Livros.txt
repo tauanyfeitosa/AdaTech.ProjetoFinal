@@ -1,5 +1,6 @@
-﻿O Senhor dos Anéis, J.R.R. Tolkien, 9780544003415, 1954, 1, HarperCollins, 100, 50, 30, 15, 5, AcervoPublico
-Harry Potter e a Pedra Filosofal, J.K. Rowling, 9788532530782, 1997, 1, Rocco, 120, 60, 40, 15, 5, AcervoPublico
-1984, George Orwell, 9780451524935, 1949, 1, Penguin, 80, 40, 25, 10, 5, AcervoRestrito
-Orgulho e Preconceito, Jane Austen, 9788532523227, 1813, 1, Martin Claret, 90, 45, 30, 10, 5, AcervoRestrito
-A Revolução dos Bichos, George Orwell, 9788578270262, 1945, 1, Companhia das Letras, 70, 35, 20, 10, 5, AcervoParticular
+O Senhor dos Anéis, J.R.R. Tolkien, 9780544003415,1954,1, HarperCollins,100,50,30,15,1,AcervoPublico
+Harry Potter e a Pedra Filosofal, J.K. Rowling, 9788532530782,1997,1, Rocco,120,60,40,15,1,AcervoPublico
+1984, George Orwell, 9780451524935,1949,1, Penguin,80,40,25,10,1,AcervoRestrito
+Orgulho e Preconceito, Jane Austen, 9788532523227,1813,1, Martin Claret,90,45,30,10,1,AcervoRestrito
+A Revolução dos Bichos, George Orwell, 9788578270262,1945,1, Companhia das Letras,70,35,20,10,1,AcervoParticular
+LivroTesteBota, Isa Linda, 9788578270262,1945,1, Companhia das Letras,70,35,20,10,1,AcervoParticular

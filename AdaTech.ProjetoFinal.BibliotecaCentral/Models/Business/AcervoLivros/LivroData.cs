@@ -28,7 +28,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
 
         internal static void IncluirLivros(List<Livro> livros)
         {
-            _acervoLivros.AddRange(livros);
+            AcervoLivros.AddRange(livros);
+
             SalvarLivrosTxt(_acervoLivros);
         }
 
@@ -44,6 +45,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
         {
             SalvarLivrosTxt(livros);
         }
+
 
         internal static List<Livro> ListarLivros(TipoAcervoLivro? tipoAcervoLivro)
         {
@@ -131,7 +133,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
                     linhas.Add(linha);
                 }
 
-                File.AppendAllLines(_FILE_PATH, linhas);
+                File.WriteAllLines(_FILE_PATH, linhas);
 
                 _acervoLivros = LerLivrosTxt();
 
