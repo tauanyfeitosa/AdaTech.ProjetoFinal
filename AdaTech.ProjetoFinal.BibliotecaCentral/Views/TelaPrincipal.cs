@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Utilities;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasDiretor;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
 {
@@ -223,23 +224,10 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
         private Panel CriarPainelDiretor(Panel painelDiretor)
         {
             painelDiretor.Controls.Clear();
-            Button bntVisualizarReservas = new Button();
-            
-            bntVisualizarReservas.Size = new Size(150, 20);
-            bntVisualizarReservas.Location = new Point(20, 50);
-            bntVisualizarReservas.Anchor = AnchorStyles.Right;
-            bntVisualizarReservas.Text = "Visualizar Reservas";
-            bntVisualizarReservas.Click += OnClickVisualizarReservas;
-
-            painelDiretor.Controls.Add(bntVisualizarReservas);
             return painelDiretor;
         }
 
-        private void OnClickVisualizarReservas(object sender, EventArgs e)
-        {
-            JanelaVisualizarReservas janelaVisualizarReservas = new JanelaVisualizarReservas();
-            janelaVisualizarReservas.ExibirReservasLivro((ComunidadeAcademica)_usuarioLogado);
-        }
+
         #endregion
 
 

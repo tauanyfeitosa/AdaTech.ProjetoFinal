@@ -90,6 +90,12 @@
     <Compile Include="Views\Janelas\JanelasAtendente\JanelaVisualizarAlunos.Designer.cs">
       <DependentUpon>JanelaVisualizarAlunos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Janelas\JanelasDiretor\JanelaVisualizaReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Janelas\JanelasDiretor\JanelaVisualizaReserva.Designer.cs">
+      <DependentUpon>JanelaVisualizaReserva.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\TelaPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +122,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\Janelas\JanelasDiretor\JanelaVisualizaReserva.resx">
+      <DependentUpon>JanelaVisualizaReserva.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
