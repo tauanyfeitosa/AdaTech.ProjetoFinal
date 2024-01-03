@@ -142,7 +142,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
             btnCarregarCSV.Location = new Point(20, 80);
             btnCarregarCSV.Anchor = AnchorStyles.Right;
             btnCarregarCSV.Text = "Carregar CSV - Usuários Comunidade Acadêmica";
-            btnCarregarCSV.Click += OnClickCarregarCSV;
+            btnCarregarCSV.Click += OnClickCarregarCSVCA;
 
             #endregion
 
@@ -186,7 +186,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
             visualizarEmprestimos.ShowDialog();
         }
 
-        private void OnClickCarregarCSV(object sender, EventArgs e)
+        private void OnClickCarregarCSVCA(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Arquivos CSV|*.csv|Todos os Arquivos|*.*";
@@ -199,7 +199,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
 
                 string caminhoArquivoTxt = Path.Combine(diretorioDoAplicativo, "ComunidadeAcademica.txt");
 
-                _telaPrincipalController.CarregarCSV(caminhoArquivoCSV, caminhoArquivoTxt);
+                _telaPrincipalController.CarregarCSV(caminhoArquivoCSV, caminhoArquivoTxt, _usuarioLogado);
 
             }
         }
@@ -223,8 +223,36 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
         {
             painelDiretor.Controls.Clear();
 
+            Button btnAdicionarFuncionarios = new Button();
+            btnAdicionarFuncionarios.Size = new Size(150, 20);
+            btnAdicionarFuncionarios.Location = new Point(20, 20);
+            btnAdicionarFuncionarios.Anchor = AnchorStyles.Right;
+            btnAdicionarFuncionarios.Text = "Adicionar Funcionários - CSV";
+            btnAdicionarFuncionarios.Click += OnClickAdicionarFuncionarios;
+
+            painelDiretor.Controls.Add(btnAdicionarFuncionarios);
+
             return painelDiretor;
         }
+
+        private void OnClickAdicionarFuncionarios(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Arquivos CSV|*.csv|Todos os Arquivos|*.*";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string caminhoArquivoCSV = openFileDialog.FileName;
+
+                string diretorioDoAplicativo = AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug", "\\Data");
+
+                string caminhoArquivoTxt = Path.Combine(diretorioDoAplicativo, "Funcionarios.txt");
+
+                _telaPrincipalController.CarregarCSV(caminhoArquivoCSV, caminhoArquivoTxt, _usuarioLogado);
+
+            }
+        }
+
         #endregion
 
 

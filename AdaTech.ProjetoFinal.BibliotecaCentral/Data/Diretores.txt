@@ -1,1 +1,8 @@
-﻿11111111,Na mão de Deus,98776773000,deus@nosajude.com,true
+﻿11111111,Na mão de Deus,98776773000,deus@nosajude.com,True
+df81a96a3ece18d8d222a7058d87ddce1b1d634c768ea18e3100fc836846b1ef,Diretor A,123.456.789-01,diretorA@email.com,True
+8a67967cb888d881d75eef8251235736c7772612beaf6c2e63f64a6121a387ba,Diretor D,567.890.123-45,diretorD@email.com,False
+e3ac2499c1f80a9f685eb6abb0219570665694ca55e5cde9020b36422fa7bbe7,Diretor G,901.234.567-89,diretorG@email.com,True
+8a28ce8188216a982a0208976fe19258d2e4f13c5290b7f4fd1216d012aa5b00,Diretor J,456.789.012-34,diretorJ@email.com,False
+d132da3563c3ae7ac52f65702abf2149ab170698123895956d84d51b7d7d1406,Diretor M,789.012.345-67,diretorM@email.com,True
+0253cfa30006577f76a7ec9630852efa12823cb06cc38870b8d404d609ddb572,Diretor P,123.456.789-01,diretorP@email.com,False
+e5bd8547f05f237fc5b0b01878afec7421f4da4128e5ac48e8de6e55f43f66d9,Diretor S,567.890.123-45,diretorS@email.com,True

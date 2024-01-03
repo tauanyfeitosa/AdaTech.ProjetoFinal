@@ -20,7 +20,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
         private static List<Diretor> _diretores = new List<Diretor>();
         private static List<ComunidadeAcademica> _comunidadeAcademica = new List<ComunidadeAcademica>();
 
-        private static readonly string _DIRECTORY_PATH = AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug", "\\Data");
+        private static readonly string _DIRECTORY_PATH = AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug", "") + "\\Data";
         private static readonly string _FILE_PATH_DIRETOR = Path.Combine(_DIRECTORY_PATH, "Diretores.txt");
         private static readonly string _FILE_PATH_BIBLIOTECARIO = Path.Combine(_DIRECTORY_PATH, "Bibliotecarios.txt");
         private static readonly string _FILE_PATH_ATENDENTE = Path.Combine(_DIRECTORY_PATH, "Atendentes.txt");
@@ -382,13 +382,14 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
             if (objetoString.Length > 4)
             {
                 bool ativo = bool.Parse(objetoString[4]);
+
                 return new Tuple<List<string>, bool>(new List<string> { senha, nomeCompleto, cpf, email }, ativo);
             }
 
             return new Tuple<List<string>, bool>(new List<string> { senha, nomeCompleto, cpf, email }, true);
         }
 
-        private static Diretor ConverterLinhaParaDiretor(string linha)
+        internal static Diretor ConverterLinhaParaDiretor(string linha)
         {
             return new Diretor(ConverterLinhaParaFuncionario(linha).Item1[0],
                                     ConverterLinhaParaFuncionario(linha).Item1[1],
@@ -397,7 +398,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
                                                 ConverterLinhaParaFuncionario(linha).Item2);
         }
 
-        private static Atendente ConverterLinhaParaAtendente(string linha)
+        internal static Atendente ConverterLinhaParaAtendente(string linha)
         {
             return new Atendente(ConverterLinhaParaFuncionario(linha).Item1[0],
                                         ConverterLinhaParaFuncionario(linha).Item1[1],
@@ -436,15 +437,35 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
             try
             {
                 List<string> linhas = new List<string>();
-
-                if (typeof(T) == typeof(Funcionario))
+                MessageBox.Show("Antes do if");
+                if (typeof(T) == typeof(Diretor))
                 {
-                    foreach (Funcionario FUNC in usuarios.OfType<Funcionario>())
+                    MessageBox.Show("Dentro do if");
+                    foreach (Diretor Di in usuarios.OfType<Diretor>())
                     {
-                        string linha = ConverterFuncionarioParaLinha(FUNC);
+                        string linha = ConverterFuncionarioParaLinha(Di);
+                        MessageBox.Show(linha);
+                        MessageBox.Show(_FILE_PATH);
                         linhas.Add(linha);
                     }
-                } else if (typeof(T) == typeof(ComunidadeAcademica))
+                }
+                else if (typeof(T) == typeof(Bibliotecario))
+                {
+                    foreach (Bibliotecario Bi in usuarios.OfType<Bibliotecario>())
+                    {
+                        string linha = ConverterFuncionarioParaLinha(Bi);
+                        linhas.Add(linha);
+                    }
+                }
+                else if (typeof(T) == typeof(Atendente))
+                {
+                    foreach (Atendente At in usuarios.OfType<Atendente>())
+                    {
+                        string linha = ConverterFuncionarioParaLinha(At);
+                        linhas.Add(linha);
+                    }
+                }
+                else if (typeof(T) == typeof(ComunidadeAcademica))
                 {
                     foreach (ComunidadeAcademica CA in usuarios.OfType<ComunidadeAcademica>())
                     {
@@ -452,6 +473,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
                         linhas.Add(linha);
                     }
                 }
+
+                MessageBox.Show("Antes do File e fora do if");
 
                 File.AppendAllLines(_FILE_PATH, linhas);
 
@@ -499,7 +522,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
             {
                 SalvarUsuariosTxt<Diretor>(diretores, _FILE_PATH_DIRETOR);
 
-                _diretores = LerDiretoresTxt();
+                _diretores.AddRange(LerDiretoresTxt());
 
             }
             catch (Exception ex)
@@ -525,7 +548,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
 
         internal static string ConverterFuncionarioParaLinha(Funcionario funcionario)
         {
-            return $"{funcionario.SenhaCripto},{funcionario.NomeCompleto},{funcionario.Cpf},{funcionario.Email}";
+            return $"{funcionario.SenhaCripto},{funcionario.NomeCompleto},{funcionario.Cpf},{funcionario.Email},{funcionario.Ativo}";
         }
 
         internal static string ConverterComunidadeAcademicaParaLinha(ComunidadeAcademica usuario)

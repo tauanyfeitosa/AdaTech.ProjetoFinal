@@ -1,1 +1,8 @@
-﻿00000000,Isa maravilhosa,12310622079,isa@maravilhosa.com.br,true
+﻿00000000,Isa maravilhosa,12310622079,isa@maravilhosa.com.br,True
+9857a34774d9b2d29ec4dad472bcc14439c667f7ab085512d70fcd17cec512db,Bibliotecário B,987.654.321-00,bibliotecarioB@email.com,False
+afc624729d3768753038e4a0c78a13cb690e02cef1db83358127363c83839bd1,Bibliotecário E,345.678.901-23,bibliotecarioE@email.com,True
+624d7aa1cd7173a254c4ba509762a0cc76a9efb0ede12bf1c343ec2e1c3bbcea,Bibliotecário H,234.567.890-12,bibliotecarioH@email.com,False
+8dc0ae94b49026b46f7551c601ff3ec888eb78967b87b45069067717afce0210,Bibliotecário K,567.890.123-45,bibliotecarioK@email.com,True
+06ec8a61c4a9e027b08608a26f56cb204b6e8b1e37743b72516f97e37611f84d,Bibliotecário N,890.123.456-78,bibliotecarioN@email.com,False
+19b6f714d374d6f2781eda6bf420cb0571e1ccec27e8c5d98e93704abc1c82fa,Bibliotecário Q,987.654.321-00,bibliotecarioQ@email.com,True
+73b06bc3b400847b131f5b6ea5cdde976802b5030573b4909fe89f65ee45457e,Bibliotecário T,345.678.901-23,bibliotecarioT@email.com,False
