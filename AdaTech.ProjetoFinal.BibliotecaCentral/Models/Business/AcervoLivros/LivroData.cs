@@ -96,7 +96,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao ler o arquivo: {ex.Message}");
+                MessageBox.Show($"Erro ao ler o arquivo: {ex.Message}");
             }
 
             return livros;
@@ -137,11 +137,11 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
 
                 _acervoLivros = LerLivrosTxt();
 
-                Console.WriteLine("Alterações salvas com sucesso no arquivo.");
+                MessageBox.Show("Alterações salvas com sucesso no arquivo.");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao salvar as alterações no arquivo: {ex.Message}");
+                MessageBox.Show($"Erro ao salvar as alterações no arquivo: {ex.Message}");
             }
         }
 
