@@ -437,15 +437,11 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
             try
             {
                 List<string> linhas = new List<string>();
-                MessageBox.Show("Antes do if");
                 if (typeof(T) == typeof(Diretor))
                 {
-                    MessageBox.Show("Dentro do if");
                     foreach (Diretor Di in usuarios.OfType<Diretor>())
                     {
                         string linha = ConverterFuncionarioParaLinha(Di);
-                        MessageBox.Show(linha);
-                        MessageBox.Show(_FILE_PATH);
                         linhas.Add(linha);
                     }
                 }
@@ -474,7 +470,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
                     }
                 }
 
-                MessageBox.Show("Antes do File e fora do if");
 
                 File.AppendAllLines(_FILE_PATH, linhas);
 
