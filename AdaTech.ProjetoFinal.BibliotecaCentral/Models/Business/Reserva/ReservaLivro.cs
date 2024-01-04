@@ -39,6 +39,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
             this._emprestimo = emprestimo;
             this._statusReserva = StatusReserva.Aprovada;
             this._numeroReserva = numero;
+            //_livro.ExemplaresDisponiveis--;
         }
 
         internal void CancelarReserva()
@@ -46,6 +47,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
             if (this.Emprestimo.Devolucao == false && this.Emprestimo.DataDevolucaoPrevista < DateTime.Now)
             {
                 this._statusReserva = StatusReserva.Cancelada;
+                //_livro.ExemplaresDisponiveis++;
             }
             else if (this.Emprestimo.Devolucao == true && this.DataRetirarLivro == DateTime.Now)
             {

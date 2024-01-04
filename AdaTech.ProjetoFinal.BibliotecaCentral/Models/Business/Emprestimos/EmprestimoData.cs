@@ -27,7 +27,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
         }
         /*internal static void IncluirEmprestimos(List<Emprestimo> emprestimos)
         {
-            EmprestimoLivros.AddRange(emprestimos);
+            _emprestimoLivros.AddRange(emprestimos);
 
             SalvarEmprestimosTxt(_emprestimoLivros);
         }
@@ -56,14 +56,11 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
         {
             return _emprestimoLivros.Where(e => e.ReservaLivro == reserva).ToList();
         }
-        /*internal static void ExcluirEmprestimos(int numeroReservaEmprestimo)
+        /*internal static void ExcluirEmprestimos(Livro livro, ComunidadeAcademica usuarioEmprestimo)
         {
-            foreach (int numeroReserva in numeroReservaEmprestimo)
-            {
-                Emprestimo emprestimo = _emprestimoLivros.Where(l => l.NumeroReserva == numeroReserva).FirstOrDefault();
-                _emprestimoLivros.Remove(emprestimo);
-                SalvarEmprestimosTxt(_emprestimoLivros);
-            }
+            Emprestimo emprestimo = _emprestimosLivros.FirstOrDefault(e => e.ComunidadeAcademica.Matricula == usuarioEmprestimo.Matricula && e.Livro.Isbn == livro.isbn);
+            _emprestimoLivros.Remove(emprestimo);
+            SalvarEmprestimosTxt(_emprestimoLivros);
         }*/
         //internal static List<Emprestimo> LerEmprestimosTxt()
         //{

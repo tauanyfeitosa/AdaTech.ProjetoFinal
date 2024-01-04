@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -75,9 +76,10 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
             }
             return dias * _multaDiaria;
         }
-        internal void PagarMulta()
+        internal void PagarMulta(Livro livro, ComunidadeAcademica usuario)  
         {
             PagamentoMulta = true;
+            //EmprestimoData.ExcluirEmprestimos(livro, usuario);
         }
     }
 }

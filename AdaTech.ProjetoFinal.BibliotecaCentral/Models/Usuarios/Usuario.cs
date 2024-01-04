@@ -9,7 +9,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
    internal abstract class Usuario
     {
         protected string login, senhaCripto, nomeCompleto, cpf, email;
-        private bool _ehAdmin, _ativo;
+        private bool _ehAdmin;
+        protected bool _ativo;
 
         internal string Login
         { 

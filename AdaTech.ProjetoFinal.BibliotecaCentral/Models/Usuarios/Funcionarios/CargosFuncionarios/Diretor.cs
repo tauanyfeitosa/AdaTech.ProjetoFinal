@@ -109,35 +109,33 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             }
         }
 
-            private void CadastrarFuncionario(Funcionario novoFuncionario)
+        private void CadastrarFuncionario(Funcionario novoFuncionario)
+        {
+            HashSet<Atendente> setAtendentes = new HashSet<Atendente>(UsuarioData.Atendentes);
+            HashSet<Bibliotecario> setBibliotecarios = new HashSet<Bibliotecario>(UsuarioData.Bibliotecarios);
+            HashSet<Diretor> setDiretores = new HashSet<Diretor>(UsuarioData.Diretores);
+
+            if (novoFuncionario is Atendente)
             {
-                HashSet<Atendente> setAtendentes = new HashSet<Atendente>(UsuarioData.Atendentes);
-                HashSet<Bibliotecario> setBibliotecarios = new HashSet<Bibliotecario>(UsuarioData.Bibliotecarios);
-                HashSet<Diretor> setDiretores = new HashSet<Diretor>(UsuarioData.Diretores);
-
-                if (novoFuncionario is Atendente)
-                {
-                    setAtendentes.Add(novoFuncionario as Atendente);
-                }
-                else if (novoFuncionario is Bibliotecario)
-                {
-                    setBibliotecarios.Add(novoFuncionario as Bibliotecario);
-                }
-                else if (novoFuncionario is Diretor)
-                {
-                    setDiretores.Add(novoFuncionario as Diretor);
-                }
-
-                List<Atendente> novaListaAtendentes = new List<Atendente>(setAtendentes);
-                List<Bibliotecario> novaListaBibliotecarios = new List<Bibliotecario>(setBibliotecarios);
-                List<Diretor> novaListaDiretores = new List<Diretor>(setDiretores);
-
-                UsuarioData.SalvarAtendentesTxt(novaListaAtendentes);
-                UsuarioData.SalvarBibliotecariosTxt(novaListaBibliotecarios);
-                UsuarioData.SalvarDiretoresTxt(novaListaDiretores);
+                setAtendentes.Add(novoFuncionario as Atendente);
             }
-       
+            else if (novoFuncionario is Bibliotecario)
+            {
+                setBibliotecarios.Add(novoFuncionario as Bibliotecario);
+            }
+            else if (novoFuncionario is Diretor)
+            {
+                setDiretores.Add(novoFuncionario as Diretor);
+            }
 
+            List<Atendente> novaListaAtendentes = new List<Atendente>(setAtendentes);
+            List<Bibliotecario> novaListaBibliotecarios = new List<Bibliotecario>(setBibliotecarios);
+            List<Diretor> novaListaDiretores = new List<Diretor>(setDiretores);
+
+            UsuarioData.SalvarAtendentesTxt(novaListaAtendentes);
+            UsuarioData.SalvarBibliotecariosTxt(novaListaBibliotecarios);
+            UsuarioData.SalvarDiretoresTxt(novaListaDiretores);
         }
     }
+}
 

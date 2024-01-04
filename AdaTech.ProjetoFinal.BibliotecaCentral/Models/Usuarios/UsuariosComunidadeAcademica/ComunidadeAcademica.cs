@@ -60,12 +60,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             ComunidadeAcademica other = (ComunidadeAcademica)obj;
             return _matricula == other._matricula;
         }
-
-        //private Emprestimo SolicitarEmprestimo(Livro livro)
-        //{
-
-        //}
-
         internal void AtribuirNovaSenha (DateTime data)
         {
             if (this.TipoUsuario == TipoUsuarioComunidade.Professor)
@@ -80,7 +74,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
                 }
             } else
             {
-                throw new Exception("A senha do aluno deve ser mudada pelo mesmo!");
+                throw new Exception("A senha do usuário deve ser mudada pelo mesmo!");
             }
         }
 

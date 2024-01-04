@@ -23,6 +23,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             var lista = new List<Emprestimo> { emprestimo };
 
             //EmprestimoData.SalvarEmprestimoTxt(lista);
+            //EmprestimoData.IncluirEmprestimos(livro, usuarioComunidadeAcademica);  -> Correto
         }
         private void AprovarEmprestimo(ComunidadeAcademica comunidadeAcademica, Livro livro)
         {
@@ -30,6 +31,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             var lista = new List<Emprestimo> { emprestimo };
 
             //EmprestimoData.SalvarEmprestimoTxt(lista);
+            //EmprestimoData.IncluirEmprestimos(livro, usuarioComunidadeAcademica);  -> Correto
         }
         internal void VerificarEmprestimo(ComunidadeAcademica comunidadeAcademica, Livro livro, ReservaLivro reserva = null)
         {

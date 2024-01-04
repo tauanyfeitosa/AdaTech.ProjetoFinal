@@ -91,6 +91,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
                 {
                     _livro = livro;
                     _usuarioComunidadeAcademica = usuarioComunidadeAcademica;
+                    //_livro.ExemplaresDisponiveis--;
                 }
                                 
                 _mauEstado = false;
@@ -98,8 +99,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
                 _dataDevolucaoPrevista = _dataEmprestimo.AddDays(7);
                 _devolucao = devolucao;
                 _renovacoes = 3;
-                _livro.ExemplaresDisponiveis--;
-                //EmprestimoData.IncluirEmprestimos(livro, usuarioComunidadeAcademica);
+                _livro.ExemplaresDisponiveis--;    //Retirar esse?
 
             }
             catch (Exception ex)
@@ -137,10 +137,15 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
 
         private void CalcularMulta()
         {
-            if (DataDevolucaoUsuario > DataDevolucaoPrevista)
+            if (DataDevolucaoUsuario > DataDevolucaoPrevista || MauEstado == true)
             {
                 _multaAtraso = new Multa(DataDevolucaoUsuario, DataDevolucaoPrevista, MauEstado);
             }
+            else
+            {
+                //EmprestimoData.ExcluirEmprestimos(_livro, _usuarioComunidadeAcademica);
+            }
+
         }
     }
 }

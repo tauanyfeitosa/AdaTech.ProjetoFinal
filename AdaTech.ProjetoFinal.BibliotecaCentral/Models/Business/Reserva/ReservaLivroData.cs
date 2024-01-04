@@ -25,6 +25,18 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
         {
             //_reservasLivros = LerReservasTxt();
         }
+        /*internal static void IncluirReservas(List<ReservaLivro> reservas)
+        {
+            _reservasLivros.AddRange(reservas);
+
+            SalvarReservaLivrosTxt(_reservasLivros);
+        }
+
+        internal static void IncluirReservas(Emprestimo emprestimo, int numero, ComunidadeAcademica usuario)
+        {
+            _reservasLivros.Add(new ReservaLivro(emprestimo, numero, usuario));
+            SalvarReservaLivrosTxt(_reservasLivros);
+        }*/
 
         internal static List<ReservaLivro> ListarReservasUsuario(ComunidadeAcademica usuario)
         {
@@ -156,19 +168,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
                 throw new InvalidOperationException("Não foi possível adicionar a reserva.");
             }
         }
-        //internal static List<ReservaLivro> ListarReservasUsuario(Usuario usuario)
-        //{
-
-
-        //}
-        //internal static void SelecionarReserva(ReservaLivro numeroReserva)
-        //{
-
-        //}
-        //internal static void ExcluirReservas(ReservaLivro numeroReserva)
-        //{
-
-        //}
 
         //internal static Tuple<List<ReservaLivro>, List<ReservaLivro>> LerReservasTxt()
         //{
