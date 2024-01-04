@@ -328,9 +328,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
         #endregion
 
 
-        #endregion
-
-
         #region Lógica Painel Diretor
         private Panel CriarPainelDiretor(Panel painelDiretor)
         {

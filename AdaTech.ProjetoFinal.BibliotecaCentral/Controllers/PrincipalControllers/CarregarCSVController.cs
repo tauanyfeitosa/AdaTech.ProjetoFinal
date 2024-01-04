@@ -132,37 +132,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalController
             }
         }
 
-        internal static void CarregarCSVLivro(string caminhoDoArquivoCSV)
-        {
-            try
-            {
-                List<Livro> livrosParaAdd = new List<Livro>();
-
-                string[] linhasCSV = File.ReadAllLines(caminhoDoArquivoCSV);
-
-                foreach (string linhaCSV in linhasCSV)
-                {
-                    string[] valoresCSV = linhaCSV.Split(',');
-
-                    var linhaString = string.Join(",", valoresCSV);
-
-                    var Livro = LivroData.ConverterLinhaParaLivro(linhaString);
-
-                    livrosParaAdd.Add(Livro);
-
-                }
-
-                MessageBox.Show($"Num livros: {livrosParaAdd.Count} \n");
-
-                LivroData.IncluirLivros(livrosParaAdd);
-
-            }
-            catch
-            {
-                MessageBox.Show("Erro ao carregar arquivo CSV. Verifique se está no formato correto: titulo, autor, isbn, anoPublicacao, edicao, editora, exemplares, exemplaresDisponiveis, livrosBomEstado, livrosEstadoMediano, livrosMauEstado, tipoAcervoLivro");
-            }
-        }
-
         internal static void CarregarCSVEmprestimo(string caminhoDoArquivoCSV, string caminhoArquivoTxt)
         {
             try

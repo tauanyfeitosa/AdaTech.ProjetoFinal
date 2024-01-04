@@ -148,7 +148,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
             }
             catch (Exception ex)
             {
-                MessageBox.Show$"Erro ao salvar as alterações no arquivo: {ex.Message}");
+                MessageBox.Show($"Erro ao salvar as alterações no arquivo: {ex.Message}");
             }
         }
 
