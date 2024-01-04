@@ -19,21 +19,29 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
         private static readonly string _DIRECTORY_PATH = AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug", "\\Data");
         private static readonly string _FILE_PATH = Path.Combine(_DIRECTORY_PATH, "Emprestimo.txt");
 
-        internal static List<Emprestimo> EmprestimoLivros { get => _emprestimoLivros;}
+        internal static List<Emprestimo> EmprestimoLivros { get => _emprestimoLivros; }
 
         static EmprestimoData()
         {
             //_emprestimoLivros = LerEmprestimosTxt();
         }
+        /*internal static void IncluirEmprestimos(List<Emprestimo> emprestimos)
+        {
+            EmprestimoLivros.AddRange(emprestimos);
 
-        //internal List<Emprestimo> SelecionarEmprestimo(ComunidadeAcademica usuario)
-        //{
+            SalvarEmprestimosTxt(_emprestimoLivros);
+        }
 
-        //}
-        //internal List<Emprestimo> SelecionarEmprestimo(Emprestimo emprestimos)
-        //{
+        internal static void IncluirEmprestimos(Livro livroEscolhido, ComunidadeAcademica usuario)
+        {
+            _emprestimoLivros.Add(new Emprestimo(null, livroEscolhido, usuario, false));
+            SalvarEmprestimosTxt(_emprestimoLivros);
+        }
 
-        //}
+        internal static void AtualizarEmprestimos(List<Emprestimo> emprestimos)
+        {
+            SalvarEmprestimosTxt(emprestimos);
+        }*/
         internal static List<Emprestimo> SelecionarEmprestimo(Livro livro)
         {
             return _emprestimoLivros.Where(e => e.Livro == livro).ToList();
@@ -48,7 +56,15 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
         {
             return _emprestimoLivros.Where(e => e.ReservaLivro == reserva).ToList();
         }
-
+        /*internal static void ExcluirEmprestimos(int numeroReservaEmprestimo)
+        {
+            foreach (int numeroReserva in numeroReservaEmprestimo)
+            {
+                Emprestimo emprestimo = _emprestimoLivros.Where(l => l.NumeroReserva == numeroReserva).FirstOrDefault();
+                _emprestimoLivros.Remove(emprestimo);
+                SalvarEmprestimosTxt(_emprestimoLivros);
+            }
+        }*/
         //internal static List<Emprestimo> LerEmprestimosTxt()
         //{
         //    List<Emprestimo> emprestimos = new List<Emprestimo>();
