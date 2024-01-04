@@ -1,4 +1,4 @@
-﻿ using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
+ using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Utilities;
@@ -52,6 +52,20 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
                 return null;
             }
         }
+
+        internal static List<ReservaLivro> ListarTodasReservas()
+        {
+            List<ReservaLivro> reservasUsuarios = new List<ReservaLivro>();
+
+            if (_reservasLivros != null && _reservasLivros.Item1 != null && _reservasLivros.Item2 != null)
+            {
+                reservasUsuarios.AddRange(_reservasLivros.Item1);
+                reservasUsuarios.AddRange(_reservasLivros.Item2);
+            }
+
+            return reservasUsuarios;
+        }
+
         internal static ReservaLivro SelecionarReserva(ReservaLivro reserva, ComunidadeAcademica usuario)
         {
             if (usuario.TipoUsuario == TipoUsuarioComunidade.Professor)
@@ -59,7 +73,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
                 List<ReservaLivro> reservasUsuario = _reservasLivros.Item1.Where
                     (r => r.UsuarioComunidadeAcademica == usuario).ToList();
                 ReservaLivro reservaSelecionada = reservasUsuario
-                    .FirstOrDefault(r =>r.NumeroReserva == reserva.NumeroReserva);
+                    .FirstOrDefault(r => r.NumeroReserva == reserva.NumeroReserva);
                 return reservaSelecionada;
             }
             else if (usuario.TipoUsuario == TipoUsuarioComunidade.Aluno)
@@ -68,7 +82,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
                     (r => r.UsuarioComunidadeAcademica == usuario).ToList();
                 ReservaLivro reservaSelecionada = reservasUsuario
                     .FirstOrDefault(r => r.NumeroReserva == reserva.NumeroReserva);
-                return reservaSelecionada;               
+                return reservaSelecionada;
             }
             else
             {
@@ -76,7 +90,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
             }
         }
 
-        internal static ReservaLivro SelecionarReserva (Emprestimo emprestimo)
+        internal static ReservaLivro SelecionarReserva(Emprestimo emprestimo)
         {
             if (emprestimo.ComunidadeAcademica.TipoUsuario == TipoUsuarioComunidade.Professor)
             {
@@ -130,7 +144,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
             else
             {
                 throw new InvalidOperationException("Não foi possível excluir a reserva.");
-            }   
+            }
         }
 
         internal static void AdicionarReserva(Emprestimo emprestimo, ComunidadeAcademica usuario)

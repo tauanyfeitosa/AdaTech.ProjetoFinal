@@ -1,4 +1,4 @@
-﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalControllers;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalControllers;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData;
 using System;
 using System.Collections.Generic;
