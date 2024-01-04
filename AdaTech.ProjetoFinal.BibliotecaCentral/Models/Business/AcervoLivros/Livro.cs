@@ -135,11 +135,11 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
         {
             get
             {
-                return _edicao;
+                return _livrosMauEstado;
             }
             private set
             {
-                _edicao = value;
+                _livrosMauEstado = value;
             }
         }
 

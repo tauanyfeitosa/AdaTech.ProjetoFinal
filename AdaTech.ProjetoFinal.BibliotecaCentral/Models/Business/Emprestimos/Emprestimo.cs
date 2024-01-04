@@ -20,6 +20,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
         private bool _devolucao;
         private Multa _multaAtraso;
         private int _renovacoes;
+        private bool _mauEstado;
 
         internal ReservaLivro ReservaLivro { get { return _reservaLivro; } }
         internal Livro Livro { get { return _livro; } }
@@ -58,6 +59,17 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
                 _devolucao = value;
             }
         }
+        internal bool MauEstado
+        {
+            get
+            {
+                return _mauEstado;
+            }
+            set
+            {
+                _mauEstado = value;
+            }
+        }
 
 
         internal Emprestimo(ReservaLivro reservaLivro = null, Livro livro = null, ComunidadeAcademica usuarioComunidadeAcademica = null, bool devolucao = false)
@@ -80,14 +92,17 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
                     _livro = livro;
                     _usuarioComunidadeAcademica = usuarioComunidadeAcademica;
                 }
-
+                                
+                _mauEstado = false;
                 _dataEmprestimo = DateTime.Now;
                 _dataDevolucaoPrevista = _dataEmprestimo.AddDays(7);
                 _devolucao = devolucao;
                 _renovacoes = 3;
                 _livro.ExemplaresDisponiveis--;
+                //EmprestimoData.IncluirEmprestimos(livro, usuarioComunidadeAcademica);
 
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -98,6 +113,10 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
             Devolucao = true;
             DataDevolucaoUsuario = DateTime.Now;
             CalcularMulta();
+            if (!MauEstado)
+            {
+                _livro.ExemplaresDisponiveis++;
+            }
         }
 
 
@@ -120,7 +139,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
         {
             if (DataDevolucaoUsuario > DataDevolucaoPrevista)
             {
-                _multaAtraso = new Multa(DataDevolucaoUsuario, DataDevolucaoPrevista);
+                _multaAtraso = new Multa(DataDevolucaoUsuario, DataDevolucaoPrevista, MauEstado);
             }
         }
     }
