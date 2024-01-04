@@ -22,7 +22,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers
             bool verificador = false;
             try
             {
-                if (_telaLogin.TxtUsuario.Text != null && _telaLogin.TxtUsuario.Text == UsuarioData.SelecionarUsuario(_telaLogin.TxtUsuario.Text).Login)
+                if (_telaLogin.TxtUsuario.Text != null && _telaLogin.TxtUsuario.Text == UsuarioData.SelecionarUsuario(_telaLogin.TxtUsuario.Text).Login && UsuarioData.SelecionarUsuario(_telaLogin.TxtUsuario.Text).Ativo == true)
                 {
                     if (UsuarioData.SelecionarUsuario(_telaLogin.TxtUsuario.Text).FazerLogin(_telaLogin.TxtUsuario.Text, _telaLogin.TxtSenha.Text))
                     {
