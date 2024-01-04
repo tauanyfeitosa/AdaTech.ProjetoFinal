@@ -9,7 +9,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
    internal abstract class Usuario
     {
         protected string login, senhaCripto, nomeCompleto, cpf, email;
-        private bool _ehAdmin;
+        private bool _ehAdmin, _ativo;
 
         internal string Login
         { 
@@ -27,6 +27,11 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
         { 
             get { return _ehAdmin;  } 
             set{ if(VerificaEhAdmin()) _ehAdmin = value; }
+        }
+        internal bool Ativo
+        {
+            get { return _ativo; }
+            set { _ativo = value; }
         }
 
         protected Usuario(string senha, string nomeCompleto, string cpf, string email)
