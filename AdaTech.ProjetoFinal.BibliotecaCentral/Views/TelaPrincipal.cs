@@ -325,18 +325,33 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
 
 
             Button btnDevolverLivro = new Button();
-            btnDevolverLivro.Size = new Size(350, 50);
-            btnDevolverLivro.Location = new Point(20, 80);
+            btnDevolverLivro.Size = new Size(300, 50);
+            btnDevolverLivro.Location = new Point(70, 80);
             btnDevolverLivro.Anchor = AnchorStyles.Right;
             btnDevolverLivro.Text = "Devolver Livro";
             btnDevolverLivro.Click += OnClickDevolverLivro;
+
+            Button btnPedirEmprestimo = new Button();
+            btnPedirEmprestimo.Size = new Size(300, 50);
+            btnPedirEmprestimo.Location = new Point(20, 135);
+            btnPedirEmprestimo.Anchor = AnchorStyles.Right;
+            btnPedirEmprestimo.Text = "Solicitar Emprestimo de Livro";
+            btnPedirEmprestimo.Click += OnClickPedirEmprestimo;
+
 
 
             return painelComunidadeAcademica;
         }
 
+        private void OnClickPedirEmprestimo(object sender, EventArgs e)
+        {
+            //Implementar criação da janela Pedir Emprestimo
+            throw new NotImplementedException();
+        }
+
         private void OnClickDevolverLivro(object sender, EventArgs e)
         {
+            //Implementar criação da janela Devolver Livro
             throw new NotImplementedException();
         }
 
