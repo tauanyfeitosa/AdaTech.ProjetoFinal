@@ -324,6 +324,14 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
             btnReservarLivro.Click += OnClickReservarLivro;
 
 
+            Button btnDevolverLivro = new Button();
+            btnDevolverLivro.Size = new Size(350, 50);
+            btnDevolverLivro.Location = new Point(20, 80);
+            btnDevolverLivro.Anchor = AnchorStyles.Right;
+            btnDevolverLivro.Text = "Devolver Livro";
+            btnDevolverLivro.Click += OnClickReservarLivro;
+
+
             return painelComunidadeAcademica;
         }
 
