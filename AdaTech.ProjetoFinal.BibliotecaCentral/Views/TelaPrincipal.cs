@@ -329,10 +329,15 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
             btnDevolverLivro.Location = new Point(20, 80);
             btnDevolverLivro.Anchor = AnchorStyles.Right;
             btnDevolverLivro.Text = "Devolver Livro";
-            btnDevolverLivro.Click += OnClickReservarLivro;
+            btnDevolverLivro.Click += OnClickDevolverLivro;
 
 
             return painelComunidadeAcademica;
+        }
+
+        private void OnClickDevolverLivro(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void OnClickReservarLivro(object sender, EventArgs e)
