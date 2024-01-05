@@ -338,9 +338,21 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
             btnPedirEmprestimo.Text = "Solicitar Emprestimo de Livro";
             btnPedirEmprestimo.Click += OnClickPedirEmprestimo;
 
+            Button btnPesquisarLivro = new Button();
+            btnPesquisarLivro.Size = new Size(300, 50);
+            btnPesquisarLivro.Location = new Point(20, 135);
+            btnPesquisarLivro.Anchor = AnchorStyles.Right;
+            btnPesquisarLivro.Text = "Pesquisar Livro";
+            btnPesquisarLivro.Click += OnClickPesquisarLivro;
 
 
             return painelComunidadeAcademica;
+        }
+
+        private void OnClickPesquisarLivro(object sender, EventArgs e)
+        {
+            //Implementar criação da janela Pedir Emprestimo
+            throw new NotImplementedException();
         }
 
         private void OnClickPedirEmprestimo(object sender, EventArgs e)
