@@ -21,7 +21,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
         private int _livrosMauEstado;
         private TipoAcervoLivro _tipoAcervoLivro;
 
-        internal string Titulo
+        public string Titulo
         {
             get
             {
@@ -32,7 +32,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
                 _titulo = value;
             }
         }
-        internal string Autor
+        public string Autor
         {
             get
             {
@@ -43,7 +43,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
                 _autor = value;
             }
         }
-        internal string Isbn
+        public string Isbn
         {
             get
             {

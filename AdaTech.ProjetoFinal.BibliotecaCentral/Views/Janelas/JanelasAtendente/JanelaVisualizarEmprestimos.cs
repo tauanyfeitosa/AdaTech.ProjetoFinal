@@ -1,4 +1,5 @@
-﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos;
+﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -13,8 +14,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
         {
             InitializeComponent();
             ConfigurarListBox();
-            ExibirEmprestimos();
 
+            VisualizarEmprestimosController controller = new VisualizarEmprestimosController(this);
             this.Text = "Visualizar Empréstimos";
         }
 
@@ -31,14 +32,9 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
             listBoxEmprestimos.DrawItem += ListBoxEmprestimos_DrawItem;
         }
 
-        private void ExibirEmprestimos()
+        public void AdicionarEmprestimoNaListBox(string infoEmprestimo)
         {
-            List<Emprestimo> emprestimos = EmprestimoData.EmprestimoLivros;
-
-            foreach (Emprestimo emprestimo in emprestimos)
-            {
-                listBoxEmprestimos.Items.Add($"Livro: {emprestimo.Livro.Titulo} - Data Empréstimo: {emprestimo.DataEmprestimo.ToShortDateString()} - Data Devolução: {emprestimo.DataDevolucaoUsuario.ToShortDateString()}");
-            }
+            listBoxEmprestimos.Items.Add(infoEmprestimo);
         }
 
         private void ListBoxEmprestimos_MeasureItem(object sender, MeasureItemEventArgs e)

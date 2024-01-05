@@ -1,4 +1,4 @@
-﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData;
+﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -14,8 +14,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
         {
             InitializeComponent();
             ConfigurarListBox();
-            ExibirAlunos();
 
+            VisualizarAlunosController controller = new VisualizarAlunosController(this);
             this.Text = "Visualizar Alunos";
         }
 
@@ -23,7 +23,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
         {
             listBoxAlunos.Dock = DockStyle.Fill;
             listBoxAlunos.ScrollAlwaysVisible = true;
-            listBoxAlunos.SelectionMode = SelectionMode.None; 
+            listBoxAlunos.SelectionMode = SelectionMode.None;
 
             Controls.Add(listBoxAlunos);
 
@@ -32,14 +32,9 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
             listBoxAlunos.DrawItem += ListBoxAlunos_DrawItem;
         }
 
-        private void ExibirAlunos()
+        public void AdicionarAlunoNaListBox(string aluno)
         {
-            List<ComunidadeAcademica> alunos = UsuarioData.ObterAlunos();
-
-            foreach (ComunidadeAcademica aluno in alunos)
-            {
-                listBoxAlunos.Items.Add($"{aluno.NomeCompleto} - {aluno.Matricula} - {aluno.Curso}");
-            }
+            listBoxAlunos.Items.Add(aluno);
         }
 
         private void ListBoxAlunos_MeasureItem(object sender, MeasureItemEventArgs e)

@@ -28,7 +28,15 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
 
         internal  static string FilePathCA { get => _FILE_PATH_CA; }
 
-        static UsuarioData()
+        //static UsuarioData()
+        //{
+        //    _diretores = LerDiretoresTxt();
+        //    _bibliotecarios = LerBibliotecariosTxt();
+        //    _atendentes = LerAtendentesTxt();
+        //    _comunidadeAcademica = LerComunidadeAcademicaTxt();
+        //}
+
+        internal static void CarregarUsuarios()
         {
             _diretores = LerDiretoresTxt();
             _bibliotecarios = LerBibliotecariosTxt();
@@ -56,6 +64,22 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
             get { return _comunidadeAcademica; }
         }
 
+        internal static List<ComunidadeAcademica> ListarCA (TipoUsuarioComunidade tipoUsuario)
+        {
+            return _comunidadeAcademica.Where(u => u.TipoUsuario == tipoUsuario).ToList();
+        }
+
+
+        internal static List<Funcionario> ObterFuncionarios()
+        {
+            List<Funcionario> funcionarios = new List<Funcionario>();
+
+            funcionarios.AddRange(_atendentes);
+            funcionarios.AddRange(_bibliotecarios);
+            funcionarios.AddRange(_diretores);
+
+            return funcionarios;
+        }
 
         internal static void IncluirUsuario(Usuario usuario)
         {
@@ -231,6 +255,14 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
             if (usuario != null) return usuario;
 
             usuario = _comunidadeAcademica.Where(u => u.Login == login).FirstOrDefault();
+            if (usuario != null) return usuario;
+
+            throw new InvalidOperationException("Usuário não encontrado.");
+        }
+
+        internal static ComunidadeAcademica SelecionarUsuarioCA (string cpf)
+        {
+            ComunidadeAcademica usuario = _comunidadeAcademica.Where(u => u.Cpf == cpf).FirstOrDefault();
             if (usuario != null) return usuario;
 
             throw new InvalidOperationException("Usuário não encontrado.");

@@ -16,9 +16,19 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
         private static readonly string _DIRECTORY_PATH = AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug", "\\Data");
         private static readonly string _FILE_PATH = Path.Combine(_DIRECTORY_PATH, "Livros.txt");
 
-        static LivroData()
+        //static LivroData()
+        //{
+        //    _acervoLivros = LerLivrosTxt();
+        //}
+
+        internal static void CarregarLivros()
         {
             _acervoLivros = LerLivrosTxt();
+        }
+
+        internal static List<Livro> ObterLivros()
+        {
+            return _acervoLivros;
         }
 
         public static List<Livro> AcervoLivros
@@ -48,7 +58,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
 
         internal static List<Livro> ListarLivros(TipoAcervoLivro? tipoAcervoLivro)
         {
-            List<Livro> livrosAcervo = _acervoLivros.Where(l => l.TipoAcervoLivro == tipoAcervoLivro).ToList();
+            List<Livro> livrosAcervo = _acervoLivros.Where(l => l.TipoAcervoLivro == tipoAcervoLivro && l.ExemplaresDisponiveis > 0).ToList();
             return livrosAcervo;
         }
 
@@ -64,7 +74,15 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
 
         internal static Livro SelecionarLivro(string isbn)
         {
-            return _acervoLivros.Where(l => l.Isbn == isbn).FirstOrDefault();
+            Livro livro = _acervoLivros.Where(l => l.Isbn == isbn).FirstOrDefault();
+            if (livro != null)
+            {
+                return livro;
+            }
+            else
+            {
+                throw new InvalidOperationException("O livro não existe no acervo.");
+            }
         }
 
         internal static List<Livro> SelecionarLivro()
