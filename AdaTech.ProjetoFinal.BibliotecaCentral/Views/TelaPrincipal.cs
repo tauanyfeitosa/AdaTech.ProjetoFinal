@@ -316,7 +316,21 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
         {
             painelComunidadeAcademica.Controls.Clear();
 
+            Button btnReservarLivro = new Button();
+            btnReservarLivro.Size = new Size(300, 50);
+            btnReservarLivro.Location = new Point(20, 80);
+            btnReservarLivro.Anchor = AnchorStyles.Right;
+            btnReservarLivro.Text = "Criar Reserva";
+            btnReservarLivro.Click += OnClickReservarLivro;
+
+
             return painelComunidadeAcademica;
+        }
+
+        private void OnClickReservarLivro(object sender, EventArgs e)
+        {
+            //Implementar criação da janela criar reserva
+            throw new NotImplementedException();
         }
         #endregion
 
