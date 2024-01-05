@@ -69,27 +69,31 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
 
         //}
 
-        internal void AtribuirNovaSenha (DateTime data)
+        internal void AtribuirNovaSenha ()
         {
             if (this.TipoUsuario == TipoUsuarioComunidade.Professor)
             {
-                if (data.Day == 25)
+                if (DateTime.Now.Day == 25)
                 {
                     this.SenhaCripto = CriptografarSenha(_senhaNova);
                 }
-                else if (data.Day - DateTime.Now.Day == 10)
+                else if (25 - DateTime.Now.Day == 11)
+                {
+                    GerarNovaSenha(DateTime.Now);
+                }
+                else if (25 - DateTime.Now.Day == 10)
                 {
                     MessageBox.Show($"A nova senha de entrada será: {_senhaNova}");
                 }
             } else
             {
-                throw new Exception("A senha do aluno deve ser mudada pelo mesmo!");
+                throw new Exception("A senha do professor deve ser mudada pelo mesmo!");
             }
         }
 
         private void GerarNovaSenha (DateTime data)
         {
-            if (data.Day - 25 == 11)
+            if (25 - data.Day == 11)
             {
                 string uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
                 string lowercaseChars = "abcdefghijklmnopqrstuvwxyz";

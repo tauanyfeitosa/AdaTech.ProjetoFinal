@@ -422,6 +422,9 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
         #region Lógica Painel Comunidade Acadêmica
         private Panel CriarPainelComunidadeAcademica(Panel painelComunidadeAcademica)
         {
+            ComunidadeAcademica professor = UsuarioData.SelecionarComunidadeAcademica(_usuarioLogado.Login);
+            professor.AtribuirNovaSenha();
+
             painelComunidadeAcademica.Controls.Clear();
 
             return painelComunidadeAcademica;
