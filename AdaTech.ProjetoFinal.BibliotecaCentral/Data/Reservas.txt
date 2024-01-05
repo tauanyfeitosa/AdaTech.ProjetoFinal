@@ -1,2 +1,2 @@
-A Revolução dos Bichos, George Orwell, 9788578270262,1945,1, Companhia das Letras,70,33,20,10,1,AcervoParticular,9868d2d6946d854e5a39d2a4c5bff4ef102fb58200d04b1fab6355af427f635e,Juliana Costa,11234567899,juliana.costa@email.com,2021012,Letras,Professor
-O Senhor dos Anéis, J.R.R. Tolkien, 9780544003415,1954,1, HarperCollins,100,48,30,15,1,AcervoPublico,208486ae4072c024ab6db7c438bd394b8d0ec95d25656e05c61528e10d40b363,Amanda Santos,23456789011,amanda.santos@email.com,2021004,Arquitetura e Urbanismo,Aluno
+1,23456789011,2024-01-05
+2,11234567899,2024-01-05

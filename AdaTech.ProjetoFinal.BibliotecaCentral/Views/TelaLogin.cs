@@ -5,6 +5,9 @@ using AdaTech.ProjetoFinal.BibliotecaCentral.Controllers;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Views;
 using System.Collections.Generic;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral
 {
@@ -26,11 +29,13 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
         [STAThread]
         public static void Main(string[] args)
         {
+            LivroData.CarregarLivros();
+            UsuarioData.CarregarUsuarios();
+            EmprestimoData.CarregarEmprestimos();
+            ReservaLivroData.CarregarReservas();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new TelaLogin());
-
-
         }
 
         public TelaLogin()

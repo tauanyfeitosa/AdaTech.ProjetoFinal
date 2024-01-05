@@ -1,4 +1,4 @@
-﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData;
+﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -14,8 +14,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
         {
             InitializeComponent();
             ConfigurarListBox();
-            ExibirProfessores();
 
+            VisualizarProfessoresController controller = new VisualizarProfessoresController(this);
             this.Text = "Visualizar Professores";
         }
 
@@ -32,14 +32,9 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
             listBoxProfessores.DrawItem += ListBoxProfessores_DrawItem;
         }
 
-        private void ExibirProfessores()
+        public void AdicionarProfessorNaListBox(string professor)
         {
-            List<ComunidadeAcademica> professores = UsuarioData.ObterProfessores();
-
-            foreach (ComunidadeAcademica professor in professores)
-            {
-                listBoxProfessores.Items.Add($"{professor.NomeCompleto} - {professor.Matricula} - {professor.Curso}");
-            }
+            listBoxProfessores.Items.Add(professor);
         }
 
         private void ListBoxProfessores_MeasureItem(object sender, MeasureItemEventArgs e)

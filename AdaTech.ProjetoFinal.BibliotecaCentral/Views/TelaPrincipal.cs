@@ -26,7 +26,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
 
         internal TelaPrincipal(Usuario usuario)
         {
-            //EmprestimoData.testeEmprestimo();
             Load += OnLoad;
             FormClosing += OnFormClosing;
             this._usuarioLogado = usuario;
@@ -186,10 +185,21 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
 
             Button btnVisualizarEmprestimos = new Button();
             btnVisualizarEmprestimos.Size = new Size(150, 20);
-            btnVisualizarEmprestimos.Location = new Point(20, 80);
+            btnVisualizarEmprestimos.Location = new Point(20,110);
             btnVisualizarEmprestimos.Anchor = AnchorStyles.Right;
             btnVisualizarEmprestimos.Text = "Visualizar Empréstimos";
             btnVisualizarEmprestimos.Click += OnClickVisualizarEmprestimos;
+
+            #endregion
+
+            #region Botão Iniciar Emprestimo
+
+            Button btnIniciarEmprestimo = new Button();
+            btnIniciarEmprestimo.Size = new Size(150, 20);
+            btnIniciarEmprestimo.Location = new Point(20, 360);
+            btnIniciarEmprestimo.Anchor = AnchorStyles.Right;
+            btnIniciarEmprestimo.Text = "Iniciar Empréstimo";
+            btnIniciarEmprestimo.Click += OnClickIniciarEmprestimo; 
 
             #endregion
 
@@ -200,6 +210,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
             painelAtendente.Controls.Add(btnCarregarCSVReserva);
             painelAtendente.Controls.Add(btnVisualizarEmprestimos);
             painelAtendente.Controls.Add(_bntVisualizarReservas);
+            painelAtendente.Controls.Add(btnIniciarEmprestimo);
 
             return painelAtendente;
         }
@@ -278,6 +289,12 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
 
             }
         }
+
+        private void OnClickIniciarEmprestimo(object sender, EventArgs e)
+        {
+            JanelaIniciarEmprestimo janelaIniciarEmprestimo = new JanelaIniciarEmprestimo();
+            janelaIniciarEmprestimo.ShowDialog();
+        }
         #endregion
 
         #endregion
@@ -288,8 +305,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
         {
             painelBibliotecario.Controls.Clear();
 
-            #region Botão Adicionar Livro
-            Button btnAdicionarLivro = new Button();
+            #region Botão Carregar CSV Livro
 
             Button btnCarregarCSV = new Button();
             btnCarregarCSV.Size = new Size(300, 50);
@@ -297,9 +313,18 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
             btnCarregarCSV.Anchor = AnchorStyles.Right;
             btnCarregarCSV.Text = "Carregar CSV - Adicionar Livro";
             btnCarregarCSV.Click += OnClickCarregarCSVLivro;
+
             #endregion
 
+            Button btnVisualizarLivros = new Button();
+            btnVisualizarLivros.Size = new Size(150, 20);
+            btnVisualizarLivros.Location = new Point(20, 50);
+            btnVisualizarLivros.Anchor = AnchorStyles.Right;
+            btnVisualizarLivros.Text = "Visualizar Livros";
+            btnVisualizarLivros.Click += OnClickVisualizarLivros;
+
             painelBibliotecario.Controls.Add(btnCarregarCSV);
+            painelBibliotecario.Controls.Add(btnVisualizarLivros);
 
             return painelBibliotecario;
         }
@@ -324,6 +349,12 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
             }
         }
 
+        private void OnClickVisualizarLivros(object sender, EventArgs e)
+        {
+            JanelaVisualizarLivros visualizarLivros = new JanelaVisualizarLivros();
+            visualizarLivros.ShowDialog();
+        }
+
         #endregion
         #endregion
 
@@ -340,7 +371,15 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
             btnAdicionarFuncionarios.Text = "Adicionar Funcionários - CSV";
             btnAdicionarFuncionarios.Click += OnClickAdicionarFuncionarios;
 
+            Button btnVisualizarFuncionarios = new Button();
+            btnVisualizarFuncionarios.Size = new Size(150, 20);
+            btnVisualizarFuncionarios.Location = new Point(20, 80);
+            btnVisualizarFuncionarios.Anchor = AnchorStyles.Right;
+            btnVisualizarFuncionarios.Text = "Visualizar Funcionários";
+            btnVisualizarFuncionarios.Click += OnClickVisualizarFuncionarios;
+
             painelDiretor.Controls.Add(btnAdicionarFuncionarios);
+            painelDiretor.Controls.Add(btnVisualizarFuncionarios);
 
             painelDiretor.Controls.Add(_bntVisualizarReservas);
 
@@ -369,6 +408,12 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
                 _telaPrincipalController.CarregarCSV(caminhoArquivoCSV, caminhoArquivoTxt, _usuarioLogado);
 
             }
+        }
+
+        private void OnClickVisualizarFuncionarios(object sender, EventArgs e)
+        {
+            JanelaVisualizarFuncionarios visualizarFuncionarios = new JanelaVisualizarFuncionarios();
+            visualizarFuncionarios.ShowDialog();
         }
 
         #endregion

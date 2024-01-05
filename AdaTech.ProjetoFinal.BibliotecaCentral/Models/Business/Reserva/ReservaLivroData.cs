@@ -8,10 +8,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosComunidadeAcademica;
-using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
 using System.Windows.Forms;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
 {
@@ -22,7 +21,13 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
         private static readonly string _DIRECTORY_PATH = AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug", "\\Data");
         private static readonly string _FILE_PATH = Path.Combine(_DIRECTORY_PATH, "Reservas.txt");
 
-        static ReservaLivroData()
+        //static ReservaLivroData()
+        //{
+        //    _reservasLivros = new Tuple<List<ReservaLivro>, List<ReservaLivro>>(new List<ReservaLivro>(), new List<ReservaLivro>());
+        //    LerReservasTxt();
+        //}
+
+        internal static void CarregarReservas()
         {
             _reservasLivros = new Tuple<List<ReservaLivro>, List<ReservaLivro>>(new List<ReservaLivro>(), new List<ReservaLivro>());
             LerReservasTxt();
@@ -52,6 +57,21 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
                 return null;
             }
         }
+
+        internal static List<ReservaLivro> ListarReservasAprovadas(DateTime data)
+        {
+            List<ReservaLivro> reservaProfessor = _reservasLivros.Item1
+                .Where(r => r.StatusReserva == StatusReserva.Aprovada && r.DataRetirarLivro.Date == data.Date)
+                .ToList();
+            List<ReservaLivro> reservaAluno = _reservasLivros.Item2.Where
+                (r => r.StatusReserva == StatusReserva.Aprovada && r.DataRetirarLivro.Date == data.Date)
+                .ToList();
+            List<ReservaLivro> reservasAprovadas = new List<ReservaLivro>();
+            reservasAprovadas.AddRange(reservaProfessor);
+            reservasAprovadas.AddRange(reservaAluno);
+            return reservasAprovadas;
+        }
+
 
         internal static List<ReservaLivro> ListarTodasReservas()
         {
@@ -147,17 +167,22 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
             }
         }
 
-        internal static void AdicionarReserva(Emprestimo emprestimo, ComunidadeAcademica usuario)
+        internal static void AdicionarReserva(ReservaLivro reserva)
         {
-            if (emprestimo.ComunidadeAcademica.TipoUsuario == TipoUsuarioComunidade.Professor)
+            if (reserva != null)
             {
-                var numeroReserva = _reservasLivros.Item1.Count;
-                _reservasLivros.Item1.Add(new ReservaLivro(emprestimo, numeroReserva, usuario));
-            }
-            else if (emprestimo.ComunidadeAcademica.TipoUsuario == TipoUsuarioComunidade.Aluno)
-            {
-                var numeroReserva = _reservasLivros.Item2.Count;
-                _reservasLivros.Item2.Add(new ReservaLivro(emprestimo, numeroReserva, usuario));
+                if (reserva.UsuarioComunidadeAcademica.TipoUsuario == TipoUsuarioComunidade.Professor)
+                {
+                    var numeroReserva = _reservasLivros.Item1.Count;
+                    reserva.NumeroReserva = numeroReserva;
+                    _reservasLivros.Item1.Add(reserva);
+                }
+                else if (reserva.UsuarioComunidadeAcademica.TipoUsuario == TipoUsuarioComunidade.Aluno)
+                {
+                    var numeroReserva = _reservasLivros.Item2.Count;
+                    reserva.NumeroReserva = numeroReserva;
+                    _reservasLivros.Item2.Add(reserva);
+                }
             }
             else
             {
@@ -189,8 +214,16 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
                 {
                     while (!sr.EndOfStream)
                     {
-                        string linha = sr.ReadLine();
-                        ConverterLinhaParaReservaLivro(linha);
+                        try
+                        {
+                            string linha = sr.ReadLine();
+                            ConverterLinhaParaReservaLivro(linha);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Erro ao ler o arquivo: {ex.Message}");
+                        }
+                        
                     }
                 }
             }
@@ -205,35 +238,21 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
 
             string[] partes = linha.Split(',');
 
-            string titulo = partes[0];
-            string autor = partes[1];
-            string isbn = partes[2];
-            int anoPublicacao = Conversores.StringParaInt(partes[3]);
-            int edicao = Conversores.StringParaInt(partes[4]);
-            string editora = partes[5];
-            int exemplares = Conversores.StringParaInt(partes[6]);
-            int exemplaresDisponiveis = Conversores.StringParaInt(partes[7]);
-            int livrosBomEstado = Conversores.StringParaInt(partes[8]);
-            int livrosEstadoMediano = Conversores.StringParaInt(partes[9]);
-            int livrosMauEstado = Conversores.StringParaInt(partes[10]);
-            TipoAcervoLivro tipoAcervoLivro = Conversores.StringParaTipoAcervoLivro(partes[11]);
+            string idEmprestimo = partes[0];
+            string idUsuario = partes[1];
 
-            var livro = new Livro(titulo, autor, isbn, anoPublicacao, edicao, editora, exemplares, exemplaresDisponiveis, livrosBomEstado, livrosEstadoMediano, livrosMauEstado, tipoAcervoLivro);
+            Emprestimo emprestimo = EmprestimoData.SelecionarEmprestimo(idEmprestimo);
+            ComunidadeAcademica usuarioCA = UsuarioData.SelecionarUsuarioCA(idUsuario);
 
-            string senha = partes[12];
-            string nomeCompleto = partes[13];
-            string cpf = partes[14];
-            string email = partes[15];
-            string matricula = partes[16];
-            string curso = partes[17];
-            TipoUsuarioComunidade tipoUsuario = Conversores.StringParaTipoUsuarioComunidade(partes[18]);
+            var reserva = new ReservaLivro(emprestimo, usuarioCA);
 
-            var usuarioCA = new ComunidadeAcademica(senha, nomeCompleto, cpf, email, matricula, curso, tipoUsuario);
-
-            var emprestimo = new Emprestimo(null, livro, usuarioCA);
-            EmprestimoData.AdicionarEmprestimo(emprestimo);
+            if (partes.Length > 2)
+            {
+                DateTime dataPrevista = DateTime.Parse(partes[2]);
+                reserva.DataRetirarLivro = dataPrevista;
+            }
             
-            AdicionarReserva(emprestimo, usuarioCA); 
+            AdicionarReserva(reserva); 
         }
 
         internal static void SalvarReservaLivrosTxt()
@@ -265,7 +284,11 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
 
         internal static string ConverterReservaLivroParaLinha(ReservaLivro reservaLivro)
         {
-            return $"{LivroData.ConverterLivroParaLinha(reservaLivro.Livro)},{UsuarioData.ConverterComunidadeAcademicaParaLinha(reservaLivro.UsuarioComunidadeAcademica)}";
+            if (reservaLivro.DataRetirarLivro != DateTime.MinValue)
+            {
+                return $"{reservaLivro.Emprestimo.IdEmprestimo},{reservaLivro.UsuarioComunidadeAcademica.Cpf},{reservaLivro.DataRetirarLivro.Date.ToString("yyyy-MM-dd")}";
+            }
+            return $"{reservaLivro.Emprestimo.IdEmprestimo},{reservaLivro.UsuarioComunidadeAcademica.Cpf}";
         }
 
     }
