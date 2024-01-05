@@ -1,4 +1,4 @@
-﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalControllers;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalControllers;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData;
 using System;
 using System.Collections.Generic;
@@ -39,17 +39,30 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers
             }
         }
 
-        internal void CarregarCSV(string caminhoArquivoCSV, string caminhoArquivoTxt, Usuario usuario)
+        internal void CarregarCSV(string caminhoArquivoCSV, string caminhoArquivoTxt, Usuario usuario, string tipoArquivo = null)
         {
+
             if (usuario is Diretor)
             {
-                CarregarCSVController.CarregarCSVFuncionario(caminhoArquivoCSV);
-;
-            }else if (usuario is Atendente)
-            {
-                CarregarCSVController.CarregarCSVComunidadeAcademica(caminhoArquivoCSV, caminhoArquivoTxt);
+                //CarregarCSVController.CarregarCSVFuncionario(caminhoArquivoCSV);
             }
-            else if(usuario is Bibliotecario)
+            else if (usuario is Atendente || tipoArquivo != null)
+            {
+                if (tipoArquivo == "ComunidadeAcademica")
+                {
+                    CarregarCSVController.CarregarCSVComunidadeAcademica(caminhoArquivoCSV, caminhoArquivoTxt);
+                }
+                else if (tipoArquivo == "Emprestimo")
+                {
+                    CarregarCSVController.CarregarCSVEmprestimo(caminhoArquivoCSV, caminhoArquivoTxt);
+                }
+                else if (tipoArquivo == "ReservaLivro")
+                {
+                    CarregarCSVController.CarregarCSVReservaLivro(caminhoArquivoCSV, caminhoArquivoTxt);
+                }
+
+            }
+            else if (usuario is Bibliotecario)
             {
                 CarregarCSVController.CarregarCSVLivro(caminhoArquivoCSV);
             }

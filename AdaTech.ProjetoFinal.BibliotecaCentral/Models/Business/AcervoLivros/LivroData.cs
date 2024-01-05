@@ -1,4 +1,4 @@
-﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Utilities;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Utilities;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -29,7 +29,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
         internal static void IncluirLivros(List<Livro> livros)
         {
             AcervoLivros.AddRange(livros);
-
             SalvarLivrosTxt(_acervoLivros);
         }
 
@@ -77,6 +76,22 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
         {
             return _acervoLivros.Where(l => l.ExemplaresDisponiveis == 0).ToList();
         }
+
+        internal static Livro AdicionarLivro(Livro livro)
+        {
+            if (!_acervoLivros.Contains(livro))
+            {
+                _acervoLivros.Add(livro);
+                SalvarLivrosTxt(_acervoLivros);
+            }
+            else
+            {
+                throw new InvalidOperationException("O livro já existe no acervo.");
+            }
+
+            return livro;
+        }
+
 
         internal static List<Livro> LerLivrosTxt()
         {

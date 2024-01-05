@@ -77,6 +77,21 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
             }
         }
 
+        internal static ComunidadeAcademica AdicionarCA(ComunidadeAcademica CA)
+        {
+            if (!_comunidadeAcademica.Contains(CA))
+            {
+                _comunidadeAcademica.Add(CA);
+                SalvarComunidadeAcademicaTxt(_comunidadeAcademica);
+            }
+            else
+            {
+                throw new InvalidOperationException("O livro já existe no acervo.");
+            }
+
+            return CA;
+        }
+
         internal static void IncluirUsuario (List<Usuario> usuarios)
         {
             foreach (Usuario usuario in usuarios)
