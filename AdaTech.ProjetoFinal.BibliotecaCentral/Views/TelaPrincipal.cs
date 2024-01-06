@@ -335,15 +335,34 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
             btnSolicitarLivros.Location = new Point(20, 150);
             btnSolicitarLivros.Anchor = AnchorStyles.Right;
             btnSolicitarLivros.Text = "Solicitar Novos Livros";
-            btnSolicitarLivros.Click += OnClickSolicitarLivros; 
+            btnSolicitarLivros.Click += OnClickSolicitarLivros;
 
             #endregion
 
+            #region Botão Visualizar Solicitações de Livros Novos
+
+            Button btnVisualizarSolicitacoesLivrosNovos = new Button(); 
+            btnVisualizarSolicitacoesLivrosNovos.AutoSize = true;
+            btnVisualizarSolicitacoesLivrosNovos.Location = new Point(20, 180);
+            btnVisualizarSolicitacoesLivrosNovos.Anchor = AnchorStyles.Left;
+            btnVisualizarSolicitacoesLivrosNovos.Text = "Visualizar Solicitações de Lotes";
+            btnVisualizarSolicitacoesLivrosNovos.Click += OnClickVisualizarSolicitacoesLivros;
+
+            #endregion
+
+            Button btnSolicitarMudarAcervo = new Button();
+            btnSolicitarMudarAcervo.Size = new Size(150, 20);
+            btnSolicitarMudarAcervo.Location = new Point(20, 210);
+            btnSolicitarMudarAcervo.Anchor = AnchorStyles.Right;
+            btnSolicitarMudarAcervo.Text = "Solicitar Mudar de Acervo";
+            btnSolicitarMudarAcervo.Click += OnClickSolicitarMudarAcervo;
 
 
             painelBibliotecario.Controls.Add(btnCarregarCSV);
             painelBibliotecario.Controls.Add(btnVisualizarLivros);
             painelBibliotecario.Controls.Add(btnSolicitarLivros);
+            painelBibliotecario.Controls.Add(btnVisualizarSolicitacoesLivrosNovos);
+            painelBibliotecario.Controls.Add(btnSolicitarMudarAcervo);
 
             return painelBibliotecario;
         }
@@ -378,6 +397,18 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
         {
             JanelaSolicitarLivros solicitarLivros = new JanelaSolicitarLivros (_usuarioLogado);
             solicitarLivros.ShowDialog();
+        }
+
+        private void OnClickVisualizarSolicitacoesLivros (Object sender, EventArgs e)
+        {
+            JanelaVisualizarSolicitacoesLivros visualizarSolicitacoesLivros = new JanelaVisualizarSolicitacoesLivros(_usuarioLogado);
+            visualizarSolicitacoesLivros.ShowDialog();
+        }
+
+        private void OnClickSolicitarMudarAcervo(Object sender, EventArgs e)
+        {
+            JanelaSolicitarMudarAcervo solicitarMudarAcervo = new JanelaSolicitarMudarAcervo(_usuarioLogado);
+            solicitarMudarAcervo.ShowDialog();
         }
 
         #endregion

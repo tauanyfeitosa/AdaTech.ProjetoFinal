@@ -93,5 +93,10 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Solicitacoes
             }
         }
 
+        internal static List<SolicitacaoRequisicaoLivros> SelecionarRequisicoes (Bibliotecario bibliotecario)
+        {
+            return solicitacaoRequisicaoLivros.Where(s => s.Bibliotecario == bibliotecario).ToList();
+        }
+
     }
 }

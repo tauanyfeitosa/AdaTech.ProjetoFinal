@@ -27,11 +27,20 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalController
             {
                 SolicitacoesData.CriarSolicitacao(TipoSolicitacao.RequisicaoLivro, livroSelecionado, tipoAcervoSelecionado, descricao, bibliotecario);
                 MessageBox.Show("Solicitação criada com sucesso!");
+                LimparFormulario();
             }
             else
             {
                 MessageBox.Show("Você não tem permissão para criar solicitações.");
             }
         }
+
+        private void LimparFormulario()
+        {
+            view.CmbLivro.SelectedIndex = -1;
+            view.CmbTipoAcervo.SelectedIndex = 0; 
+            view.TxtDescricao.Text = string.Empty;
+        }
     }
+
 }
