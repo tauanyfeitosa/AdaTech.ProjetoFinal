@@ -23,8 +23,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers
             foreach (Emprestimo emprestimo in emprestimos)
             {
                 string infoEmprestimo = emprestimo.DataDevolucaoUsuario != DateTime.MinValue
-                    ? $"Livro: {emprestimo.Livro.Titulo} - Data Empréstimo: {emprestimo.DataEmprestimo.ToShortDateString()} - Data Devolução: {emprestimo.DataDevolucaoUsuario.ToShortDateString()}"
-                    : $"Livro: {emprestimo.Livro.Titulo} - Data Empréstimo: {emprestimo.DataEmprestimo.ToShortDateString()} - Data Devolução Prevista: {emprestimo.DataDevolucaoPrevista.ToShortDateString()}";
+                    ? $"Livro: {emprestimo.Livro.Titulo} - Data Empréstimo: {emprestimo.DataEmprestimo.ToShortDateString()} - Data Devolução: {emprestimo.DataDevolucaoUsuario.ToShortDateString()} - Id Emprestimo: {emprestimo.IdEmprestimo}"
+                    : $"Livro: {emprestimo.Livro.Titulo} - Data Empréstimo: {emprestimo.DataEmprestimo.ToShortDateString()} - Data Devolução Prevista: {emprestimo.DataDevolucaoPrevista.ToShortDateString()} - Id Emprestimo: {emprestimo.IdEmprestimo}";
 
                 form.AdicionarEmprestimoNaListBox(infoEmprestimo);
             }

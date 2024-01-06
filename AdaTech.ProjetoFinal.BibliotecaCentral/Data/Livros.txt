@@ -11,7 +11,7 @@ A Arte da Guerra,Sun Tzu,9788573260743,500,1,Martin Claret,105,52,32,15,2,Acervo
 Crime e Castigo,Fiódor Dostoiévski,9788573260996,1866,1,Martin Claret,85,42,27,12,2,AcervoRestrito
 A Moreninha,Joaquim Manuel de Macedo,9788525410986,1844,1,L&PM Pocket,65,32,20,10,1,AcervoPublico
 A Metamorfose,Franz Kafka,9788525405616,1915,1,L&PM Pocket,75,38,24,10,1,AcervoRestrito
-O Retrato de Dorian Gray,Oscar Wilde,9788582183109,1890,1,L&PM Pocket,70,35,22,8,1,AcervoRestrito
+O Retrato de Dorian Gray,Oscar Wilde,9788582183109,1890,1,L&PM Pocket,70,35,22,8,1,AcervoPublico
 O Processo,Franz Kafka,9788535914849,1925,1,Companhia das Letras,80,40,25,10,2,AcervoParticular
 As Crônicas de Nárnia: O Leão a Feiticeira e o Guarda-Roupa,C.S. Lewis,9788578270698,1950,1,Martins Fontes,100,50,30,15,1,AcervoPublico
 O Hobbit,J.R.R. Tolkien,9788578273026,1937,1,WMF Martins Fontes,95,48,28,12,1,AcervoParticular
@@ -48,7 +48,7 @@ Introduction to the Theory of Computation,Michael Sipser,9781133187790,2005,3,Ce
 Design Patterns: Elements of Reusable Object-Oriented Software,Erich Gamma,9780201633610,1994,1,Addison-Wesley Professional,60,35,20,10,3,AcervoRestrito
 Code Complete: A Practical Handbook of Software Construction,Steve McConnell,9780735619678,2004,2,Microsoft Press,55,30,18,7,3,AcervoRestrito
 Cracking the Coding Interview, Gayle Laakmann McDowell,0984782850,2011,5,CareerCup,65,40,22,10,3,AcervoRestrito
-The Pragmatic Programmer: Your Journey To Mastery 20th Anniversary Edition,David Thomas,9780135957059,1999,2,Addison-Wesley Professional,50,30,18,8,3,AcervoRestrito
+The Pragmatic Programmer: Your Journey To Mastery,20th Anniversary Edition,David Thomas,9780135957059,1999,2,Addison-Wesley Professional,50,30,18,8,3,AcervoRestrito
 Head First Design Patterns: A Brain-Friendly Guide,Eric Freeman,9780596007126,2004,1,O'Reilly Media,55,35,20,8,3,AcervoPublico
 Refactoring: Improving the Design of Existing Code,Martin Fowler,9780134757599,2018,2,Addison-Wesley Professional,40,25,15,7,3,AcervoRestrito
 Artificial Intelligence: A Modern Approach,Stuart Russell,9780134610993,2016,4,Pearson,60,35,20,10,2,AcervoPublico
@@ -58,7 +58,7 @@ The Mythical Man-Month: Essays on Software Engineering,Frederick P. Brooks Jr.,9
 Computer Networking: A Top-Down Approach,James Kurose,9780133594140,2016,7,Pearson,60,35,20,10,2,AcervoPublico
 Deep Learning,Yoshua Bengio,9780262035613,2016,1,MIT Press,45,30,18,8,3,AcervoRestrito
 Designing Data-Intensive Applications,Martin Kleppmann,9781449373320,2017,1,O'Reilly Media,50,30,18,8,3,AcervoRestrito
-Clean Agile: Back to Basics,Robert C. Martin,9780135781869,2020,1,Prentice Hall,35,20,12,5,3,AcervoRestrito
+Clean Agile: Back to Basics,Robert C. Martin,9780135781869,2020,1,Prentice Hall,35,20,12,5,3,AcervoPublico
 Introduction to Algorithms,Thomas H. Cormen,9780262533058,2009,3,MIT Press,60,35,20,10,2,AcervoPublico
 Artificial Intelligence: Structures and Strategies for Complex Problem Solving,George F. Luger,9780321545893,2008,6,Pearson,40,25,15,7,3,AcervoRestrito
 Effective Java,Joshua Bloch,9780134685991,2018,4,Addison-Wesley Professional,55,30,18,7,3,AcervoRestrito
