@@ -43,7 +43,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasDiretor
 
             foreach (var item in reservas)
             {
-                listBoxReserva.Items.Add(item.ToString();
+                listBoxReserva.Items.Add(item.ToString());
             }
         }
 

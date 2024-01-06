@@ -153,6 +153,18 @@
     <Compile Include="Views\Janelas\JanelasDiretor\JanelaVisualizarFuncionarios.Designer.cs">
       <DependentUpon>JanelaVisualizarFuncionarios.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Janelas\JanelasDiretor\JanelaVisualizarSolicitacoes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Janelas\JanelasDiretor\JanelaVisualizarSolicitacoes.Designer.cs">
+      <DependentUpon>JanelaVisualizarSolicitacoes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Janelas\JanelasDiretor\MessageBoxCustomizada.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Janelas\JanelasDiretor\MessageBoxCustomizada.Designer.cs">
+      <DependentUpon>MessageBoxCustomizada.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\TelaPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>

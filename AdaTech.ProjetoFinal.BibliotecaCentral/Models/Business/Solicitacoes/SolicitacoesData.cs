@@ -103,6 +103,16 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Solicitacoes
             return solicitacoesMudarAcervo.Where(s => s.Bibliotecario == bibliotecario).ToList();
         }
 
+        internal static List<SolicitacaoRequisicaoLivros> SelecionarRequisicaoLivros ()
+        {
+            return solicitacaoRequisicaoLivros;
+        }
+
+        internal static List<SolicitacaoMudarAcervoLivro> SelecionarMudancaAcervo ()
+        {
+            return solicitacoesMudarAcervo;
+        }
+
 
     }
 }
