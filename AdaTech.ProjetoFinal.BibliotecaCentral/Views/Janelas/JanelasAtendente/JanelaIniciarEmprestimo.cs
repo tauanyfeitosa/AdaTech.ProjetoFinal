@@ -28,12 +28,43 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
         private void InicializarDataGrid()
         {
             tabela = new DataGridView();
-            // Existing code...
+
+            tabela.Dock = DockStyle.Fill;
+            tabela.AllowUserToAddRows = false;  
+            tabela.AllowUserToDeleteRows = false;  
+            tabela.ReadOnly = true;  
+
+            DataGridViewTextBoxColumn colunaID = new DataGridViewTextBoxColumn();
+            colunaID.HeaderText = "ID";
+            colunaID.DataPropertyName = "NumeroReserva";  
+            tabela.Columns.Add(colunaID);
+
+            DataGridViewTextBoxColumn colunaLivro = new DataGridViewTextBoxColumn();
+            colunaLivro.HeaderText = "Livro";
+            colunaLivro.DataPropertyName = "LivroTitulo";  
+            tabela.Columns.Add(colunaLivro);
+
+            DataGridViewTextBoxColumn colunaAutor = new DataGridViewTextBoxColumn();
+            colunaAutor.HeaderText = "Autor";
+            colunaAutor.DataPropertyName = "LivroAutor";  
+            tabela.Columns.Add(colunaAutor);
+
+            DataGridViewTextBoxColumn colunaUsuario = new DataGridViewTextBoxColumn();
+            colunaUsuario.HeaderText = "Usuario";
+            colunaUsuario.DataPropertyName = "UsuarioNome";  
+            tabela.Columns.Add(colunaUsuario);
+
+            DataGridViewTextBoxColumn colunaTipoUsuario = new DataGridViewTextBoxColumn();
+            colunaTipoUsuario.HeaderText = "Tipo de Usuário";
+            colunaTipoUsuario.DataPropertyName = "UsuarioTipo";
+            tabela.Columns.Add (colunaTipoUsuario);
+
 
             tabela.CellClick += (sender, e) => CellClick?.Invoke(sender, new CellClickEventArgs(e.RowIndex, e.ColumnIndex));
 
             Controls.Add(tabela);
         }
+
 
         public void AtualizarTabela(List<ReservaLivro> reservas)
         {

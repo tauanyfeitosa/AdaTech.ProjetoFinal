@@ -56,6 +56,10 @@
     <Compile Include="Controllers\PrincipalControllers\PainelAtendenteController\VisualizarAlunosController.cs" />
     <Compile Include="Controllers\PrincipalControllers\PainelAtendenteController\VisualizarEmprestimoController.cs" />
     <Compile Include="Controllers\PrincipalControllers\PainelAtendenteController\VisualizarProfessoresController.cs" />
+    <Compile Include="Controllers\PrincipalControllers\PainelBibliotecarioController\SolicitarMudarAcervoController.cs" />
+    <Compile Include="Controllers\PrincipalControllers\PainelBibliotecarioController\SolicitarLivrosController.cs" />
+    <Compile Include="Controllers\PrincipalControllers\PainelBibliotecarioController\VisualizarMudancaAcervoController.cs" />
+    <Compile Include="Controllers\PrincipalControllers\PainelBibliotecarioController\VisualizarSolicitacoesLivrosController.cs" />
     <Compile Include="Controllers\TelaInicialController.cs" />
     <Compile Include="Controllers\TelaPrincipalController.cs" />
     <Compile Include="Models\Business\Emprestimos\Emprestimo.cs" />
@@ -114,11 +118,35 @@
     <Compile Include="Views\Janelas\JanelasAtendente\JanelaVisualizarAlunos.Designer.cs">
       <DependentUpon>JanelaVisualizarAlunos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Janelas\JanelasBibliotecario\JanelaSolicitarLivros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Janelas\JanelasBibliotecario\JanelaSolicitarLivros.Designer.cs">
+      <DependentUpon>JanelaSolicitarLivros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Janelas\JanelasBibliotecario\JanelaSolicitarMudarAcervo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Janelas\JanelasBibliotecario\JanelaSolicitarMudarAcervo.Designer.cs">
+      <DependentUpon>JanelaSolicitarMudarAcervo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Janelas\JanelasBibliotecario\JanelaVisualizarLivros.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\Janelas\JanelasBibliotecario\JanelaVisualizarLivros.Designer.cs">
       <DependentUpon>JanelaVisualizarLivros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Janelas\JanelasBibliotecario\JanelaVisualizarMudancaAcervo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Janelas\JanelasBibliotecario\JanelaVisualizarMudancaAcervo.Designer.cs">
+      <DependentUpon>JanelaVisualizarMudancaAcervo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Janelas\JanelasBibliotecario\JanelaVisualizarSolicitacoesLivros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Janelas\JanelasBibliotecario\JanelaVisualizarSolicitacoesLivros.Designer.cs">
+      <DependentUpon>JanelaVisualizarSolicitacoesLivros.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Janelas\JanelasDiretor\JanelaVisualizaReserva.cs">
       <SubType>Form</SubType>
@@ -158,6 +186,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\Janelas\JanelasBibliotecario\JanelaSolicitarLivros.resx">
+      <DependentUpon>JanelaSolicitarLivros.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Janelas\JanelasDiretor\JanelaVisualizaReserva.resx">
       <DependentUpon>JanelaVisualizaReserva.cs</DependentUpon>
     </EmbeddedResource>

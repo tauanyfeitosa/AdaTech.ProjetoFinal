@@ -68,6 +68,13 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
                 this._statusReserva = StatusReserva.LivroRetirado;
             }
         }
+
+        public override string ToString()
+        {
+            return $"- Livro: {Livro.Titulo} " +
+                $"- Requerente: {UsuarioComunidadeAcademica.NomeCompleto} " +
+                $"- Data de retirada prevista: {DataRetirarLivro.ToShortDateString()}}";
+        }
     }
 }
 

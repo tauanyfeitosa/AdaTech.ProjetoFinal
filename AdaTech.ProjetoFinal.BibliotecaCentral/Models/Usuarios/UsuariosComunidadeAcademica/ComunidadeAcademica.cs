@@ -122,5 +122,13 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             Random random = new Random();
             return s[random.Next(s.Length)];
         }
+
+        public override string ToString()
+        {
+            return $"- Nome: {NomeCompleto} " +
+                $"- Matricula: {Matricula} " +
+                $"- Curso: {Curso}" +
+                $"- Tipo do Usuario: {TipoUsuario}";
+        }
     }
 }
