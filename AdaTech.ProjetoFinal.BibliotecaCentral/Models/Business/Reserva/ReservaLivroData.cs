@@ -1,4 +1,4 @@
-﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
+ using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Utilities;
@@ -8,9 +8,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosComunidadeAcademica;
-using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
 using System.Windows.Forms;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
 {
@@ -21,9 +21,21 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
         private static readonly string _DIRECTORY_PATH = AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug", "\\Data");
         private static readonly string _FILE_PATH = Path.Combine(_DIRECTORY_PATH, "Reservas.txt");
 
-        static ReservaLivroData()
+        //static ReservaLivroData()
+        //{
+        //    _reservasLivros = new Tuple<List<ReservaLivro>, List<ReservaLivro>>(new List<ReservaLivro>(), new List<ReservaLivro>());
+        //    LerReservasTxt();
+        //}
+
+        internal static void CarregarReservas()
         {
-            //_reservasLivros = LerReservasTxt();
+            _reservasLivros = new Tuple<List<ReservaLivro>, List<ReservaLivro>>(new List<ReservaLivro>(), new List<ReservaLivro>());
+            LerReservasTxt();
+        }
+
+        internal static Tuple<List<ReservaLivro>, List<ReservaLivro>> GetReservaLivros()
+        {
+            return _reservasLivros;
         }
 
         internal static List<ReservaLivro> ListarReservasUsuario(ComunidadeAcademica usuario)
@@ -45,6 +57,21 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
                 return null;
             }
         }
+
+        internal static List<ReservaLivro> ListarReservasAprovadas(DateTime data)
+        {
+            List<ReservaLivro> reservaProfessor = _reservasLivros.Item1
+                .Where(r => r.StatusReserva == StatusReserva.Aprovada && r.DataRetirarLivro.Date == data.Date)
+                .ToList();
+            List<ReservaLivro> reservaAluno = _reservasLivros.Item2.Where
+                (r => r.StatusReserva == StatusReserva.Aprovada && r.DataRetirarLivro.Date == data.Date)
+                .ToList();
+            List<ReservaLivro> reservasAprovadas = new List<ReservaLivro>();
+            reservasAprovadas.AddRange(reservaProfessor);
+            reservasAprovadas.AddRange(reservaAluno);
+            return reservasAprovadas;
+        }
+
 
         internal static List<ReservaLivro> ListarTodasReservas()
         {
@@ -139,110 +166,130 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
                 throw new InvalidOperationException("Não foi possível excluir a reserva.");
             }
         }
-        internal static void AdicionarReserva(Emprestimo emprestimo, ComunidadeAcademica usuario)
+
+        internal static void AdicionarReserva(ReservaLivro reserva)
         {
-            if (emprestimo.ComunidadeAcademica.TipoUsuario == TipoUsuarioComunidade.Professor)
+            if (reserva != null)
             {
-                var numeroReserva = _reservasLivros.Item1.Count;
-                _reservasLivros.Item1.Add(new ReservaLivro(emprestimo, numeroReserva, usuario));
-            }
-            else if (emprestimo.ComunidadeAcademica.TipoUsuario == TipoUsuarioComunidade.Aluno)
-            {
-                var numeroReserva = _reservasLivros.Item2.Count;
-                _reservasLivros.Item2.Add(new ReservaLivro(emprestimo, numeroReserva, usuario));
+                if (reserva.UsuarioComunidadeAcademica.TipoUsuario == TipoUsuarioComunidade.Professor)
+                {
+                    var numeroReserva = _reservasLivros.Item1.Count;
+                    reserva.NumeroReserva = numeroReserva;
+                    _reservasLivros.Item1.Add(reserva);
+                }
+                else if (reserva.UsuarioComunidadeAcademica.TipoUsuario == TipoUsuarioComunidade.Aluno)
+                {
+                    var numeroReserva = _reservasLivros.Item2.Count;
+                    reserva.NumeroReserva = numeroReserva;
+                    _reservasLivros.Item2.Add(reserva);
+                }
             }
             else
             {
                 throw new InvalidOperationException("Não foi possível adicionar a reserva.");
             }
         }
-        //internal static List<ReservaLivro> ListarReservasUsuario(Usuario usuario)
-        //{
 
 
-        //}
-        //internal static void SelecionarReserva(ReservaLivro numeroReserva)
-        //{
+        /*
+        internal static List<ReservaLivro> ListarReservasUsuario(Usuario usuario)
+        {
 
-        //}
-        //internal static void ExcluirReservas(ReservaLivro numeroReserva)
-        //{
 
-        //}
+        }
+        internal static void SelecionarReserva(ReservaLivro numeroReserva)
+        {
 
-        //internal static Tuple<List<ReservaLivro>, List<ReservaLivro>> LerReservasTxt()
-        //{
-        //    List<ReservaLivro> reservasAluno = new List<ReservaLivro>();
-        //    List<ReservaLivro> reservasProfessor = new List<ReservaLivro>();
+        }
+        internal static void ExcluirReservas(ReservaLivro numeroReserva)
+        {
 
-        //    try
-        //    {
-        //        using (StreamReader sr = new StreamReader(_FILE_PATH))
-        //        {
-        //            while (!sr.EndOfStream)
-        //            {
-        //                string linha = sr.ReadLine();
-        //                ReservaLivro reservaLivro = ConverterLinhaParaReservaLivro(linha);
+        } */
 
-        //                if (reservaLivro.UsuarioComunidadeAcademica.TipoUsuario == TipoUsuarioComunidade.Professor)
-        //                {
-        //                    reservasProfessor.Add(reservaLivro);
-        //                }
+        internal static void LerReservasTxt()
+        {
+            try
+            {
+                using (StreamReader sr = new StreamReader(_FILE_PATH))
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        try
+                        {
+                            string linha = sr.ReadLine();
+                            ConverterLinhaParaReservaLivro(linha);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Erro ao ler o arquivo: {ex.Message}");
+                        }
+                        
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao ler o arquivo: {ex.Message}");
+            }
+        }
 
-        //                reservasAluno.Add(reservaLivro);
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine($"Erro ao ler o arquivo: {ex.Message}");
-        //    }
+        internal static void ConverterLinhaParaReservaLivro(string linha)
+        {
 
-        //    return new Tuple<List<ReservaLivro>, List<ReservaLivro>>(reservasProfessor, reservasAluno);
-        //}
+            string[] partes = linha.Split(',');
 
-        //internal static ReservaLivro ConverterLinhaParaReservaLivro(string linha)
-        //{
-        //    string[] partes = linha.Split(',');
-        //    int numeroReserva = Conversores.StringParaInt(partes[0]);
-        //    string partesLivro = string.Join(",", partes.Skip(1).Take(12));
-        //    Livro livro = LivroData.ConverterLinhaParaLivro(partesLivro);
-        //    string partesCA = string.Join(",", partes.Skip(13).Take(15));
-        //    ComunidadeAcademica usuarioComunidadeAcademica = UsuarioData.ConverterLinhaParaComunidadeAcademica(partesCA);
-        //    DateTime dataRetirada = Conversores.StringParaDateTime(partes[16]);
-        //    DateTime dataReserva = Conversores.StringParaDateTime(partes[17]);
-        //    StatusReserva statusReserva = Conversores.StringParaStatusReserva(partes[18]);
+            string idEmprestimo = partes[0];
+            string idUsuario = partes[1];
 
-        //    // PRECISA COLOCAR STATUS RESERVA
+            Emprestimo emprestimo = EmprestimoData.SelecionarEmprestimo(idEmprestimo);
+            ComunidadeAcademica usuarioCA = UsuarioData.SelecionarUsuarioCA(idUsuario);
 
-        //    return new ReservaLivro(numeroReserva, livro, usuarioComunidadeAcademica, dataReserva);
-        //}
+            var reserva = new ReservaLivro(emprestimo, usuarioCA);
 
-        //internal static void SalvarReservaLivrosTxt(List<ReservaLivro> reservaLivros)
-        //{
-        //    try
-        //    {
-        //        using (StreamWriter sw = new StreamWriter(_FILE_PATH))
-        //        {
-        //            foreach (ReservaLivro reserva in reservaLivros)
-        //            {
-        //                string linha = ConverterReservaLivroParaLinha(reserva);
-        //                sw.WriteLine(linha);
-        //            }
-        //        }
+            if (partes.Length > 2)
+            {
+                DateTime dataPrevista = DateTime.Parse(partes[2]);
+                reserva.DataRetirarLivro = dataPrevista;
+            }
+            
+            AdicionarReserva(reserva); 
+        }
 
-        //        Console.WriteLine("Alterações salvas com sucesso no arquivo.");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine($"Erro ao salvar as alterações no arquivo: {ex.Message}");
-        //    }
-        //}
+        internal static void SalvarReservaLivrosTxt()
+        {
+            try
+            {
+                using (StreamWriter sw = new StreamWriter(_FILE_PATH))
+                {
+                    foreach (ReservaLivro reserva in _reservasLivros.Item1)
+                    {
+                        string linha = ConverterReservaLivroParaLinha(reserva);
+                        sw.WriteLine(linha);
+                    }
 
-        //internal static string ConverterReservaLivroParaLinha(ReservaLivro reservaLivro)
-        //{
-        //    return $"{reservaLivro.NumeroReserva},{LivroData.ConverterLivroParaLinha(reservaLivro.Livro)},{UsuarioData.ConverterComunidadeAcademicaParaLinha(reservaLivro.UsuarioComunidadeAcademica)},{reservaLivro.DataRetirarLivro},{reservaLivro.DataReserva},{reservaLivro.StatusReserva}";
-        //}
+                    foreach (ReservaLivro reserva in _reservasLivros.Item2)
+                    {
+                        string linha = ConverterReservaLivroParaLinha(reserva);
+                        sw.WriteLine(linha);
+                    }
+                }
+
+                MessageBox.Show("Alterações salvas com sucesso no arquivo.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao salvar as alterações no arquivo: {ex.Message}");
+            }
+        }
+
+        internal static string ConverterReservaLivroParaLinha(ReservaLivro reservaLivro)
+        {
+            if (reservaLivro.DataRetirarLivro != DateTime.MinValue)
+            {
+                return $"{reservaLivro.Emprestimo.IdEmprestimo},{reservaLivro.UsuarioComunidadeAcademica.Cpf},{reservaLivro.DataRetirarLivro.Date.ToString("yyyy-MM-dd")}";
+            }
+            return $"{reservaLivro.Emprestimo.IdEmprestimo},{reservaLivro.UsuarioComunidadeAcademica.Cpf}";
+        }
 
     }
 }

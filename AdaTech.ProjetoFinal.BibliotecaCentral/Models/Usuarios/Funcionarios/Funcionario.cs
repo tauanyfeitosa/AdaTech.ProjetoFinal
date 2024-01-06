@@ -6,11 +6,23 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
 {
     internal abstract class Funcionario: Usuario
     {
-        protected bool ativo;
-        internal bool Ativo
+        public string Cargo 
         {
-            get { return ativo; }
-            set { ativo = value; }
+            get 
+            {
+                if (this is Atendente)
+                {
+                    return "Atendente";
+                }
+                else if (this is Diretor)
+                {
+                    return "Diretor";
+                }
+                else
+                {
+                    return "Bibliotecário";
+                }
+            }
         }
 
         protected Funcionario(string senha, string nomeCompleto, string cpf, string email, bool ativo = true)

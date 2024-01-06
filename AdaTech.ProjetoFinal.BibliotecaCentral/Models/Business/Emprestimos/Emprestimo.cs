@@ -20,10 +20,14 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
         private bool _devolucao;
         private Multa _multaAtraso;
         private int _renovacoes;
+        private int _idEmprestimo;
+        private static int _idEmprestimoAtual = 1;
 
         internal ReservaLivro ReservaLivro { get { return _reservaLivro; } }
         internal Livro Livro { get { return _livro; } }
         internal ComunidadeAcademica ComunidadeAcademica { get { return _usuarioComunidadeAcademica; } }
+
+        internal int IdEmprestimo { get { return _idEmprestimo; } }
 
         internal DateTime DataEmprestimo { get { return _dataEmprestimo; } }
 
@@ -86,6 +90,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
                 _devolucao = devolucao;
                 _renovacoes = 3;
                 _livro.ExemplaresDisponiveis--;
+                _idEmprestimo = GerarIdEmprestimo();
 
             } catch (Exception ex)
             {
@@ -98,6 +103,13 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
             Devolucao = true;
             DataDevolucaoUsuario = DateTime.Now;
             CalcularMulta();
+        }
+
+        internal int GerarIdEmprestimo()
+        {
+            _idEmprestimo = _idEmprestimoAtual;
+            _idEmprestimoAtual++;
+            return _idEmprestimo;
         }
 
 

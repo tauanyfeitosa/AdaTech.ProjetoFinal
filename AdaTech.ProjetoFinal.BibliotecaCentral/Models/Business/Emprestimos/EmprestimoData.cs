@@ -11,6 +11,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
     using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData;
     using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Utilities;
     using System.IO;
+    using System.Runtime.ConstrainedExecution;
+    using System.Windows.Forms;
     using Usuarios.UsuariosComunidadeAcademica;
     internal class EmprestimoData
     {
@@ -21,10 +23,11 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
 
         internal static List<Emprestimo> EmprestimoLivros { get => _emprestimoLivros;}
 
-        static EmprestimoData()
-        {
-            //_emprestimoLivros = LerEmprestimosTxt();
-        }
+        //static EmprestimoData()
+        //{
+        //    _emprestimoLivros = new List<Emprestimo>();
+        //    LerEmprestimosTxt();
+        //}
 
         //internal List<Emprestimo> SelecionarEmprestimo(ComunidadeAcademica usuario)
         //{
@@ -34,9 +37,49 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
         //{
 
         //}
+
+        internal static void CarregarEmprestimos()
+        {
+            _emprestimoLivros = LerEmprestimosTxt();
+        }
+
+        internal static Emprestimo AdicionarEmprestimo(Emprestimo emprestimo)
+        {       
+            if (!_emprestimoLivros.Contains(emprestimo))
+            {
+                _emprestimoLivros.Add(emprestimo);
+                SalvarEmprestimosTxt(_emprestimoLivros);
+            }
+            else
+            {
+                throw new InvalidOperationException("O empréstimo já existe.");
+            }
+
+            return emprestimo;
+        }
+
+        internal static void IncluirEmprestimos(List<Emprestimo> emprestimosParaAdd)
+        {
+            _emprestimoLivros.AddRange(emprestimosParaAdd);
+            SalvarEmprestimosTxt(_emprestimoLivros);
+        }
+
+
         internal static List<Emprestimo> SelecionarEmprestimo(Livro livro)
         {
             return _emprestimoLivros.Where(e => e.Livro == livro).ToList();
+        }
+
+        internal static Emprestimo SelecionarEmprestimo(string idEmprestimo)
+        {
+            if (int.TryParse(idEmprestimo, out int idEmprestimoInt))
+            {
+                return _emprestimoLivros.Where(e => e.IdEmprestimo == idEmprestimoInt).FirstOrDefault();
+            }
+            else
+            {
+                throw new ArgumentException("O id do empréstimo deve ser um número inteiro.");
+            }
         }
 
         internal static List<Emprestimo> SelecionarEmprestimo(ComunidadeAcademica usuario)
@@ -49,72 +92,105 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
             return _emprestimoLivros.Where(e => e.ReservaLivro == reserva).ToList();
         }
 
-        //internal static List<Emprestimo> LerEmprestimosTxt()
-        //{
-        //    List<Emprestimo> emprestimos = new List<Emprestimo>();
+        internal static List<Emprestimo> LerEmprestimosTxt()
+        {
+            try
+            {
+                List<Emprestimo> emprestimos = new List<Emprestimo>();
 
-        //    try
-        //    {
-        //        using (StreamReader sr = new StreamReader(_FILE_PATH))
-        //        {
-        //            while (!sr.EndOfStream)
-        //            {
-        //                string linha = sr.ReadLine();
-        //                Emprestimo emprestimo = ConverterLinhaParaEmprestimo(linha);
-        //                emprestimos.Add(emprestimo);
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine($"Erro ao ler o arquivo: {ex.Message}");
-        //    }
+                using (StreamReader sr = new StreamReader(_FILE_PATH))
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        string linha = sr.ReadLine();
+                        try
+                        {
+                            Emprestimo emprestimo = ConverterLinhaParaEmprestimo(linha);
+                            emprestimos.Add(emprestimo);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Erro ao converter linha para empréstimo: {ex.Message}");
+                        }
+                    }
+                }
 
-        //    return emprestimos;
-        //}
+                return emprestimos;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao ler o arquivo: {ex.Message}");
+                return new List<Emprestimo>();
+            }
+        }
 
-        //internal static Emprestimo ConverterLinhaParaEmprestimo(string linha)
-        //{
-        //    string[] partes = linha.Split(',');
-        //    string partesReserva = string.Join(",", partes.Skip(0).Take(18));
-        //    ReservaLivro reservaLivro = ReservaLivroData.ConverterLinhaParaReservaLivro(partesReserva);
-        //    string partesLivro = string.Join(",", partes.Skip(19).Take(29));
-        //    Livro livro = LivroData.ConverterLinhaParaLivro(partesLivro);
-        //    string partesCA = string.Join(",", partes.Skip(30).Take(32));
-        //    ComunidadeAcademica userCA = UsuarioData.ConverterLinhaParaComunidadeAcademica(partesCA);
+        internal static Emprestimo ConverterLinhaParaEmprestimo(string linha)
+        {
+            string[] partes = linha.Split(',');
 
-        //    return new Emprestimo(reservaLivro,livro, userCA);
-        //} 
+            if (partes.Length < 2)
+            {
+                throw new ArgumentException("Formato de linha inválido para empréstimo.");
+            }
 
-        //internal static void SalvarEmprestimosTxt(List<Emprestimo> emprestimos)
-        //{
-        //    try
-        //    {
-        //        using (StreamWriter sw = new StreamWriter(_FILE_PATH))
-        //        {
-        //            foreach (Emprestimo emprestimo in emprestimos)
-        //            {
-        //                string linha = ConverterEmprestimoParaLinha(emprestimo);
-        //                sw.WriteLine(linha);
-        //            }
-        //        }
+            string isbnLivro = partes[0];
+            Livro livro = LivroData.SelecionarLivro(isbnLivro);
 
-        //        Console.WriteLine("Alterações salvas com sucesso no arquivo.");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine($"Erro ao salvar as alterações no arquivo: {ex.Message}");
-        //    }
-        //}
+            string cpfUsuario = partes[1];
+            ComunidadeAcademica usuario = UsuarioData.SelecionarUsuarioCA(cpfUsuario);
 
-        //internal static string ConverterEmprestimoParaLinha(Emprestimo emprestimo)
-        //{
-        //    string reservaLivroLinha = ReservaLivroData.ConverterReservaLivroParaLinha(emprestimo.ReservaLivro);
-        //    string livroLinha = LivroData.ConverterLivroParaLinha(emprestimo.Livro);
-        //    string usuarioComunidadeAcademicaLinha = UsuarioData.ConverterComunidadeAcademicaParaLinha(emprestimo.ComunidadeAcademica);
+            return new Emprestimo(null, livro, usuario);
+        }
 
-        //    return $"{reservaLivroLinha},{livroLinha},{usuarioComunidadeAcademicaLinha},{emprestimo.DataEmprestimo},{emprestimo.DataDevolucaoPrevista},{emprestimo.DataDevolucaoUsuario},{emprestimo.Devolucao}";
-        //}
+
+
+        internal static void SalvarEmprestimosTxt(List<Emprestimo> emprestimos)
+        {
+            try
+            {
+                using (StreamWriter sw = new StreamWriter(_FILE_PATH))
+                {
+                    foreach (Emprestimo emprestimo in emprestimos)
+                    {
+                        string linha = ConverterEmprestimoParaLinha(emprestimo);
+                        sw.WriteLine(linha);
+                    }
+                }
+
+                LerEmprestimosTxt();
+
+                MessageBox.Show("Alterações salvas com sucesso no arquivo.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao salvar as alterações no arquivo: {ex.Message}");
+            }
+        }
+
+        internal static string ConverterEmprestimoParaLinha(Emprestimo emprestimo)
+        {
+
+            return $"{emprestimo.Livro.Isbn},{emprestimo.ComunidadeAcademica.Cpf}";
+        }
+
+        internal static void CriarEmprestimo (Emprestimo emprestimo)
+        {
+            _emprestimoLivros.Add(emprestimo);
+
+            SalvarEmprestimosTxt(_emprestimoLivros);
+        }
+
+        internal static void CriarEmprestimoSemReserva(ComboBox cbUsuarios, ComboBox lbLivros)
+        {
+            ComunidadeAcademica usuario = cbUsuarios.SelectedItem as ComunidadeAcademica;
+            Livro livro = lbLivros.SelectedItem as Livro;
+
+            Emprestimo emprestimo = new Emprestimo(null, livro, usuario);
+
+            _emprestimoLivros.Add(emprestimo);
+
+            SalvarEmprestimosTxt(_emprestimoLivros);
+        }
 
     }
 }

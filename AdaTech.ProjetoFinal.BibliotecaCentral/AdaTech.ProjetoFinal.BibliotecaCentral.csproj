@@ -50,6 +50,11 @@
     <Compile Include="Controllers\LoginControllers\ValidaMatricula.cs" />
     <Compile Include="Controllers\LoginControllers\ValidaSenha.cs" />
     <Compile Include="Controllers\PrincipalControllers\CarregarCSVController.cs" />
+    <Compile Include="Controllers\PrincipalControllers\PainelAtendenteController\EmprestimoController.cs" />
+    <Compile Include="Controllers\PrincipalControllers\PainelAtendenteController\IniciarEmprestimoController.cs" />
+    <Compile Include="Controllers\PrincipalControllers\PainelAtendenteController\VisualizarAlunosController.cs" />
+    <Compile Include="Controllers\PrincipalControllers\PainelAtendenteController\VisualizarEmprestimoController.cs" />
+    <Compile Include="Controllers\PrincipalControllers\PainelAtendenteController\VisualizarProfessoresController.cs" />
     <Compile Include="Controllers\TelaInicialController.cs" />
     <Compile Include="Controllers\TelaPrincipalController.cs" />
     <Compile Include="Models\Business\Emprestimos\Emprestimo.cs" />
@@ -72,6 +77,18 @@
     <Compile Include="Models\Usuarios\Funcionarios\CargosFuncionarios\Diretor.cs" />
     <Compile Include="Models\Usuarios\UsuariosComunidadeAcademica\Sessao.cs" />
     <Compile Include="Models\Usuarios\UsuariosData\UsuarioData.cs" />
+    <Compile Include="Views\Janelas\JanelasAtendente\JanelaCriarEmprestimoSemReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Janelas\JanelasAtendente\JanelaCriarEmprestimoSemReserva.Designer.cs">
+      <DependentUpon>JanelaCriarEmprestimoSemReserva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Janelas\JanelasAtendente\JanelaIniciarEmprestimo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Janelas\JanelasAtendente\JanelaIniciarEmprestimo.Designer.cs">
+      <DependentUpon>JanelaIniciarEmprestimo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Janelas\JanelasAtendente\JanelaVisualizarEmprestimos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,11 +107,23 @@
     <Compile Include="Views\Janelas\JanelasAtendente\JanelaVisualizarAlunos.Designer.cs">
       <DependentUpon>JanelaVisualizarAlunos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Janelas\JanelasBibliotecario\JanelaVisualizarLivros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Janelas\JanelasBibliotecario\JanelaVisualizarLivros.Designer.cs">
+      <DependentUpon>JanelaVisualizarLivros.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Janelas\JanelasDiretor\JanelaVisualizaReserva.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\Janelas\JanelasDiretor\JanelaVisualizaReserva.Designer.cs">
       <DependentUpon>JanelaVisualizaReserva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Janelas\JanelasDiretor\JanelaVisualizarFuncionarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Janelas\JanelasDiretor\JanelaVisualizarFuncionarios.Designer.cs">
+      <DependentUpon>JanelaVisualizarFuncionarios.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\TelaPrincipal.cs">
       <SubType>Form</SubType>
@@ -124,6 +153,9 @@
     </Compile>
     <EmbeddedResource Include="Views\Janelas\JanelasDiretor\JanelaVisualizaReserva.resx">
       <DependentUpon>JanelaVisualizaReserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\TelaPrincipal.resx">
+      <DependentUpon>TelaPrincipal.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

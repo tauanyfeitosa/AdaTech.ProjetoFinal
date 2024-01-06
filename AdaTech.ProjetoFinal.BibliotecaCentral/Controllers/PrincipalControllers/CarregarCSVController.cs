@@ -1,4 +1,4 @@
-﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalControllers
 {
@@ -129,5 +131,81 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalController
                 MessageBox.Show("Erro ao carregar arquivo CSV. Verifique se está no formato correto: titulo, autor, isbn, anoPublicacao, edicao, editora, exemplares, exemplaresDisponiveis, livrosBomEstado, livrosEstadoMediano, livrosMauEstado, tipoAcervoLivro");
             }
         }
+
+        internal static void CarregarCSVEmprestimo(string caminhoDoArquivoCSV, string caminhoArquivoTxt)
+        {
+            try
+            {
+                var emprestimosParaAdd = new List<Emprestimo>();
+
+                    string[] linhasCSV = File.ReadAllLines(caminhoDoArquivoCSV);
+
+                    foreach (string linhaCSV in linhasCSV)
+                    {
+                        string[] valoresCSV = linhaCSV.Split(',');
+
+                        var linhaString = string.Join(",", valoresCSV);
+
+                        var emprestimo = EmprestimoData.ConverterLinhaParaEmprestimo(linhaCSV);
+
+                        emprestimosParaAdd.Add(emprestimo);
+
+                    }
+
+                    MessageBox.Show($"Num emprestimos: {emprestimosParaAdd.Count} \n");
+
+                EmprestimoData.IncluirEmprestimos(emprestimosParaAdd);
+
+                }
+                catch
+                {
+                    MessageBox.Show("Erro ao carregar arquivo CSV. Verifique se está no formato correto: titulo, autor, isbn, anoPublicacao, edicao, editora, exemplares, exemplaresDisponiveis, livrosBomEstado, livrosEstadoMediano, livrosMauEstado, tipoAcervoLivro, senha, nomeCompleto, cpf, email, matricula, curso, tipoUsuario");
+             }
+         }
+
+
+        internal static void CarregarCSVReservaLivro(string caminhoDoArquivoCSV, string caminhoArquivoTxt)
+        {
+            try
+            {
+                var reservasAdicionadas = new List<ReservaLivro>();
+
+                string[] linhasCSV = File.ReadAllLines(caminhoDoArquivoCSV);
+
+                foreach (string linhaCSV in linhasCSV)
+                {
+                    string[] valoresCSV = linhaCSV.Split(',');
+
+                    var linhaString = string.Join(",", valoresCSV);
+
+                    ReservaLivroData.ConverterLinhaParaReservaLivro(linhaString);
+                }
+
+                ReservaLivroData.SalvarReservaLivrosTxt();
+
+                MessageBox.Show($"Num reservas: {reservasAdicionadas.Count} \n");
+
+
+            }
+            catch
+            {
+                MessageBox.Show("Erro ao carregar arquivo CSV. Verifique se está no formato correto: titulo, autor, isbn, anoPublicacao, edicao, editora, exemplares, exemplaresDisponiveis, livrosBomEstado, livrosEstadoMediano, livrosMauEstado, tipoAcervoLivro, senha, nomeCompleto, cpf, email, matricula, curso, tipoUsuario");
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        }
     }
-}
+

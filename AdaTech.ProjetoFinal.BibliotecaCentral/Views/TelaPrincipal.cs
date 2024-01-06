@@ -1,4 +1,4 @@
-﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Controllers;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Controllers;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente;
 using System;
@@ -8,6 +8,8 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Utilities;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasDiretor;
 
@@ -145,14 +147,37 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
 
             #endregion
 
-            #region Botão Carregar CSV
+            #region Botão Carregar CSV Comunidade Academica
 
             Button btnCarregarCSV = new Button();
             btnCarregarCSV.Size = new Size(300, 50);
-            btnCarregarCSV.Location = new Point(20, 110);
+            btnCarregarCSV.Location = new Point(20, 150);
             btnCarregarCSV.Anchor = AnchorStyles.Right;
             btnCarregarCSV.Text = "Carregar CSV - Usuários Comunidade Acadêmica";
-            btnCarregarCSV.Click += OnClickCarregarCSVCA;
+            btnCarregarCSV.Click += OnClickCarregarCSV_CA;
+
+            #endregion
+
+            #region Botão Carregar CSV Emprestimos
+
+            Button btnCarregarCSVEmprestimos = new Button();
+            btnCarregarCSVEmprestimos.Size = new Size(300, 50);
+            btnCarregarCSVEmprestimos.Location = new Point(20, 220);
+            btnCarregarCSVEmprestimos.Anchor = AnchorStyles.Right;
+            btnCarregarCSVEmprestimos.Text = "Carregar CSV - Emprestimos";
+            btnCarregarCSVEmprestimos.Click += OnClickCarregarCSV_Emprestimo;
+
+
+            #endregion
+
+            #region Botão Carregar CSV ReservaLivro
+
+            Button btnCarregarCSVReserva = new Button();
+            btnCarregarCSVReserva.Size = new Size(300, 50);
+            btnCarregarCSVReserva.Location = new Point(20, 290);
+            btnCarregarCSVReserva.Anchor = AnchorStyles.Right;
+            btnCarregarCSVReserva.Text = "Carregar CSV - Reserva Livro";
+            btnCarregarCSVReserva.Click += OnClickCarregarCSV_ReservaLivro;
 
             #endregion
 
@@ -160,18 +185,32 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
 
             Button btnVisualizarEmprestimos = new Button();
             btnVisualizarEmprestimos.Size = new Size(150, 20);
-            btnVisualizarEmprestimos.Location = new Point(20, 180);
+            btnVisualizarEmprestimos.Location = new Point(20,110);
             btnVisualizarEmprestimos.Anchor = AnchorStyles.Right;
             btnVisualizarEmprestimos.Text = "Visualizar Empréstimos";
             btnVisualizarEmprestimos.Click += OnClickVisualizarEmprestimos;
 
             #endregion
 
+            #region Botão Iniciar Emprestimo
+
+            Button btnIniciarEmprestimo = new Button();
+            btnIniciarEmprestimo.Size = new Size(150, 20);
+            btnIniciarEmprestimo.Location = new Point(20, 360);
+            btnIniciarEmprestimo.Anchor = AnchorStyles.Right;
+            btnIniciarEmprestimo.Text = "Iniciar Empréstimo";
+            btnIniciarEmprestimo.Click += OnClickIniciarEmprestimo; 
+
+            #endregion
+
             painelAtendente.Controls.Add(bntVisualizarAlunos);
             painelAtendente.Controls.Add(bntVisualizarProfessores);
             painelAtendente.Controls.Add(btnCarregarCSV);
+            painelAtendente.Controls.Add(btnCarregarCSVEmprestimos);
+            painelAtendente.Controls.Add(btnCarregarCSVReserva);
             painelAtendente.Controls.Add(btnVisualizarEmprestimos);
             painelAtendente.Controls.Add(_bntVisualizarReservas);
+            painelAtendente.Controls.Add(btnIniciarEmprestimo);
 
             return painelAtendente;
         }
@@ -197,7 +236,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
             visualizarEmprestimos.ShowDialog();
         }
 
-        private void OnClickCarregarCSVCA(object sender, EventArgs e)
+        private void OnClickCarregarCSV_CA(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Arquivos CSV|*.csv|Todos os Arquivos|*.*";
@@ -210,9 +249,51 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
 
                 string caminhoArquivoTxt = Path.Combine(diretorioDoAplicativo, "ComunidadeAcademica.txt");
 
-                _telaPrincipalController.CarregarCSV(caminhoArquivoCSV, caminhoArquivoTxt, _usuarioLogado);
+                _telaPrincipalController.CarregarCSV(caminhoArquivoCSV, caminhoArquivoTxt, _usuarioLogado, "ComunidadeAcademica");
 
             }
+        }
+
+        private void OnClickCarregarCSV_Emprestimo(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Arquivos TXT|*.txt|Todos os Arquivos|*.*";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string caminhoArquivoCSV = openFileDialog.FileName;
+
+                string diretorioDoAplicativo = AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug", "\\Data");
+
+                string caminhoArquivoTxt = Path.Combine(diretorioDoAplicativo, "Emprestimo.txt");
+
+                _telaPrincipalController.CarregarCSV(caminhoArquivoCSV, caminhoArquivoTxt, _usuarioLogado, "Emprestimo");
+
+            }
+        }
+
+        private void OnClickCarregarCSV_ReservaLivro(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Arquivos TXT|*.txt|Todos os Arquivos|*.*";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string caminhoArquivoCSV = openFileDialog.FileName;
+
+                string diretorioDoAplicativo = AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug", "\\Data");
+
+                string caminhoArquivoTxt = Path.Combine(diretorioDoAplicativo, "Reservas.txt");
+
+                _telaPrincipalController.CarregarCSV(caminhoArquivoCSV, caminhoArquivoTxt, _usuarioLogado, "ReservaLivro");
+
+            }
+        }
+
+        private void OnClickIniciarEmprestimo(object sender, EventArgs e)
+        {
+            JanelaIniciarEmprestimo janelaIniciarEmprestimo = new JanelaIniciarEmprestimo();
+            janelaIniciarEmprestimo.ShowDialog();
         }
         #endregion
 
@@ -224,8 +305,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
         {
             painelBibliotecario.Controls.Clear();
 
-            #region Botão Adicionar Livro
-            Button btnAdicionarLivro = new Button();    
+            #region Botão Carregar CSV Livro
 
             Button btnCarregarCSV = new Button();
             btnCarregarCSV.Size = new Size(300, 50);
@@ -233,14 +313,22 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
             btnCarregarCSV.Anchor = AnchorStyles.Right;
             btnCarregarCSV.Text = "Carregar CSV - Adicionar Livro";
             btnCarregarCSV.Click += OnClickCarregarCSVLivro;
+
             #endregion
 
-            painelBibliotecario.Controls.Add(btnCarregarCSV);
-            painelBibliotecario.Controls.Add(_bntVisualizarReservas);
+            Button btnVisualizarLivros = new Button();
+            btnVisualizarLivros.Size = new Size(150, 20);
+            btnVisualizarLivros.Location = new Point(20, 50);
+            btnVisualizarLivros.Anchor = AnchorStyles.Right;
+            btnVisualizarLivros.Text = "Visualizar Livros";
+            btnVisualizarLivros.Click += OnClickVisualizarLivros;
 
+            painelBibliotecario.Controls.Add(btnCarregarCSV);
+            painelBibliotecario.Controls.Add(btnVisualizarLivros);
 
             return painelBibliotecario;
         }
+
         #region On Click de Bibliotecario
 
         private void OnClickCarregarCSVLivro(object sender, EventArgs e)
@@ -261,6 +349,12 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
             }
         }
 
+        private void OnClickVisualizarLivros(object sender, EventArgs e)
+        {
+            JanelaVisualizarLivros visualizarLivros = new JanelaVisualizarLivros();
+            visualizarLivros.ShowDialog();
+        }
+
         #endregion
         #endregion
 
@@ -277,7 +371,15 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
             btnAdicionarFuncionarios.Text = "Adicionar Funcionários - CSV";
             btnAdicionarFuncionarios.Click += OnClickAdicionarFuncionarios;
 
+            Button btnVisualizarFuncionarios = new Button();
+            btnVisualizarFuncionarios.Size = new Size(150, 20);
+            btnVisualizarFuncionarios.Location = new Point(20, 80);
+            btnVisualizarFuncionarios.Anchor = AnchorStyles.Right;
+            btnVisualizarFuncionarios.Text = "Visualizar Funcionários";
+            btnVisualizarFuncionarios.Click += OnClickVisualizarFuncionarios;
+
             painelDiretor.Controls.Add(btnAdicionarFuncionarios);
+            painelDiretor.Controls.Add(btnVisualizarFuncionarios);
 
             painelDiretor.Controls.Add(_bntVisualizarReservas);
 
@@ -308,12 +410,21 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
             }
         }
 
+        private void OnClickVisualizarFuncionarios(object sender, EventArgs e)
+        {
+            JanelaVisualizarFuncionarios visualizarFuncionarios = new JanelaVisualizarFuncionarios();
+            visualizarFuncionarios.ShowDialog();
+        }
+
         #endregion
 
 
         #region Lógica Painel Comunidade Acadêmica
         private Panel CriarPainelComunidadeAcademica(Panel painelComunidadeAcademica)
         {
+            ComunidadeAcademica professor = UsuarioData.SelecionarComunidadeAcademica(_usuarioLogado.Login);
+            professor.AtribuirNovaSenha();
+
             painelComunidadeAcademica.Controls.Clear();
 
             Button btnReservarLivro = new Button();

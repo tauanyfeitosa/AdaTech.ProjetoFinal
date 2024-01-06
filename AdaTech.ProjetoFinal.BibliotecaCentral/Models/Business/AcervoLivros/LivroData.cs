@@ -1,4 +1,4 @@
-﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Utilities;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Utilities;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,9 +16,19 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
         private static readonly string _DIRECTORY_PATH = AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug", "\\Data");
         private static readonly string _FILE_PATH = Path.Combine(_DIRECTORY_PATH, "Livros.txt");
 
-        static LivroData()
+        //static LivroData()
+        //{
+        //    _acervoLivros = LerLivrosTxt();
+        //}
+
+        internal static void CarregarLivros()
         {
             _acervoLivros = LerLivrosTxt();
+        }
+
+        internal static List<Livro> ObterLivros()
+        {
+            return _acervoLivros;
         }
 
         public static List<Livro> AcervoLivros
@@ -29,7 +39,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
         internal static void IncluirLivros(List<Livro> livros)
         {
             AcervoLivros.AddRange(livros);
-
             SalvarLivrosTxt(_acervoLivros);
         }
 
@@ -49,7 +58,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
 
         internal static List<Livro> ListarLivros(TipoAcervoLivro? tipoAcervoLivro)
         {
-            List<Livro> livrosAcervo = _acervoLivros.Where(l => l.TipoAcervoLivro == tipoAcervoLivro).ToList();
+            List<Livro> livrosAcervo = _acervoLivros.Where(l => l.TipoAcervoLivro == tipoAcervoLivro && l.ExemplaresDisponiveis > 0).ToList();
             return livrosAcervo;
         }
 
@@ -65,7 +74,15 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
 
         internal static Livro SelecionarLivro(string isbn)
         {
-            return _acervoLivros.Where(l => l.Isbn == isbn).FirstOrDefault();
+            Livro livro = _acervoLivros.Where(l => l.Isbn == isbn).FirstOrDefault();
+            if (livro != null)
+            {
+                return livro;
+            }
+            else
+            {
+                throw new InvalidOperationException("O livro não existe no acervo.");
+            }
         }
 
         internal static List<Livro> SelecionarLivro()
@@ -77,6 +94,22 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
         {
             return _acervoLivros.Where(l => l.ExemplaresDisponiveis == 0).ToList();
         }
+
+        internal static Livro AdicionarLivro(Livro livro)
+        {
+            if (!_acervoLivros.Contains(livro))
+            {
+                _acervoLivros.Add(livro);
+                SalvarLivrosTxt(_acervoLivros);
+            }
+            else
+            {
+                throw new InvalidOperationException("O livro já existe no acervo.");
+            }
+
+            return livro;
+        }
+
 
         internal static List<Livro> LerLivrosTxt()
         {
