@@ -1,5 +1,10 @@
-﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosComunidadeAcademica;
+﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Controllers;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalControllers.PainelAtendenteController;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosComunidadeAcademica;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,18 +29,44 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
         private System.Windows.Forms.RadioButton rdoNegativo;
         private System.Windows.Forms.RadioButton rdoPositivo;
         private DataGridView dgvEmprestimos;
-        private BindingSource pessoaBindingSource;
-        private DataGridViewTextBoxColumn livroDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn estadoDataGridViewTextBoxColumn;
+        private BindingSource emprestimoBindingSource;
+        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn emprestimoDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn devolucaoDataGridViewTextBoxColumn;
-        private Usuario _usuarioLogin;
+
+        public event EventHandler ProcurarButtonClick;
+        public event EventHandler DevolverButtonClick;
+        public event EventHandler CancelarButtonClick;
+
+        private Atendente _atendenteLogin;
+        private bool _emprestimoEscolhido;
+        private string _emprestimoDevolucao;
+        internal string EmprestimoDevolucao
+        {
+            get { return _emprestimoDevolucao;}
+            set { _emprestimoDevolucao = value;}
+        }
+        internal Atendente AtendenteLogin
+        {
+            get { return _atendenteLogin; }
+            set { _atendenteLogin = value; }
+        }
+        internal bool EmprestimoEscolhido
+        {
+            get { return _emprestimoEscolhido; }
+            set { _emprestimoEscolhido = value; }
+        }
         internal JanelaDevolucao(Usuario usuario)
         {
-            this._usuarioLogin = usuario;
+            this._emprestimoEscolhido = false;
+            this._atendenteLogin = UsuarioData.SelecionarAtendente(usuario.Login);
+
             InitializeComponent();
-            CriacaoComponentes();
+            InicializarControles();
+
+            DevolucaoController controller = new DevolucaoController(this);
         }
-        private void CriacaoComponentes()
+        private void InicializarControles()
         {
             #region Divisão Matrícula
 
@@ -63,7 +94,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
             btnProcurar.TabIndex = 2;
             btnProcurar.Text = "Pesquisar";
             btnProcurar.UseVisualStyleBackColor = true;
-            //btnProcurar.Click += (sender, e) => ProcurarUsuarioButtonClick?.Invoke(sender, e);
+            btnProcurar.Click += (sender, e) => ProcurarButtonClick?.Invoke(sender, e);
             #endregion
 
             #region Botão Cancelar
@@ -75,7 +106,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
             btnCancelar.TabIndex = 2;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
-            //btnCancelar.Click += (sender, e) => EncerrarButtonClick?.Invoke(sender, e);
+            btnCancelar.Click += (sender, e) => CancelarButtonClick?.Invoke(sender, e);
             #endregion
 
             #region Botão Devolver
@@ -87,7 +118,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
             btnDevolver.TabIndex = 2;
             btnDevolver.Text = "Devolver";
             btnDevolver.UseVisualStyleBackColor = true;
-            //btnDevolver.Click += (sender, e) => DevolucaoButtonClick?.Invoke(sender, e);
+            btnDevolver.Click += (sender, e) => DevolverButtonClick?.Invoke(sender, e);
             #endregion
 
             #region Caixa Seleção Mau Estado
@@ -127,40 +158,42 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
             #region DataGridView Empréstimos
 
             dgvEmprestimos = new DataGridView();
-            livroDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             devolucaoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            estadoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            emprestimoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             dgvEmprestimos.AllowUserToAddRows = false;
             dgvEmprestimos.AllowUserToDeleteRows = false;
             dgvEmprestimos.AutoGenerateColumns = false;
             dgvEmprestimos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvEmprestimos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvEmprestimos.Columns.AddRange(new DataGridViewColumn[] {
-            livroDataGridViewTextBoxColumn,
-            estadoDataGridViewTextBoxColumn,
+            idDataGridViewTextBoxColumn,
+            emprestimoDataGridViewTextBoxColumn,
             devolucaoDataGridViewTextBoxColumn});
-            dgvEmprestimos.DataSource = pessoaBindingSource;
             dgvEmprestimos.Location = new Point(12, 200);
             dgvEmprestimos.Name = "dgvEmprestimos";
             dgvEmprestimos.ReadOnly = true;
             dgvEmprestimos.Size = new Size(527, 215);
             dgvEmprestimos.TabIndex = 9;
+            dgvEmprestimos.SelectionChanged += dgvEmprestimos_SelectionChanged;
             #endregion
 
-            #region Livro DGV
-            livroDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            livroDataGridViewTextBoxColumn.DataPropertyName = "Livro";
-            livroDataGridViewTextBoxColumn.Frozen = true;
-            livroDataGridViewTextBoxColumn.HeaderText = "Livro";
-            livroDataGridViewTextBoxColumn.Name = "livroDataGridViewTextBoxColumn";
-            livroDataGridViewTextBoxColumn.ReadOnly = true;
+            #region IdEmprestimo DGV
+
+            idDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            idDataGridViewTextBoxColumn.DataPropertyName = "IdEmprestimo";
+            idDataGridViewTextBoxColumn.Frozen = true;
+            idDataGridViewTextBoxColumn.HeaderText = "Id";
+            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            idDataGridViewTextBoxColumn.ReadOnly = true;
             #endregion
 
-            #region Mau Estado DGV
-            estadoDataGridViewTextBoxColumn.DataPropertyName = "DataEmprestimo";
-            estadoDataGridViewTextBoxColumn.HeaderText = "Empréstimo";
-            estadoDataGridViewTextBoxColumn.Name = "estadoDataGridViewTextBoxColumn";
-            estadoDataGridViewTextBoxColumn.ReadOnly = true;
+            #region Empréstimo DGV
+
+            emprestimoDataGridViewTextBoxColumn.DataPropertyName = "DataEmprestimo";
+            emprestimoDataGridViewTextBoxColumn.HeaderText = "Empréstimo";
+            emprestimoDataGridViewTextBoxColumn.Name = "emprestimoDataGridViewTextBoxColumn";
+            emprestimoDataGridViewTextBoxColumn.ReadOnly = true;
             #endregion
 
             #region Devolucao DGV
@@ -171,8 +204,16 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
             devolucaoDataGridViewTextBoxColumn.ReadOnly = true;
             #endregion
 
+            #region Pessoa 
+
+            emprestimoBindingSource = new BindingSource(components);
+            dgvEmprestimos.DataSource = emprestimoBindingSource;
+            emprestimoBindingSource.DataSource = typeof(Emprestimo);
+            #endregion
+
             groupBox1.SuspendLayout();
             ((ISupportInitialize)(dgvEmprestimos)).BeginInit();
+            ((ISupportInitialize)(emprestimoBindingSource)).BeginInit();
             SuspendLayout();
 
             Controls.Add(dgvEmprestimos);
@@ -189,6 +230,36 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
             ((ISupportInitialize)(dgvEmprestimos)).EndInit();
             ResumeLayout(false);
             PerformLayout();
+        }
+        internal void LimparFormulario()
+        {
+            txtMatricula.Clear();
+            rdoNegativo.Checked = true;
+
+            txtMatricula.Focus();
+        }
+        public void MostrarMensagem(string mensagem)
+        {
+            MessageBox.Show(mensagem);
+        }
+        internal string NumeroMatricula()
+        {
+            return txtMatricula.Text;
+        }
+        internal void ExibeRegistros(List<Emprestimo> lista)
+        {
+            dgvEmprestimos.DataSource = null;
+            dgvEmprestimos.DataSource = lista;
+        }
+        private void dgvEmprestimos_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvEmprestimos.SelectedRows.Count == 1)
+            {
+                DataGridViewRow selectedRow = dgvEmprestimos.SelectedRows[0];
+                _emprestimoEscolhido = true;
+
+                _emprestimoDevolucao = selectedRow.Cells["idDataGridViewTextBoxColumn"].Value.ToString();
+            }
         }
     }
 }

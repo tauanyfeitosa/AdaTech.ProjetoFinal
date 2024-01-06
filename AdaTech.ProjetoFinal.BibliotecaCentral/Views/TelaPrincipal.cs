@@ -207,7 +207,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
 
             Button bntDevolverLivro = new Button();
             bntDevolverLivro.Size = new Size(150, 20);
-            bntDevolverLivro.Location = new Point(20, 80);
+            bntDevolverLivro.Location = new Point(20, 400);
             bntDevolverLivro.Anchor = AnchorStyles.Right;
             bntDevolverLivro.Text = "Devolução";
             bntDevolverLivro.Click += OnClickDevolverLivro;

@@ -14,7 +14,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers
         public IniciarEmprestimoController(JanelaIniciarEmprestimo form)
         {
             this.form = form;
-            form.CellClick += TabelaCellClick;
+            //form.CellClick += TabelaCellClick;
             form.CriarSemReservaButtonClick += CriarSemReservaButtonClick;
         }
 
