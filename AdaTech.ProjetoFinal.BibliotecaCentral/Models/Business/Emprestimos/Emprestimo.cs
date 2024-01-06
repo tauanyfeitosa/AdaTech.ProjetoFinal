@@ -140,7 +140,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
         {
             DateTime DataDevolucao = (_devolucao) ? _dataDevolucaoUsuario : _dataDevolucaoPrevista
             return $"- Livro: {_livro.Titulo}\r\n" +
-                $"- Usuario: {_usuarioComunidadeAcademica.ToString()}\r\n " +
+                $"- Requerente: {_usuarioComunidadeAcademica.ToString()}\r\n " +
                 $"- Data de emprestimo: {_dataEmprestimo}\r\n" +
                 $"- Data de Devolução: {DataDevolucao}" +
                 $"- Devolução: {_devolucao}";

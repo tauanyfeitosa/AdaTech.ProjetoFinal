@@ -71,13 +71,9 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
 
         public override string ToString()
         {
-            return $"Numero da Reserva: {_numeroReserva}\r\n" +
-                $"Livro:{_livro.Titulo}\r\n" +
-                $"Realiador da reserva: {_usuarioComunidadeAcademica.Nome}\r\n" +
-                $"Data de Retirada: {_dataRetirarLivro}\r\n" +
-                $"Data de Reserva: {_dataReserva}\r\n " +
-                $"Devolução Prevista: {_emprestimo.DataDevolucaoPrevista};\r\n" +
-                $"Status da Reserva {_statusReserva}";
+            return $"- Livro: {Livro.Titulo} " +
+                $"- Requerente: {UsuarioComunidadeAcademica.NomeCompleto} " +
+                $"- Data de retirada prevista: {DataRetirarLivro.ToShortDateString()}}";
         }
     }
 }

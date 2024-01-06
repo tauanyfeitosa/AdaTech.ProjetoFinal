@@ -69,8 +69,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
         public override string ToString()
         {
             return $"- Nome:{NomeCompleto} " +
-                $"-CPF: {Cpf} " +
-                $"-Cargo: {Cargo}";
+                $"- CPF: {Cpf} " +
+                $"- Cargo: {Cargo}";
         }
         //protected List<SolicitacaoRequisicaoLivros> ConsultarRequisicaoLotes()
         //{
