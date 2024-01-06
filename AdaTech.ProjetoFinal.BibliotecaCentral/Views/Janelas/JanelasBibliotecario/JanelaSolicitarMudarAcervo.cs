@@ -1,4 +1,5 @@
 ﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalControllers.PainelBibliotecarioController;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
 using System;
 using System.Windows.Forms;
 
@@ -21,7 +22,9 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasBiblioteca
             this.usuario = usuario;
             InitializeButtons();
             controller = new SolicitarMudarAcervoController(this);
+            CarregarLivros();
         }
+
         internal Usuario Usuario
         {
             get { return usuario; }
@@ -89,11 +92,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasBiblioteca
             Controls.Add(btnSolicitar);
         }
 
-        private void CmbLivro_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            controller.AtualizarComboBoxTipoAcervo();
-        }
-
         private void BtnSolicitar_Click(object sender, EventArgs e)
         {
             controller.BtnSolicitarClick();
@@ -105,5 +103,16 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasBiblioteca
             cmbTipoAcervo.Items.Clear();
             txtDescricao.Text = string.Empty;
         }
+
+        private void CarregarLivros()
+        {
+            cmbLivro.DataSource = LivroData.ObterLivros();
+        }
+
+        private void CmbLivro_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            controller.AtualizarComboBoxTipoAcervo();
+        }
     }
+
 }

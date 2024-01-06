@@ -6,18 +6,17 @@ using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Solicitacoes;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasBibliotecario
 {
-    internal partial class JanelaVisualizarSolicitacoesLivros : Form
+    internal partial class JanelaVisualizarMudancaAcervo : Form
     {
         private DataGridView dgvSolicitacoes;
         private Usuario usuario;
-        private VisualizarSolicitacoesLivrosController controller;
+        private VisualizarMudancaAcervoController controller;
 
-        public JanelaVisualizarSolicitacoesLivros(Usuario usuario)
+        public JanelaVisualizarMudancaAcervo(Usuario usuario)
         {
             this.usuario = usuario;
-            InitializeComponent();
+            controller = new VisualizarMudancaAcervoController(this, usuario);
             InitializeDataGridView();
-            controller = new VisualizarSolicitacoesLivrosController(this, usuario);
             CarregarSolicitacoes();
         }
 
@@ -35,7 +34,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasBiblioteca
 
             DataGridViewTextBoxColumn colunaLivro = new DataGridViewTextBoxColumn();
             colunaLivro.HeaderText = "Livro - Título";
-            colunaLivro.DataPropertyName = "LivroTitulo";  
+            colunaLivro.DataPropertyName = "LivroTitulo";
             colunaLivro.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dgvSolicitacoes.Columns.Add(colunaLivro);
 
@@ -47,19 +46,19 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasBiblioteca
 
             DataGridViewTextBoxColumn colunaTipoAcervo = new DataGridViewTextBoxColumn();
             colunaTipoAcervo.HeaderText = "Tipo de Acervo";
-            colunaTipoAcervo.DataPropertyName = "TipoAcervo"; 
+            colunaTipoAcervo.DataPropertyName = "TipoAcervo";
             colunaTipoAcervo.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dgvSolicitacoes.Columns.Add(colunaTipoAcervo);
 
             DataGridViewTextBoxColumn colunaDescricao = new DataGridViewTextBoxColumn();
             colunaDescricao.HeaderText = "Descrição";
-            colunaDescricao.DataPropertyName = "Descricao";  
+            colunaDescricao.DataPropertyName = "Descricao";
             colunaDescricao.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dgvSolicitacoes.Columns.Add(colunaDescricao);
 
             DataGridViewTextBoxColumn colunaStatus = new DataGridViewTextBoxColumn();
             colunaStatus.HeaderText = "Aprovada";
-            colunaStatus.DataPropertyName = "Aprovada"; 
+            colunaStatus.DataPropertyName = "Aprovada";
             colunaStatus.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dgvSolicitacoes.Columns.Add(colunaStatus);
 
@@ -70,11 +69,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasBiblioteca
         private void CarregarSolicitacoes()
         {
             controller.CarregarSolicitacoes();
-        }
-
-        private void CarregarTipoAcervo()
-        {
-
         }
     }
 }

@@ -350,6 +350,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
 
             #endregion
 
+            #region Botão Solicitar Mudança de Acervo
+
             Button btnSolicitarMudarAcervo = new Button();
             btnSolicitarMudarAcervo.Size = new Size(150, 20);
             btnSolicitarMudarAcervo.Location = new Point(20, 210);
@@ -357,12 +359,26 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
             btnSolicitarMudarAcervo.Text = "Solicitar Mudar de Acervo";
             btnSolicitarMudarAcervo.Click += OnClickSolicitarMudarAcervo;
 
+            #endregion
+
+            #region Botão Visualizar Solicitações de Mudanças de Acervo
+
+            Button btnVisualizarSolicitacoesAcervos = new Button();
+            btnVisualizarSolicitacoesAcervos.AutoSize = true;
+            btnVisualizarSolicitacoesAcervos.Location = new Point(20, 240);
+            btnVisualizarSolicitacoesAcervos.Anchor = AnchorStyles.Left;
+            btnVisualizarSolicitacoesAcervos.Text = "Visualizar Solicitações de Mudança de Acervo";
+            btnVisualizarSolicitacoesAcervos.Click += OnClickVisualizarSolicitacoesAcervo;
+
+            #endregion
+
 
             painelBibliotecario.Controls.Add(btnCarregarCSV);
             painelBibliotecario.Controls.Add(btnVisualizarLivros);
             painelBibliotecario.Controls.Add(btnSolicitarLivros);
             painelBibliotecario.Controls.Add(btnVisualizarSolicitacoesLivrosNovos);
             painelBibliotecario.Controls.Add(btnSolicitarMudarAcervo);
+            painelBibliotecario.Controls.Add(btnVisualizarSolicitacoesAcervos);
 
             return painelBibliotecario;
         }
@@ -405,10 +421,16 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
             visualizarSolicitacoesLivros.ShowDialog();
         }
 
-        private void OnClickSolicitarMudarAcervo(Object sender, EventArgs e)
+        private void OnClickSolicitarMudarAcervo (Object sender, EventArgs e)
         {
             JanelaSolicitarMudarAcervo solicitarMudarAcervo = new JanelaSolicitarMudarAcervo(_usuarioLogado);
             solicitarMudarAcervo.ShowDialog();
+        }
+
+        private void OnClickVisualizarSolicitacoesAcervo (Object sender, EventArgs e)
+        {
+            JanelaVisualizarMudancaAcervo visualizarMudancaAcervo = new JanelaVisualizarMudancaAcervo(_usuarioLogado);
+            visualizarMudancaAcervo.ShowDialog();
         }
 
         #endregion

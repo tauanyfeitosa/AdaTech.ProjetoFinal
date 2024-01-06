@@ -57,6 +57,7 @@
     <Compile Include="Controllers\PrincipalControllers\PainelAtendenteController\VisualizarProfessoresController.cs" />
     <Compile Include="Controllers\PrincipalControllers\PainelBibliotecarioController\SolicitarMudarAcervoController.cs" />
     <Compile Include="Controllers\PrincipalControllers\PainelBibliotecarioController\SolicitarLivrosController.cs" />
+    <Compile Include="Controllers\PrincipalControllers\PainelBibliotecarioController\VisualizarMudancaAcervoController.cs" />
     <Compile Include="Controllers\PrincipalControllers\PainelBibliotecarioController\VisualizarSolicitacoesLivrosController.cs" />
     <Compile Include="Controllers\TelaInicialController.cs" />
     <Compile Include="Controllers\TelaPrincipalController.cs" />
@@ -127,6 +128,12 @@
     </Compile>
     <Compile Include="Views\Janelas\JanelasBibliotecario\JanelaVisualizarLivros.Designer.cs">
       <DependentUpon>JanelaVisualizarLivros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Janelas\JanelasBibliotecario\JanelaVisualizarMudancaAcervo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Janelas\JanelasBibliotecario\JanelaVisualizarMudancaAcervo.Designer.cs">
+      <DependentUpon>JanelaVisualizarMudancaAcervo.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Janelas\JanelasBibliotecario\JanelaVisualizarSolicitacoesLivros.cs">
       <SubType>Form</SubType>
