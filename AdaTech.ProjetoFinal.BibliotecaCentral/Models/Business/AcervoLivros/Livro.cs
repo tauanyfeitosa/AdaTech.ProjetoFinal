@@ -1,3 +1,5 @@
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -225,5 +227,12 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
             return _isbn?.GetHashCode() ?? 0;
         }
 
+        public override string ToString()
+        {
+            return $"- Titulo: {_titulo}\r\n" +
+                $"- Autor:{_autor}\r\n" +
+                $"- Isbn: {_isbn}\r\n" +
+                $"- Ano Publicação: {_anoPublicacao}\r\n";
+        }
     }
 }
