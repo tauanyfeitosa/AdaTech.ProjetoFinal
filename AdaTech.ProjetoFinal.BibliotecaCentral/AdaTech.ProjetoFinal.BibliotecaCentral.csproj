@@ -141,6 +141,12 @@
     <Compile Include="Views\Janelas\JanelasBibliotecario\JanelaVisualizarSolicitacoesLivros.Designer.cs">
       <DependentUpon>JanelaVisualizarSolicitacoesLivros.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Janelas\JanelasDiretor\JanelaDetalhesSolicitacao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Janelas\JanelasDiretor\JanelaDetalhesSolicitacao.Designer.cs">
+      <DependentUpon>JanelaDetalhesSolicitacao.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Janelas\JanelasDiretor\JanelaVisualizaReserva.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,6 +158,18 @@
     </Compile>
     <Compile Include="Views\Janelas\JanelasDiretor\JanelaVisualizarFuncionarios.Designer.cs">
       <DependentUpon>JanelaVisualizarFuncionarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Janelas\JanelasDiretor\JanelaVisualizarSolicitacoes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Janelas\JanelasDiretor\JanelaVisualizarSolicitacoes.Designer.cs">
+      <DependentUpon>JanelaVisualizarSolicitacoes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Janelas\JanelasDiretor\MessageBoxCustomizada.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Janelas\JanelasDiretor\MessageBoxCustomizada.Designer.cs">
+      <DependentUpon>MessageBoxCustomizada.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\TelaPrincipal.cs">
       <SubType>Form</SubType>
@@ -224,6 +242,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Controllers\PrincipalControllers\PainelDiretorController\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
