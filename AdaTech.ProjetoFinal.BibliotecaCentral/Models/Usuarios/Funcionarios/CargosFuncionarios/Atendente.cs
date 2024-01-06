@@ -44,7 +44,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
                     Emprestimo emprestimo = new Emprestimo(reserva);
                 }
             }
-            catch (Exception ex)
+            catch 
             {
                 Console.WriteLine("Emprestimo não realizado");
             }

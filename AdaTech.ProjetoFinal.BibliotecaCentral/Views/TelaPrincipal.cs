@@ -12,6 +12,7 @@ using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasDiretor;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasBibliotecario;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
 {
@@ -316,6 +317,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
 
             #endregion
 
+            #region Botão Visualizar Livros
+
             Button btnVisualizarLivros = new Button();
             btnVisualizarLivros.Size = new Size(150, 20);
             btnVisualizarLivros.Location = new Point(20, 50);
@@ -323,13 +326,29 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
             btnVisualizarLivros.Text = "Visualizar Livros";
             btnVisualizarLivros.Click += OnClickVisualizarLivros;
 
+            #endregion
+
+            #region Botão Solicitar Livros
+
+            Button btnSolicitarLivros = new Button();
+            btnSolicitarLivros.Size = new Size(150, 20);
+            btnSolicitarLivros.Location = new Point(20, 150);
+            btnSolicitarLivros.Anchor = AnchorStyles.Right;
+            btnSolicitarLivros.Text = "Solicitar Novos Livros";
+            btnSolicitarLivros.Click += OnClickSolicitarLivros; 
+
+            #endregion
+
+
+
             painelBibliotecario.Controls.Add(btnCarregarCSV);
             painelBibliotecario.Controls.Add(btnVisualizarLivros);
+            painelBibliotecario.Controls.Add(btnSolicitarLivros);
 
             return painelBibliotecario;
         }
 
-        #region On Click de Bibliotecario
+        #region OnClick de Bibliotecario
 
         private void OnClickCarregarCSVLivro(object sender, EventArgs e)
         {
@@ -353,6 +372,12 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
         {
             JanelaVisualizarLivros visualizarLivros = new JanelaVisualizarLivros();
             visualizarLivros.ShowDialog();
+        }
+
+        private void OnClickSolicitarLivros (object sender, EventArgs e)
+        {
+            JanelaSolicitarLivros solicitarLivros = new JanelaSolicitarLivros (_usuarioLogado);
+            solicitarLivros.ShowDialog();
         }
 
         #endregion
