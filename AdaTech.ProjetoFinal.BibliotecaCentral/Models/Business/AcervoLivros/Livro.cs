@@ -32,6 +32,15 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
                 _titulo = value;
             }
         }
+
+        public string TituloIsbn
+        {
+            get
+            {
+                return $"{this.Titulo} - {this.Isbn}";
+            }
+        }
+
         public string Autor
         {
             get
