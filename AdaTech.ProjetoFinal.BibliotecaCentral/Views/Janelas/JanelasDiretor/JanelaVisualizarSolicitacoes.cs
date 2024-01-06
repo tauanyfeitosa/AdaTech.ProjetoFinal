@@ -55,12 +55,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasDiretor
 
         private void MostrarDetalhes(ISolicitacao solicitacao)
         {
-            MessageBox.Show($"Detalhes da Solicitação:\n{SolicitacaoToString(solicitacao)}", "Detalhes da Solicitação");
-        }
-
-        private string SolicitacaoToString(ISolicitacao solicitacao)
-        {
-            return solicitacao.ToString();
+            JanelaDetalhesSolicitacao detalhes = new JanelaDetalhesSolicitacao(solicitacao);
+            detalhes.ShowDialog();
         }
     }
 }
