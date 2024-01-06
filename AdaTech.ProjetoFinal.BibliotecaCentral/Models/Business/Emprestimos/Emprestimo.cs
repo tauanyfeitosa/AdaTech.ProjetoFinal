@@ -138,7 +138,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
 
         public override string ToString()
         {
-            DateTime DataDevolucao = (_devolucao) ? _dataDevolucaoUsuario : _dataDevolucaoPrevista
+            string DataDevolucao = (_devolucao) ? _dataDevolucaoUsuario.ToShortDateString() : _dataDevolucaoPrevista.ToShortDateString()
             return $"- Livro: {_livro.Titulo}\r\n" +
                 $"- Requerente: {_usuarioComunidadeAcademica.ToString()}\r\n " +
                 $"- Data de emprestimo: {_dataEmprestimo}\r\n" +
