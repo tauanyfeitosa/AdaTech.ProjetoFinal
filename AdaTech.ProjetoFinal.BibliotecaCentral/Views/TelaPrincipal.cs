@@ -560,7 +560,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
         private Panel CriarPainelComunidadeAcademica(Panel painelComunidadeAcademica)
         {
             ComunidadeAcademica usuarioCA = UsuarioData.SelecionarComunidadeAcademica(_usuarioLogado.Login);
-            if (usuarioCA.TipoUsuario == TipoUsuarioComunidade.Professor)
+            if (usuarioCA != null && usuarioCA.TipoUsuario == TipoUsuarioComunidade.Professor)
             {
                 usuarioCA.AtribuirNovaSenha();
             }
