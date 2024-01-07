@@ -36,8 +36,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalController
             {
                 Emprestimo emprestimoSelecionado = EmprestimoData.SelecionarEmprestimo(_emprestimoDevolucao);
                 emprestimoSelecionado.MauEstado = form.EstadoLivro;
-                form.MostrarMensagem("AAAAA");
-                form.MostrarMensagem($"{emprestimoSelecionado.MauEstado}");
                 string mensagem = emprestimoSelecionado.ToString();
                 form.MostrarMensagem($"{mensagem}");
 
