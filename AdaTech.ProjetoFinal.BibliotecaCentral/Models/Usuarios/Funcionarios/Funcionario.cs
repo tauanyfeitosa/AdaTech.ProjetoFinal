@@ -65,6 +65,13 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
         {
             return Login.GetHashCode();
         }
+
+        public override string ToString()
+        {
+            return $"- Nome:{NomeCompleto} " +
+                $"- CPF: {Cpf} " +
+                $"- Cargo: {Cargo}";
+        }
         //protected List<SolicitacaoRequisicaoLivros> ConsultarRequisicaoLotes()
         //{
 

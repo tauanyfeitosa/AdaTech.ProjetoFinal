@@ -32,7 +32,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers
             }
         }
 
-        public void TabelaCellClick(object sender, DataGridViewCellEventArgs e)
+        public void TabelaCellClick(object sender, CellClickEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {

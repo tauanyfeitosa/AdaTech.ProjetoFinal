@@ -43,7 +43,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasDiretor
 
             foreach (var item in reservas)
             {
-                listBoxReserva.Items.Add($"Livro: {item.Livro.Titulo} - Requerente: {item.UsuarioComunidadeAcademica.NomeCompleto} - Data de retirada prevista: {item.DataRetirarLivro.ToShortDateString()}");
+                listBoxReserva.Items.Add(item.ToString());
             }
         }
 

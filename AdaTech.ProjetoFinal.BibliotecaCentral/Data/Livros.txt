@@ -1,5 +1,70 @@
 O Senhor dos Anéis,J.R.R. Tolkien,9780544003415,1954,1,HarperCollins,100,50,30,15,1,AcervoPublico
 Harry Potter e a Pedra Filosofal,J.K. Rowling,9788532530782,1997,1,Rocco,120,60,40,15,1,AcervoPublico
-1984, George Orwell,9780451524935,1949,1,Penguin,80,40,25,10,1,AcervoRestrito
+1984,George Orwell,9780451524935,1949,1,Penguin,80,40,25,10,1,AcervoRestrito
 Orgulho e Preconceito,Jane Austen,9788532523227,1813,1,Martin Claret,90,45,30,10,1,AcervoRestrito
-A Revolução dos Bichos,George Orwell,9788578270262,1945,1, Companhia das Letras,70,35,20,10,1,AcervoParticular
+A Revolução dos Bichos,George Orwell,9788578270262,1945,1,Companhia das Letras,70,35,20,10,1,AcervoParticular
+Dom Quixote,Miguel de Cervantes,9780199537565,1605,1,Oxford University Press,85,42,28,10,2,AcervoPublico
+A Metamorfose,Franz Kafka,9788525405616,1915,1,L&PM Pocket,75,38,24,10,1,AcervoRestrito
+O Pequeno Príncipe,Antoine de Saint-Exupéry,9788576573933,1943,1,Geração Editorial,110,55,35,15,1,AcervoPublico
+Cem Anos de Solidão,Gabriel García Márquez,9788535914849,1967,1,Biblioteca Azul,95,48,30,12,1,AcervoParticular
+A Arte da Guerra,Sun Tzu,9788573260743,500,1,Martin Claret,105,52,32,15,2,AcervoPublico
+Crime e Castigo,Fiódor Dostoiévski,9788573260996,1866,1,Martin Claret,85,42,27,12,2,AcervoRestrito
+A Moreninha,Joaquim Manuel de Macedo,9788525410986,1844,1,L&PM Pocket,65,32,20,10,1,AcervoPublico
+A Metamorfose,Franz Kafka,9788525405616,1915,1,L&PM Pocket,75,38,24,10,1,AcervoRestrito
+O Retrato de Dorian Gray,Oscar Wilde,9788582183109,1890,1,L&PM Pocket,70,35,22,8,1,AcervoPublico
+O Processo,Franz Kafka,9788535914849,1925,1,Companhia das Letras,80,40,25,10,2,AcervoParticular
+As Crônicas de Nárnia: O Leão a Feiticeira e o Guarda-Roupa,C.S. Lewis,9788578270698,1950,1,Martins Fontes,100,50,30,15,1,AcervoPublico
+O Hobbit,J.R.R. Tolkien,9788578273026,1937,1,WMF Martins Fontes,95,48,28,12,1,AcervoParticular
+O Alquimista,Paulo Coelho,9780062315007,1988,1,HarperOne,125,62,40,20,3,AcervoPublico
+A Revolução dos Bichos,George Orwell,9788578270262,1945,1,Companhia das Letras,70,35,20,10,1,AcervoParticular
+O Sol é para Todos,Harper Lee,9788501056390,1960,1,José Olympio,90,45,28,12,1,AcervoPublico
+O Nome do Vento,Patrick Rothfuss,9788581630231,2007,1,Arqueiro,110,55,35,15,3,AcervoRestrito
+Anna Karenina,Liev Tolstói,9788535917802,1877,1,Companhia das Letras,75,38,25,10,1,AcervoPublico
+O Código Da Vinci,Dan Brown,9788532522305,2003,1,Arqueiro,115,57,38,15,2,AcervoPublico
+O Iluminado,Stephen King,9788581051151,1977,1,Suma,85,42,28,12,1,AcervoRestrito
+O Velho e o Mar,Ernest Hemingway,9788525432056,1952,1,L&PM Pocket,100,50,30,15,1,AcervoParticular
+O Guia do Mochileiro das Galáxias,Douglas Adams,9788599296845,1979,1,Arqueiro,120,60,40,15,1,AcervoPublico
+Moby Dick,Herman Melville,9788537802009,1851,1,Zahar,80,40,25,10,1,AcervoRestrito
+Os Miseráveis,Victor Hugo,9788525416674,1862,1,L&PM Pocket,90,45,30,12,1,AcervoPublico
+O Retrato de Dorian Gray,Oscar Wilde,9788582183109,1890,1,L&PM Pocket,70,35,22,8,1,AcervoRestrito
+O Diário de Anne Frank,Anne Frank,9788535912128,1947,1,Record,95,48,32,12,1,AcervoPublico
+O Nome do Vento,Patrick Rothfuss,9788581630231,2007,1,Arqueiro,110,55,35,15,3,AcervoRestrito
+O Sol é para Todos,Harper Lee,9788501056390,1960,1,José Olympio,90,45,28,12,1,AcervoPublico
+O Nome do Vento,Patrick Rothfuss,9788581630231,2007,1,Arqueiro,110,55,35,15,3,AcervoRestrito
+Anna Karenina,Liev Tolstói,9788535917802,1877,1,Companhia das Letras,75,38,25,10,1,AcervoPublico
+O Código Da Vinci,Dan Brown,9788532522305,2003,1,Arqueiro,115,50,30,15,20,AcervoPublico
+Morte na Mesopotâmia,Agatha Christie,9780007120859,1936,1,HarperCollins,60,30,20,8,2,AcervoPublico
+A Sombra do Vento,Carlos Ruiz Zafón,9788535914122,2001,1,Suma,70,35,25,8,2,AcervoRestrito
+A Dança dos Dragões,George R.R. Martin,9788580447337,2011,1,LeYa,85,42,30,10,2,AcervoRestrito
+Norwegian Wood,Haruki Murakami,9788535909630,1987,1,Companhia das Letras,75,38,25,10,2,AcervoParticular
+O Morro dos Ventos Uivantes,Emily Brontë,9788563560184,1847,1,Tordesilhas,55,28,20,5,2,AcervoPublico
+Lolita,Vladimir Nabokov,9788576572141,1955,1,Alfaguara,65,32,22,8,2,AcervoRestrito
+Admirável Mundo Novo,Aldous Huxley,9788525431646,1932,1,L&PM Pocket,80,40,28,10,2,AcervoPublico
+O Conde de Monte Cristo,Alexandre Dumas,9788573263409,1844,1,Martin Claret,90,45,32,10,3,AcervoPublico
+A Vida Invisível de Eurídice Gusmão,Martha Batalha,9788539007016,2016,1,Companhia das Letras,75,38,28,7,2,AcervoParticular
+A Insustentável Leveza do Ser,Milan Kundera,9788535902099,1984,1,Companhia das Letras,70,35,25,8,2,AcervoPublico
+Clean Code: A Handbook of Agile Software Craftsmanship,Robert C. Martin,9780132350884,2008,1,Prentice Hall,45,25,15,8,3,AcervoRestrito
+Introduction to the Theory of Computation,Michael Sipser,9781133187790,2005,3,Cengage Learning,50,30,18,10,2,AcervoPublico
+Design Patterns: Elements of Reusable Object-Oriented Software,Erich Gamma,9780201633610,1994,1,Addison-Wesley Professional,60,35,20,10,3,AcervoRestrito
+Code Complete: A Practical Handbook of Software Construction,Steve McConnell,9780735619678,2004,2,Microsoft Press,55,30,18,7,3,AcervoRestrito
+Cracking the Coding Interview, Gayle Laakmann McDowell,0984782850,2011,5,CareerCup,65,40,22,10,3,AcervoRestrito
+The Pragmatic Programmer: Your Journey To Mastery,20th Anniversary Edition,David Thomas,9780135957059,1999,2,Addison-Wesley Professional,50,30,18,8,3,AcervoRestrito
+Head First Design Patterns: A Brain-Friendly Guide,Eric Freeman,9780596007126,2004,1,O'Reilly Media,55,35,20,8,3,AcervoPublico
+Refactoring: Improving the Design of Existing Code,Martin Fowler,9780134757599,2018,2,Addison-Wesley Professional,40,25,15,7,3,AcervoRestrito
+Artificial Intelligence: A Modern Approach,Stuart Russell,9780134610993,2016,4,Pearson,60,35,20,10,2,AcervoPublico
+Operating System Concepts,Abraham Silberschatz,9781119320913,2018,10,Wiley,45,30,18,10,2,AcervoPublico
+Clean Architecture: A Craftsman's Guide to Software Structure and Design,Robert C. Martin,9780134494166,2017,1,Prentice Hall,40,25,12,8,3,AcervoRestrito
+The Mythical Man-Month: Essays on Software Engineering,Frederick P. Brooks Jr.,9780201835953,1995,2,Addison-Wesley Professional,55,30,18,7,3,AcervoRestrito
+Computer Networking: A Top-Down Approach,James Kurose,9780133594140,2016,7,Pearson,60,35,20,10,2,AcervoPublico
+Deep Learning,Yoshua Bengio,9780262035613,2016,1,MIT Press,45,30,18,8,3,AcervoRestrito
+Designing Data-Intensive Applications,Martin Kleppmann,9781449373320,2017,1,O'Reilly Media,50,30,18,8,3,AcervoRestrito
+Clean Agile: Back to Basics,Robert C. Martin,9780135781869,2020,1,Prentice Hall,35,20,12,5,3,AcervoPublico
+Introduction to Algorithms,Thomas H. Cormen,9780262533058,2009,3,MIT Press,60,35,20,10,2,AcervoPublico
+Artificial Intelligence: Structures and Strategies for Complex Problem Solving,George F. Luger,9780321545893,2008,6,Pearson,40,25,15,7,3,AcervoRestrito
+Effective Java,Joshua Bloch,9780134685991,2018,4,Addison-Wesley Professional,55,30,18,7,3,AcervoRestrito
+Computer Organization and Design: The Hardware/Software Interface,David A. Patterson,9780123747501,2011,4,Morgan Kaufmann,50,30,18,8,3,AcervoRestrito
+The C Programming Language,Brian W. Kernighan,9780131103627,1988,2,Prentice Hall,60,35,20,10,2,AcervoPublico
+Head First Java,Kathy Sierra,9780596009205,2005,1,O'Reilly Media,45,30,18,7,3,AcervoRestrito
+Cracking Codes with Python,Al Sweigart,9781593278229,2018,1,No Starch Press,40,25,15,7,3,AcervoRestrito
+Introduction to the Theory of Neural Computation,John A. Hertz,9780201515602,1991,1,Addison-Wesley Professional,35,20,12,5,3,AcervoRestrito
+The Data Warehouse Toolkit: The Definitive Guide to Dimensional Modeling,Ralph Kimball,9781118530801,2013,3,Wiley,50,30,18,7,3,AcervoRestrito
