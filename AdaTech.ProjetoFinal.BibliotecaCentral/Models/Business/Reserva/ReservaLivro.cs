@@ -16,7 +16,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
         private readonly Livro _livro;
         private readonly ComunidadeAcademica _usuarioComunidadeAcademica;
         private DateTime _dataRetirarLivro;
-        private readonly DateTime _dataReserva;
+        private DateTime _dataReserva;
         private readonly Emprestimo _emprestimo;
         private StatusReserva _statusReserva;
 
@@ -37,7 +37,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
             get { return _dataRetirarLivro; }
             set { _dataRetirarLivro = value; }
         }
-        internal DateTime DataReserva { get { return _dataReserva; } }
+        internal DateTime DataReserva { get { return _dataReserva; } set { _dataReserva = value; } }
 
         internal Emprestimo Emprestimo { get { return _emprestimo; } }
 
@@ -73,6 +73,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
         {
             return $"- Livro: {Livro.Titulo} " +
                 $"- Requerente: {UsuarioComunidadeAcademica.NomeCompleto} " +
+                $"- Data de reserva: {DataReserva.ToShortDateString()}" +
                 $"- Data de retirada prevista: {DataRetirarLivro.ToShortDateString()}";
         }
     }
