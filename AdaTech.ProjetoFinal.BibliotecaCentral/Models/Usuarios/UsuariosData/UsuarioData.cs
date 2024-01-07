@@ -245,6 +245,11 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
         internal static ComunidadeAcademica SelecionarComunidadeAcademica(string login)
         {
             ComunidadeAcademica usuario = _comunidadeAcademica.Where(u => u.Login == login).FirstOrDefault();
+            return usuario;
+        }
+        internal static Atendente SelecionarAtendente(string login)
+        {
+            Atendente usuario = _atendentes.Where(u => u.Login == login).FirstOrDefault();
             if (usuario != null) return usuario;
 
             throw new InvalidOperationException("Usuário não encontrado.");
