@@ -32,7 +32,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalController
         }
         private void DevolverButtonClick(object sender, EventArgs e)
         {
-            if (VerificarCaixasEscolhidas())
+            if (_listaEmprestimos == null && VerificarCaixasEscolhidas())
             {
                 Emprestimo emprestimoSelecionado = EmprestimoData.SelecionarEmprestimo(_emprestimoDevolucao);
                 emprestimoSelecionado.MauEstado = form.EstadoLivro;
@@ -44,7 +44,14 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalController
             }
             else
             {
-                form.MostrarMensagem("Selecione 1 empréstimo para devolução");
+                if (_listaEmprestimos == null)
+                {
+                    form.MostrarMensagem("O usuário não possui livros para devolver");
+                }
+                else
+                {
+                    form.MostrarMensagem("Selecione 1 empréstimo para devolução");
+                }
             }
         }
         private void ProcurarButtonClick(object sender, EventArgs e)
@@ -55,13 +62,13 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalController
             if (comunidadeAcademica != null)
             {
                 List<Emprestimo> emprestimos = EmprestimoData.SelecionarEmprestimo(comunidadeAcademica);
-                List<Emprestimo> emprestimosNaoDevolvidos = emprestimos;
+                List<Emprestimo> emprestimosNaoDevolvidos = new List<Emprestimo>();
 
                 foreach (Emprestimo emprestimoEscolhido in emprestimos)
                 {
-                    if (emprestimoEscolhido.Devolucao == true)
+                    if (emprestimoEscolhido.Devolucao != true)
                     {
-                        emprestimosNaoDevolvidos.Remove(emprestimoEscolhido);
+                        emprestimosNaoDevolvidos.Add(emprestimoEscolhido);
                     }
                 }
 
@@ -75,6 +82,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalController
                 else
                 {
                     MessageBox.Show("O usuário não possui empréstimos.");
+                    form.ExibeRegistros(emprestimosNaoDevolvidos);
                 }
             }
             else
@@ -85,17 +93,15 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalController
 
         private bool VerificarCaixasEscolhidas()
         {
-            List<Emprestimo> emprestimos = new List<Emprestimo>();
-            emprestimos = _listaEmprestimos;
             int contador = 0;
 
-            if(form.Caixas.Count > 0 && emprestimos != null)
+            if(form.Caixas.Count > 0 && _listaEmprestimos != null)
             {
                 foreach (int selecao in form.Caixas)
                 {
                     if (selecao == 1)
                     {
-                        _emprestimoDevolucao = emprestimos[contador].IdEmprestimo.ToString();
+                        _emprestimoDevolucao = _listaEmprestimos[contador].IdEmprestimo.ToString();
                         contador++;
                     }
                 }
