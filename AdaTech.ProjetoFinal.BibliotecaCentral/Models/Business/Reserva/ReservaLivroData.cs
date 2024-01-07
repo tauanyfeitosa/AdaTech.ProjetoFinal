@@ -246,11 +246,13 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
             bool Conversao = DateTime.TryParse(partes[2], out DateTime DataReserva);
 
             var reserva = new ReservaLivro(emprestimo, usuarioCA);
+            
             if (Conversao) reserva.DataReserva = DataReserva;
+          
             if (partes.Length > 3)
             {
-                DateTime dataPrevista = DateTime.Parse(partes[3]);
-                reserva.DataRetirarLivro = dataPrevista;
+                DateTime dataRetirar = DateTime.Parse(partes[3]);
+                reserva.DataRetirarLivro = dataRetirar;
             }
             
             AdicionarReserva(reserva); 
