@@ -14,7 +14,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
         private readonly ReservaLivro _reservaLivro;
         private readonly Livro _livro;
         private readonly ComunidadeAcademica _usuarioComunidadeAcademica;
-        private readonly DateTime _dataEmprestimo;
+        private DateTime _dataEmprestimo;
         private DateTime _dataDevolucaoPrevista;
         private DateTime _dataDevolucaoUsuario;
         private bool _devolucao;
@@ -29,7 +29,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
 
         internal int IdEmprestimo { get { return _idEmprestimo; } }
 
-        internal DateTime DataEmprestimo { get { return _dataEmprestimo; } }
+        internal DateTime DataEmprestimo { get { return _dataEmprestimo; } set { _dataEmprestimo = value; } }
 
         internal DateTime DataDevolucaoPrevista
         {

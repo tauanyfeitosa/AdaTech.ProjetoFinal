@@ -139,7 +139,12 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
             string cpfUsuario = partes[1];
             ComunidadeAcademica usuario = UsuarioData.SelecionarUsuarioCA(cpfUsuario);
 
-            return new Emprestimo(null, livro, usuario);
+            bool Conversao = DateTime.TryParse(partes[2], out DateTime DataEmprestimo);
+
+            var emprestimo = new Emprestimo(null, livro, usuario);
+            if (Conversao) emprestimo.DataEmprestimo = DataEmprestimo;
+
+            return emprestimo;
         }
 
 
@@ -170,7 +175,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
         internal static string ConverterEmprestimoParaLinha(Emprestimo emprestimo)
         {
 
-            return $"{emprestimo.Livro.Isbn},{emprestimo.ComunidadeAcademica.Cpf}";
+            return $"{emprestimo.Livro.Isbn},{emprestimo.ComunidadeAcademica.Cpf},{emprestimo.DataEmprestimo}";
         }
 
         internal static void CriarEmprestimo (Emprestimo emprestimo)
