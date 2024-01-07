@@ -19,7 +19,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Solicitacoes
         public string Descricao { get => _descricao; }
         public TipoAcervoLivro TipoAcervo { get => _tipoAcervoNovo; }
 
-        public Livro Livro { get => _livro; set => _livro = value; }
+        internal Livro Livro { get => _livro; set => _livro = value; }
 
         public bool Aprovada { get => _aprovada; set => _aprovada = value; }
 
