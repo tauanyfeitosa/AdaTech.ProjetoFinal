@@ -23,6 +23,11 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
         private int _idEmprestimo;
         private static int _idEmprestimoAtual = 1;
 
+        internal int Renovacoes
+        {
+            get { return _renovacoes; }
+            set { _renovacoes = value; }
+        }
         internal ReservaLivro ReservaLivro { get { return _reservaLivro; } }
         internal Livro Livro { get { return _livro; } }
         internal ComunidadeAcademica ComunidadeAcademica { get { return _usuarioComunidadeAcademica; } }

@@ -149,7 +149,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasCA
             label2.Name = "label2";
             label2.Size = new Size(68, 13);
             label2.TabIndex = 9;
-            label2.Text = "Escolha qual multa deseja pagar";
+            label2.Text = "Selecione qual multa deseja pagar";
             #endregion
 
             Controls.Add(btnSair);
@@ -177,7 +177,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasCA
             switch (lista.Count)
             {
                 case 1:
-                    texto = lista[0].Livro.Titulo;
+                    texto = $"Livro: {lista[0].Livro.Titulo} - Data Devolução: {lista[0].DataDevolucaoUsuario} - Multa Total: R${lista[0].Multa.MultaTotal}";
                     checkBox1.Text = $"{texto}";
                     checkBox2.Text = " ";
                     checkBox3.Text = " ";
@@ -185,45 +185,45 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasCA
                     checkBox5.Text = " ";
                     break;
                 case 2:
-                    texto = lista[0].Livro.Titulo;
+                    texto = $"Livro: {lista[0].Livro.Titulo} - Data Devolução: {lista[0].DataDevolucaoUsuario} - Multa Total: R${lista[0].Multa.MultaTotal}";
                     checkBox1.Text = $"{texto}";
-                    texto = lista[1].Livro.Titulo;
+                    texto = $"Livro: {lista[1].Livro.Titulo} - Data Devolução: {lista[1].DataDevolucaoUsuario} - Multa Total: R${lista[1].Multa.MultaTotal}";
                     checkBox2.Text = $"{texto}";
                     checkBox3.Text = " ";
                     checkBox4.Text = " ";
                     checkBox5.Text = " ";
                     break;
                 case 3:
-                    texto = lista[0].Livro.Titulo;
+                    texto = $"Livro: {lista[0].Livro.Titulo} - Data Devolução: {lista[0].DataDevolucaoUsuario} - Multa Total: R${lista[0].Multa.MultaTotal}";
                     checkBox1.Text = $"{texto}";
-                    texto = lista[1].Livro.Titulo;
+                    texto = $"Livro: {lista[1].Livro.Titulo} - Data Devolução: {lista[1].DataDevolucaoUsuario} - Multa Total: R${lista[1].Multa.MultaTotal}";
                     checkBox2.Text = $"{texto}";
-                    texto = lista[2].Livro.Titulo;
+                    texto = $"Livro: {lista[2].Livro.Titulo} - Data Devolução: {lista[2].DataDevolucaoUsuario} - Multa Total: R${lista[2].Multa.MultaTotal}";
                     checkBox3.Text = $"{texto}";
                     checkBox4.Text = " ";
                     checkBox5.Text = " ";
                     break;
                 case 4:
-                    texto = lista[0].Livro.Titulo;
+                    texto = $"Livro: {lista[0].Livro.Titulo} - Data Devolução: {lista[0].DataDevolucaoUsuario} - Multa Total: R${lista[0].Multa.MultaTotal}";
                     checkBox1.Text = $"{texto}";
-                    texto = lista[1].Livro.Titulo;
+                    texto = $"Livro: {lista[1].Livro.Titulo} - Data Devolução: {lista[1].DataDevolucaoUsuario} - Multa Total: R${lista[1].Multa.MultaTotal}";
                     checkBox2.Text = $"{texto}";
-                    texto = lista[2].Livro.Titulo;
+                    texto = $"Livro: {lista[2].Livro.Titulo} - Data Devolução: {lista[2].DataDevolucaoUsuario} - Multa Total: R${lista[2].Multa.MultaTotal}";
                     checkBox3.Text = $"{texto}";
-                    texto = lista[3].Livro.Titulo;
+                    texto = $"Livro: {lista[3].Livro.Titulo} - Data Devolução: {lista[3].DataDevolucaoUsuario} - Multa Total: R${lista[3].Multa.MultaTotal}";
                     checkBox4.Text = $"{texto}";
                     checkBox5.Text = " ";
                     break;
                 case 5:
-                    texto = lista[0].Livro.Titulo;
+                    texto = $"Livro: {lista[0].Livro.Titulo} - Data Devolução: {lista[0].DataDevolucaoUsuario} - Multa Total: R${lista[0].Multa.MultaTotal}";
                     checkBox1.Text = $"{texto}";
-                    texto = lista[1].Livro.Titulo;
+                    texto = $"Livro: {lista[1].Livro.Titulo} - Data Devolução: {lista[1].DataDevolucaoUsuario} - Multa Total: R${lista[1].Multa.MultaTotal}";
                     checkBox2.Text = $"{texto}";
-                    texto = lista[2].Livro.Titulo;
+                    texto = $"Livro: {lista[2].Livro.Titulo} - Data Devolução: {lista[2].DataDevolucaoUsuario} - Multa Total: R${lista[2].Multa.MultaTotal}";
                     checkBox3.Text = $"{texto}";
-                    texto = lista[3].Livro.Titulo;
+                    texto = $"Livro: {lista[3].Livro.Titulo} - Data Devolução: {lista[3].DataDevolucaoUsuario} - Multa Total: R${lista[3].Multa.MultaTotal}";
                     checkBox4.Text = $"{texto}";
-                    texto = lista[4].Livro.Titulo;
+                    texto = $"Livro: {lista[4].Livro.Titulo} - Data Devolução: {lista[4].DataDevolucaoUsuario} - Multa Total: R${lista[4].Multa.MultaTotal}";
                     checkBox5.Text = $"{texto}";
                     break;
                 default:

@@ -9,14 +9,14 @@ using System.Windows.Forms;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalControllers.PainelComunidadeController
 {
-    internal class MultasUsuarioController
+    internal class RenovarLivroController
     {
-        private JanelaMultasUsuario form;
+        private JanelaRenovarLivro form;
         private string _emprestimoPago;
         private List<Emprestimo> _listaEmprestimos = new List<Emprestimo>();
         private ComunidadeAcademica _comunidadeAcademica;
 
-        public MultasUsuarioController(JanelaMultasUsuario form, ComunidadeAcademica usuario)
+        public RenovarLivroController(JanelaRenovarLivro form, ComunidadeAcademica usuario)
         {
             _comunidadeAcademica = usuario;
             this.form = form;
@@ -28,19 +28,19 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalController
             if (VerificarCaixasEscolhidas() && _listaEmprestimos != null)
             {
                 Emprestimo emprestimo = EmprestimoData.SelecionarEmprestimo(_emprestimoPago);
-                emprestimo.Multa.PagarMulta();
-                form.MostrarMensagem("PAGO");
+                emprestimo.RenovarLivro();
+                form.MostrarMensagem($"{emprestimo.ToString()}");
                 form.Close();
             }
             else
             {
                 if (_listaEmprestimos == null)
                 {
-                    form.MostrarMensagem("O usuário não possui multas");
+                    form.MostrarMensagem("O usuário não possui emprestimos para renovar");
                 }
                 else
                 {
-                    form.MostrarMensagem("Selecione 1 empréstimo para pagar");
+                    form.MostrarMensagem("Selecione 1 empréstimo para renovar");
                 }
             }
 
@@ -60,7 +60,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalController
 
                 foreach (Emprestimo emprestimoEscolhido in emprestimos)
                 {
-                    if (emprestimoEscolhido.Devolucao == true && emprestimoEscolhido.Multa.MultaTotal > 0)
+                    if (emprestimoEscolhido.Devolucao != true && emprestimoEscolhido.Renovacoes > 0)
                     {
                         emprestimosDevolvidos.Add(emprestimoEscolhido);
                     }

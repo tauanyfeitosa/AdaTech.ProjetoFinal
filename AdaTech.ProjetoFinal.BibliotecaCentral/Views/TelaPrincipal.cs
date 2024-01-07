@@ -561,22 +561,11 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
 
             #endregion
 
-            #region Botão ReservarLivro
-
-            Button bntReservar = new Button();
-            bntReservar.Size = new Size(150, 20);
-            bntReservar.Location = new Point(20, 90);
-            bntReservar.Anchor = AnchorStyles.Right;
-            bntReservar.Text = "Reservar Livro";
-            bntReservar.Click += OnClickReservarLivro;
-
-            #endregion
-
             #region Botão RenovarLivro
 
             Button bntRenovar = new Button();
             bntRenovar.Size = new Size(150, 20);
-            bntRenovar.Location = new Point(20, 130);
+            bntRenovar.Location = new Point(20, 90);
             bntRenovar.Anchor = AnchorStyles.Right;
             bntRenovar.Text = "Renovar Livro";
             bntRenovar.Click += OnClickRenovarLivro;
@@ -587,15 +576,26 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
 
             Button bntMultas = new Button();
             bntMultas.Size = new Size(150, 20);
-            bntMultas.Location = new Point(20, 170);
+            bntMultas.Location = new Point(20, 130);
             bntMultas.Anchor = AnchorStyles.Right;
             bntMultas.Text = "Pagar Multa";
             bntMultas.Click += OnClickMultas;
 
             #endregion
 
+            /*#region Botão ReservarLivro
+
+            Button bntReservar = new Button();
+            bntReservar.Size = new Size(150, 20);
+            bntReservar.Location = new Point(20, 170);
+            bntReservar.Anchor = AnchorStyles.Right;
+            bntReservar.Text = "Reservar Livro";
+            bntReservar.Click += OnClickReservarLivro;
+
+            #endregion*/
+
             painelComunidadeAcademica.Controls.Add(bntVisualizarAcervo);
-            painelComunidadeAcademica.Controls.Add(bntReservar);
+            //painelComunidadeAcademica.Controls.Add(bntReservar);
             painelComunidadeAcademica.Controls.Add(bntRenovar);
             painelComunidadeAcademica.Controls.Add(bntMultas);
 
@@ -609,11 +609,11 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
             JanelaVisualizarAcervo visualizarAcervo = new JanelaVisualizarAcervo();
             visualizarAcervo.ShowDialog();
         }
-        private void OnClickReservarLivro(object sender, EventArgs e)
+        /*private void OnClickReservarLivro(object sender, EventArgs e)
         {
-            //JanelaReservarLivro reservar = new JanelaReservarLivro();
-            //reservar.ShowDialog();
-        }
+            JanelaReservarLivro reservar = new JanelaReservarLivro();
+            reservar.ShowDialog();
+        }*/
         private void OnClickRenovarLivro(object sender, EventArgs e)
         {
             JanelaRenovarLivro renovar = new JanelaRenovarLivro();
