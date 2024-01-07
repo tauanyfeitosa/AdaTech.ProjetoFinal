@@ -59,6 +59,8 @@
     <Compile Include="Controllers\PrincipalControllers\PainelBibliotecarioController\SolicitarLivrosController.cs" />
     <Compile Include="Controllers\PrincipalControllers\PainelBibliotecarioController\VisualizarMudancaAcervoController.cs" />
     <Compile Include="Controllers\PrincipalControllers\PainelBibliotecarioController\VisualizarSolicitacoesLivrosController.cs" />
+    <Compile Include="Controllers\PrincipalControllers\PainelComunidadeController\MultasUsuarioController.cs" />
+    <Compile Include="Controllers\PrincipalControllers\PainelComunidadeController\VisualizarAcervoController.cs" />
     <Compile Include="Controllers\TelaInicialController.cs" />
     <Compile Include="Controllers\TelaPrincipalController.cs" />
     <Compile Include="Models\Business\Emprestimos\Emprestimo.cs" />
@@ -141,6 +143,24 @@
     <Compile Include="Views\Janelas\JanelasBibliotecario\JanelaVisualizarSolicitacoesLivros.Designer.cs">
       <DependentUpon>JanelaVisualizarSolicitacoesLivros.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Janelas\JanelasCA\JanelaMultasUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Janelas\JanelasCA\JanelaMultasUsuario.Designer.cs">
+      <DependentUpon>JanelaMultasUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Janelas\JanelasCA\JanelaRenovarLivro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Janelas\JanelasCA\JanelaRenovarLivro.Designer.cs">
+      <DependentUpon>JanelaRenovarLivro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Janelas\JanelasCA\JanelaVisualizarAcervo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Janelas\JanelasCA\JanelaVisualizarAcervo.Designer.cs">
+      <DependentUpon>JanelaVisualizarAcervo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Janelas\JanelasDiretor\JanelaDetalhesSolicitacao.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,6 +219,9 @@
     </Compile>
     <EmbeddedResource Include="Views\Janelas\JanelasBibliotecario\JanelaSolicitarLivros.resx">
       <DependentUpon>JanelaSolicitarLivros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Janelas\JanelasCA\JanelaVisualizarAcervo.resx">
+      <DependentUpon>JanelaVisualizarAcervo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Janelas\JanelasDiretor\JanelaVisualizaReserva.resx">
       <DependentUpon>JanelaVisualizaReserva.cs</DependentUpon>

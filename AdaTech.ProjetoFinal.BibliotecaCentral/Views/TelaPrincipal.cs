@@ -14,6 +14,7 @@ using AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasDiretor;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasBibliotecario;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Solicitacoes;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasCA;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
 {
@@ -546,61 +547,79 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
 
             painelComunidadeAcademica.Controls.Clear();
 
-            Button btnReservarLivro = new Button();
-            btnReservarLivro.Size = new Size(300, 50);
-            btnReservarLivro.Location = new Point(20, 80);
-            btnReservarLivro.Anchor = AnchorStyles.Right;
-            btnReservarLivro.Text = "Criar Reserva";
-            btnReservarLivro.Click += OnClickReservarLivro;
+            #region Botão VizualizarAcervo
 
+            Button bntVisualizarAcervo = new Button();
+            bntVisualizarAcervo.Size = new Size(150, 20);
+            bntVisualizarAcervo.Location = new Point(20, 50);
+            bntVisualizarAcervo.Anchor = AnchorStyles.Right;
+            bntVisualizarAcervo.Text = "Visualizar Acervo";
+            bntVisualizarAcervo.Click += OnClickVisualizarAcervo;
 
-            Button btnDevolverLivro = new Button();
-            btnDevolverLivro.Size = new Size(300, 50);
-            btnDevolverLivro.Location = new Point(70, 80);
-            btnDevolverLivro.Anchor = AnchorStyles.Right;
-            btnDevolverLivro.Text = "Devolver Livro";
-            btnDevolverLivro.Click += OnClickDevolverLivro;
+            #endregion
 
-            Button btnPedirEmprestimo = new Button();
-            btnPedirEmprestimo.Size = new Size(300, 50);
-            btnPedirEmprestimo.Location = new Point(20, 135);
-            btnPedirEmprestimo.Anchor = AnchorStyles.Right;
-            btnPedirEmprestimo.Text = "Solicitar Emprestimo de Livro";
-            btnPedirEmprestimo.Click += OnClickPedirEmprestimo;
+            #region Botão ReservarLivro
 
-            Button btnPesquisarLivro = new Button();
-            btnPesquisarLivro.Size = new Size(300, 50);
-            btnPesquisarLivro.Location = new Point(20, 135);
-            btnPesquisarLivro.Anchor = AnchorStyles.Right;
-            btnPesquisarLivro.Text = "Pesquisar Livro";
-            btnPesquisarLivro.Click += OnClickPesquisarLivro;
+            Button bntReservar = new Button();
+            bntReservar.Size = new Size(150, 20);
+            bntReservar.Location = new Point(20, 50);
+            bntReservar.Anchor = AnchorStyles.Right;
+            bntReservar.Text = "Reservar Livro";
+            bntReservar.Click += OnClickReservarLivro;
 
+            #endregion
+
+            #region Botão RenovarLivro
+
+            Button bntRenovar = new Button();
+            bntRenovar.Size = new Size(150, 20);
+            bntRenovar.Location = new Point(20, 50);
+            bntRenovar.Anchor = AnchorStyles.Right;
+            bntRenovar.Text = "Reservar Livro";
+            bntRenovar.Click += OnClickRenovarLivro;
+
+            #endregion
+
+            #region Botão Multas
+
+            Button bntMultas = new Button();
+            bntMultas.Size = new Size(150, 20);
+            bntMultas.Location = new Point(20, 50);
+            bntMultas.Anchor = AnchorStyles.Right;
+            bntMultas.Text = "Reservar Livro";
+            bntMultas.Click += OnClickMultas;
+
+            #endregion
+
+            painelComunidadeAcademica.Controls.Add(bntVisualizarAcervo);
+            painelComunidadeAcademica.Controls.Add(bntReservar);
+            painelComunidadeAcademica.Controls.Add(bntRenovar);
+            painelComunidadeAcademica.Controls.Add(bntMultas);
 
             return painelComunidadeAcademica;
         }
+        #endregion
 
-        private void OnClickPesquisarLivro(object sender, EventArgs e)
+        #region OnClick de CA
+        private void OnClickVisualizarAcervo(object sender, EventArgs e)
         {
-            //Implementar criação da janela Pedir Emprestimo
-            throw new NotImplementedException();
+            JanelaVisualizarAcervo visualizarAcervo = new JanelaVisualizarAcervo();
+            visualizarAcervo.ShowDialog();
         }
-
-        private void OnClickPedirEmprestimo(object sender, EventArgs e)
-        {
-            //Implementar criação da janela Pedir Emprestimo
-            throw new NotImplementedException();
-        }
-
-        private void OnClickDevolverLivro(object sender, EventArgs e)
-        {
-            //Implementar criação da janela Devolver Livro
-            throw new NotImplementedException();
-        }
-
         private void OnClickReservarLivro(object sender, EventArgs e)
         {
-            //Implementar criação da janela criar reserva
-            throw new NotImplementedException();
+            /*JanelaReservarLivro reservar = new JanelaReservarLivro();
+            reservar.ShowDialog();*/
+        }
+        private void OnClickRenovarLivro(object sender, EventArgs e)
+        {
+            JanelaRenovarLivro renovar = new JanelaRenovarLivro();
+            renovar.ShowDialog();
+        }
+        private void OnClickMultas(object sender, EventArgs e)
+        {
+            JanelaMultasUsuario multas = new JanelaMultasUsuario();
+            multas.ShowDialog();
         }
         #endregion
 
