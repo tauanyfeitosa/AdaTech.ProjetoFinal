@@ -28,41 +28,41 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton rdoNegativo;
         private System.Windows.Forms.RadioButton rdoPositivo;
-        private DataGridView dgvEmprestimos;
-        private BindingSource emprestimoBindingSource;
-        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn emprestimoDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn devolucaoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBox1;
 
         public event EventHandler ProcurarButtonClick;
         public event EventHandler DevolverButtonClick;
         public event EventHandler CancelarButtonClick;
 
         private Atendente _atendenteLogin;
-        private bool _emprestimoEscolhido;
-        private string _emprestimoDevolucao;
-        internal string EmprestimoDevolucao
+        private List<int> _caixas = new List<int> { 0, 0, 0 };
+        private bool _estadoLivro;
+
+        internal List<int> Caixas {  get { return _caixas; } }
+        internal bool EstadoLivro
         {
-            get { return _emprestimoDevolucao;}
-            set { _emprestimoDevolucao = value;}
+            get { return _estadoLivro; }
+            set { _estadoLivro = value;}
         }
         internal Atendente AtendenteLogin
         {
             get { return _atendenteLogin; }
             set { _atendenteLogin = value; }
         }
-        internal bool EmprestimoEscolhido
-        {
-            get { return _emprestimoEscolhido; }
-            set { _emprestimoEscolhido = value; }
-        }
         internal JanelaDevolucao(Usuario usuario)
         {
-            this._emprestimoEscolhido = false;
             this._atendenteLogin = UsuarioData.SelecionarAtendente(usuario.Login);
 
             InitializeComponent();
             InicializarControles();
+            _estadoLivro = false;
+            checkBox1.CheckedChanged += CheckBoxChecked1;
+            checkBox2.CheckedChanged += CheckBoxChecked2;
+            checkBox3.CheckedChanged += CheckBoxChecked3;
+            rdoNegativo.CheckedChanged += CheckNegativo;
+            rdoPositivo.CheckedChanged += CheckPositivo;
 
             DevolucaoController controller = new DevolucaoController(this);
         }
@@ -153,81 +153,49 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
 
             groupBox1.Controls.Add(rdoNegativo);
             groupBox1.Controls.Add(rdoPositivo);
-            #endregion
-
-            #region DataGridView Empréstimos
-
-            dgvEmprestimos = new DataGridView();
-            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            devolucaoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            emprestimoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            dgvEmprestimos.AllowUserToAddRows = false;
-            dgvEmprestimos.AllowUserToDeleteRows = false;
-            dgvEmprestimos.AutoGenerateColumns = false;
-            dgvEmprestimos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvEmprestimos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvEmprestimos.Columns.AddRange(new DataGridViewColumn[] {
-            idDataGridViewTextBoxColumn,
-            emprestimoDataGridViewTextBoxColumn,
-            devolucaoDataGridViewTextBoxColumn});
-            dgvEmprestimos.Location = new Point(12, 200);
-            dgvEmprestimos.Name = "dgvEmprestimos";
-            dgvEmprestimos.ReadOnly = true;
-            dgvEmprestimos.Size = new Size(527, 215);
-            dgvEmprestimos.TabIndex = 9;
-            dgvEmprestimos.SelectionChanged += dgvEmprestimos_SelectionChanged;
-            #endregion
-
-            #region IdEmprestimo DGV
-
-            idDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            idDataGridViewTextBoxColumn.DataPropertyName = "IdEmprestimo";
-            idDataGridViewTextBoxColumn.Frozen = true;
-            idDataGridViewTextBoxColumn.HeaderText = "Id";
-            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            idDataGridViewTextBoxColumn.ReadOnly = true;
-            #endregion
-
-            #region Empréstimo DGV
-
-            emprestimoDataGridViewTextBoxColumn.DataPropertyName = "DataEmprestimo";
-            emprestimoDataGridViewTextBoxColumn.HeaderText = "Empréstimo";
-            emprestimoDataGridViewTextBoxColumn.Name = "emprestimoDataGridViewTextBoxColumn";
-            emprestimoDataGridViewTextBoxColumn.ReadOnly = true;
-            #endregion
-
-            #region Devolucao DGV
-
-            devolucaoDataGridViewTextBoxColumn.DataPropertyName = "DataDevolucaoPrevista";
-            devolucaoDataGridViewTextBoxColumn.HeaderText = "Devolução";
-            devolucaoDataGridViewTextBoxColumn.Name = "devolucaoDataGridViewTextBoxColumn";
-            devolucaoDataGridViewTextBoxColumn.ReadOnly = true;
-            #endregion
-
-            #region Pessoa 
-
-            emprestimoBindingSource = new BindingSource(components);
-            dgvEmprestimos.DataSource = emprestimoBindingSource;
-            emprestimoBindingSource.DataSource = typeof(Emprestimo);
-            #endregion
-
             groupBox1.SuspendLayout();
-            ((ISupportInitialize)(dgvEmprestimos)).BeginInit();
-            ((ISupportInitialize)(emprestimoBindingSource)).BeginInit();
-            SuspendLayout();
+            #endregion
 
-            Controls.Add(dgvEmprestimos);
+            #region CheckBox1
+            checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(64, 204);
+            this.checkBox1.Size = new System.Drawing.Size(113, 24);
+            this.checkBox1.TabIndex = 10;
+            this.checkBox1.UseVisualStyleBackColor = true;
+            #endregion
+
+            #region CheckBox2
+            checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(64, 244);
+            this.checkBox2.Size = new System.Drawing.Size(113, 24);
+            this.checkBox2.TabIndex = 11;
+            this.checkBox2.UseVisualStyleBackColor = true;
+            #endregion
+
+            #region CheckBox3
+            checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(64, 284);
+            this.checkBox3.Size = new System.Drawing.Size(113, 24);
+            this.checkBox3.TabIndex = 12;
+            this.checkBox3.UseVisualStyleBackColor = true;
+            #endregion
+
             Controls.Add(groupBox1);
             Controls.Add(btnProcurar);
             Controls.Add(btnCancelar);
             Controls.Add(btnDevolver);
             Controls.Add(txtMatricula);
+            Controls.Add(checkBox1);
+            Controls.Add(checkBox2);
+            Controls.Add(checkBox3);
             Controls.Add(label1);
 
             Text = "Devolução";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            ((ISupportInitialize)(dgvEmprestimos)).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -248,18 +216,80 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
         }
         internal void ExibeRegistros(List<Emprestimo> lista)
         {
-            dgvEmprestimos.DataSource = null;
-            dgvEmprestimos.DataSource = lista;
-        }
-        private void dgvEmprestimos_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dgvEmprestimos.SelectedRows.Count == 1)
-            {
-                DataGridViewRow selectedRow = dgvEmprestimos.SelectedRows[0];
-                _emprestimoEscolhido = true;
+            string texto;
 
-                _emprestimoDevolucao = selectedRow.Cells["idDataGridViewTextBoxColumn"].Value.ToString();
+            switch (lista.Count)
+            {
+                case 1:
+                    texto = lista[0].CheckBoxTexto();
+                    checkBox1.Text = $"{texto}"; 
+                    checkBox2.Text = " ";
+                    checkBox3.Text = " ";
+                    break;
+                case 2:
+                    texto = lista[0].CheckBoxTexto();
+                    checkBox1.Text = $"{texto}";
+                    texto = lista[1].CheckBoxTexto();
+                    checkBox2.Text = $"{texto}";
+                    checkBox3.Text = " ";
+                    break;
+                case 3:
+                    texto = lista[0].CheckBoxTexto();
+                    checkBox1.Text = $"{texto}";
+                    texto = lista[1].CheckBoxTexto();
+                    checkBox2.Text = $"{texto}";
+                    texto = lista[2].CheckBoxTexto();
+                    checkBox3.Text = $"{texto}";
+                    break;
+                default:
+                    checkBox1.Text = "SEM EMPRÉSTIMOS";
+                    checkBox2.Text = "SEM EMPRÉSTIMOS";
+                    checkBox3.Text = "SEM EMPRÉSTIMOS";
+                    break;
             }
         }
+        private void CheckNegativo(object sender, EventArgs e)
+        {
+            _estadoLivro = false; 
+        }
+        private void CheckPositivo(object sender, EventArgs e)
+        {
+            _estadoLivro = true;
+        }
+        private void CheckBoxChecked1(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                MessageBox.Show("Marcou");
+                _caixas[0] = 1;
+            }
+            else
+            {
+                _caixas[0] = 0;
+            }
+        }
+        private void CheckBoxChecked2(object sender, EventArgs e)
+        {
+            if (checkBox2.Checked)
+            {
+                _caixas[1] = 1;
+            }
+            else
+            {
+                _caixas[1] = 0;
+            }
+        }
+        private void CheckBoxChecked3(object sender, EventArgs e)
+        {
+            if (checkBox3.Checked)
+            {
+                _caixas[2] = 1;
+            }
+            else
+            {
+                _caixas[2] = 0;
+            }
+        }
+
     }
 }
