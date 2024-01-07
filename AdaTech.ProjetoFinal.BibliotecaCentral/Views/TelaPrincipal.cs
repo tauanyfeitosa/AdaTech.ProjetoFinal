@@ -633,7 +633,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
         }*/
         private void OnClickRenovarLivro(object sender, EventArgs e)
         {
-            JanelaRenovarLivro renovar = new JanelaRenovarLivro();
+            JanelaRenovarLivro renovar = new JanelaRenovarLivro(_usuarioLogado);
             renovar.ShowDialog();
         }
         private void OnClickMultas(object sender, EventArgs e)

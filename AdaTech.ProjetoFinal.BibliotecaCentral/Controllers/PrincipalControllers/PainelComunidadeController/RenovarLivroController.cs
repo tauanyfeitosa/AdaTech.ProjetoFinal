@@ -20,10 +20,10 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalController
         {
             _comunidadeAcademica = usuario;
             this.form = form;
-            this.form.btnPagarClick += btnPagarClick;
+            this.form.btnRenovarClick += btnRenovarClick;
             this.form.btnSairClick += btnSairClick;
         }
-        public void btnPagarClick(object sender, EventArgs e)
+        public void btnRenovarClick(object sender, EventArgs e)
         {
             if (VerificarCaixasEscolhidas() && _listaEmprestimos != null)
             {

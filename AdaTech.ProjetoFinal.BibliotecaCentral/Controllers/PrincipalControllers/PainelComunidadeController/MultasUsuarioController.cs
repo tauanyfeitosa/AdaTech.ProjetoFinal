@@ -87,8 +87,9 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalController
         {
             int contador = 0;
 
-            if (form.Caixas.Count > 0 && _listaEmprestimos != null)
+            if (form.Caixas.Count > 0 && _listaEmprestimos.Count>0)
             {
+                MessageBox.Show($"{_listaEmprestimos.Count}");
                 foreach (int selecao in form.Caixas)
                 {
                     if (selecao == 1)
