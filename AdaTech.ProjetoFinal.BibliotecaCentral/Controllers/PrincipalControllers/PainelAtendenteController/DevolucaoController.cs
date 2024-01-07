@@ -44,7 +44,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalController
             }
             else
             {
-                form.MostrarMensagem("Selecione um empréstimo para devolução");
+                form.MostrarMensagem("Selecione 1 empréstimo para devolução");
             }
         }
         private void ProcurarButtonClick(object sender, EventArgs e)
@@ -87,7 +87,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalController
         {
             List<Emprestimo> emprestimos = new List<Emprestimo>();
             emprestimos = _listaEmprestimos;
-            MessageBox.Show($"{_listaEmprestimos.Count}");
             int contador = 0;
 
             if(form.Caixas.Count > 0 && emprestimos != null)

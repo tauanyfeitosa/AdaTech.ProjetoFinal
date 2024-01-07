@@ -28,6 +28,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton rdoNegativo;
         private System.Windows.Forms.RadioButton rdoPositivo;
+        private System.Windows.Forms.CheckBox checkBox5;
+        private System.Windows.Forms.CheckBox checkBox4;
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox1;
@@ -37,7 +39,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
         public event EventHandler CancelarButtonClick;
 
         private Atendente _atendenteLogin;
-        private List<int> _caixas = new List<int> { 0, 0, 0 };
+        private List<int> _caixas = new List<int> { 0, 0, 0, 0, 0 };
         private bool _estadoLivro;
 
         internal List<int> Caixas {  get { return _caixas; } }
@@ -61,6 +63,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
             checkBox1.CheckedChanged += CheckBoxChecked1;
             checkBox2.CheckedChanged += CheckBoxChecked2;
             checkBox3.CheckedChanged += CheckBoxChecked3;
+            checkBox4.CheckedChanged += CheckBoxChecked4;
+            checkBox5.CheckedChanged += CheckBoxChecked5;
             rdoNegativo.CheckedChanged += CheckNegativo;
             rdoPositivo.CheckedChanged += CheckPositivo;
 
@@ -183,6 +187,24 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
             this.checkBox3.UseVisualStyleBackColor = true;
             #endregion
 
+            #region CheckBox4
+            checkBox4 = new System.Windows.Forms.CheckBox();
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Location = new System.Drawing.Point(64, 324);
+            this.checkBox4.Size = new System.Drawing.Size(113, 24);
+            this.checkBox4.TabIndex = 13;
+            this.checkBox4.UseVisualStyleBackColor = true;
+            #endregion
+
+            #region CheckBox5
+            checkBox5 = new System.Windows.Forms.CheckBox();
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.Location = new System.Drawing.Point(64, 364);
+            this.checkBox5.Size = new System.Drawing.Size(113, 24);
+            this.checkBox5.TabIndex = 14;
+            this.checkBox5.UseVisualStyleBackColor = true;
+            #endregion
+
             Controls.Add(groupBox1);
             Controls.Add(btnProcurar);
             Controls.Add(btnCancelar);
@@ -191,6 +213,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
             Controls.Add(checkBox1);
             Controls.Add(checkBox2);
             Controls.Add(checkBox3);
+            Controls.Add(checkBox4);
+            Controls.Add(checkBox5);
             Controls.Add(label1);
 
             Text = "Devolução";
@@ -225,6 +249,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
                     checkBox1.Text = $"{texto}"; 
                     checkBox2.Text = " ";
                     checkBox3.Text = " ";
+                    checkBox4.Text = " ";
+                    checkBox5.Text = " ";
                     break;
                 case 2:
                     texto = lista[0].CheckBoxTexto();
@@ -232,6 +258,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
                     texto = lista[1].CheckBoxTexto();
                     checkBox2.Text = $"{texto}";
                     checkBox3.Text = " ";
+                    checkBox4.Text = " ";
+                    checkBox5.Text = " ";
                     break;
                 case 3:
                     texto = lista[0].CheckBoxTexto();
@@ -240,11 +268,38 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
                     checkBox2.Text = $"{texto}";
                     texto = lista[2].CheckBoxTexto();
                     checkBox3.Text = $"{texto}";
+                    checkBox4.Text = " ";
+                    checkBox5.Text = " ";
+                    break;
+                case 4:
+                    texto = lista[0].CheckBoxTexto();
+                    checkBox1.Text = $"{texto}";
+                    texto = lista[1].CheckBoxTexto();
+                    checkBox2.Text = $"{texto}";
+                    texto = lista[2].CheckBoxTexto();
+                    checkBox3.Text = $"{texto}";
+                    texto = lista[3].CheckBoxTexto();
+                    checkBox4.Text = $"{texto}";
+                    checkBox5.Text = " ";
+                    break;
+                case 5:
+                    texto = lista[0].CheckBoxTexto();
+                    checkBox1.Text = $"{texto}";
+                    texto = lista[1].CheckBoxTexto();
+                    checkBox2.Text = $"{texto}";
+                    texto = lista[2].CheckBoxTexto();
+                    checkBox3.Text = $"{texto}";
+                    texto = lista[3].CheckBoxTexto();
+                    checkBox4.Text = $"{texto}";
+                    texto = lista[4].CheckBoxTexto();
+                    checkBox5.Text = $"{texto}";
                     break;
                 default:
                     checkBox1.Text = "SEM EMPRÉSTIMOS";
                     checkBox2.Text = "SEM EMPRÉSTIMOS";
                     checkBox3.Text = "SEM EMPRÉSTIMOS";
+                    checkBox4.Text = "SEM EMPRÉSTIMOS";
+                    checkBox5.Text = "SEM EMPRÉSTIMOS";
                     break;
             }
         }
@@ -260,7 +315,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
         {
             if (checkBox1.Checked)
             {
-                MessageBox.Show("Marcou");
                 _caixas[0] = 1;
             }
             else
@@ -290,6 +344,27 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
                 _caixas[2] = 0;
             }
         }
-
+        private void CheckBoxChecked4(object sender, EventArgs e)
+        {
+            if (checkBox4.Checked)
+            {
+                _caixas[3] = 1;
+            }
+            else
+            {
+                _caixas[3] = 0;
+            }
+        }
+        private void CheckBoxChecked5(object sender, EventArgs e)
+        {
+            if (checkBox5.Checked)
+            {
+                _caixas[4] = 1;
+            }
+            else
+            {
+                _caixas[4] = 0;
+            }
+        }
     }
 }
