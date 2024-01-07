@@ -58,36 +58,43 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalController
         {
             _listaEmprestimos = null;
             ComunidadeAcademica comunidadeAcademica = UsuarioData.SelecionarComunidadeAcademica(form.NumeroMatricula());
-
-            if (comunidadeAcademica != null)
+            
+            try
             {
-                List<Emprestimo> emprestimos = EmprestimoData.SelecionarEmprestimo(comunidadeAcademica);
-                List<Emprestimo> emprestimosNaoDevolvidos = new List<Emprestimo>();
-
-                foreach (Emprestimo emprestimoEscolhido in emprestimos)
+                if (comunidadeAcademica != null)
                 {
-                    if (emprestimoEscolhido.Devolucao != true)
+                    List<Emprestimo> emprestimos = EmprestimoData.SelecionarEmprestimo(comunidadeAcademica);
+                    List<Emprestimo> emprestimosNaoDevolvidos = new List<Emprestimo>();
+
+                    foreach (Emprestimo emprestimoEscolhido in emprestimos)
                     {
-                        emprestimosNaoDevolvidos.Add(emprestimoEscolhido);
+                        if (emprestimoEscolhido.Devolucao != true)
+                        {
+                            emprestimosNaoDevolvidos.Add(emprestimoEscolhido);
+                        }
                     }
-                }
 
-                if (emprestimosNaoDevolvidos.Count > 0)
-                {
-                    form.ExibeRegistros(emprestimosNaoDevolvidos);
+                    if (emprestimosNaoDevolvidos.Count > 0)
+                    {
+                        form.ExibeRegistros(emprestimosNaoDevolvidos);
 
-                    _listaEmprestimos = emprestimosNaoDevolvidos;
-                    form.LimparFormulario();
+                        _listaEmprestimos = emprestimosNaoDevolvidos;
+                        form.LimparFormulario();
+                    }
+                    else
+                    {
+                        MessageBox.Show("O usuário não possui empréstimos.");
+                        form.ExibeRegistros(emprestimosNaoDevolvidos);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("O usuário não possui empréstimos.");
-                    form.ExibeRegistros(emprestimosNaoDevolvidos);
+                    MessageBox.Show("Usuário não encontrado.");
                 }
             }
-            else
+            catch(Exception ex)
             {
-                MessageBox.Show("Usuário não encontrado.");
+
             }
         }
 
