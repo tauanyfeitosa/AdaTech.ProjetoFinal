@@ -45,7 +45,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
             {
                 return _dataDevolucaoUsuario;
             }
-            private set
+            set
             {
                 _dataDevolucaoUsuario = value;
             }
