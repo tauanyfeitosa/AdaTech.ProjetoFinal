@@ -14,6 +14,7 @@ using AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasDiretor;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasBibliotecario;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Solicitacoes;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasCA;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
 {
@@ -558,12 +559,87 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
         #region Lógica Painel Comunidade Acadêmica
         private Panel CriarPainelComunidadeAcademica(Panel painelComunidadeAcademica)
         {
-            ComunidadeAcademica professor = UsuarioData.SelecionarComunidadeAcademica(_usuarioLogado.Login);
-            professor.AtribuirNovaSenha();
+            ComunidadeAcademica usuarioCA = UsuarioData.SelecionarComunidadeAcademica(_usuarioLogado.Login);
+            if (usuarioCA.TipoUsuario == TipoUsuarioComunidade.Professor)
+            {
+                usuarioCA.AtribuirNovaSenha();
+            }
 
             painelComunidadeAcademica.Controls.Clear();
 
+            #region Botão VizualizarAcervo
+
+            Button bntVisualizarAcervo = new Button();
+            bntVisualizarAcervo.Size = new Size(150, 20);
+            bntVisualizarAcervo.Location = new Point(20, 50);
+            bntVisualizarAcervo.Anchor = AnchorStyles.Right;
+            bntVisualizarAcervo.Text = "Visualizar Acervo";
+            bntVisualizarAcervo.Click += OnClickVisualizarAcervo;
+
+            #endregion
+
+            #region Botão RenovarLivro
+
+            Button bntRenovar = new Button();
+            bntRenovar.Size = new Size(150, 20);
+            bntRenovar.Location = new Point(20, 90);
+            bntRenovar.Anchor = AnchorStyles.Right;
+            bntRenovar.Text = "Renovar Livro";
+            bntRenovar.Click += OnClickRenovarLivro;
+
+            #endregion
+
+            #region Botão Multas
+
+            Button bntMultas = new Button();
+            bntMultas.Size = new Size(150, 20);
+            bntMultas.Location = new Point(20, 130);
+            bntMultas.Anchor = AnchorStyles.Right;
+            bntMultas.Text = "Pagar Multa";
+            bntMultas.Click += OnClickMultas;
+
+            #endregion
+
+            /*#region Botão ReservarLivro
+
+            Button bntReservar = new Button();
+            bntReservar.Size = new Size(150, 20);
+            bntReservar.Location = new Point(20, 170);
+            bntReservar.Anchor = AnchorStyles.Right;
+            bntReservar.Text = "Reservar Livro";
+            bntReservar.Click += OnClickReservarLivro;
+
+            #endregion*/
+
+            painelComunidadeAcademica.Controls.Add(bntVisualizarAcervo);
+            //painelComunidadeAcademica.Controls.Add(bntReservar);
+            painelComunidadeAcademica.Controls.Add(bntRenovar);
+            painelComunidadeAcademica.Controls.Add(bntMultas);
+
             return painelComunidadeAcademica;
+        }
+        #endregion
+
+        #region OnClick de CA
+        private void OnClickVisualizarAcervo(object sender, EventArgs e)
+        {
+            JanelaVisualizarAcervo visualizarAcervo = new JanelaVisualizarAcervo();
+            visualizarAcervo.ShowDialog();
+        }
+        /*private void OnClickReservarLivro(object sender, EventArgs e)
+        {
+            JanelaReservarLivro reservar = new JanelaReservarLivro();
+            reservar.ShowDialog();
+        }*/
+        private void OnClickRenovarLivro(object sender, EventArgs e)
+        {
+            JanelaRenovarLivro renovar = new JanelaRenovarLivro(_usuarioLogado);
+            renovar.ShowDialog();
+        }
+        private void OnClickMultas(object sender, EventArgs e)
+        {
+            JanelaMultasUsuario multas = new JanelaMultasUsuario(_usuarioLogado);
+            multas.ShowDialog();
         }
         #endregion
 
