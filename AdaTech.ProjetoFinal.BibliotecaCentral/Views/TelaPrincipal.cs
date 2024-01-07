@@ -542,8 +542,11 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
         #region Lógica Painel Comunidade Acadêmica
         private Panel CriarPainelComunidadeAcademica(Panel painelComunidadeAcademica)
         {
-            ComunidadeAcademica professor = UsuarioData.SelecionarComunidadeAcademica(_usuarioLogado.Login);
-            professor.AtribuirNovaSenha();
+            ComunidadeAcademica usuarioCA = UsuarioData.SelecionarComunidadeAcademica(_usuarioLogado.Login);
+            if (usuarioCA.TipoUsuario == TipoUsuarioComunidade.Professor)
+            {
+                usuarioCA.AtribuirNovaSenha();
+            }
 
             painelComunidadeAcademica.Controls.Clear();
 
@@ -562,7 +565,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
 
             Button bntReservar = new Button();
             bntReservar.Size = new Size(150, 20);
-            bntReservar.Location = new Point(20, 50);
+            bntReservar.Location = new Point(20, 90);
             bntReservar.Anchor = AnchorStyles.Right;
             bntReservar.Text = "Reservar Livro";
             bntReservar.Click += OnClickReservarLivro;
@@ -573,9 +576,9 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
 
             Button bntRenovar = new Button();
             bntRenovar.Size = new Size(150, 20);
-            bntRenovar.Location = new Point(20, 50);
+            bntRenovar.Location = new Point(20, 130);
             bntRenovar.Anchor = AnchorStyles.Right;
-            bntRenovar.Text = "Reservar Livro";
+            bntRenovar.Text = "Renovar Livro";
             bntRenovar.Click += OnClickRenovarLivro;
 
             #endregion
@@ -584,9 +587,9 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
 
             Button bntMultas = new Button();
             bntMultas.Size = new Size(150, 20);
-            bntMultas.Location = new Point(20, 50);
+            bntMultas.Location = new Point(20, 170);
             bntMultas.Anchor = AnchorStyles.Right;
-            bntMultas.Text = "Reservar Livro";
+            bntMultas.Text = "Pagar Multa";
             bntMultas.Click += OnClickMultas;
 
             #endregion
@@ -608,8 +611,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
         }
         private void OnClickReservarLivro(object sender, EventArgs e)
         {
-            /*JanelaReservarLivro reservar = new JanelaReservarLivro();
-            reservar.ShowDialog();*/
+            //JanelaReservarLivro reservar = new JanelaReservarLivro();
+            //reservar.ShowDialog();
         }
         private void OnClickRenovarLivro(object sender, EventArgs e)
         {
@@ -618,7 +621,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
         }
         private void OnClickMultas(object sender, EventArgs e)
         {
-            JanelaMultasUsuario multas = new JanelaMultasUsuario();
+            JanelaMultasUsuario multas = new JanelaMultasUsuario(_usuarioLogado);
             multas.ShowDialog();
         }
         #endregion

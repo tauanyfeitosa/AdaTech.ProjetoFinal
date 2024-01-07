@@ -37,7 +37,6 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "JanelaVisualizarAcervo";
             this.Text = "JanelaVisualizarAcervo";
-            this.Load += new System.EventHandler(this.JanelaVisualizarAcervo_Load);
             this.ResumeLayout(false);
 
         }
