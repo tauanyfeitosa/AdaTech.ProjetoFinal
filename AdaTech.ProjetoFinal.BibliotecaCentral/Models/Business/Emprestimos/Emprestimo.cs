@@ -21,8 +21,14 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
         private Multa _multaAtraso;
         private int _renovacoes;
         private int _idEmprestimo;
+        private bool _mauEstado;
         private static int _idEmprestimoAtual = 1;
 
+        internal bool MauEstado
+        {
+            get { return _mauEstado; }
+            set { _mauEstado = value;}
+        }
         internal ReservaLivro ReservaLivro { get { return _reservaLivro; } }
         internal Livro Livro { get { return _livro; } }
         internal ComunidadeAcademica ComunidadeAcademica { get { return _usuarioComunidadeAcademica; } }
@@ -88,6 +94,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
                 _dataEmprestimo = DateTime.Now;
                 _dataDevolucaoPrevista = _dataEmprestimo.AddDays(7);
                 _devolucao = devolucao;
+                _mauEstado = false;
                 _renovacoes = 3;
                 _livro.ExemplaresDisponiveis--;
                 _idEmprestimo = GerarIdEmprestimo();
@@ -102,7 +109,12 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
         {
             Devolucao = true;
             DataDevolucaoUsuario = DateTime.Now;
+            if(!_mauEstado)
+            {
+                _livro.ExemplaresDisponiveis++;
+            }
             CalcularMulta();
+            EmprestimoData.ExcluirEmprestimos(_livro, _usuarioComunidadeAcademica);
         }
 
         internal int GerarIdEmprestimo()
@@ -111,7 +123,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
             _idEmprestimoAtual++;
             return _idEmprestimo;
         }
-
 
         internal void RenovarLivro()
         {
@@ -130,20 +141,29 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
 
         private void CalcularMulta()
         {
-            if (DataDevolucaoUsuario > DataDevolucaoPrevista)
+            if (DataDevolucaoUsuario > DataDevolucaoPrevista || _mauEstado == true)
             {
-                _multaAtraso = new Multa(DataDevolucaoUsuario, DataDevolucaoPrevista);
+                _multaAtraso = new Multa(DataDevolucaoUsuario, DataDevolucaoPrevista, _mauEstado);
             }
+        }
+        public string CheckBoxTexto()
+        {
+            return $"Livro: {_livro.Titulo} - Data de Empréstimo: {_dataEmprestimo} - Data de Devolução: {_dataDevolucaoPrevista}";
         }
 
         public override string ToString()
         {
-            string DataDevolucao = (_devolucao) ? _dataDevolucaoUsuario.ToShortDateString() : _dataDevolucaoPrevista.ToShortDateString();
-            return $"- Livro: {_livro.Titulo}\r\n" +
-                $"- Requerente: {_usuarioComunidadeAcademica.ToString()}\r\n " +
+            string mensagem = $"- Livro: {_livro.Titulo}\r\n" +
+                $"- Requerente: {_usuarioComunidadeAcademica.NomeCompleto}\r\n" +
                 $"- Data de emprestimo: {_dataEmprestimo}\r\n" +
-                $"- Data de Devolução: {DataDevolucao}" +
-                $"- Devolução: {_devolucao}";
+                $"- Data de Devolução: {DateTime.Now}\r\n" +
+                $"- Devolução: True\r\n";
+
+            if (DateTime.Now > _dataDevolucaoPrevista || _mauEstado == true)
+            {
+                mensagem += $"- Multa: R${_multaAtraso.MultaTotal:F2}";
+            }
+            return mensagem;
         }
     }
 }

@@ -63,8 +63,12 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
             _emprestimoLivros.AddRange(emprestimosParaAdd);
             SalvarEmprestimosTxt(_emprestimoLivros);
         }
-
-
+        internal static void ExcluirEmprestimos(Livro livro, ComunidadeAcademica usuarioEmprestimo)
+        {
+            Emprestimo emprestimo = _emprestimoLivros.FirstOrDefault(e => e.ComunidadeAcademica.Matricula == usuarioEmprestimo.Matricula && e.Livro.Isbn == livro.Isbn);
+            _emprestimoLivros.Remove(emprestimo);
+            SalvarEmprestimosTxt(_emprestimoLivros);
+        }
         internal static List<Emprestimo> SelecionarEmprestimo(Livro livro)
         {
             return _emprestimoLivros.Where(e => e.Livro == livro).ToList();
