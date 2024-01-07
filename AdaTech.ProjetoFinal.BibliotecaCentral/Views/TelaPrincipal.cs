@@ -202,7 +202,18 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
             btnIniciarEmprestimo.Location = new Point(20, 360);
             btnIniciarEmprestimo.Anchor = AnchorStyles.Right;
             btnIniciarEmprestimo.Text = "Iniciar Empréstimo";
-            btnIniciarEmprestimo.Click += OnClickIniciarEmprestimo; 
+            btnIniciarEmprestimo.Click += OnClickIniciarEmprestimo;
+
+            #endregion
+
+            #region Botão DevolucaoLivro
+
+            Button bntDevolverLivro = new Button();
+            bntDevolverLivro.Size = new Size(150, 20);
+            bntDevolverLivro.Location = new Point(20, 400);
+            bntDevolverLivro.Anchor = AnchorStyles.Right;
+            bntDevolverLivro.Text = "Devolução";
+            bntDevolverLivro.Click += OnClickDevolverLivro;
 
             #endregion
 
@@ -214,6 +225,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
             painelAtendente.Controls.Add(btnVisualizarEmprestimos);
             painelAtendente.Controls.Add(_bntVisualizarReservas);
             painelAtendente.Controls.Add(btnIniciarEmprestimo);
+            painelAtendente.Controls.Add(bntDevolverLivro);
 
             return painelAtendente;
         }
@@ -297,6 +309,11 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
         {
             JanelaIniciarEmprestimo janelaIniciarEmprestimo = new JanelaIniciarEmprestimo();
             janelaIniciarEmprestimo.ShowDialog();
+        }
+        private void OnClickDevolverLivro(object sender, EventArgs e)
+        {
+            JanelaDevolucao devolucao = new JanelaDevolucao(_usuarioLogado);
+            devolucao.ShowDialog();
         }
         #endregion
 

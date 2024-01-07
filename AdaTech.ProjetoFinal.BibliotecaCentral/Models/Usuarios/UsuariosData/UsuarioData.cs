@@ -249,6 +249,13 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
 
             throw new InvalidOperationException("Usuário não encontrado.");
         }
+        internal static Atendente SelecionarAtendente(string login)
+        {
+            Atendente usuario = _atendentes.Where(u => u.Login == login).FirstOrDefault();
+            if (usuario != null) return usuario;
+
+            throw new InvalidOperationException("Usuário não encontrado.");
+        }
         internal static Usuario SelecionarUsuario (string login)
         {
             Usuario usuario = _atendentes.Where(u => u.Login == login).FirstOrDefault();
