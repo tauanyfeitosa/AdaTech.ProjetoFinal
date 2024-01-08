@@ -23,47 +23,32 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasBiblioteca
 
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.dgvSolicitacoes = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSolicitacoes)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // dgvSolicitacoes
+            // 
+            this.dgvSolicitacoes.ColumnHeadersHeight = 34;
+            this.dgvSolicitacoes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvSolicitacoes.Location = new System.Drawing.Point(0, 0);
+            this.dgvSolicitacoes.Name = "dgvSolicitacoes";
+            this.dgvSolicitacoes.ReadOnly = true;
+            this.dgvSolicitacoes.RowHeadersWidth = 62;
+            this.dgvSolicitacoes.Size = new System.Drawing.Size(800, 450);
+            this.dgvSolicitacoes.TabIndex = 0;
+            // 
+            // JanelaVisualizarMudancaAcervo
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.dgvSolicitacoes);
+            this.Name = "JanelaVisualizarMudancaAcervo";
             this.Text = "Janela Visualizar Mudanca de Acervo";
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSolicitacoes)).EndInit();
+            this.ResumeLayout(false);
 
-            dgvSolicitacoes = new DataGridView();
-            dgvSolicitacoes.Dock = DockStyle.Fill;
-            dgvSolicitacoes.ReadOnly = true;
-            dgvSolicitacoes.AutoGenerateColumns = false;
-
-            DataGridViewTextBoxColumn colunaLivro = new DataGridViewTextBoxColumn();
-            colunaLivro.HeaderText = "Livro - Título";
-            colunaLivro.DataPropertyName = "LivroTitulo";
-            colunaLivro.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dgvSolicitacoes.Columns.Add(colunaLivro);
-
-            DataGridViewTextBoxColumn colunaLivroIsbn = new DataGridViewTextBoxColumn();
-            colunaLivroIsbn.HeaderText = "Isbn";
-            colunaLivroIsbn.DataPropertyName = "LivroIsbn";
-            colunaLivroIsbn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dgvSolicitacoes.Columns.Add(colunaLivroIsbn);
-
-            DataGridViewTextBoxColumn colunaTipoAcervo = new DataGridViewTextBoxColumn();
-            colunaTipoAcervo.HeaderText = "Tipo de Acervo";
-            colunaTipoAcervo.DataPropertyName = "TipoAcervo";
-            colunaTipoAcervo.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dgvSolicitacoes.Columns.Add(colunaTipoAcervo);
-
-            DataGridViewTextBoxColumn colunaDescricao = new DataGridViewTextBoxColumn();
-            colunaDescricao.HeaderText = "Descrição";
-            colunaDescricao.DataPropertyName = "Descricao";
-            colunaDescricao.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dgvSolicitacoes.Columns.Add(colunaDescricao);
-
-            DataGridViewTextBoxColumn colunaStatus = new DataGridViewTextBoxColumn();
-            colunaStatus.HeaderText = "Aprovada";
-            colunaStatus.DataPropertyName = "Aprovada";
-            colunaStatus.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dgvSolicitacoes.Columns.Add(colunaStatus);
-
-            Controls.Add(dgvSolicitacoes);
         }
 
         #endregion

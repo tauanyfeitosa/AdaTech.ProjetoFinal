@@ -27,5 +27,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasBiblioteca
         {
             controller.CarregarSolicitacoes();
         }
+
     }
 }
