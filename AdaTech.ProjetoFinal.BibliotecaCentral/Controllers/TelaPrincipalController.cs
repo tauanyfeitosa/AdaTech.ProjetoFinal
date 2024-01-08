@@ -1,11 +1,4 @@
 using AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalControllers;
-using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers
 {

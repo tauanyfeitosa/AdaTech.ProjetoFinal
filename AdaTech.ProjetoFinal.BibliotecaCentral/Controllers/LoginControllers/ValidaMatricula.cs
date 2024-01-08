@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers
@@ -19,7 +16,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers
                 return false;
             }
 
-            // Verificar se os 4 primeiros dígitos são um ano
             int ano;
             if (!int.TryParse(matricula.Substring(0, 4), out ano))
             {
@@ -27,7 +23,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers
                 return false;
             }
 
-            // Verificar se o ano não é um ano futuro ou de no máximo 8 anos atrás
             int anoAtual = DateTime.Now.Year;
             if (ano > anoAtual || (anoAtual - ano) > 8)
             {
@@ -35,14 +30,12 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers
                 return false;
             }
 
-            // Verificar se os dois dígitos seguintes são zero
             if (matricula.Substring(4, 2) != "00")
             {
                 MessageBox.Show("Matrícula inválida! Digite novamente.");
                 return false;
             }
 
-            // Verificar se os dígitos seguintes não são todos iguais
             string restante = matricula.Substring(6, 6);
             if (restante.Distinct().Count() == 1)
             {
@@ -63,7 +56,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers
                 return false;
             }
 
-            // Verificar se os 4 primeiros dígitos são um ano
             int ano;
             if (!int.TryParse(matricula.Substring(0, 4), out ano))
             {
@@ -71,7 +63,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers
                 return false;
             }
 
-            // Verificar se o ano não é um ano futuro
             int anoAtual = DateTime.Now.Year;
             if (ano > anoAtual)
             {
@@ -79,14 +70,12 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers
                 return false;
             }
 
-            // Verificar se os dois dígitos seguintes são zero
             if (matricula.Substring(4, 2) != "00")
             {
                 MessageBox.Show("Matrícula inválida! Digite novamente.");
                 return false;
             }    
 
-            // Verificar se os dígitos seguintes não são todos iguais
             string restante = matricula.Substring(6, 6);
             if (restante.Distinct().Count() == 1)
             {
