@@ -4,7 +4,6 @@ using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva;
 using System.Collections.Generic;
-using System.Linq;
 using System;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral

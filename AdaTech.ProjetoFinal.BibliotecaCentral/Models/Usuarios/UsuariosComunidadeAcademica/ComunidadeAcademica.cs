@@ -1,13 +1,9 @@
-﻿
-namespace AdaTech.ProjetoFinal.BibliotecaCentral
-{
-    using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva;
-    using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos;
-    using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;   
-    using System.Windows.Forms;
-    using System;
-    using System.Linq;
+﻿using System.Windows.Forms;
+using System;
+using System.Linq;
 
+namespace AdaTech.ProjetoFinal.BibliotecaCentral
+{ 
     internal class ComunidadeAcademica : Usuario
     {
         private string _matricula, _curso;

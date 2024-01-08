@@ -28,14 +28,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData
 
         internal  static string FilePathCA { get => _FILE_PATH_CA; }
 
-        //static UsuarioData()
-        //{
-        //    _diretores = LerDiretoresTxt();
-        //    _bibliotecarios = LerBibliotecariosTxt();
-        //    _atendentes = LerAtendentesTxt();
-        //    _comunidadeAcademica = LerComunidadeAcademicaTxt();
-        //}
-
         internal static void CarregarUsuarios()
         {
             _diretores = LerDiretoresTxt();
