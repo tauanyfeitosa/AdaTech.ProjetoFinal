@@ -1,16 +1,12 @@
-﻿namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasDiretor
+﻿using System.Windows.Forms;
+
+namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasDiretor
 {
     partial class JanelaVisualizarFuncionarios
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
+        private ListBox listBoxFuncionarios = new ListBox();
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,16 +18,22 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Text = "JanelaVisualizarFuncionarios";
+
+            listBoxFuncionarios.Dock = DockStyle.Fill;
+            listBoxFuncionarios.ScrollAlwaysVisible = true;
+            listBoxFuncionarios.SelectionMode = SelectionMode.None;
+
+            Controls.Add(listBoxFuncionarios);
+
+            listBoxFuncionarios.DrawMode = DrawMode.OwnerDrawVariable;
+            listBoxFuncionarios.MeasureItem += ListBoxFuncionarios_MeasureItem;
+            listBoxFuncionarios.DrawItem += ListBoxFuncionarios_DrawItem;
         }
 
         #endregion
