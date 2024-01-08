@@ -8,7 +8,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
 {
     public partial class JanelaVisualizarAlunos : Form
     {
-        private ListBox listBoxAlunos = new ListBox();
 
         public JanelaVisualizarAlunos()
         {
@@ -21,15 +20,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
 
         private void ConfigurarListBox()
         {
-            listBoxAlunos.Dock = DockStyle.Fill;
-            listBoxAlunos.ScrollAlwaysVisible = true;
-            listBoxAlunos.SelectionMode = SelectionMode.None;
-
-            Controls.Add(listBoxAlunos);
-
-            listBoxAlunos.DrawMode = DrawMode.OwnerDrawVariable;
-            listBoxAlunos.MeasureItem += ListBoxAlunos_MeasureItem;
-            listBoxAlunos.DrawItem += ListBoxAlunos_DrawItem;
         }
 
         public void AdicionarAlunoNaListBox(string aluno)
