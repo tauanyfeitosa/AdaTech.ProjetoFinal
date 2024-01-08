@@ -84,7 +84,7 @@ O sistema inicia com a tela de login, na qual sera digitado o usuário (Funcion�
   
 **VISUALIZAR ALUNOS**: Abre uma nova janela para a visualização das dos alunos existentes na comunidade acadêmica. <br/>
  <p align="center">
-  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/master/imgs/TelaTelaVisualizarAlunos.png" width="400"> <br/>
+  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/master/imgs/TelaVisualizarAlunos.png" width="400"> <br/>
   Figura 4: Tela Visualização de Alunos em Atendente<br/><br/>
   </p>
      
