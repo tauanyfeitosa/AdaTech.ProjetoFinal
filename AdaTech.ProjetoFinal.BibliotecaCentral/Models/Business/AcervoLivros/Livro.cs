@@ -146,11 +146,11 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
         {
             get
             {
-                return _edicao;
+                return _livrosMauEstado;
             }
             private set
             {
-                _edicao = value;
+                _livrosMauEstado = value;
             }
         }
 
@@ -233,6 +233,11 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
                 $"- Autor:{_autor}\r\n" +
                 $"- Isbn: {_isbn}\r\n" +
                 $"- Ano Publicação: {_anoPublicacao}\r\n";
+        }
+
+        public void AtualizarMauEstado()
+        {
+            _livrosMauEstado++;
         }
     }
 }
