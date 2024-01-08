@@ -1,6 +1,4 @@
-﻿
-using System.Collections.Generic;
-using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
+﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Solicitacoes
 {

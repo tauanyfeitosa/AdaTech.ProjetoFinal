@@ -1,12 +1,6 @@
 ﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
 {

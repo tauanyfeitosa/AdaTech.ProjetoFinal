@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
 using System.Windows.Forms;

@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Emit;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
-using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos;
-using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva;
-using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData;
-using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Utilities;
-using static System.Windows.Forms.LinkLabel;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Solicitacoes
 {

@@ -1,19 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData;
+using System.IO;
+using System.Windows.Forms;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
 {
-    using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
-    using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva;
-    using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData;
-    using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Utilities;
-    using System.IO;
-    using System.Runtime.ConstrainedExecution;
-    using System.Windows.Forms;
-    using Usuarios.UsuariosComunidadeAcademica;
     internal class EmprestimoData
     {
         private static List<Emprestimo> _emprestimoLivros = new List<Emprestimo>();
@@ -22,21 +17,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
         private static readonly string _FILE_PATH = Path.Combine(_DIRECTORY_PATH, "Emprestimo.txt");
 
         internal static List<Emprestimo> EmprestimoLivros { get => _emprestimoLivros;}
-
-        //static EmprestimoData()
-        //{
-        //    _emprestimoLivros = new List<Emprestimo>();
-        //    LerEmprestimosTxt();
-        //}
-
-        //internal List<Emprestimo> SelecionarEmprestimo(ComunidadeAcademica usuario)
-        //{
-
-        //}
-        //internal List<Emprestimo> SelecionarEmprestimo(Emprestimo emprestimos)
-        //{
-
-        //}
 
         internal static void CarregarEmprestimos()
         {
