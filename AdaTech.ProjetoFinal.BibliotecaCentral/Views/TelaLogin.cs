@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Drawing;
 using System.Windows.Forms;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Controllers;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Views;
-using System.Collections.Generic;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva;

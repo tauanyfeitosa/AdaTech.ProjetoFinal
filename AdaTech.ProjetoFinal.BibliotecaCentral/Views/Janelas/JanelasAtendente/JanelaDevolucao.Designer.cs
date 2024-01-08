@@ -91,7 +91,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
             // 
             this.btnProcurar.Location = new System.Drawing.Point(387, 33);
             this.btnProcurar.Name = "btnProcurar";
-            this.btnProcurar.Size = new System.Drawing.Size(142, 26);
+            this.btnProcurar.Size = new System.Drawing.Size(142, 36);
             this.btnProcurar.TabIndex = 2;
             this.btnProcurar.Text = "Pesquisar";
             this.btnProcurar.UseVisualStyleBackColor = true;
