@@ -246,6 +246,9 @@
     <EmbeddedResource Include="Views\Janelas\JanelasCA\JanelaMultasUsuario.resx">
       <DependentUpon>JanelaMultasUsuario.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Janelas\JanelasCA\JanelaRenovarLivro.resx">
+      <DependentUpon>JanelaRenovarLivro.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Janelas\JanelasCA\JanelaVisualizarAcervo.resx">
       <DependentUpon>JanelaVisualizarAcervo.cs</DependentUpon>
     </EmbeddedResource>
