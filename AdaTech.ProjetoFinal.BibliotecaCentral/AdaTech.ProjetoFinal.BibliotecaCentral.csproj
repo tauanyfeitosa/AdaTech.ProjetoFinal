@@ -240,6 +240,12 @@
     <EmbeddedResource Include="Views\Janelas\JanelasBibliotecario\JanelaSolicitarMudarAcervo.resx">
       <DependentUpon>JanelaSolicitarMudarAcervo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Janelas\JanelasBibliotecario\JanelaVisualizarMudancaAcervo.resx">
+      <DependentUpon>JanelaVisualizarMudancaAcervo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Janelas\JanelasCA\JanelaMultasUsuario.resx">
+      <DependentUpon>JanelaMultasUsuario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Janelas\JanelasCA\JanelaVisualizarAcervo.resx">
       <DependentUpon>JanelaVisualizarAcervo.cs</DependentUpon>
     </EmbeddedResource>
