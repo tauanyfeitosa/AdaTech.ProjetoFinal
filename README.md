@@ -14,8 +14,8 @@ no qual foram adquiridos durante os módulos 1 e 2 do curso DiverseDEV organizad
 
 ## Tabela de conteúdos
 - [Diagrama de Classes](#diagrama-de-classes)
-- [Organização do Sistema](#organização-do-sistema)
-- [Interface dos Usuários](#interfaces-do-usuarios)
+- [Organização do Sistema](#organizacao-do-sistema)
+- [Interface dos Usuários](#interface-do-usuarios)
 - [Dados](#dados)
 - [Clonar Respositório](#clonar-repositorio)
 - [Autores](#autores)
@@ -95,7 +95,6 @@ O sistema inicia com a tela de login, na qual sera digitado o usuário (Funcion�
   </p>
      
 **VISUALIZAR EMPRESTIMOS**: Abre uma nova janela para a visualização das dos emprestimos existentes no sistema. <br/>
- Escolhe um arquivo (presente na máquina) relacionado as reservas realizadas para adicionar no sistema
   <p align="center">
   <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/main/imgs/TelaVisualizarEmprestimos.png" width="400"> <br/>
   Figura 6: Tela Visualização de Empréstimos em Atendente<br/><br/>
@@ -106,7 +105,6 @@ O sistema inicia com a tela de login, na qual sera digitado o usuário (Funcion�
   **CARREGAR CSV - RESERVAS**: Escolhe um arquivo (presente na máquina) relacionado as reservas realizadas para adicionar no sistema<br/><br/>
 
   **INICIAR EMPRÉSTIMO**: Abre uma janela que mostra todos os empréstimos com aprovações pendentes, contendo um botão para a criação de uma novo empréstimo.<br/>
-  Escolhe um arquivo (presente na máquina) relacionado as reservas realizadas para adicionar no sistema
   <p align="center">
   <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/main/imgs/AprovarReservaEmprestimo.png" width="400"> <br/>
   Figura 7: Tela Aprovação de Emprestimos em Atendente<br/>
