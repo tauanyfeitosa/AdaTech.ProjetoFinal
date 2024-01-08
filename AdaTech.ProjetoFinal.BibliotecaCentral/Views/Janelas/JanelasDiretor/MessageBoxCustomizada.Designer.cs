@@ -1,16 +1,15 @@
-﻿namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasDiretor
+﻿using System.Runtime.Remoting.Messaging;
+using System.Windows.Forms;
+
+namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasDiretor
 {
     partial class MessageBoxCustomizada
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
+        private Label lblMessage;
+        private Button btnOption1;
+        private Button btnOption2;
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,16 +21,36 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
+        private void InitializeComponent(string message, string option1Text, string option2Text)
         {
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "MessageBoxCustomizada";
+            this.Text = "Selecione abaixo";
+            this.Visible = true;
+
+            lblMessage = new Label();
+            btnOption1 = new Button();
+            btnOption2 = new Button();
+
+            lblMessage.Dock = DockStyle.Top;
+            btnOption1.Dock = DockStyle.Top;
+            btnOption2.Dock = DockStyle.Top;
+
+            btnOption1.Text = "Ver Solicitações de Lote";
+            btnOption2.Text = "Ver Solicitações de Acervo";
+
+            lblMessage.Text = message;
+            btnOption1.Text = option1Text;
+            btnOption2.Text = option2Text;
+
+            lblMessage.Visible = true;
+            btnOption1.Visible = true;
+            btnOption2.Visible = true;
+
+            Controls.Add(lblMessage);
+            Controls.Add(btnOption1);
+            Controls.Add(btnOption2);
         }
 
         #endregion
