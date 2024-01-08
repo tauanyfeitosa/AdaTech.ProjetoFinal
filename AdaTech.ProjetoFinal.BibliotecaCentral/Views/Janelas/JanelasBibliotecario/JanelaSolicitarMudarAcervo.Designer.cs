@@ -50,13 +50,13 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasBiblioteca
 
         private void InitializeComponent()
         {
-            this.lblLivro = new System.Windows.Forms.Label();
-            this.cmbLivro = new System.Windows.Forms.ComboBox();
-            this.lblTipoAcervo = new System.Windows.Forms.Label();
-            this.cmbTipoAcervo = new System.Windows.Forms.ComboBox();
-            this.lblDescricao = new System.Windows.Forms.Label();
-            this.txtDescricao = new System.Windows.Forms.TextBox();
-            this.btnSolicitar = new System.Windows.Forms.Button();
+            this.lblLivro = new Label();
+            this.cmbLivro = new ComboBox();
+            this.lblTipoAcervo = new Label();
+            this.cmbTipoAcervo = new ComboBox();
+            this.lblDescricao = new Label();
+            this.txtDescricao = new TextBox();
+            this.btnSolicitar = new Button();
             this.SuspendLayout();
             // 
             // lblLivro
