@@ -225,6 +225,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\Janelas\JanelasAtendente\JanelaCriarEmprestimoSemReserva.resx">
+      <DependentUpon>JanelaCriarEmprestimoSemReserva.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Janelas\JanelasBibliotecario\JanelaSolicitarLivros.resx">
       <DependentUpon>JanelaSolicitarLivros.cs</DependentUpon>
     </EmbeddedResource>

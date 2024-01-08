@@ -47,7 +47,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.Text = $"Tela Principal - {telaPrincipalController.FiltrarLogin()}";
 
             painelLogin = new Panel();
             painelLogin.Size = new Size(largura - 200, altura - 200);
