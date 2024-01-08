@@ -117,6 +117,10 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
             {
                 _livro.ExemplaresDisponiveis++;
             }
+            else
+            {
+                _livro.AtualizarMauEstado();
+            }
             CalcularMulta();
             EmprestimoData.ExcluirEmprestimos(_livro, _usuarioComunidadeAcademica);
         }
