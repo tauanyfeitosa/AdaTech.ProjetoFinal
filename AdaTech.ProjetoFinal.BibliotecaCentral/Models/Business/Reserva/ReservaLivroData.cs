@@ -243,13 +243,16 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
 
             Emprestimo emprestimo = EmprestimoData.SelecionarEmprestimo(idEmprestimo);
             ComunidadeAcademica usuarioCA = UsuarioData.SelecionarUsuarioCA(idUsuario);
+            bool Conversao = DateTime.TryParse(partes[2], out DateTime DataReserva);
 
             var reserva = new ReservaLivro(emprestimo, usuarioCA);
-
-            if (partes.Length > 2)
+            
+            if (Conversao) reserva.DataReserva = DataReserva;
+          
+            if (partes.Length > 3)
             {
-                DateTime dataPrevista = DateTime.Parse(partes[2]);
-                reserva.DataRetirarLivro = dataPrevista;
+                DateTime dataRetirar = DateTime.Parse(partes[3]);
+                reserva.DataRetirarLivro = dataRetirar;
             }
             
             AdicionarReserva(reserva); 
@@ -286,9 +289,9 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
         {
             if (reservaLivro.DataRetirarLivro != DateTime.MinValue)
             {
-                return $"{reservaLivro.Emprestimo.IdEmprestimo},{reservaLivro.UsuarioComunidadeAcademica.Cpf},{reservaLivro.DataRetirarLivro.Date.ToString("yyyy-MM-dd")}";
+                return $"{reservaLivro.Emprestimo.IdEmprestimo},{reservaLivro.UsuarioComunidadeAcademica.Cpf},{reservaLivro.DataReserva},{reservaLivro.DataRetirarLivro.Date.ToString("yyyy-MM-dd")}";
             }
-            return $"{reservaLivro.Emprestimo.IdEmprestimo},{reservaLivro.UsuarioComunidadeAcademica.Cpf}";
+            return $"{reservaLivro.Emprestimo.IdEmprestimo},{reservaLivro.UsuarioComunidadeAcademica.Cpf},{reservaLivro.DataReserva}";
         }
 
     }
