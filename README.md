@@ -63,7 +63,7 @@ Os livros estão classificados em: Acervo Público, Acervo Restrito ou Fora de e
 O sistema inicia com a tela de login, na qual sera digitado o usuário (Funcionários: login - Comunidade acadêmica: Matrícula) e a senha, além de escolher entre o tipo de usuário, podendo ser: Funcionário (Atendente, Bibliotecário e Diretor), Aluno ou Professor. <br/>
 
 <p align="center">
-  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/main/imgs/TelaLogin.png" width="400"> <br/>
+  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/master/imgs/TelaLogin.png" width="400"> <br/>
   Figura 1: Tela de Login     
 </p>
 
@@ -72,31 +72,31 @@ O sistema inicia com a tela de login, na qual sera digitado o usuário (Funcion�
  Na tela principal de atendente há nove botões: Quatro relacionados a visualização de conteúdo (Reservas, Alunos, Professores e Empréstimos), três relacionado ao carregamento de CSV para atualizar no sistema (Comunidade acadêmica, Empréstimos e Reservas), um botão para iniciar um empréstimo e outro para devolução de empréstimos. <br/>
 
  <p align="center">
-  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/main/imgs/TelaPrincipalAtendente.png" width="400"> <br/>
+  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/master/imgs/TelaPrincipalAtendente.png" width="400"> <br/>
   Figura 2: Tela Principal de Atendente <br/><br/><br/>
   </p>
      
 **VISUALIZAR RESERVAS**: Abre uma nova janela para a visualização das reservas de livros existentes no sistema. <br/>
       <p align="center">
-  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/main/imgs/TelaVisualizarReservas.png" width="400"> <br/>
+  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/master/imgs/TelaVisualizarReservas.png" width="400"> <br/>
   Figura 3: Tela Visualização de Reservas em Atendente<br/><br/>
   </p>
   
 **VISUALIZAR ALUNOS**: Abre uma nova janela para a visualização das dos alunos existentes na comunidade acadêmica. <br/>
  <p align="center">
-  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/main/imgs/TelaTelaVisualizarAlunos.png" width="400"> <br/>
+  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/master/imgs/TelaTelaVisualizarAlunos.png" width="400"> <br/>
   Figura 4: Tela Visualização de Alunos em Atendente<br/><br/>
   </p>
      
 **VISUALIZAR PROFESSORES**: Abre uma nova janela para a visualização das dos professores existentes na comunidade acadêmica. <br/>
  <p align="center">
-  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/main/imgs/TelaVisualizarProfessores.png" width="400"> <br/>
+  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/master/imgs/TelaVisualizarProfessores.png" width="400"> <br/>
   Figura 5: Tela Visualização de Professores em Atendente<br/><br/>
   </p>
      
 **VISUALIZAR EMPRESTIMOS**: Abre uma nova janela para a visualização das dos emprestimos existentes no sistema. <br/>
   <p align="center">
-  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/main/imgs/TelaVisualizarEmprestimos.png" width="400"> <br/>
+  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/master/imgs/TelaVisualizarEmprestimos.png" width="400"> <br/>
   Figura 6: Tela Visualização de Empréstimos em Atendente<br/><br/>
   </p>
 
@@ -106,23 +106,23 @@ O sistema inicia com a tela de login, na qual sera digitado o usuário (Funcion�
 
   **INICIAR EMPRÉSTIMO**: Abre uma janela que mostra todos os empréstimos com aprovações pendentes, contendo um botão para a criação de uma novo empréstimo.<br/>
   <p align="center">
-  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/main/imgs/AprovarReservaEmprestimo.png" width="400"> <br/>
+  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/master/imgs/AprovarReservaEmprestimo.png" width="400"> <br/>
   Figura 7: Tela Aprovação de Emprestimos em Atendente<br/>
      </p>
      
   Caso o atendete deseje criar um novo empréstimo, ele clica no botão e é direcionado para outra janela. Após isso, ele deve selecionar o usuário, seu tipo (Aluno/Professor) e o livro escolhido. Caso o usuário esteja com um empréstimo ativo de um exemplar daquele livro ou tenha atingido o limite máximo de empréstimos (cinco), o empréstimo não será permitido. <br/>
   <p align="center">
-  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/main/imgs/CriarEmprestimoAtendente.png" width="400"> <br/>
+  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/master/imgs/CriarEmprestimoAtendente.png" width="400"> <br/>
   Figura 8: Tela Criação de Empréstimo em Atendente <br/><br/>
 
   **DEVOLUÇÃO**: O atendente digita a matrícula do usuário que está devolvendo o livro e pressiona o botão "Pesquisar". <br/>
 <p align="center">
-  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/main/imgs/DevolucaoUsuario.png" width="400"> <br/>
+  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/master/imgs/DevolucaoUsuario.png" width="400"> <br/>
   Figura 9: Tela Devolução do Livro em Atendente <br/>
   </p>
     Após isso, seleciona o livro que deseja devolver e pressiona o botão "Devolver". O atendente só pode realizar a devolução de 1 (um) livro por vez.<br/>
     <p align="center">
-  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/main/imgs/DevolucaoUsuarioEscolhido.png" width="400"> <br/>
+  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/master/imgs/DevolucaoUsuarioEscolhido.png" width="400"> <br/>
   Figura 10: Tela Devolução do Livro Após Busca <br/><br/>
         
 ### Bibliotecário
