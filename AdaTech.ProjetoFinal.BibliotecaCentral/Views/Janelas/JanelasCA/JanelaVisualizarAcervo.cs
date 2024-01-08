@@ -1,40 +1,18 @@
 ﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalControllers.PainelComunidadeController;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasCA
 {
     public partial class JanelaVisualizarAcervo : Form
     {
-        private ListBox listBoxAcervo = new ListBox();
 
         public JanelaVisualizarAcervo()
         {
             InitializeComponent();
-            ConfigurarListBox();
 
             VisualizarAcervoController controller = new VisualizarAcervoController(this);
             this.Text = "Visualizar Acervo";
-        }
-
-        private void ConfigurarListBox()
-        {
-            listBoxAcervo.Dock = DockStyle.Fill;
-            listBoxAcervo.ScrollAlwaysVisible = true;
-            listBoxAcervo.SelectionMode = SelectionMode.None;
-
-            Controls.Add(listBoxAcervo);
-
-            listBoxAcervo.DrawMode = DrawMode.OwnerDrawVariable;
-            listBoxAcervo.MeasureItem += ListBoxAcervo_MeasureItem;
-            listBoxAcervo.DrawItem += ListBoxAcervo_DrawItem;
         }
 
         public void AdicionarLivroNaListBox(string livro)

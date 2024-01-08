@@ -1,16 +1,12 @@
-﻿namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasCA
+﻿using System.Windows.Forms;
+
+namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasCA
 {
     partial class JanelaVisualizarAcervo
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
+        private ListBox listBoxAcervo = new ListBox();
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,10 +18,6 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             this.SuspendLayout();
@@ -38,6 +30,16 @@
             this.Name = "JanelaVisualizarAcervo";
             this.Text = "JanelaVisualizarAcervo";
             this.ResumeLayout(false);
+
+            listBoxAcervo.Dock = DockStyle.Fill;
+            listBoxAcervo.ScrollAlwaysVisible = true;
+            listBoxAcervo.SelectionMode = SelectionMode.None;
+
+            Controls.Add(listBoxAcervo);
+
+            listBoxAcervo.DrawMode = DrawMode.OwnerDrawVariable;
+            listBoxAcervo.MeasureItem += ListBoxAcervo_MeasureItem;
+            listBoxAcervo.DrawItem += ListBoxAcervo_DrawItem;
 
         }
 
