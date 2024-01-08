@@ -73,11 +73,10 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
                 _devolucao = value;
             }
         }
-
-
+                    
         internal Emprestimo(ReservaLivro reservaLivro = null, Livro livro = null, ComunidadeAcademica usuarioComunidadeAcademica = null, bool devolucao = false)
         {
-            try 
+            try
             {
                 if (reservaLivro == null && (livro == null || usuarioComunidadeAcademica == null))
                 {
@@ -103,8 +102,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
                 _renovacoes = 3;
                 _livro.ExemplaresDisponiveis--;
                 _idEmprestimo = GerarIdEmprestimo();
-
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }

@@ -47,18 +47,45 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers
 
         public void CriarEmprestimo(ReservaLivro reserva)
         {
-            Emprestimo emprestimo = new Emprestimo(reserva);
-            reserva.StatusReserva = StatusReserva.LivroRetirado;
+            List<Emprestimo> listaEmprestimos = EmprestimoData.SelecionarEmprestimo(reserva.UsuarioComunidadeAcademica);
+            if(listaEmprestimos.Count < 5)
+            {
+                if (!VerificarReservaExemplar(reserva))
+                {
+                    Emprestimo emprestimo = new Emprestimo(reserva);
+                    reserva.StatusReserva = StatusReserva.LivroRetirado;
 
-            try
-            {
-                EmprestimoData.CriarEmprestimo(emprestimo);
-                form.MostrarMensagem("Empréstimo criado com sucesso!");
+                    try
+                    {
+                        EmprestimoData.CriarEmprestimo(emprestimo);
+                        form.MostrarMensagem("Empréstimo criado com sucesso!");
+                    }
+                    catch (Exception ex)
+                    {
+                        form.MostrarMensagem(ex.Message);
+                    }
+                }
+                else
+                {
+                    form.MostrarMensagem("Usuário já reservou um exemplar desse livro");
+                }
             }
-            catch (Exception ex)
+            else
             {
-                form.MostrarMensagem(ex.Message);
+                MessageBox.Show("Usuário atingiu o limite máximo de empréstimos");
             }
+        }
+        public bool VerificarReservaExemplar(ReservaLivro reserva)
+        {
+            List<Emprestimo> listaEmprestimos = EmprestimoData.SelecionarEmprestimo(reserva.UsuarioComunidadeAcademica);
+            foreach(Emprestimo emprestimo in listaEmprestimos)
+            {
+                if(reserva.Livro.Titulo == emprestimo.Livro.Titulo)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public void CriarSemReservaButtonClick(object sender, EventArgs e)
