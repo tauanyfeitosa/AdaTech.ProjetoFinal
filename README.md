@@ -67,17 +67,7 @@ O sistema inicia com a tela de login, na qual sera digitado o usuário (Funcion�
   Figura 1: Tela de Login     <br/>
 </p>
 Para testes, utilize os seguintes dados de Usuário e Senha: <br/>
-<div align='center'>
-    <table>
-        <tr><td>Tipo</td> <td>Usuário</td> <td>Senha</td></tr>
-        <tr><td>Atendente</td> <td>07723268513</td> <td>12345678</td></tr>
-        <tr><td>Bibliotecário</td> <td>12310622079</td> <td>00000000</td></tr>
-        <tr><td>Diretor</td> <td>98776773000</td> <td>11111111</td></tr>
-        <tr><td>Aluno</td> <td>202100400123</td> <td> a</td></tr>
-        <tr><td>Professor</td> <td>202100312356</td> <td>a </td></tr>
-      
-    </table>
-</div>
+
 
  ### Atendente
  
