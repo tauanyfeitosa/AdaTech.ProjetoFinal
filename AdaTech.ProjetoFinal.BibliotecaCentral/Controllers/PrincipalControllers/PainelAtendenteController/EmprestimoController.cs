@@ -78,7 +78,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers
         public void CriarEmprestimoButtonClick(object sender, EventArgs e)
         {
             EmprestimoData.CriarEmprestimoSemReserva(form.UsuariosComboBox, form.LivrosComboBox);
-            form.MostrarMensagem("Empréstimo criado com sucesso!");
         }
     }
 }

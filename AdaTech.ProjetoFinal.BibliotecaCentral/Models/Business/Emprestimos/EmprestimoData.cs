@@ -189,11 +189,46 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
             ComunidadeAcademica usuario = cbUsuarios.SelectedItem as ComunidadeAcademica;
             Livro livro = lbLivros.SelectedItem as Livro;
 
-            Emprestimo emprestimo = new Emprestimo(null, livro, usuario);
+            List<Emprestimo> listaEmprestimos = EmprestimoData.SelecionarEmprestimo(usuario);
+            if (listaEmprestimos.Count < 5)
+            {
+                if(livro != null || usuario != null)
+                {
+                    if (!VerificarReservaExemplar(usuario, livro))
+                    {
+                        Emprestimo emprestimo = new Emprestimo(null, livro, usuario);
 
-            _emprestimoLivros.Add(emprestimo);
+                        _emprestimoLivros.Add(emprestimo);
 
-            SalvarEmprestimosTxt(_emprestimoLivros);
+                        SalvarEmprestimosTxt(_emprestimoLivros);
+                        MessageBox.Show("Empréstimo criado com sucesso!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Usuário já reservou um exemplar desse livro");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Selecione todas as caixas");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Usuário atingiu o limite máximo de empréstimos.");
+            }
+        }
+        internal static bool VerificarReservaExemplar(ComunidadeAcademica usuario, Livro livro)
+        {
+            List<Emprestimo> listaEmprestimos = EmprestimoData.SelecionarEmprestimo(usuario);
+            foreach (Emprestimo emprestimo in listaEmprestimos)
+            {
+                if (livro.Titulo == emprestimo.Livro.Titulo)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
     }
