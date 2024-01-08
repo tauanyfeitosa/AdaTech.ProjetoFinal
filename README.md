@@ -15,7 +15,7 @@ no qual foram adquiridos durante os módulos 1 e 2 do curso DiverseDEV organizad
 ## Tabela de conteúdos
 - [Diagrama de Classes](#diagrama-de-classes)
 - [Organização do Sistema](#organizacao-do-sistema)
-- [Interface dos Usuários](#interface-do-usuarios)
+- [Interface dos Usuários](#interface-dos-usuarios)
 - [Dados](#dados)
 - [Clonar Respositório](#clonar-repositorio)
 - [Autores](#autores)
@@ -30,7 +30,7 @@ A principal finalidade de um diagrama de classes é mostrar as classes que comp�
 
 ---
 
-## Organização do sistema do Sistema
+## Organização do Sistema
 
 ### Usuários
 
@@ -72,7 +72,7 @@ O sistema inicia com a tela de login, na qual sera digitado o usuário (Funcion�
  Na tela principal de atendente há nove botões: Quatro relacionados a visualização de conteúdo (Reservas, Alunos, Professores e Empréstimos), três relacionado ao carregamento de CSV para atualizar no sistema (Comunidade acadêmica, Empréstimos e Reservas), um botão para iniciar um empréstimo e outro para devolução de empréstimos. <br/>
 
  <p align="center">
-  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/master/imgs/TelaPrincipalAtendente.png" width="400"> <br/>
+  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/master/imgs/TelaAtendente.png" width="400"> <br/>
   Figura 2: Tela Principal de Atendente <br/><br/><br/>
   </p>
      
