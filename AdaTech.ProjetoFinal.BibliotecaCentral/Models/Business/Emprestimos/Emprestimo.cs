@@ -130,7 +130,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
 
         internal void RenovarLivro()
         {
-            if (ReservaLivroData.SelecionarReserva(this) == null && this._renovacoes > 0)
+            if (ReservaLivroData.SelecionarReserva(this) == null && this._renovacoes > 0 && _dataDevolucaoPrevista > DateTime.Now)
             {
                 this.DataDevolucaoPrevista = this.DataDevolucaoPrevista.AddDays(7);
                 this._renovacoes--;
