@@ -641,7 +641,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
         }
         private void OnClickCancelarReservaLivro(object sender, EventArgs e)
         {
-            JanelaCancelarReserva reserva = new JanelaCancelarReserva();
+            JanelaCancelarReserva reserva = new JanelaCancelarReserva(_usuarioLogado.Login);
             reserva.ShowDialog();
         }
         private void OnClickReservarLivro(object sender, EventArgs e)

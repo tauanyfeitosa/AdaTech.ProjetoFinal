@@ -60,6 +60,7 @@
     <Compile Include="Controllers\PrincipalControllers\PainelBibliotecarioController\SolicitarLivrosController.cs" />
     <Compile Include="Controllers\PrincipalControllers\PainelBibliotecarioController\VisualizarMudancaAcervoController.cs" />
     <Compile Include="Controllers\PrincipalControllers\PainelBibliotecarioController\VisualizarSolicitacoesLivrosController.cs" />
+    <Compile Include="Controllers\PrincipalControllers\PainelComunidadeController\CancelarReservaController.cs" />
     <Compile Include="Controllers\PrincipalControllers\PainelComunidadeController\MultasUsuarioController.cs" />
     <Compile Include="Controllers\PrincipalControllers\PainelComunidadeController\RenovarLivroController.cs" />
     <Compile Include="Controllers\PrincipalControllers\PainelComunidadeController\VisualizarAcervoController.cs" />

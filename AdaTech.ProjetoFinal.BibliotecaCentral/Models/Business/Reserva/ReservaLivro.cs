@@ -67,6 +67,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
             {
                 this._statusReserva = StatusReserva.LivroRetirado;
             }
+
+            ReservaLivroData.SalvarReservaLivrosTxt();
         }
 
         public override string ToString()
