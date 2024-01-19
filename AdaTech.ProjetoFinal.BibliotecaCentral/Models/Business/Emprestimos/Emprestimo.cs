@@ -130,14 +130,17 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
 
         internal void RenovarLivro()
         {
-            if (ReservaLivroData.SelecionarReserva(this) == null && this._renovacoes > 0)
+            if (ReservaLivroData.SelecionarReserva(this) == null && this._renovacoes > 0 && _dataDevolucaoPrevista > DateTime.Now)
             {
                 this.DataDevolucaoPrevista = this.DataDevolucaoPrevista.AddDays(7);
                 this._renovacoes--;
             } else if (this._renovacoes == 0)
             {
                 MessageBox.Show("Não é possível renovar o livro, pois o limite de renovações foi atingido.");
-            } else
+            }else if (_dataDevolucaoPrevista< DateTime.Now) 
+            {
+                MessageBox.Show("Não é possível renovar o livro, pois a data de devolução já passou.");
+            }else
             {
                 MessageBox.Show("Não é possível renovar o livro, pois o mesmo está reservado.");
             }

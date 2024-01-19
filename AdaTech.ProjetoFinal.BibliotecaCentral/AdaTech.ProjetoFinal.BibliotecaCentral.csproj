@@ -60,6 +60,7 @@
     <Compile Include="Controllers\PrincipalControllers\PainelBibliotecarioController\SolicitarLivrosController.cs" />
     <Compile Include="Controllers\PrincipalControllers\PainelBibliotecarioController\VisualizarMudancaAcervoController.cs" />
     <Compile Include="Controllers\PrincipalControllers\PainelBibliotecarioController\VisualizarSolicitacoesLivrosController.cs" />
+    <Compile Include="Controllers\PrincipalControllers\PainelComunidadeController\CancelarReservaController.cs" />
     <Compile Include="Controllers\PrincipalControllers\PainelComunidadeController\MultasUsuarioController.cs" />
     <Compile Include="Controllers\PrincipalControllers\PainelComunidadeController\RenovarLivroController.cs" />
     <Compile Include="Controllers\PrincipalControllers\PainelComunidadeController\VisualizarAcervoController.cs" />
@@ -151,6 +152,12 @@
     <Compile Include="Views\Janelas\JanelasBibliotecario\JanelaVisualizarSolicitacoesLivros.Designer.cs">
       <DependentUpon>JanelaVisualizarSolicitacoesLivros.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Janelas\JanelasCA\JanelaCancelarReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Janelas\JanelasCA\JanelaCancelarReserva.Designer.cs">
+      <DependentUpon>JanelaCancelarReserva.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Janelas\JanelasCA\JanelaMultasUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +169,12 @@
     </Compile>
     <Compile Include="Views\Janelas\JanelasCA\JanelaRenovarLivro.Designer.cs">
       <DependentUpon>JanelaRenovarLivro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Janelas\JanelasCA\JanelaReservarLivro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Janelas\JanelasCA\JanelaReservarLivro.Designer.cs">
+      <DependentUpon>JanelaReservarLivro.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Janelas\JanelasCA\JanelaVisualizarAcervo.cs">
       <SubType>Form</SubType>

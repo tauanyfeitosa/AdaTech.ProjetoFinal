@@ -71,7 +71,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalController
                 }
                 else
                 {
-                    MessageBox.Show("O usuário não possui empréstimos devolvidos.");
+                    MessageBox.Show("O usuário não possui multas pendentes.");
                     form.ExibeRegistros(emprestimosDevolvidos);
                 }
             }

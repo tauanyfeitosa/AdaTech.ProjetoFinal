@@ -396,7 +396,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
 
             #endregion
 
-            /*#region Botão ReservarLivro
+            #region Botão ReservarLivro
 
             Button bntReservar = new Button();
             bntReservar.Size = new Size(150, 20);
@@ -405,11 +405,24 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
             bntReservar.Text = "Reservar Livro";
             bntReservar.Click += OnClickReservarLivro;
 
-            #endregion*/
+            #endregion
+
+            #region Botão CancelarReservaLivro
+
+            Button bntCancelarReserva = new Button();
+            bntCancelarReserva.Size = new Size(150, 20);
+            bntCancelarReserva.Location = new Point(20, 210);
+            bntCancelarReserva.Anchor = AnchorStyles.Right;
+            bntCancelarReserva.Text = "Cancelar Reserva";
+            bntCancelarReserva.Click += OnClickCancelarReservaLivro;
+
+            #endregion
+
 
             painelComunidadeAcademica.Controls.Add(bntVisualizarAcervo);
-            //painelComunidadeAcademica.Controls.Add(bntReservar);
+            painelComunidadeAcademica.Controls.Add(bntReservar);
             painelComunidadeAcademica.Controls.Add(bntRenovar);
+            painelComunidadeAcademica.Controls.Add(bntCancelarReserva);
             painelComunidadeAcademica.Controls.Add(bntMultas);
 
             return painelComunidadeAcademica;
@@ -421,11 +434,16 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
             JanelaVisualizarAcervo visualizarAcervo = new JanelaVisualizarAcervo();
             visualizarAcervo.ShowDialog();
         }
-        /*private void OnClickReservarLivro(object sender, EventArgs e)
+        private void OnClickCancelarReservaLivro(object sender, EventArgs e)
+        {
+            JanelaCancelarReserva reserva = new JanelaCancelarReserva(usuarioLogado.Login);
+            reserva.ShowDialog();
+        }
+        private void OnClickReservarLivro(object sender, EventArgs e)
         {
             JanelaReservarLivro reservar = new JanelaReservarLivro();
             reservar.ShowDialog();
-        }*/
+        }
         private void OnClickRenovarLivro(object sender, EventArgs e)
         {
             JanelaRenovarLivro renovar = new JanelaRenovarLivro(usuarioLogado);
