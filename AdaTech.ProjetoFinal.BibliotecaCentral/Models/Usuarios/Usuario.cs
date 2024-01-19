@@ -1,5 +1,4 @@
-﻿
-using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosComunidadeAcademica;
+﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosComunidadeAcademica;
 using System;
 using System.Security.Cryptography;
 using System.Text;

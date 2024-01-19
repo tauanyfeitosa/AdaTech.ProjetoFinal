@@ -2,7 +2,6 @@
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
 using System;
 using System.Collections.Generic;
-using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral
 {

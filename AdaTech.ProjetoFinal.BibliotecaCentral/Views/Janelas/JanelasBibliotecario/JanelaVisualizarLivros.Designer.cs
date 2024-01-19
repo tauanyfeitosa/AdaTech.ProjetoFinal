@@ -1,16 +1,12 @@
-﻿namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasBibliotecario
+﻿using System.Windows.Forms;
+
+namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasBibliotecario
 {
     partial class JanelaVisualizarLivros
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
+        private ListBox listBoxLivros = new ListBox();
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -21,10 +17,23 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Text = "Janela Visualizar Professores";
+
+            listBoxLivros.Dock = DockStyle.Fill;
+            listBoxLivros.ScrollAlwaysVisible = true;
+            listBoxLivros.SelectionMode = SelectionMode.None;
+
+            Controls.Add(listBoxLivros);
+
+            listBoxLivros.DrawMode = DrawMode.OwnerDrawVariable;
+            listBoxLivros.MeasureItem += ListBoxProfessores_MeasureItem;
+            listBoxLivros.DrawItem += ListBoxProfessores_DrawItem;
+        }
 
         #endregion
     }

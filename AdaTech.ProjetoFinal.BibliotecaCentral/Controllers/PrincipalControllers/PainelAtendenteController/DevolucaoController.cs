@@ -4,11 +4,7 @@ using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalControllers.PainelAtendenteController
 {

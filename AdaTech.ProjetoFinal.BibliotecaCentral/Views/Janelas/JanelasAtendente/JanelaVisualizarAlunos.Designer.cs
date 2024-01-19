@@ -1,16 +1,13 @@
-﻿namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
+﻿using System.Windows.Forms;
+
+namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
 {
     partial class JanelaVisualizarAlunos
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
+
+        private ListBox listBoxAlunos = new ListBox();
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,16 +19,23 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.Text = "Janela Visualizar Alunos";
+
+            listBoxAlunos.Dock = DockStyle.Fill;
+            listBoxAlunos.ScrollAlwaysVisible = true;
+            listBoxAlunos.SelectionMode = SelectionMode.None;
+
+            listBoxAlunos.DrawMode = DrawMode.OwnerDrawVariable;
+            listBoxAlunos.MeasureItem += ListBoxAlunos_MeasureItem;
+            listBoxAlunos.DrawItem += ListBoxAlunos_DrawItem;
+
+
+            Controls.Add(listBoxAlunos);
         }
 
         #endregion

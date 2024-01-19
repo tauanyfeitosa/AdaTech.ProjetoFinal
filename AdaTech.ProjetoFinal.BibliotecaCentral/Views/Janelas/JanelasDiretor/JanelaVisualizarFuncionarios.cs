@@ -13,26 +13,12 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasDiretor
 {
     public partial class JanelaVisualizarFuncionarios : Form
     {
-        private ListBox listBoxFuncionarios = new ListBox();
         public JanelaVisualizarFuncionarios()
         {
             InitializeComponent();
-            ConfigurarListBox();
             ExibirFuncionarios();
         }
 
-        private void ConfigurarListBox()
-        {
-            listBoxFuncionarios.Dock = DockStyle.Fill;
-            listBoxFuncionarios.ScrollAlwaysVisible = true;
-            listBoxFuncionarios.SelectionMode = SelectionMode.None;
-
-            Controls.Add(listBoxFuncionarios);
-
-            listBoxFuncionarios.DrawMode = DrawMode.OwnerDrawVariable;
-            listBoxFuncionarios.MeasureItem += ListBoxFuncionarios_MeasureItem;
-            listBoxFuncionarios.DrawItem += ListBoxFuncionarios_DrawItem;
-        }
 
         private void ListBoxFuncionarios_MeasureItem(object sender, MeasureItemEventArgs e)
         {

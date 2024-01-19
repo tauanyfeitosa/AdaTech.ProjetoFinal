@@ -1,16 +1,11 @@
  using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData;
-using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Utilities;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
 {
@@ -20,12 +15,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
 
         private static readonly string _DIRECTORY_PATH = AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug", "\\Data");
         private static readonly string _FILE_PATH = Path.Combine(_DIRECTORY_PATH, "Reservas.txt");
-
-        //static ReservaLivroData()
-        //{
-        //    _reservasLivros = new Tuple<List<ReservaLivro>, List<ReservaLivro>>(new List<ReservaLivro>(), new List<ReservaLivro>());
-        //    LerReservasTxt();
-        //}
 
         internal static void CarregarReservas()
         {
@@ -243,13 +232,16 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
 
             Emprestimo emprestimo = EmprestimoData.SelecionarEmprestimo(idEmprestimo);
             ComunidadeAcademica usuarioCA = UsuarioData.SelecionarUsuarioCA(idUsuario);
+            bool Conversao = DateTime.TryParse(partes[2], out DateTime DataReserva);
 
             var reserva = new ReservaLivro(emprestimo, usuarioCA);
-
-            if (partes.Length > 2)
+            
+            if (Conversao) reserva.DataReserva = DataReserva;
+          
+            if (partes.Length > 3)
             {
-                DateTime dataPrevista = DateTime.Parse(partes[2]);
-                reserva.DataRetirarLivro = dataPrevista;
+                DateTime dataRetirar = DateTime.Parse(partes[3]);
+                reserva.DataRetirarLivro = dataRetirar;
             }
             
             AdicionarReserva(reserva); 
@@ -286,9 +278,9 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva
         {
             if (reservaLivro.DataRetirarLivro != DateTime.MinValue)
             {
-                return $"{reservaLivro.Emprestimo.IdEmprestimo},{reservaLivro.UsuarioComunidadeAcademica.Cpf},{reservaLivro.DataRetirarLivro.Date.ToString("yyyy-MM-dd")}";
+                return $"{reservaLivro.Emprestimo.IdEmprestimo},{reservaLivro.UsuarioComunidadeAcademica.Cpf},{reservaLivro.DataReserva},{reservaLivro.DataRetirarLivro.Date.ToString("yyyy-MM-dd")}";
             }
-            return $"{reservaLivro.Emprestimo.IdEmprestimo},{reservaLivro.UsuarioComunidadeAcademica.Cpf}";
+            return $"{reservaLivro.Emprestimo.IdEmprestimo},{reservaLivro.UsuarioComunidadeAcademica.Cpf},{reservaLivro.DataReserva}";
         }
 
     }

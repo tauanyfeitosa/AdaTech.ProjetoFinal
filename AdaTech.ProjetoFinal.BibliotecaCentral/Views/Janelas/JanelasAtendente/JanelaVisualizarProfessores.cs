@@ -8,28 +8,13 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
 {
     public partial class JanelaVisualizarProfessores : Form
     {
-        private ListBox listBoxProfessores = new ListBox();
 
         public JanelaVisualizarProfessores()
         {
             InitializeComponent();
-            ConfigurarListBox();
 
             VisualizarProfessoresController controller = new VisualizarProfessoresController(this);
             this.Text = "Visualizar Professores";
-        }
-
-        private void ConfigurarListBox()
-        {
-            listBoxProfessores.Dock = DockStyle.Fill;
-            listBoxProfessores.ScrollAlwaysVisible = true;
-            listBoxProfessores.SelectionMode = SelectionMode.None;
-
-            Controls.Add(listBoxProfessores);
-
-            listBoxProfessores.DrawMode = DrawMode.OwnerDrawVariable;
-            listBoxProfessores.MeasureItem += ListBoxProfessores_MeasureItem;
-            listBoxProfessores.DrawItem += ListBoxProfessores_DrawItem;
         }
 
         public void AdicionarProfessorNaListBox(string professor)

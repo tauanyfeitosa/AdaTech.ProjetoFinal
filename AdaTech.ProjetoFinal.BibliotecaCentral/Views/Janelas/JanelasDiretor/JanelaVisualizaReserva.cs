@@ -13,29 +13,15 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasDiretor
 {
     public partial class JanelaVisualizaReserva : Form
     {
-        private ListBox listBoxReserva = new ListBox();
 
         internal JanelaVisualizaReserva()
         {
             InitializeComponent();
-            ConfigurarListBox();
             ExibirReservas();
 
             this.Text = "Visualizar Reservas";
         }
 
-        private void ConfigurarListBox()
-        {
-            listBoxReserva.Dock = DockStyle.Fill;
-            listBoxReserva.ScrollAlwaysVisible = true;
-            listBoxReserva.SelectionMode = SelectionMode.None;
-
-            Controls.Add(listBoxReserva);
-
-            listBoxReserva.DrawMode = DrawMode.OwnerDrawVariable;
-            listBoxReserva.MeasureItem += ListBoxReservas_MeasureItem;
-            listBoxReserva.DrawItem += ListBoxReservas_DrawItem;
-        }
 
         private void ExibirReservas()
         {

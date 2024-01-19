@@ -9,27 +9,13 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasBiblioteca
 {
     public partial class JanelaVisualizarLivros : Form
     {
-        private ListBox listBoxLivros = new ListBox();
 
         public JanelaVisualizarLivros()
         {
-            ConfigurarListBox();
+            InitializeComponent();
             ExibirProfessores();
 
             this.Text = "Visualizar Livros";
-        }
-
-        private void ConfigurarListBox()
-        {
-            listBoxLivros.Dock = DockStyle.Fill;
-            listBoxLivros.ScrollAlwaysVisible = true;
-            listBoxLivros.SelectionMode = SelectionMode.None;
-
-            Controls.Add(listBoxLivros);
-
-            listBoxLivros.DrawMode = DrawMode.OwnerDrawVariable;
-            listBoxLivros.MeasureItem += ListBoxProfessores_MeasureItem;
-            listBoxLivros.DrawItem += ListBoxProfessores_DrawItem;
         }
 
         private void ExibirProfessores()

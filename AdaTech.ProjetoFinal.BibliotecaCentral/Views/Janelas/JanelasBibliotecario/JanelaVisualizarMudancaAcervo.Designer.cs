@@ -1,16 +1,15 @@
-﻿namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasBibliotecario
+﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalControllers.PainelBibliotecarioController;
+using System.Windows.Forms;
+
+namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasBibliotecario
 {
     partial class JanelaVisualizarMudancaAcervo
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
+        private DataGridView dgvSolicitacoes;
+        private Usuario usuario;
+        private VisualizarMudancaAcervoController controller;
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,16 +21,34 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.dgvSolicitacoes = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSolicitacoes)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // dgvSolicitacoes
+            // 
+            this.dgvSolicitacoes.ColumnHeadersHeight = 34;
+            this.dgvSolicitacoes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvSolicitacoes.Location = new System.Drawing.Point(0, 0);
+            this.dgvSolicitacoes.Name = "dgvSolicitacoes";
+            this.dgvSolicitacoes.ReadOnly = true;
+            this.dgvSolicitacoes.RowHeadersWidth = 62;
+            this.dgvSolicitacoes.Size = new System.Drawing.Size(800, 450);
+            this.dgvSolicitacoes.TabIndex = 0;
+            // 
+            // JanelaVisualizarMudancaAcervo
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "JanelaVisualizarMudancaAcervo";
+            this.Controls.Add(this.dgvSolicitacoes);
+            this.Name = "JanelaVisualizarMudancaAcervo";
+            this.Text = "Janela Visualizar Mudanca de Acervo";
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSolicitacoes)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         #endregion

@@ -1,19 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData;
+using System.IO;
+using System.Windows.Forms;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
 {
-    using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
-    using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva;
-    using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Usuarios.UsuariosData;
-    using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Utilities;
-    using System.IO;
-    using System.Runtime.ConstrainedExecution;
-    using System.Windows.Forms;
-    using Usuarios.UsuariosComunidadeAcademica;
     internal class EmprestimoData
     {
         private static List<Emprestimo> _emprestimoLivros = new List<Emprestimo>();
@@ -22,21 +17,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
         private static readonly string _FILE_PATH = Path.Combine(_DIRECTORY_PATH, "Emprestimo.txt");
 
         internal static List<Emprestimo> EmprestimoLivros { get => _emprestimoLivros;}
-
-        //static EmprestimoData()
-        //{
-        //    _emprestimoLivros = new List<Emprestimo>();
-        //    LerEmprestimosTxt();
-        //}
-
-        //internal List<Emprestimo> SelecionarEmprestimo(ComunidadeAcademica usuario)
-        //{
-
-        //}
-        //internal List<Emprestimo> SelecionarEmprestimo(Emprestimo emprestimos)
-        //{
-
-        //}
 
         internal static void CarregarEmprestimos()
         {
@@ -143,7 +123,16 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
             string cpfUsuario = partes[1];
             ComunidadeAcademica usuario = UsuarioData.SelecionarUsuarioCA(cpfUsuario);
 
-            return new Emprestimo(null, livro, usuario);
+            bool ConversaoEmprestimo = DateTime.TryParse(partes[2], out DateTime DataEmprestimo);
+
+            var emprestimo = new Emprestimo(null, livro, usuario);
+            if (ConversaoEmprestimo) emprestimo.DataEmprestimo = DataEmprestimo;
+            if (partes.Length > 3)
+            {
+                bool ConversaoDevolucao = DateTime.TryParse(partes[3], out DateTime DataDevolucao);
+                if (ConversaoDevolucao) emprestimo.DataDevolucaoUsuario = DataDevolucao;
+            }
+            return emprestimo;
         }
 
 
@@ -174,7 +163,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
         internal static string ConverterEmprestimoParaLinha(Emprestimo emprestimo)
         {
 
-            return $"{emprestimo.Livro.Isbn},{emprestimo.ComunidadeAcademica.Cpf}";
+            return $"{emprestimo.Livro.Isbn},{emprestimo.ComunidadeAcademica.Cpf},{emprestimo.DataEmprestimo.Date.ToString("yyyy-MM-dd")},{emprestimo.DataDevolucaoUsuario.Date.ToString("yyyy-MM-dd")}";
         }
 
         internal static void CriarEmprestimo (Emprestimo emprestimo)

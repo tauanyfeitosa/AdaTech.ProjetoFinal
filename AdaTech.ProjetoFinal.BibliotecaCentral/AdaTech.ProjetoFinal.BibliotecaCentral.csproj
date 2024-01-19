@@ -238,11 +238,35 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\Janelas\JanelasAtendente\JanelaCriarEmprestimoSemReserva.resx">
+      <DependentUpon>JanelaCriarEmprestimoSemReserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Janelas\JanelasAtendente\JanelaDevolucao.resx">
+      <DependentUpon>JanelaDevolucao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Janelas\JanelasAtendente\JanelaIniciarEmprestimo.resx">
+      <DependentUpon>JanelaIniciarEmprestimo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Janelas\JanelasBibliotecario\JanelaSolicitarLivros.resx">
       <DependentUpon>JanelaSolicitarLivros.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Janelas\JanelasBibliotecario\JanelaSolicitarMudarAcervo.resx">
+      <DependentUpon>JanelaSolicitarMudarAcervo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Janelas\JanelasBibliotecario\JanelaVisualizarMudancaAcervo.resx">
+      <DependentUpon>JanelaVisualizarMudancaAcervo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Janelas\JanelasCA\JanelaMultasUsuario.resx">
+      <DependentUpon>JanelaMultasUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Janelas\JanelasCA\JanelaRenovarLivro.resx">
+      <DependentUpon>JanelaRenovarLivro.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Janelas\JanelasCA\JanelaVisualizarAcervo.resx">
       <DependentUpon>JanelaVisualizarAcervo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Janelas\JanelasDiretor\JanelaDetalhesSolicitacao.resx">
+      <DependentUpon>JanelaDetalhesSolicitacao.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Janelas\JanelasDiretor\JanelaVisualizaReserva.resx">
       <DependentUpon>JanelaVisualizaReserva.cs</DependentUpon>

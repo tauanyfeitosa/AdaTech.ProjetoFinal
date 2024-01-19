@@ -8,28 +8,12 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasAtendente
 {
     public partial class JanelaVisualizarEmprestimos : Form
     {
-        private ListBox listBoxEmprestimos = new ListBox();
-
         public JanelaVisualizarEmprestimos()
         {
             InitializeComponent();
-            ConfigurarListBox();
 
             VisualizarEmprestimosController controller = new VisualizarEmprestimosController(this);
             this.Text = "Visualizar Empréstimos";
-        }
-
-        private void ConfigurarListBox()
-        {
-            listBoxEmprestimos.Dock = DockStyle.Fill;
-            listBoxEmprestimos.ScrollAlwaysVisible = true;
-            listBoxEmprestimos.SelectionMode = SelectionMode.None;
-
-            Controls.Add(listBoxEmprestimos);
-
-            listBoxEmprestimos.DrawMode = DrawMode.OwnerDrawVariable;
-            listBoxEmprestimos.MeasureItem += ListBoxEmprestimos_MeasureItem;
-            listBoxEmprestimos.DrawItem += ListBoxEmprestimos_DrawItem;
         }
 
         public void AdicionarEmprestimoNaListBox(string infoEmprestimo)

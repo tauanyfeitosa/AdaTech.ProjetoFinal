@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
@@ -15,11 +13,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
 
         private static readonly string _DIRECTORY_PATH = AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug", "\\Data");
         private static readonly string _FILE_PATH = Path.Combine(_DIRECTORY_PATH, "Livros.txt");
-
-        //static LivroData()
-        //{
-        //    _acervoLivros = LerLivrosTxt();
-        //}
 
         internal static void CarregarLivros()
         {
