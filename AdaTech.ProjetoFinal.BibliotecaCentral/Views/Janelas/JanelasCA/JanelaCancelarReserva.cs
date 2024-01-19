@@ -56,7 +56,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasCA
 
             btnCancelarReserva = new Button();
             btnCancelarReserva.Text = "Cancelar Reserva";
-            btnCancelarReserva.Location = new System.Drawing.Point(20, 480);
+            btnCancelarReserva.Location = new System.Drawing.Point(20, 330);
+            btnCancelarReserva.Size = new System.Drawing.Size(147, 33);
             btnCancelarReserva.Click += (sender, e) => CancelarReservaClick?.Invoke(sender, e);
             Controls.Add(btnCancelarReserva);
         }
