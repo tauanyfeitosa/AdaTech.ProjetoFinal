@@ -16,6 +16,21 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasBiblioteca
         private SolicitarLivrosController controller;
         private System.ComponentModel.IContainer components = null;
 
+        internal ComboBox CmbLivro
+        {
+            get { return cmbLivro; }
+        }
+
+        internal ComboBox CmbTipoAcervo
+        {
+            get { return cmbTipoAcervo; }
+        }
+
+        internal TextBox TxtDescricao
+        {
+            get { return txtDescricao; }
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
