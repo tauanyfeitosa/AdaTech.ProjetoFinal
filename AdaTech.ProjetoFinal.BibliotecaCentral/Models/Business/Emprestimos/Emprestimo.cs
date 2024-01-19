@@ -137,7 +137,10 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
             } else if (this._renovacoes == 0)
             {
                 MessageBox.Show("Não é possível renovar o livro, pois o limite de renovações foi atingido.");
-            } else
+            }else if (_dataDevolucaoPrevista< DateTime.Now) 
+            {
+                MessageBox.Show("Não é possível renovar o livro, pois a data de devolução já passou.");
+            }else
             {
                 MessageBox.Show("Não é possível renovar o livro, pois o mesmo está reservado.");
             }
