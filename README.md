@@ -191,7 +191,7 @@ Para testes, utilize os seguintes dados de Usuário e Senha: <br/>
 
   **VISUALIZAR SOLICITAÇÕES**: Abre uma nova janela para a visualização de todas as solicitações existentes no sistema. <br/>
   <p align="center">
-  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/master/imgs/TelaVisualizarSolicitacoesGerais.png" width="400"> <br/>
+  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/master/imgs/TelaVisualizarSolicitacoes.png" width="400"> <br/>
   Figura 21: Tela Visualização de Solicitações do Bibliotecário <br/><br/>
   </p>
  
@@ -206,7 +206,7 @@ Para testes, utilize os seguintes dados de Usuário e Senha: <br/>
 
  **VISUALIZAR ACERVO**: Abre uma nova janela para a visualização dos livros existentes no sistema. <br/>
   <p align="center">
-  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/master/imgs/VisualizarAcervo.png" width="400"> <br/>
+  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/master/imgs/VisualizarAcervoAluno.png" width="400"> <br/>
   Figura 23: Tela Visualização do Acervo por Comunidade Acadêmica <br/><br/>
   </p>
 
