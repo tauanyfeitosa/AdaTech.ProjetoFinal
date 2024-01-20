@@ -41,6 +41,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral
             this.cpf = cpf;
             this.email = email;
             this.EhAdmin = false;
+            this._ativo = true;
         }
 
         internal bool FazerLogin(string login, string senha)
