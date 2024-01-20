@@ -66,8 +66,14 @@ O sistema inicia com a tela de login, na qual sera digitado o usuário (Funcion�
   <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/master/imgs/TelaLogin.png" width="400"> <br/>
   Figura 1: Tela de Login     <br/>
 </p>
-Para testes, utilize os seguintes dados de Usuário e Senha: <br/>
-
+Para testes, utilize os seguintes dados de Usuário e Senha: <br/><br/>
+<pre>
+  Atendente - Usuário: 07723268513 | Senha: 12345678  <br/>
+  Bibliotecário - Usuário: 12310622079 | Senha: 00000000  <br/> 
+  Diretor - Usuário: 98776773000 | Senha: 11111111  <br/> 
+  Aluno - Usuário: 202100400123 | Senha: 11111111  <br/> 
+  Professor - Usuário: 202100312356 | Senha: 23456789  <br/> 
+</pre>
 
  ### Atendente
  
