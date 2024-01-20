@@ -54,7 +54,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasCA
 
             btnReservar = new Button();
             btnReservar.Text = "Reservar";
-            btnReservar.Location = new System.Drawing.Point(20, 480);
+            btnReservar.Location = new System.Drawing.Point(20, 330);
             btnReservar.Click += (sender, e) => ReservarClick?.Invoke(sender, e);
             Controls.Add(btnReservar);
 

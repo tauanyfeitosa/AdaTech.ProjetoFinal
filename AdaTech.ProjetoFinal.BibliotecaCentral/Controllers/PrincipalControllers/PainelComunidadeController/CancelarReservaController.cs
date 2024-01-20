@@ -26,7 +26,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalController
 
             foreach(ReservaLivro reserva in listaReservas)
             {
-                if (reserva.Emprestimo.Devolucao == false) 
+                if (reserva.Emprestimo.Devolucao == false && reserva.StatusReserva != StatusReserva.Cancelada) 
                 {
                     lista.Add(reserva);
                 }
