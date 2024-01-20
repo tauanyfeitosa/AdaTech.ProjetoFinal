@@ -145,7 +145,7 @@ Para testes, utilize os seguintes dados de Usuário e Senha: <br/>
 
 **SOLICITAR NOVOS LIVROS**: O bibliotecário pode solicitar novos livros, quando o livro não houver mais exemplares disponíveis para utilização. Para solicitar, escolha um livro, o tipo de acervo para qual ele será direcionado e uma descrição do pedido. <br/>
 <p align="center">
-  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/master/imgs/TelaSolicitarLivros.png" width="400"> <br/>
+  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/master/imgs/TelaSolicitarLivro.png" width="400"> <br/>
   Figura 13: Tela de Solicitação de Livros <br/><br/>
   </p>
   
@@ -199,31 +199,40 @@ Para testes, utilize os seguintes dados de Usuário e Senha: <br/>
  
  Na tela principal dos membros da comudade acadêmica (Alunos e Professores) há 4 botões: Visualização do acervo de livros, Pagamento de multas, Reserva e Renovação de livros. <br/>
  <p align="center">
-  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/master/imgs/TelaDiretor.png" width="400"> <br/>
-  Figura 22: Tela Principal de Comunidade Acadêmica <br/>
+  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/master/imgs/TelaPrincipalAluno.png" width="400">       <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/master/imgs/TelaPrincipalProfessor.png" width="400"><br/>
+  Figura 22: Telas Principais de Comunidade Acadêmica <br/>
   </p>
  Com relação aos usuários professores, deve-se ressaltar que todo o dia 25 a senha dele é modificada, fornecendo a nova senha para o usuário 10 dias antes, assim que ele entrar no sistema.<br/><br/>
 
  **VISUALIZAR ACERVO**: Abre uma nova janela para a visualização dos livros existentes no sistema. <br/>
   <p align="center">
-  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/master/imgs/TelaVisualizarFuncionarios.png" width="400"> <br/>
+  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/master/imgs/VisualizarAcervo.png" width="400"> <br/>
   Figura 23: Tela Visualização do Acervo por Comunidade Acadêmica <br/><br/>
   </p>
 
   **RENOVAR**: O usuário pode escolhar qual empréstimo deseja renovar clicando no botão ao lado da descrição do livro, então a data de devolução aumenta em 7 dias. <br/>
   <p align="center">
-  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/master/imgs/TelaRenovacao.png" width="400"> <br/>
+  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/master/imgs/TelaRenovarLivro.png" width="400"> <br/>
   Figura 24: Tela de Renovação do empréstimo por Comunidade Acadêmica <br/><br/>
   </p>
 
   **MULTAS**: O usuário pode escolhar qual empréstimo deseja pagar a multa clicando no botão ao lado do empréstimo, a partir disso o sistema irá reconhecer como pago. <br/>
   <p align="center">
-  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/master/imgs/TelaPagamento.png" width="400"> <br/>
+  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/master/imgs/TelaPagarMulta.png" width="400"> <br/>
   Figura 25: Tela de Pagamento de Multa por Comunidade Acadêmica <br/><br/>
   </p>
 
  **RESERVAR**: O usuário escolhe o livro que deseja reservar, recebendo como retorno a data do dia que poderá retirar o livro. <br/><br/>
+ <p align="center">
+  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/master/imgs/TelaReservarLivro.png" width="400"> <br/>
+  Figura 26: Tela para Reservar Livro por Comunidade Acadêmica <br/><br/>
+  </p>
+  
  **CANCELAR RESERVA**: O usuário escolhe o livro que deseja cancelar a reserva e o exemplar retorna para disponibilidade. <br/>
+  <p align="center">
+  <img src="https://github.com/tauanyfeitosa/AdaTech.ProjetoFinal/blob/master/imgs/TelaCancelarReserva.png" width="400"> <br/>
+  Figura 26: Tela para Cancelar Reserva por Comunidade Acadêmica <br/><br/>
+  </p>
 
 ---
 
@@ -249,7 +258,7 @@ Os dados iniciais referentes aos Usuários (Atendentes, Diretores, Bibliotecári
 - [X] Estudantes: os estudantes só tem acesso ao acervo aberto e podem entrar na fila de espera (ou lista de reserva de livros) quando quiserem. <br/>
 - [X] Funcionários: todos os funcionários tem acesso ao sistema, mas com permissões diferentes.
 - [X] Só os atendentes podem atualizar registros de usuários e permitir o empréstimo do livro. <br/>
-- [ ] Todo funcionário pode verificar se o livro está no sistema e se está disponível, todo funcionário também pode cadastrar um novo livro ou atualizar o número de exemplares.
+- [X] Todo funcionário pode verificar se o livro está no sistema e se está disponível, todo funcionário também pode cadastrar um novo livro ou atualizar o número de exemplares. -> MODIFICADO PARA APENAS BIBLIOTECÁRIO
 
 ---
 
