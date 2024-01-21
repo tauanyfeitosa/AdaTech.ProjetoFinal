@@ -441,7 +441,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views
         }
         private void OnClickReservarLivro(object sender, EventArgs e)
         {
-            JanelaReservarLivro reservar = new JanelaReservarLivro();
+            JanelaReservarLivro reservar = new JanelaReservarLivro(usuarioLogado.Login);
             reservar.ShowDialog();
         }
         private void OnClickRenovarLivro(object sender, EventArgs e)

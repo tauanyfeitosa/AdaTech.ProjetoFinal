@@ -63,6 +63,7 @@
     <Compile Include="Controllers\PrincipalControllers\PainelComunidadeController\CancelarReservaController.cs" />
     <Compile Include="Controllers\PrincipalControllers\PainelComunidadeController\MultasUsuarioController.cs" />
     <Compile Include="Controllers\PrincipalControllers\PainelComunidadeController\RenovarLivroController.cs" />
+    <Compile Include="Controllers\PrincipalControllers\PainelComunidadeController\ReservarLivroController.cs" />
     <Compile Include="Controllers\PrincipalControllers\PainelComunidadeController\VisualizarAcervoController.cs" />
     <Compile Include="Controllers\TelaInicialController.cs" />
     <Compile Include="Controllers\TelaPrincipalController.cs" />
