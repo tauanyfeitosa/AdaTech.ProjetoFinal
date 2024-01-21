@@ -15,24 +15,6 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalController
             this.view = view;
         }
 
-        internal void BtnSolicitarClick()
-        {
-            Livro livroSelecionado = (Livro)view.CmbLivro.SelectedItem;
-            TipoAcervoLivro tipoAcervoSelecionado = (TipoAcervoLivro)view.CmbTipoAcervo.SelectedItem;
-            string descricao = view.TxtDescricao.Text;
-
-            if (view.Usuario is Bibliotecario bibliotecario)
-            {
-                SolicitacoesData.CriarSolicitacao(TipoSolicitacao.MudarAcervoLivro, livroSelecionado, tipoAcervoSelecionado, descricao, bibliotecario);
-                MessageBox.Show("Solicitação de mudança de acervo criada com sucesso!");
-                view.LimparFormulario();
-            }
-            else
-            {
-                MessageBox.Show("Você não tem permissão para criar solicitações.");
-            }
-        }
-
         internal void AtualizarComboBoxTipoAcervo()
         {
             if (view.CmbLivro != null && view.CmbTipoAcervo != null)
