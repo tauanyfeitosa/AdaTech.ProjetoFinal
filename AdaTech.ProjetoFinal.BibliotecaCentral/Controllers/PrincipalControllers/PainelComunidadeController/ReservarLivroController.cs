@@ -1,4 +1,5 @@
 ﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasBibliotecario;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasCA;
@@ -22,22 +23,9 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalController
 
         public void CarregarLivros()
         {
-            if (_form.UsuarioLogado.TipoUsuario == TipoUsuarioComunidade.Aluno)
-            {
-                List<Livro> livros = LivroData.ListarLivros(TipoAcervoLivro.AcervoPublico);
-                AtualizarListaLivros(livros);
-            }
-            else if (_form.UsuarioLogado.TipoUsuario == TipoUsuarioComunidade.Professor)
-            {
-                List<Livro> livrosRestrito = LivroData.ListarLivros(TipoAcervoLivro.AcervoPublico);
-                List<Livro> livrosPublico = LivroData.ListarLivros(TipoAcervoLivro.AcervoRestrito);
-
-                List<Livro> livrosCombinados = new List<Livro>();
-                livrosCombinados.AddRange(livrosRestrito);
-                livrosCombinados.AddRange(livrosPublico);
-
-                AtualizarListaLivros(livrosCombinados);
-            }
+            List<Livro> livros = EmprestimoData.SelecionarLivrosEmprestados(_form.UsuarioLogado);
+            AtualizarListaLivros(livros);
+            
         }
 
         public void AtualizarListaLivros(List<Livro> livros)
@@ -47,7 +35,16 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalController
 
         private void ReservarClick(object sender, EventArgs e)
         {
-
+            if (_form.LivroSelecionado != null && _form.LivroSelecionado is Livro livroSelecionado)
+            {
+                ReservaLivroData.AdicionarReserva(new ReservaLivro(EmprestimoData.SelecionarEmprestimo(_form.LivroSelecionado)[0], _form.UsuarioLogado));
+                MessageBox.Show("Reserva realizada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                _form.Close();
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecione um livro antes de clicar em Reservar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

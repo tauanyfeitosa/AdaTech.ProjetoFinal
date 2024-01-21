@@ -220,5 +220,17 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
             return false;
         }
 
+        internal static List<Livro> SelecionarLivrosEmprestados (ComunidadeAcademica usuario)
+        {
+            if (usuario.TipoUsuario == TipoUsuarioComunidade.Professor)
+            {
+                return _emprestimoLivros.Select(e => e.Livro).ToList();
+            }
+            else
+            {
+                return _emprestimoLivros.Where(e => e.Livro.TipoAcervoLivro == TipoAcervoLivro.AcervoPublico).Select(e => e.Livro).ToList();
+            }
+        }
+
     }
 }

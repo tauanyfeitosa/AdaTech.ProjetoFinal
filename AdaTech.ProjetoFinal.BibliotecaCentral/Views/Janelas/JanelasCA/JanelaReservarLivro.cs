@@ -26,6 +26,11 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasCA
             set { _usuarioLogado = value;}
         }
 
+        internal Livro LivroSelecionado
+        {
+            get { return (Livro)cbLivros.SelectedItem; }
+        }
+
         public event EventHandler ReservarClick;
         internal JanelaReservarLivro(string usuario)
         {

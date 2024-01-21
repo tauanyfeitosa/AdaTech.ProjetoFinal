@@ -88,6 +88,23 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros
             return _acervoLivros.Where(l => l.ExemplaresDisponiveis == 0).ToList();
         }
 
+        internal static List<Livro> SelecionarLivrosIndisponiveis (Usuario usuario)
+        {
+            if (usuario is ComunidadeAcademica ca)
+            {
+                if (ca.TipoUsuario == TipoUsuarioComunidade.Professor)
+                {
+                    return _acervoLivros.Where(l => l.ExemplaresDisponiveis == 0).ToList();
+                }
+                else
+                {
+                    return _acervoLivros.Where(l => l.ExemplaresDisponiveis == 0 && l.TipoAcervoLivro == TipoAcervoLivro.AcervoPublico).ToList();
+                }
+            }
+
+            return null;
+        }
+
         internal static Livro AdicionarLivro(Livro livro)
         {
             if (!_acervoLivros.Contains(livro))
