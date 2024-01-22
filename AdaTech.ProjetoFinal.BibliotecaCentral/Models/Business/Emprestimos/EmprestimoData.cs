@@ -23,6 +23,11 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
             _emprestimoLivros = LerEmprestimosTxt();
         }
 
+        internal static void AtualizarEmprestimo()
+        {
+            SalvarEmprestimosTxt(_emprestimoLivros);
+        }
+
         internal static Emprestimo AdicionarEmprestimo(Emprestimo emprestimo)
         {       
             if (!_emprestimoLivros.Contains(emprestimo))
@@ -126,11 +131,15 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
             bool ConversaoEmprestimo = DateTime.TryParse(partes[2], out DateTime DataEmprestimo);
 
             var emprestimo = new Emprestimo(null, livro, usuario);
-            if (ConversaoEmprestimo) emprestimo.DataEmprestimo = DataEmprestimo;
+            if (ConversaoEmprestimo) emprestimo.DataEmprestimo = DataEmprestimo;emprestimo.DataEmprestimo = DataEmprestimo;
             if (partes.Length > 3)
             {
                 bool ConversaoDevolucao = DateTime.TryParse(partes[3], out DateTime DataDevolucao);
-                if (ConversaoDevolucao) emprestimo.DataDevolucaoUsuario = DataDevolucao;
+                if (ConversaoDevolucao)
+                {
+                    emprestimo.DataDevolucaoUsuario = DataDevolucao;
+                    emprestimo.DataDevolucaoPrevista = DataDevolucao;
+                }
             }
             return emprestimo;
         }
