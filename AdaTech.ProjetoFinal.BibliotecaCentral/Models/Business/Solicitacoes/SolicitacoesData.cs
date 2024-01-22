@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Solicitacoes
@@ -9,12 +10,21 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Solicitacoes
         private static List<SolicitacaoMudarAcervoLivro> solicitacoesMudarAcervo = new List<SolicitacaoMudarAcervoLivro>();
         private static List<SolicitacaoRequisicaoLivros> solicitacaoRequisicaoLivros = new List<SolicitacaoRequisicaoLivros>();
 
-        internal static void CriarSolicitacao(TipoSolicitacao solicitacao, Livro livro, TipoAcervoLivro tipoAcervo, string descricao, Bibliotecario bibliotecario)
+        internal static bool CriarSolicitacao(TipoSolicitacao solicitacao, Livro livro, TipoAcervoLivro tipoAcervo, string descricao, Bibliotecario bibliotecario)
         {
-            if (solicitacao == TipoSolicitacao.MudarAcervoLivro)
-                AdicionarSolicitacao(new SolicitacaoMudarAcervoLivro(livro, tipoAcervo, bibliotecario, descricao));
-            else if (solicitacao == TipoSolicitacao.RequisicaoLivro)
-                AdicionarSolicitacao(new SolicitacaoRequisicaoLivros(bibliotecario, livro, tipoAcervo, descricao));
+            try
+            {
+                if (solicitacao == TipoSolicitacao.MudarAcervoLivro)
+                    AdicionarSolicitacao(new SolicitacaoMudarAcervoLivro(livro, tipoAcervo, bibliotecario, descricao));
+                else if (solicitacao == TipoSolicitacao.RequisicaoLivro)
+                    AdicionarSolicitacao(new SolicitacaoRequisicaoLivros(bibliotecario, livro, tipoAcervo, descricao));
+                return true;
+            } catch
+            {
+                MessageBox.Show("Erro ao criar solicitação.");
+                return false;
+            }
+            
         }
 
         internal static void AdicionarSolicitacao (ISolicitacao solicitacao)
