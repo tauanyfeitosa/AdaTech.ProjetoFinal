@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
 {
@@ -57,17 +58,27 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
 
         internal Multa(DateTime dataPrevista, DateTime dataDevolucao = default(DateTime), bool mauEstado = false)
         {
-            int diasAtraso = (int)(dataDevolucao - dataPrevista).TotalDays;
-            _multaTotal = CalcularMulta(diasAtraso, mauEstado);
+            int diasAtraso;
+
+            if (dataDevolucao > dataPrevista)
+            {
+                diasAtraso = (int)(dataDevolucao - dataPrevista).TotalDays;
+            }
+            else
+            {
+                diasAtraso = 0;
+            }
+
             _multaDiaria = 1;
             _multaMauEstado = 10;
+            _multaTotal = CalcularMulta(diasAtraso, mauEstado);
             _pagamentoMulta = false;
         }
         private decimal CalcularMulta(int dias, bool mauEstado)
         {
             if (mauEstado)
             {
-                return (dias*MultaDiaria)+MultaMauEstado;
+                return (dias * MultaDiaria) + MultaMauEstado;
             }
             return dias * _multaDiaria;
         }

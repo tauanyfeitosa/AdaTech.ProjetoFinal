@@ -2,6 +2,7 @@
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Reserva;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
 using System.Windows.Forms;
+using System.Diagnostics.Eventing.Reader;
 
 namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
 {
@@ -23,7 +24,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
         internal bool MauEstado
         {
             get { return _mauEstado; }
-            set { _mauEstado = value;}
+            set { _mauEstado = value; }
         }
         internal int Renovacoes
         {
@@ -69,7 +70,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
                 _devolucao = value;
             }
         }
-                    
+
         internal Emprestimo(ReservaLivro reservaLivro = null, Livro livro = null, ComunidadeAcademica usuarioComunidadeAcademica = null, bool devolucao = false)
         {
             try
@@ -109,7 +110,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
         {
             Devolucao = true;
             DataDevolucaoUsuario = DateTime.Now;
-            if(!_mauEstado)
+
+            if (!_mauEstado)
             {
                 _livro.ExemplaresDisponiveis++;
             }
@@ -117,8 +119,15 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
             {
                 _livro.AtualizarMauEstado();
             }
-            CalcularMulta();
-            EmprestimoData.ExcluirEmprestimos(_livro, _usuarioComunidadeAcademica);
+
+            if(CalcularMulta())
+            {
+                EmprestimoData.AtualizarEmprestimo();
+            }
+            else
+            {
+                EmprestimoData.ExcluirEmprestimos(_livro, _usuarioComunidadeAcademica);
+            }
         }
 
         internal int GerarIdEmprestimo()
@@ -134,23 +143,31 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos
             {
                 this.DataDevolucaoPrevista = this.DataDevolucaoPrevista.AddDays(7);
                 this._renovacoes--;
-            } else if (this._renovacoes == 0)
+            }
+            else if (this._renovacoes == 0)
             {
                 MessageBox.Show("Não é possível renovar o livro, pois o limite de renovações foi atingido.");
-            }else if (_dataDevolucaoPrevista< DateTime.Now) 
+            }
+            else if (_dataDevolucaoPrevista < DateTime.Now)
             {
                 MessageBox.Show("Não é possível renovar o livro, pois a data de devolução já passou.");
-            }else
+            }
+            else
             {
                 MessageBox.Show("Não é possível renovar o livro, pois o mesmo está reservado.");
             }
         }
 
-        private void CalcularMulta()
+        private bool CalcularMulta()
         {
             if (DataDevolucaoUsuario > DataDevolucaoPrevista || _mauEstado == true)
             {
-                _multaAtraso = new Multa(DataDevolucaoUsuario, DataDevolucaoPrevista, _mauEstado);
+                _multaAtraso = new Multa(DataDevolucaoPrevista, DataDevolucaoUsuario, _mauEstado);
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
         public string CheckBoxTexto()

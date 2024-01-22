@@ -21,21 +21,22 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalController
             form.CancelarButtonClick += CancelarButtonClick;
             form.ProcurarButtonClick += ProcurarButtonClick;
         }
-        
+
         private void CancelarButtonClick(object sender, EventArgs e)
         {
             form.Close();
         }
         private void DevolverButtonClick(object sender, EventArgs e)
         {
-            if (_listaEmprestimos == null && VerificarCaixasEscolhidas())
+            if (_listaEmprestimos != null && VerificarCaixasEscolhidas())
             {
                 Emprestimo emprestimoSelecionado = EmprestimoData.SelecionarEmprestimo(_emprestimoDevolucao);
                 emprestimoSelecionado.MauEstado = form.EstadoLivro;
+
+                form.AtendenteLogin.ConfirmarDevolucao(emprestimoSelecionado);
                 string mensagem = emprestimoSelecionado.ToString();
                 form.MostrarMensagem($"{mensagem}");
 
-                form.AtendenteLogin.ConfirmarDevolucao(emprestimoSelecionado);
                 form.Close();
             }
             else
@@ -54,7 +55,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalController
         {
             _listaEmprestimos = null;
             ComunidadeAcademica comunidadeAcademica = UsuarioData.SelecionarComunidadeAcademica(form.NumeroMatricula());
-            
+
             try
             {
                 if (comunidadeAcademica != null)
@@ -88,7 +89,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalController
                     MessageBox.Show("Usuário não encontrado.");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
@@ -98,7 +99,7 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalController
         {
             int contador = 0;
 
-            if(form.Caixas.Count > 0 && _listaEmprestimos != null)
+            if (form.Caixas.Count > 0 && _listaEmprestimos != null)
             {
                 foreach (int selecao in form.Caixas)
                 {

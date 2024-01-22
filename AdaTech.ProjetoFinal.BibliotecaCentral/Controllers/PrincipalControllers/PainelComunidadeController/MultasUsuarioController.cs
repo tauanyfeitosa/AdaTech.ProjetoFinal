@@ -1,4 +1,5 @@
-﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos;
+﻿using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.AcervoLivros;
+using AdaTech.ProjetoFinal.BibliotecaCentral.Models.Business.Emprestimos;
 using AdaTech.ProjetoFinal.BibliotecaCentral.Views.Janelas.JanelasCA;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalController
             {
                 Emprestimo emprestimo = EmprestimoData.SelecionarEmprestimo(_emprestimoPago);
                 emprestimo.Multa.PagarMulta();
+
+                EmprestimoData.ExcluirEmprestimos(emprestimo.Livro, emprestimo.ComunidadeAcademica);
                 form.MostrarMensagem("PAGO");
                 form.Close();
             }
@@ -84,9 +87,8 @@ namespace AdaTech.ProjetoFinal.BibliotecaCentral.Controllers.PrincipalController
         {
             int contador = 0;
 
-            if (form.Caixas.Count > 0 && _listaEmprestimos.Count>0)
+            if (form.Caixas.Count > 0 && _listaEmprestimos.Count > 0)
             {
-                MessageBox.Show($"{_listaEmprestimos.Count}");
                 foreach (int selecao in form.Caixas)
                 {
                     if (selecao == 1)
