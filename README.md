@@ -24,9 +24,8 @@ no qual foram adquiridos durante os módulos 1 e 2 do curso DiverseDEV organizad
 
 ## Diagrama de Classes
 
-Um diagrama de classes é uma ferramenta visual utilizada na modelagem de sistemas orientados a objetos para representar a estrutura estática de um sistema. Ele faz parte da Linguagem de Modelagem Unificada (UML), que é um conjunto de notações gráficas padronizadas para representar modelos de sistemas.
-<br/>
-A principal finalidade de um diagrama de classes é mostrar as classes que compõem um sistema, juntamente com seus atributos, métodos, relacionamentos e as associações entre as classes.
+Um diagrama de classes é uma ferramenta visual utilizada na modelagem de sistemas orientados a objetos para representar a estrutura estática de um sistema. Ele faz parte da Linguagem de Modelagem Unificada (UML), que é um conjunto de notações gráficas padronizadas para representar modelos de sistemas. A principal finalidade de um diagrama de classes é mostrar as classes que compõem um sistema, juntamente com seus atributos, métodos, relacionamentos e as associações entre as classes. <br/><br/>
+Utilizamos o site Lucidchart para realização do Diagrama de Classes do sistema da biblioteca, o qual pode ser visualizado clicando [AQUI](https://lucid.app/lucidchart/8a10ebe2-19a8-45f0-a730-076668ed08a9/edit?viewport_loc=-168%2C-70%2C2048%2C894%2CHWEp-vi-RSFO&invitationId=inv_658ddb54-8005-491f-b309-045f8549e585).
 
 ---
 
